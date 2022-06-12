@@ -129,7 +129,239 @@ var ucapanWaktu = 'Selamat Malam🌉'
             }
         })
 
-	    const poter =`
+//Menu
+const listcmd = `
+┏━━⊱ 
+┣🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+┗━━⊱
+
+
+𝐈𝐧𝐟𝐨
+ ⍨⃝⚠️ ${prefix}menu
+ ⍨⃝⚠️ ${prefix}ping
+ ⍨⃝⚠️ ${prefix}owner
+ 
+ 
+𝐂𝐨𝐧𝐯𝐞𝐫𝐭
+ ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)
+ ⍨⃝🐣 ${prefix}toaudio (reply audio)
+ ⍨⃝🐣 ${prefix}togif (reply sticker gif)
+ ⍨⃝🐣 ${prefix}toimg (reply sticker)
+ ⍨⃝🐣 ${prefix}tovn (reply audio)
+ ⍨⃝🐣 ${prefix}tourl (reply media)
+ ⍨⃝🐣 ${prefix}tomp3 (reply video)
+  ⍨⃝🐣 ${prefix}shortlink (link)
+ ⍨⃝🐣 Sticker
+  === Info ===
+ ==⍨⃝🐣 ${prefix}sticker (reply gambar)
+ ==⍨⃝🐣 ${prefix}swm (reply gambar)
+ ==⍨⃝🐣 ${prefix}smeme (reply gambar)
+ ==⍨⃝🐣 ${prefix}smeme2 (reply gambar)
+ ==⍨⃝🐣 ${prefix}triggered (reply gambar)
+ ==⍨⃝🐣 ${prefix}gay (reply gambar)
+ ==⍨⃝🐣 ${prefix}glass (reply gambar)
+ ==⍨⃝🐣 ${prefix}passed (reply gambar)
+ ==⍨⃝🐣 ${prefix}jail (reply gambar)
+ ==⍨⃝🐣 ${prefix}comrade (reply gambar)
+ ==⍨⃝🐣 ${prefix}green (reply gambar)
+ ==⍨⃝🐣 ${prefix}blue (reply gambar)
+ ==⍨⃝🐣 ${prefix}sepia (reply gambar)
+ ==⍨⃝🐣 ${prefix}wasted (reply gambar)
+ ==⍨⃝🐣 ${prefix}greyscale (reply gambar)
+ ==⍨⃝🐣 ${prefix}blurple2 (reply gambar)
+ ==⍨⃝🐣 ${prefix}blurple (reply gambar)
+ ==⍨⃝🐣 ${prefix}red (reply gambar)
+ ==⍨⃝🐣 ${prefix}invertgreyscale (reply gambar)
+ ==⍨⃝🐣 ${prefix}invert (reply gambar)
+ 
+𝐓𝐨𝐨𝐥𝐬
+ ⍨⃝📚 ${prefix}removebg (reply gambar)
+ ⍨⃝📚 ${prefix}emojimix (masukan emoji)
+ ⍨⃝📚 ${prefix}emojimix2 (masukan emoji)
+ ⍨⃝📚 ${prefix}emoji (masukan emoji)
+ ⍨⃝📚 ${prefix}del (reply pesan bot)
+ ⍨⃝📚 ${prefix}q 
+ ⍨⃝📚 ${prefix}ssweb 
+ ⍨⃝📚 ${prefix}asupan
+ 
+𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
+ ⍨⃝📩 ${prefix}play (judul lagu)
+   ⍨⃝📩 YouTube
+  === Info ===
+  ==⍨⃝📩 ${prefix}ytmp4 <LinkYt>
+  ==⍨⃝📩 ${prefix}ytmp3 <LinkYt>
+  ==⍨⃝📩 ${prefix}ytmp32 <LinkYt>
+  ==⍨⃝📩 ${prefix}ytmp42 <LinkYt>
+ ⍨⃝📩 TikTok
+  === Info ===
+  ==⍨⃝📩 ${prefix}tiktoknowm <Link Tiktok>
+  ==⍨⃝📩 ${prefix}tiktokwm <Link Tiktok>
+  ==⍨⃝📩 ${prefix}tiktokaudio <Link Tiktok>
+ ⍨⃝📩 ${prefix}twitter (link twitter)
+ ⍨⃝📩 Instagram
+  === Info ===
+  ==⍨⃝📩 ${prefix}instagram <Link Instagram>
+  ==⍨⃝📩 ${prefix}igstory <Username IG>
+ ⍨⃝📩 ${prefix}getmusic 
+ ⍨⃝📩 ${prefix}getvideo 
+ ⍨⃝📩 ${prefix}mediafire (khusus owner) 
+ 
+𝐎𝐰𝐧𝐞𝐫
+ ⍨⃝☕ ${prefix}bcgc 
+ ⍨⃝☕ ${prefix}bcall 
+ ⍨⃝☕ ${prefix}setppbot 
+ ⍨⃝☕ ${prefix}setthumb
+ ⍨⃝☕ ${prefix}setimgwelcome
+ ⍨⃝☕ ${prefix}setimgleave
+
+𝐆𝐫𝐨𝐮𝐩
+ ⍨⃝👥 ${prefix}antilink on
+ ⍨⃝👥 ${prefix}antilink off
+ ⍨⃝👥 ${prefix}tagall 
+ ⍨⃝👥 ${prefix}hidetag
+ ⍨⃝👥 ${prefix}grup  
+ ⍨⃝👥 ${prefix}editinfo 
+ ⍨⃝👥 ${prefix}linkgc
+ ⍨⃝👥 ${prefix}setppgc [image]
+ ⍨⃝👥 ${prefix}setname [text]
+ ⍨⃝👥 ${prefix}setdesc [text]
+ ⍨⃝👥 ${prefix}add @user
+ ⍨⃝👥 ${prefix}kick @user
+ ⍨⃝👥 ${prefix}promote @user
+ ⍨⃝👥 ${prefix}demote @user
+
+𝐒𝐞𝐚𝐫𝐜𝐡
+ ⍨⃝🔎 ${prefix}wikipedia 
+ ⍨⃝🔎 ${prefix}ytsearch (judul)
+ ⍨⃝🔎 ${prefix}google 
+ ⍨⃝🔎 ${prefix}gimage 
+ ⍨⃝🔎 ${prefix}pinterest 
+ 
+𝐕𝐨𝐢𝐜𝐞 𝐂𝐡𝐚𝐧𝐠𝐞𝐫
+ ⍨⃝🎧 ${prefix}bass (reply audio)
+ ⍨⃝🎧 ${prefix}blown (reply audio)
+ ⍨⃝🎧 ${prefix}deep (reply audio)
+ ⍨⃝🎧 ${prefix}earrape (reply audio)
+ ⍨⃝🎧 ${prefix}fast (reply audio)
+ ⍨⃝🎧 ${prefix}fat (reply audio)
+ ⍨⃝🎧 ${prefix}nightcore (reply audio)
+ ⍨⃝🎧 ${prefix}reverse (reply audio)
+ ⍨⃝🎧 ${prefix}robot (reply audio)
+ ⍨⃝🎧 ${prefix}slow (reply audio)
+ ⍨⃝🎧 ${prefix}tupai (reply audio)
+
+Text Pro
+⍨⃝🎬 ${prefix}candy (masukan teks)
+⍨⃝🎬 ${prefix}christmas (masukan teks)
+⍨⃝🎬 ${prefix}3dchristmas (masukan teks)
+⍨⃝🎬 ${prefix}sparklechristmas (masukan teks)
+⍨⃝🎬 ${prefix}deepsea (masukan teks)
+⍨⃝🎬 ${prefix}scifi (masukan teks)
+⍨⃝🎬 ${prefix}rainbow (masukan teks)
+⍨⃝🎬 ${prefix}waterpipe (masukan teks)
+⍨⃝🎬 ${prefix}spooky (masukan teks)
+⍨⃝🎬 ${prefix}pencil (masukan teks)
+⍨⃝🎬 ${prefix}circuit (masukan teks)
+⍨⃝🎬 ${prefix}discovery (masukan teks)
+⍨⃝🎬 ${prefix}metalic (masukan teks)
+⍨⃝🎬 ${prefix}fiction (masukan teks)
+⍨⃝🎬 ${prefix}demon (masukan teks)
+⍨⃝🎬 ${prefix}transformer (masukan teks)
+⍨⃝🎬 ${prefix}berry (masukan teks)
+⍨⃝🎬 ${prefix}thunder (masukan teks)
+⍨⃝🎬 ${prefix}magma (masukan teks)
+⍨⃝🎬 ${prefix}3dstone (masukan teks)
+⍨⃝🎬 ${prefix}neonlight (masukan teks)
+⍨⃝🎬 ${prefix}glitch (masukan teks)
+⍨⃝🎬 ${prefix}harrypotter (masukan teks)
+⍨⃝🎬 ${prefix}brokenglass (masukan teks)
+⍨⃝🎬 ${prefix}papercut (masukan teks)
+⍨⃝🎬 ${prefix}watercolor (masukan teks)
+⍨⃝🎬 ${prefix}multicolor (masukan teks)
+⍨⃝🎬 ${prefix}neondevil (masukan teks)
+⍨⃝🎬 ${prefix}underwater (masukan teks)
+⍨⃝🎬 ${prefix}graffitibike (masukan teks)
+⍨⃝🎬 ${prefix}snow (masukan teks)
+⍨⃝🎬 ${prefix}cloud (masukan teks)
+⍨⃝🎬 ${prefix}honey (masukan teks)
+⍨⃝🎬 ${prefix}ice (masukan teks)
+⍨⃝🎬 ${prefix}fruitjuice (masukan teks)
+⍨⃝🎬 ${prefix}biscuit (masukan teks)
+⍨⃝🎬 ${prefix}wood (masukan teks)
+⍨⃝🎬 ${prefix}chocolate (masukan teks)
+⍨⃝🎬 ${prefix}strawberry (masukan teks)
+⍨⃝🎬 ${prefix}matrix (masukan teks)
+⍨⃝🎬 ${prefix}blood (masukan teks)
+⍨⃝🎬 ${prefix}dropwater (masukan teks)
+⍨⃝🎬 ${prefix}toxic (masukan teks)
+⍨⃝🎬 ${prefix}lava (masukan teks)
+⍨⃝🎬 ${prefix}rock (masukan teks)
+⍨⃝🎬 ${prefix}bloodglas (masukan teks)
+⍨⃝🎬 ${prefix}hallowen (masukan teks)
+⍨⃝🎬 ${prefix}darkgold (masukan teks)
+⍨⃝🎬 ${prefix}joker (masukan teks)
+⍨⃝🎬 ${prefix}wicker(masukan teks)
+⍨⃝🎬 ${prefix}firework (masukan teks)
+⍨⃝🎬 ${prefix}skeleton (masukan teks)
+⍨⃝🎬 ${prefix}blackpink (masukan teks)
+⍨⃝🎬 ${prefix}sand (masukan teks)
+⍨⃝🎬 ${prefix}glue (masukan teks)
+⍨⃝🎬 ${prefix}1917 (masukan teks)
+⍨⃝🎬 ${prefix}leaves (masukan teks)
+⍨⃝🎬 ${prefix}pencil (masukan teks)
+⍨⃝🎬 ${prefix}carbon (masukan teks)
+⍨⃝🎬 ${prefix}natural (masukan teks)
+⍨⃝🎬 ${prefix}neonlight (masukan teks)
+⍨⃝🎬 ${prefix}dropwater (masukan teks)
+⍨⃝🎬 ${prefix}joker (masukan teks)
+⍨⃝🎬 ${prefix}hollographic (masukan teks)
+⍨⃝🎬 ${prefix}bokeh (masukan teks)
+⍨⃝🎬 ${prefix}greenneon (masukan teks)
+⍨⃝🎬 ${prefix}neon (masukan teks)
+⍨⃝🎬 ${prefix}3dneon (masukan teks)
+⍨⃝🎬 ${prefix}blackping (masukan teks)
+⍨⃝🎬 ${prefix}window (masukan teks)
+⍨⃝🎬 ${prefix}thunder (masukan teks)
+⍨⃝🎬 ${prefix}3davengers (masukan teks)
+⍨⃝🎬 ${prefix}3dstone (masukan teks)
+⍨⃝🎬 ${prefix}neondevil (masukan teks)
+⍨⃝🎬 ${prefix}transformer (masukan teks)
+⍨⃝🎬 ${prefix}papercut (masukan teks)
+⍨⃝🎬 ${prefix}lion2 (masukan teks)
+⍨⃝🎬 ${prefix}drapwater (masukan teks)
+⍨⃝🎬 ${prefix}3dbox (masukan teks)
+⍨⃝🎬 ${prefix}herryp (masukan teks)
+⍨⃝🎬 ${prefix}grafiti (masukan teks)
+⍨⃝🎬 ${prefix}pornhub (masukan teks)
+⍨⃝🎬 ${prefix}glitch2 (masukan teks)
+⍨⃝🎬 ${prefix}glitch3 (masukan teks)
+⍨⃝🎬 ${prefix}3dspace (masukan teks)
+⍨⃝🎬 ${prefix}lion (masukan teks)
+⍨⃝🎬 ${prefix}bear (masukan teks)
+⍨⃝🎬 ${prefix}wolf (masukan teks)
+⍨⃝🎬 ${prefix}thewall (masukan teks)
+
+𝐍𝐬𝐟𝐰
+ ⍨⃝🔕 ${prefix}yuri 
+ ⍨⃝🔕 ${prefix}pussy 
+ ⍨⃝🔕 ${prefix}panties 
+ ⍨⃝🔕 ${prefix}orgy 
+ ⍨⃝🔕 ${prefix}neko 
+ ⍨⃝🔕 ${prefix}masturbation 
+ ⍨⃝🔕 ${prefix}jahy 
+ ⍨⃝🔕 ${prefix}glasses 
+ ⍨⃝🔕 ${prefix}gangbang 
+ ⍨⃝🔕 ${prefix}foot 
+ ⍨⃝🔕 ${prefix}femdom 
+ ⍨⃝🔕 ${prefix}ero 
+ ⍨⃝🔕 ${prefix}cum 
+ ⍨⃝🔕 ${prefix}cuckkold 
+ ⍨⃝🔕 ${prefix}blowjob 
+ ⍨⃝🔕 ${prefix}bdsm 
+ ⍨⃝🔕 ${prefix}ahegao 
+ ⍨⃝🔕 ${prefix}ass
+`
+const poter =`
 • Runtime Bot : ${runtime(process.uptime())}
 • Speed Bot     : ${latensi.toFixed(4)} Second
 • Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
@@ -370,6 +602,27 @@ const buttonsDefault = [
     }
 
         switch(command) {
+case 'setimgwelcome':
+          if (!quoted) throw`Send Image With Caption ${prefix + command}`
+          delb = await kon.downloadAndSaveMediaMessage(quoted)
+			fs.writeFileSync(`./lib/w.jpg`, delb)
+			replyig('Sukses')
+          	}
+			break	
+case 'setimgleave':
+          if (!quoted) throw`Send Image With Caption ${prefix + command}`
+          delb = await kon.downloadAndSaveMediaMessage(quoted)
+			fs.writeFileSync(`./lib/l.jpg`, delb)
+			replyig('Sukses')
+          	}
+			break	
+	case 'setthumb':
+	      if (!quoted) throw`Send Image With Caption ${prefix + command}`
+          delb = await kon.downloadAndSaveMediaMessage(quoted)
+			fs.writeFileSync(`./lib/.jpg`, delb)
+			replyig('Sukses')
+          	}
+			break	
 case 'emojimix2': {
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if (!args.join(" ")) return m.reply(`Example : ${prefix + command} 😅`)
@@ -445,240 +698,12 @@ m.reply('on untuk mengaktifkan, off untuk menonaktifkan')
 break
 case 'menu': {
 kon.sendMessage(m.chat, { react: { text: `🗿`, key: m.key }})
-anu = `
-┏━━⊱ 
-┣🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
-┗━━⊱
-
-
-𝐈𝐧𝐟𝐨
- ⍨⃝⚠️ ${prefix}menu
- ⍨⃝⚠️ ${prefix}ping
- ⍨⃝⚠️ ${prefix}owner
- 
- 
-𝐂𝐨𝐧𝐯𝐞𝐫𝐭
- ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)
- ⍨⃝🐣 ${prefix}toaudio (reply audio)
- ⍨⃝🐣 ${prefix}togif (reply sticker gif)
- ⍨⃝🐣 ${prefix}toimg (reply sticker)
- ⍨⃝🐣 ${prefix}tovn (reply audio)
- ⍨⃝🐣 ${prefix}tourl (reply media)
- ⍨⃝🐣 ${prefix}tomp3 (reply video)
-  ⍨⃝🐣 ${prefix}shortlink (link)
- ⍨⃝🐣 Sticker
-  === Info ===
- ==⍨⃝🐣 ${prefix}sticker (reply gambar)
- ==⍨⃝🐣 ${prefix}swm (reply gambar)
- ==⍨⃝🐣 ${prefix}smeme (reply gambar)
- ==⍨⃝🐣 ${prefix}smeme2 (reply gambar)
- ==⍨⃝🐣 ${prefix}triggered (reply gambar)
- ==⍨⃝🐣 ${prefix}gay (reply gambar)
- ==⍨⃝🐣 ${prefix}glass (reply gambar)
- ==⍨⃝🐣 ${prefix}passed (reply gambar)
- ==⍨⃝🐣 ${prefix}jail (reply gambar)
- ==⍨⃝🐣 ${prefix}comrade (reply gambar)
- ==⍨⃝🐣 ${prefix}green (reply gambar)
- ==⍨⃝🐣 ${prefix}blue (reply gambar)
- ==⍨⃝🐣 ${prefix}sepia (reply gambar)
- ==⍨⃝🐣 ${prefix}wasted (reply gambar)
- ==⍨⃝🐣 ${prefix}greyscale (reply gambar)
- ==⍨⃝🐣 ${prefix}blurple2 (reply gambar)
- ==⍨⃝🐣 ${prefix}blurple (reply gambar)
- ==⍨⃝🐣 ${prefix}red (reply gambar)
- ==⍨⃝🐣 ${prefix}invertgreyscale (reply gambar)
- ==⍨⃝🐣 ${prefix}invert (reply gambar)
- 
-𝐓𝐨𝐨𝐥𝐬
- ⍨⃝📚 ${prefix}removebg (reply gambar)
- ⍨⃝📚 ${prefix}emojimix (masukan emoji)
- ⍨⃝📚 ${prefix}emojimix2 (masukan emoji)
- ⍨⃝📚 ${prefix}emoji (masukan emoji)
- ⍨⃝📚 ${prefix}del (reply pesan bot)
- ⍨⃝📚 ${prefix}q 
- ⍨⃝📚 ${prefix}ssweb 
- ⍨⃝📚 ${prefix}asupan
- 
-𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
- ⍨⃝📩 ${prefix}play (judul lagu)
-   ⍨⃝📩 YouTube
-  === Info ===
-  ==⍨⃝📩 ${prefix}ytmp4 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp3 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp32 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp42 <LinkYt>
- ⍨⃝📩 TikTok
-  === Info ===
-  ==⍨⃝📩 ${prefix}tiktoknowm <Link Tiktok>
-  ==⍨⃝📩 ${prefix}tiktokwm <Link Tiktok>
-  ==⍨⃝📩 ${prefix}tiktokaudio <Link Tiktok>
- ⍨⃝📩 ${prefix}twitter (link twitter)
- ⍨⃝📩 Instagram
-  === Info ===
-  ==⍨⃝📩 ${prefix}instagram <Link Instagram>
-  ==⍨⃝📩 ${prefix}igstory <Username IG>
- ⍨⃝📩 ${prefix}getmusic 
- ⍨⃝📩 ${prefix}getvideo 
- ⍨⃝📩 ${prefix}mediafire (khusus owner) 
- 
-𝐎𝐰𝐧𝐞𝐫
- ⍨⃝☕ ${prefix}bcgc 
- ⍨⃝☕ ${prefix}bcall 
- ⍨⃝☕ ${prefix}setppbot 
-
-𝐆𝐫𝐨𝐮𝐩
- ⍨⃝👥 ${prefix}antilink on
- ⍨⃝👥 ${prefix}antilink off
- ⍨⃝👥 ${prefix}tagall 
- ⍨⃝👥 ${prefix}hidetag
- ⍨⃝👥 ${prefix}grup  
- ⍨⃝👥 ${prefix}editinfo 
- ⍨⃝👥 ${prefix}linkgc
- ⍨⃝👥 ${prefix}setppgc [image]
- ⍨⃝👥 ${prefix}setname [text]
- ⍨⃝👥 ${prefix}setdesc [text]
- ⍨⃝👥 ${prefix}add @user
- ⍨⃝👥 ${prefix}kick @user
- ⍨⃝👥 ${prefix}promote @user
- ⍨⃝👥 ${prefix}demote @user
-
-𝐒𝐞𝐚𝐫𝐜𝐡
- ⍨⃝🔎 ${prefix}wikipedia 
- ⍨⃝🔎 ${prefix}ytsearch (judul)
- ⍨⃝🔎 ${prefix}google 
- ⍨⃝🔎 ${prefix}gimage 
- ⍨⃝🔎 ${prefix}pinterest 
- 
-𝐕𝐨𝐢𝐜𝐞 𝐂𝐡𝐚𝐧𝐠𝐞𝐫
- ⍨⃝🎧 ${prefix}bass (reply audio)
- ⍨⃝🎧 ${prefix}blown (reply audio)
- ⍨⃝🎧 ${prefix}deep (reply audio)
- ⍨⃝🎧 ${prefix}earrape (reply audio)
- ⍨⃝🎧 ${prefix}fast (reply audio)
- ⍨⃝🎧 ${prefix}fat (reply audio)
- ⍨⃝🎧 ${prefix}nightcore (reply audio)
- ⍨⃝🎧 ${prefix}reverse (reply audio)
- ⍨⃝🎧 ${prefix}robot (reply audio)
- ⍨⃝🎧 ${prefix}slow (reply audio)
- ⍨⃝🎧 ${prefix}tupai (reply audio)
-
-Text Pro
-⍨⃝🎬 ${prefix}candy (masukan teks)
-⍨⃝🎬 ${prefix}christmas (masukan teks)
-⍨⃝🎬 ${prefix}3dchristmas (masukan teks)
-⍨⃝🎬 ${prefix}sparklechristmas (masukan teks)
-⍨⃝🎬 ${prefix}deepsea (masukan teks)
-⍨⃝🎬 ${prefix}scifi (masukan teks)
-⍨⃝🎬 ${prefix}rainbow (masukan teks)
-⍨⃝🎬 ${prefix}waterpipe (masukan teks)
-⍨⃝🎬 ${prefix}spooky (masukan teks)
-⍨⃝🎬 ${prefix}pencil (masukan teks)
-⍨⃝🎬 ${prefix}circuit (masukan teks)
-⍨⃝🎬 ${prefix}discovery (masukan teks)
-⍨⃝🎬 ${prefix}metalic (masukan teks)
-⍨⃝🎬 ${prefix}fiction (masukan teks)
-⍨⃝🎬 ${prefix}demon (masukan teks)
-⍨⃝🎬 ${prefix}transformer (masukan teks)
-⍨⃝🎬 ${prefix}berry (masukan teks)
-⍨⃝🎬 ${prefix}thunder (masukan teks)
-⍨⃝🎬 ${prefix}magma (masukan teks)
-⍨⃝🎬 ${prefix}3dstone (masukan teks)
-⍨⃝🎬 ${prefix}neonlight (masukan teks)
-⍨⃝🎬 ${prefix}glitch (masukan teks)
-⍨⃝🎬 ${prefix}harrypotter (masukan teks)
-⍨⃝🎬 ${prefix}brokenglass (masukan teks)
-⍨⃝🎬 ${prefix}papercut (masukan teks)
-⍨⃝🎬 ${prefix}watercolor (masukan teks)
-⍨⃝🎬 ${prefix}multicolor (masukan teks)
-⍨⃝🎬 ${prefix}neondevil (masukan teks)
-⍨⃝🎬 ${prefix}underwater (masukan teks)
-⍨⃝🎬 ${prefix}graffitibike (masukan teks)
-⍨⃝🎬 ${prefix}snow (masukan teks)
-⍨⃝🎬 ${prefix}cloud (masukan teks)
-⍨⃝🎬 ${prefix}honey (masukan teks)
-⍨⃝🎬 ${prefix}ice (masukan teks)
-⍨⃝🎬 ${prefix}fruitjuice (masukan teks)
-⍨⃝🎬 ${prefix}biscuit (masukan teks)
-⍨⃝🎬 ${prefix}wood (masukan teks)
-⍨⃝🎬 ${prefix}chocolate (masukan teks)
-⍨⃝🎬 ${prefix}strawberry (masukan teks)
-⍨⃝🎬 ${prefix}matrix (masukan teks)
-⍨⃝🎬 ${prefix}blood (masukan teks)
-⍨⃝🎬 ${prefix}dropwater (masukan teks)
-⍨⃝🎬 ${prefix}toxic (masukan teks)
-⍨⃝🎬 ${prefix}lava (masukan teks)
-⍨⃝🎬 ${prefix}rock (masukan teks)
-⍨⃝🎬 ${prefix}bloodglas (masukan teks)
-⍨⃝🎬 ${prefix}hallowen (masukan teks)
-⍨⃝🎬 ${prefix}darkgold (masukan teks)
-⍨⃝🎬 ${prefix}joker (masukan teks)
-⍨⃝🎬 ${prefix}wicker(masukan teks)
-⍨⃝🎬 ${prefix}firework (masukan teks)
-⍨⃝🎬 ${prefix}skeleton (masukan teks)
-⍨⃝🎬 ${prefix}blackpink (masukan teks)
-⍨⃝🎬 ${prefix}sand (masukan teks)
-⍨⃝🎬 ${prefix}glue (masukan teks)
-⍨⃝🎬 ${prefix}1917 (masukan teks)
-⍨⃝🎬 ${prefix}leaves (masukan teks)
-⍨⃝🎬 ${prefix}pencil (masukan teks)
-⍨⃝🎬 ${prefix}carbon (masukan teks)
-⍨⃝🎬 ${prefix}natural (masukan teks)
-⍨⃝🎬 ${prefix}neonlight (masukan teks)
-⍨⃝🎬 ${prefix}dropwater (masukan teks)
-⍨⃝🎬 ${prefix}joker (masukan teks)
-⍨⃝🎬 ${prefix}hollographic (masukan teks)
-⍨⃝🎬 ${prefix}bokeh (masukan teks)
-⍨⃝🎬 ${prefix}greenneon (masukan teks)
-⍨⃝🎬 ${prefix}neon (masukan teks)
-⍨⃝🎬 ${prefix}3dneon (masukan teks)
-⍨⃝🎬 ${prefix}blackping (masukan teks)
-⍨⃝🎬 ${prefix}window (masukan teks)
-⍨⃝🎬 ${prefix}thunder (masukan teks)
-⍨⃝🎬 ${prefix}3davengers (masukan teks)
-⍨⃝🎬 ${prefix}3dstone (masukan teks)
-⍨⃝🎬 ${prefix}neondevil (masukan teks)
-⍨⃝🎬 ${prefix}transformer (masukan teks)
-⍨⃝🎬 ${prefix}papercut (masukan teks)
-⍨⃝🎬 ${prefix}lion2 (masukan teks)
-⍨⃝🎬 ${prefix}drapwater (masukan teks)
-⍨⃝🎬 ${prefix}3dbox (masukan teks)
-⍨⃝🎬 ${prefix}herryp (masukan teks)
-⍨⃝🎬 ${prefix}grafiti (masukan teks)
-⍨⃝🎬 ${prefix}pornhub (masukan teks)
-⍨⃝🎬 ${prefix}glitch2 (masukan teks)
-⍨⃝🎬 ${prefix}glitch3 (masukan teks)
-⍨⃝🎬 ${prefix}3dspace (masukan teks)
-⍨⃝🎬 ${prefix}lion (masukan teks)
-⍨⃝🎬 ${prefix}bear (masukan teks)
-⍨⃝🎬 ${prefix}wolf (masukan teks)
-⍨⃝🎬 ${prefix}thewall (masukan teks)
-
-𝐍𝐬𝐟𝐰
- ⍨⃝🔕 ${prefix}yuri 
- ⍨⃝🔕 ${prefix}pussy 
- ⍨⃝🔕 ${prefix}panties 
- ⍨⃝🔕 ${prefix}orgy 
- ⍨⃝🔕 ${prefix}neko 
- ⍨⃝🔕 ${prefix}masturbation 
- ⍨⃝🔕 ${prefix}jahy 
- ⍨⃝🔕 ${prefix}glasses 
- ⍨⃝🔕 ${prefix}gangbang 
- ⍨⃝🔕 ${prefix}foot 
- ⍨⃝🔕 ${prefix}femdom 
- ⍨⃝🔕 ${prefix}ero 
- ⍨⃝🔕 ${prefix}cum 
- ⍨⃝🔕 ${prefix}cuckkold 
- ⍨⃝🔕 ${prefix}blowjob 
- ⍨⃝🔕 ${prefix}bdsm 
- ⍨⃝🔕 ${prefix}ahegao 
- ⍨⃝🔕 ${prefix}ass
-`
 let buttons = [
 {buttonId: `${prefix}owner`, buttonText: {displayText: 'Owner'}, type: 1}
 ]
 let buttonMessage = {
 image: tamnel,
-caption: anu,
+caption: listcmd,
 footer: poter,
 buttons: buttons,
 headerType: 4,
@@ -814,236 +839,6 @@ m.reply("Linknya Error")
 break
 case 'menu4': { // Nemu di Sc chika
 kon.sendMessage(m.chat, { react: { text: `🗿`, key: m.key }})
-anu = `
-┏━━⊱ 
-┣• Hallo Kak ${pushname} ~ ${ucapanWaktu}
-┣• Runtime Bot : ${runtime(process.uptime())}
-┣• Speed Bot     : ${latensi.toFixed(4)} Second
-┣• Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
-┣   
-┗━━⊱ 
-
-
-𝐈𝐧𝐟𝐨
- ⍨⃝⚠️ ${prefix}menu
- ⍨⃝⚠️ ${prefix}ping
- ⍨⃝⚠️ ${prefix}owner
- 
- 
-𝐂𝐨𝐧𝐯𝐞𝐫𝐭
- ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)
- ⍨⃝🐣 ${prefix}toaudio (reply audio)
- ⍨⃝🐣 ${prefix}togif (reply sticker gif)
- ⍨⃝🐣 ${prefix}toimg (reply sticker)
- ⍨⃝🐣 ${prefix}tovn (reply audio)
- ⍨⃝🐣 ${prefix}tourl (reply media)
- ⍨⃝🐣 ${prefix}tomp3 (reply video)
-  ⍨⃝🐣 ${prefix}shortlink (link)
- ⍨⃝🐣 Sticker
-  === Info ===
- ==⍨⃝🐣 ${prefix}sticker (reply gambar)
- ==⍨⃝🐣 ${prefix}swm (reply gambar)
- ==⍨⃝🐣 ${prefix}smeme (reply gambar)
- ==⍨⃝🐣 ${prefix}smeme2 (reply gambar)
- ==⍨⃝🐣 ${prefix}triggered (reply gambar)
- ==⍨⃝🐣 ${prefix}gay (reply gambar)
- ==⍨⃝🐣 ${prefix}glass (reply gambar)
- ==⍨⃝🐣 ${prefix}passed (reply gambar)
- ==⍨⃝🐣 ${prefix}jail (reply gambar)
- ==⍨⃝🐣 ${prefix}comrade (reply gambar)
- ==⍨⃝🐣 ${prefix}green (reply gambar)
- ==⍨⃝🐣 ${prefix}blue (reply gambar)
- ==⍨⃝🐣 ${prefix}sepia (reply gambar)
- ==⍨⃝🐣 ${prefix}wasted (reply gambar)
- ==⍨⃝🐣 ${prefix}greyscale (reply gambar)
- ==⍨⃝🐣 ${prefix}blurple2 (reply gambar)
- ==⍨⃝🐣 ${prefix}blurple (reply gambar)
- ==⍨⃝🐣 ${prefix}red (reply gambar)
- ==⍨⃝🐣 ${prefix}invertgreyscale (reply gambar)
- ==⍨⃝🐣 ${prefix}invert (reply gambar)
- 
-𝐓𝐨𝐨𝐥𝐬
- ⍨⃝📚 ${prefix}removebg (reply gambar)
- ⍨⃝📚 ${prefix}emojimix (masukan emoji)
- ⍨⃝📚 ${prefix}del (reply pesan bot)
- ⍨⃝📚 ${prefix}q 
- ⍨⃝📚 ${prefix}ssweb 
- ⍨⃝📚 ${prefix}asupan
- 
-𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
- ⍨⃝📩 ${prefix}play (judul lagu)
-   ⍨⃝📩 YouTube
-  === Info ===
-  ==⍨⃝📩 ${prefix}ytmp4 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp3 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp32 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp42 <LinkYt>
- ⍨⃝📩 TikTok
-  === Info ===
-  ==⍨⃝📩 ${prefix}tiktoknowm <Link Tiktok>
-  ==⍨⃝📩 ${prefix}tiktokwm <Link Tiktok>
-  ==⍨⃝📩 ${prefix}tiktokaudio <Link Tiktok>
- ⍨⃝📩 ${prefix}twitter (link twitter)
- ⍨⃝📩 Instagram
-  === Info ===
-  ==⍨⃝📩 ${prefix}instagram <Link Instagram>
-  ==⍨⃝📩 ${prefix}igstory <Username IG>
- ⍨⃝📩 ${prefix}getmusic 
- ⍨⃝📩 ${prefix}getvideo 
- ⍨⃝📩 ${prefix}mediafire (khusus owner) 
- 
-𝐎𝐰𝐧𝐞𝐫
- ⍨⃝☕ ${prefix}bcgc 
- ⍨⃝☕ ${prefix}bcall 
- ⍨⃝☕ ${prefix}setppbot 
-
-𝐆𝐫𝐨𝐮𝐩
- ⍨⃝👥 ${prefix}antilink on
- ⍨⃝👥 ${prefix}antilink off
- ⍨⃝👥 ${prefix}tagall 
- ⍨⃝👥 ${prefix}hidetag
- ⍨⃝👥 ${prefix}grup  
- ⍨⃝👥 ${prefix}editinfo 
- ⍨⃝👥 ${prefix}linkgc
- ⍨⃝👥 ${prefix}setppgc [image]
- ⍨⃝👥 ${prefix}setname [text]
- ⍨⃝👥 ${prefix}setdesc [text]
- ⍨⃝👥 ${prefix}add @user
- ⍨⃝👥 ${prefix}kick @user
- ⍨⃝👥 ${prefix}promote @user
- ⍨⃝👥 ${prefix}demote @user
-
-𝐒𝐞𝐚𝐫𝐜𝐡
- ⍨⃝🔎 ${prefix}wikipedia 
- ⍨⃝🔎 ${prefix}ytsearch (judul)
- ⍨⃝🔎 ${prefix}google 
- ⍨⃝🔎 ${prefix}gimage 
- ⍨⃝🔎 ${prefix}pinterest 
- 
-𝐕𝐨𝐢𝐜𝐞 𝐂𝐡𝐚𝐧𝐠𝐞𝐫
- ⍨⃝🎧 ${prefix}bass (reply audio)
- ⍨⃝🎧 ${prefix}blown (reply audio)
- ⍨⃝🎧 ${prefix}deep (reply audio)
- ⍨⃝🎧 ${prefix}earrape (reply audio)
- ⍨⃝🎧 ${prefix}fast (reply audio)
- ⍨⃝🎧 ${prefix}fat (reply audio)
- ⍨⃝🎧 ${prefix}nightcore (reply audio)
- ⍨⃝🎧 ${prefix}reverse (reply audio)
- ⍨⃝🎧 ${prefix}robot (reply audio)
- ⍨⃝🎧 ${prefix}slow (reply audio)
- ⍨⃝🎧 ${prefix}tupai (reply audio)
-
-Text Pro
-⍨⃝🎬 ${prefix}candy (masukan teks)
-⍨⃝🎬 ${prefix}christmas (masukan teks)
-⍨⃝🎬 ${prefix}3dchristmas (masukan teks)
-⍨⃝🎬 ${prefix}sparklechristmas (masukan teks)
-⍨⃝🎬 ${prefix}deepsea (masukan teks)
-⍨⃝🎬 ${prefix}scifi (masukan teks)
-⍨⃝🎬 ${prefix}rainbow (masukan teks)
-⍨⃝🎬 ${prefix}waterpipe (masukan teks)
-⍨⃝🎬 ${prefix}spooky (masukan teks)
-⍨⃝🎬 ${prefix}pencil (masukan teks)
-⍨⃝🎬 ${prefix}circuit (masukan teks)
-⍨⃝🎬 ${prefix}discovery (masukan teks)
-⍨⃝🎬 ${prefix}metalic (masukan teks)
-⍨⃝🎬 ${prefix}fiction (masukan teks)
-⍨⃝🎬 ${prefix}demon (masukan teks)
-⍨⃝🎬 ${prefix}transformer (masukan teks)
-⍨⃝🎬 ${prefix}berry (masukan teks)
-⍨⃝🎬 ${prefix}thunder (masukan teks)
-⍨⃝🎬 ${prefix}magma (masukan teks)
-⍨⃝🎬 ${prefix}3dstone (masukan teks)
-⍨⃝🎬 ${prefix}neonlight (masukan teks)
-⍨⃝🎬 ${prefix}glitch (masukan teks)
-⍨⃝🎬 ${prefix}harrypotter (masukan teks)
-⍨⃝🎬 ${prefix}brokenglass (masukan teks)
-⍨⃝🎬 ${prefix}papercut (masukan teks)
-⍨⃝🎬 ${prefix}watercolor (masukan teks)
-⍨⃝🎬 ${prefix}multicolor (masukan teks)
-⍨⃝🎬 ${prefix}neondevil (masukan teks)
-⍨⃝🎬 ${prefix}underwater (masukan teks)
-⍨⃝🎬 ${prefix}graffitibike (masukan teks)
-⍨⃝🎬 ${prefix}snow (masukan teks)
-⍨⃝🎬 ${prefix}cloud (masukan teks)
-⍨⃝🎬 ${prefix}honey (masukan teks)
-⍨⃝🎬 ${prefix}ice (masukan teks)
-⍨⃝🎬 ${prefix}fruitjuice (masukan teks)
-⍨⃝🎬 ${prefix}biscuit (masukan teks)
-⍨⃝🎬 ${prefix}wood (masukan teks)
-⍨⃝🎬 ${prefix}chocolate (masukan teks)
-⍨⃝🎬 ${prefix}strawberry (masukan teks)
-⍨⃝🎬 ${prefix}matrix (masukan teks)
-⍨⃝🎬 ${prefix}blood (masukan teks)
-⍨⃝🎬 ${prefix}dropwater (masukan teks)
-⍨⃝🎬 ${prefix}toxic (masukan teks)
-⍨⃝🎬 ${prefix}lava (masukan teks)
-⍨⃝🎬 ${prefix}rock (masukan teks)
-⍨⃝🎬 ${prefix}bloodglas (masukan teks)
-⍨⃝🎬 ${prefix}hallowen (masukan teks)
-⍨⃝🎬 ${prefix}darkgold (masukan teks)
-⍨⃝🎬 ${prefix}joker (masukan teks)
-⍨⃝🎬 ${prefix}wicker(masukan teks)
-⍨⃝🎬 ${prefix}firework (masukan teks)
-⍨⃝🎬 ${prefix}skeleton (masukan teks)
-⍨⃝🎬 ${prefix}blackpink (masukan teks)
-⍨⃝🎬 ${prefix}sand (masukan teks)
-⍨⃝🎬 ${prefix}glue (masukan teks)
-⍨⃝🎬 ${prefix}1917 (masukan teks)
-⍨⃝🎬 ${prefix}leaves (masukan teks)
-⍨⃝🎬 ${prefix}pencil (masukan teks)
-⍨⃝🎬 ${prefix}carbon (masukan teks)
-⍨⃝🎬 ${prefix}natural (masukan teks)
-⍨⃝🎬 ${prefix}neonlight (masukan teks)
-⍨⃝🎬 ${prefix}dropwater (masukan teks)
-⍨⃝🎬 ${prefix}joker (masukan teks)
-⍨⃝🎬 ${prefix}hollographic (masukan teks)
-⍨⃝🎬 ${prefix}bokeh (masukan teks)
-⍨⃝🎬 ${prefix}greenneon (masukan teks)
-⍨⃝🎬 ${prefix}neon (masukan teks)
-⍨⃝🎬 ${prefix}3dneon (masukan teks)
-⍨⃝🎬 ${prefix}blackping (masukan teks)
-⍨⃝🎬 ${prefix}window (masukan teks)
-⍨⃝🎬 ${prefix}thunder (masukan teks)
-⍨⃝🎬 ${prefix}3davengers (masukan teks)
-⍨⃝🎬 ${prefix}3dstone (masukan teks)
-⍨⃝🎬 ${prefix}neondevil (masukan teks)
-⍨⃝🎬 ${prefix}transformer (masukan teks)
-⍨⃝🎬 ${prefix}papercut (masukan teks)
-⍨⃝🎬 ${prefix}lion2 (masukan teks)
-⍨⃝🎬 ${prefix}drapwater (masukan teks)
-⍨⃝🎬 ${prefix}3dbox (masukan teks)
-⍨⃝🎬 ${prefix}herryp (masukan teks)
-⍨⃝🎬 ${prefix}grafiti (masukan teks)
-⍨⃝🎬 ${prefix}pornhub (masukan teks)
-⍨⃝🎬 ${prefix}glitch2 (masukan teks)
-⍨⃝🎬 ${prefix}glitch3 (masukan teks)
-⍨⃝🎬 ${prefix}3dspace (masukan teks)
-⍨⃝🎬 ${prefix}lion (masukan teks)
-⍨⃝🎬 ${prefix}bear (masukan teks)
-⍨⃝🎬 ${prefix}wolf (masukan teks)
-⍨⃝🎬 ${prefix}thewall (masukan teks)
-
-𝐍𝐬𝐟𝐰
- ⍨⃝🔕 ${prefix}yuri 
- ⍨⃝🔕 ${prefix}pussy 
- ⍨⃝🔕 ${prefix}panties 
- ⍨⃝🔕 ${prefix}orgy 
- ⍨⃝🔕 ${prefix}neko 
- ⍨⃝🔕 ${prefix}masturbation 
- ⍨⃝🔕 ${prefix}jahy 
- ⍨⃝🔕 ${prefix}glasses 
- ⍨⃝🔕 ${prefix}gangbang 
- ⍨⃝🔕 ${prefix}foot 
- ⍨⃝🔕 ${prefix}femdom 
- ⍨⃝🔕 ${prefix}ero 
- ⍨⃝🔕 ${prefix}cum 
- ⍨⃝🔕 ${prefix}cuckkold 
- ⍨⃝🔕 ${prefix}blowjob 
- ⍨⃝🔕 ${prefix}bdsm 
- ⍨⃝🔕 ${prefix}ahegao 
- ⍨⃝🔕 ${prefix}ass
-`
 var messa = await prepareWAMessageMedia({ image: tamnel}, { upload: kon.waUploadToServer })
 var catalog = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 "productMessage": {
@@ -1051,7 +846,7 @@ var catalog = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 "productImage": messa.imageMessage,
 "productId": "7091718154232528",
 "title": `MENU ZBot`,
-"description": anu,
+"description": listcmd,
 "footerText": poter,
 "currencyCode": "IDR",
 "priceAmount1000": "100000000000000000",
@@ -1068,235 +863,12 @@ kon.relayMessage(m.chat, catalog.message, { messageId: catalog.key.id })
 }
 break
 case 'help2': case 'menu2': {
-            	anu = `
-┏━━⊱ 
-┣🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
-┗━━⊱
-
-
-𝐈𝐧𝐟𝐨
- ⍨⃝⚠️ ${prefix}menu
- ⍨⃝⚠️ ${prefix}ping
- ⍨⃝⚠️ ${prefix}owner
- 
- 
-𝐂𝐨𝐧𝐯𝐞𝐫𝐭
- ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)
- ⍨⃝🐣 ${prefix}toaudio (reply audio)
- ⍨⃝🐣 ${prefix}togif (reply sticker gif)
- ⍨⃝🐣 ${prefix}toimg (reply sticker)
- ⍨⃝🐣 ${prefix}tovn (reply audio)
- ⍨⃝🐣 ${prefix}tourl (reply media)
- ⍨⃝🐣 ${prefix}tomp3 (reply video)
- ⍨⃝🐣 Sticker
-  === Info ===
- ==⍨⃝🐣 ${prefix}sticker (reply gambar)
- ==⍨⃝🐣 ${prefix}swm (reply gambar)
- ==⍨⃝🐣 ${prefix}smeme (reply gambar)
- ==⍨⃝🐣 ${prefix}smeme2 (reply gambar)
- ==⍨⃝🐣 ${prefix}triggered (reply gambar)
- ==⍨⃝🐣 ${prefix}gay (reply gambar)
- ==⍨⃝🐣 ${prefix}glass (reply gambar)
- ==⍨⃝🐣 ${prefix}passed (reply gambar)
- ==⍨⃝🐣 ${prefix}jail (reply gambar)
- ==⍨⃝🐣 ${prefix}comrade (reply gambar)
- ==⍨⃝🐣 ${prefix}green (reply gambar)
- ==⍨⃝🐣 ${prefix}blue (reply gambar)
- ==⍨⃝🐣 ${prefix}sepia (reply gambar)
- ==⍨⃝🐣 ${prefix}wasted (reply gambar)
- ==⍨⃝🐣 ${prefix}greyscale (reply gambar)
- ==⍨⃝🐣 ${prefix}blurple2 (reply gambar)
- ==⍨⃝🐣 ${prefix}blurple (reply gambar)
- ==⍨⃝🐣 ${prefix}red (reply gambar)
- ==⍨⃝🐣 ${prefix}invertgreyscale (reply gambar)
- ==⍨⃝🐣 ${prefix}invert (reply gambar)
- 
-𝐓𝐨𝐨𝐥𝐬
- ⍨⃝📚 ${prefix}removebg (reply gambar)
- ⍨⃝📚 ${prefix}emojimix (masukan emoji)
- ⍨⃝📚 ${prefix}del (reply pesan bot)
- ⍨⃝📚 ${prefix}q 
- ⍨⃝📚 ${prefix}ssweb 
- ⍨⃝📚 ${prefix}meme 
- 
-𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
- ⍨⃝📩 ${prefix}play (judul lagu)
-   ⍨⃝📩 YouTube
-  === Info ===
-  ==⍨⃝📩 ${prefix}ytmp4 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp3 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp32 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp42 <LinkYt>
- ⍨⃝📩 TikTok
-  === Info ===
-  ==⍨⃝📩 ${prefix}tiktoknowm <Link Tiktok>
-  ==⍨⃝📩 ${prefix}tiktokwm <Link Tiktok>
-  ==⍨⃝📩 ${prefix}tiktokaudio <Link Tiktok>
- ⍨⃝📩 ${prefix}twitter (link twitter)
- ⍨⃝📩 Instagram
-  === Info ===
-  ==⍨⃝📩 ${prefix}instagram <Link Instagram>
-  ==⍨⃝📩 ${prefix}igstory <Username IG>
- ⍨⃝📩 ${prefix}getmusic 
- ⍨⃝📩 ${prefix}getvideo 
- ⍨⃝📩 ${prefix}mediafire (khusus owner) 
- 
-𝐎𝐰𝐧𝐞𝐫
- ⍨⃝☕ ${prefix}bcgc 
- ⍨⃝☕ ${prefix}bcall 
- ⍨⃝☕ ${prefix}setppbot 
-
-𝐆𝐫𝐨𝐮𝐩
- ⍨⃝👥 ${prefix}tagall 
- ⍨⃝👥 ${prefix}hidetag
- ⍨⃝👥 ${prefix}grup  
- ⍨⃝👥 ${prefix}editinfo 
- ⍨⃝👥 ${prefix}linkgc
- ⍨⃝👥 ${prefix}setppgc [image]
- ⍨⃝👥 ${prefix}setname [text]
- ⍨⃝👥 ${prefix}setdesc [text]
- ⍨⃝👥 ${prefix}add @user
- ⍨⃝👥 ${prefix}kick @user
- ⍨⃝👥 ${prefix}promote @user
- ⍨⃝👥 ${prefix}demote @user
-
-𝐒𝐞𝐚𝐫𝐜𝐡
- ⍨⃝🔎 ${prefix}wikipedia 
- ⍨⃝🔎 ${prefix}ytsearch (judul)
- ⍨⃝🔎 ${prefix}google 
- ⍨⃝🔎 ${prefix}gimage 
- ⍨⃝🔎 ${prefix}pinterest 
- 
-𝐕𝐨𝐢𝐜𝐞 𝐂𝐡𝐚𝐧𝐠𝐞𝐫
- ⍨⃝🎧 ${prefix}bass (reply audio)
- ⍨⃝🎧 ${prefix}blown (reply audio)
- ⍨⃝🎧 ${prefix}deep (reply audio)
- ⍨⃝🎧 ${prefix}earrape (reply audio)
- ⍨⃝🎧 ${prefix}fast (reply audio)
- ⍨⃝🎧 ${prefix}fat (reply audio)
- ⍨⃝🎧 ${prefix}nightcore (reply audio)
- ⍨⃝🎧 ${prefix}reverse (reply audio)
- ⍨⃝🎧 ${prefix}robot (reply audio)
- ⍨⃝🎧 ${prefix}slow (reply audio)
- ⍨⃝🎧 ${prefix}tupai (reply audio)
-
-Text Pro
-⍨⃝🎬 ${prefix}candy (masukan teks)
-⍨⃝🎬 ${prefix}christmas (masukan teks)
-⍨⃝🎬 ${prefix}3dchristmas (masukan teks)
-⍨⃝🎬 ${prefix}sparklechristmas (masukan teks)
-⍨⃝🎬 ${prefix}deepsea (masukan teks)
-⍨⃝🎬 ${prefix}scifi (masukan teks)
-⍨⃝🎬 ${prefix}rainbow (masukan teks)
-⍨⃝🎬 ${prefix}waterpipe (masukan teks)
-⍨⃝🎬 ${prefix}spooky (masukan teks)
-⍨⃝🎬 ${prefix}pencil (masukan teks)
-⍨⃝🎬 ${prefix}circuit (masukan teks)
-⍨⃝🎬 ${prefix}discovery (masukan teks)
-⍨⃝🎬 ${prefix}metalic (masukan teks)
-⍨⃝🎬 ${prefix}fiction (masukan teks)
-⍨⃝🎬 ${prefix}demon (masukan teks)
-⍨⃝🎬 ${prefix}transformer (masukan teks)
-⍨⃝🎬 ${prefix}berry (masukan teks)
-⍨⃝🎬 ${prefix}thunder (masukan teks)
-⍨⃝🎬 ${prefix}magma (masukan teks)
-⍨⃝🎬 ${prefix}3dstone (masukan teks)
-⍨⃝🎬 ${prefix}neonlight (masukan teks)
-⍨⃝🎬 ${prefix}glitch (masukan teks)
-⍨⃝🎬 ${prefix}harrypotter (masukan teks)
-⍨⃝🎬 ${prefix}brokenglass (masukan teks)
-⍨⃝🎬 ${prefix}papercut (masukan teks)
-⍨⃝🎬 ${prefix}watercolor (masukan teks)
-⍨⃝🎬 ${prefix}multicolor (masukan teks)
-⍨⃝🎬 ${prefix}neondevil (masukan teks)
-⍨⃝🎬 ${prefix}underwater (masukan teks)
-⍨⃝🎬 ${prefix}graffitibike (masukan teks)
-⍨⃝🎬 ${prefix}snow (masukan teks)
-⍨⃝🎬 ${prefix}cloud (masukan teks)
-⍨⃝🎬 ${prefix}honey (masukan teks)
-⍨⃝🎬 ${prefix}ice (masukan teks)
-⍨⃝🎬 ${prefix}fruitjuice (masukan teks)
-⍨⃝🎬 ${prefix}biscuit (masukan teks)
-⍨⃝🎬 ${prefix}wood (masukan teks)
-⍨⃝🎬 ${prefix}chocolate (masukan teks)
-⍨⃝🎬 ${prefix}strawberry (masukan teks)
-⍨⃝🎬 ${prefix}matrix (masukan teks)
-⍨⃝🎬 ${prefix}blood (masukan teks)
-⍨⃝🎬 ${prefix}dropwater (masukan teks)
-⍨⃝🎬 ${prefix}toxic (masukan teks)
-⍨⃝🎬 ${prefix}lava (masukan teks)
-⍨⃝🎬 ${prefix}rock (masukan teks)
-⍨⃝🎬 ${prefix}bloodglas (masukan teks)
-⍨⃝🎬 ${prefix}hallowen (masukan teks)
-⍨⃝🎬 ${prefix}darkgold (masukan teks)
-⍨⃝🎬 ${prefix}joker (masukan teks)
-⍨⃝🎬 ${prefix}wicker(masukan teks)
-⍨⃝🎬 ${prefix}firework (masukan teks)
-⍨⃝🎬 ${prefix}skeleton (masukan teks)
-⍨⃝🎬 ${prefix}blackpink (masukan teks)
-⍨⃝🎬 ${prefix}sand (masukan teks)
-⍨⃝🎬 ${prefix}glue (masukan teks)
-⍨⃝🎬 ${prefix}1917 (masukan teks)
-⍨⃝🎬 ${prefix}leaves (masukan teks)
-⍨⃝🎬 ${prefix}pencil (masukan teks)
-⍨⃝🎬 ${prefix}carbon (masukan teks)
-⍨⃝🎬 ${prefix}natural (masukan teks)
-⍨⃝🎬 ${prefix}neonlight (masukan teks)
-⍨⃝🎬 ${prefix}dropwater (masukan teks)
-⍨⃝🎬 ${prefix}joker (masukan teks)
-⍨⃝🎬 ${prefix}hollographic (masukan teks)
-⍨⃝🎬 ${prefix}bokeh (masukan teks)
-⍨⃝🎬 ${prefix}greenneon (masukan teks)
-⍨⃝🎬 ${prefix}neon (masukan teks)
-⍨⃝🎬 ${prefix}3dneon (masukan teks)
-⍨⃝🎬 ${prefix}blackping (masukan teks)
-⍨⃝🎬 ${prefix}window (masukan teks)
-⍨⃝🎬 ${prefix}thunder (masukan teks)
-⍨⃝🎬 ${prefix}3davengers (masukan teks)
-⍨⃝🎬 ${prefix}3dstone (masukan teks)
-⍨⃝🎬 ${prefix}neondevil (masukan teks)
-⍨⃝🎬 ${prefix}transformer (masukan teks)
-⍨⃝🎬 ${prefix}papercut (masukan teks)
-⍨⃝🎬 ${prefix}lion2 (masukan teks)
-⍨⃝🎬 ${prefix}drapwater (masukan teks)
-⍨⃝🎬 ${prefix}3dbox (masukan teks)
-⍨⃝🎬 ${prefix}herryp (masukan teks)
-⍨⃝🎬 ${prefix}grafiti (masukan teks)
-⍨⃝🎬 ${prefix}pornhub (masukan teks)
-⍨⃝🎬 ${prefix}glitch2 (masukan teks)
-⍨⃝🎬 ${prefix}glitch3 (masukan teks)
-⍨⃝🎬 ${prefix}3dspace (masukan teks)
-⍨⃝🎬 ${prefix}lion (masukan teks)
-⍨⃝🎬 ${prefix}bear (masukan teks)
-⍨⃝🎬 ${prefix}wolf (masukan teks)
-⍨⃝🎬 ${prefix}thewall (masukan teks)
-
-𝐍𝐬𝐟𝐰
- ⍨⃝🔕 ${prefix}yuri 
- ⍨⃝🔕 ${prefix}pussy 
- ⍨⃝🔕 ${prefix}panties 
- ⍨⃝🔕 ${prefix}orgy 
- ⍨⃝🔕 ${prefix}neko 
- ⍨⃝🔕 ${prefix}masturbation 
- ⍨⃝🔕 ${prefix}jahy 
- ⍨⃝🔕 ${prefix}glasses 
- ⍨⃝🔕 ${prefix}gangbang 
- ⍨⃝🔕 ${prefix}foot 
- ⍨⃝🔕 ${prefix}femdom 
- ⍨⃝🔕 ${prefix}ero 
- ⍨⃝🔕 ${prefix}cum 
- ⍨⃝🔕 ${prefix}cuckkold 
- ⍨⃝🔕 ${prefix}blowjob 
- ⍨⃝🔕 ${prefix}bdsm 
- ⍨⃝🔕 ${prefix}ahegao 
- ⍨⃝🔕 ${prefix}ass
-`
 let message = await prepareWAMessageMedia({ video: fs.readFileSync('./lib/zbot.mp4'), gifPlayback:true, jpegThumbnail: tamnel }, { upload: kon.waUploadToServer })
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 templateMessage: {
 hydratedTemplate: {
 videoMessage: message.videoMessage,
-hydratedContentText: anu,
+hydratedContentText: listcmd,
 hydratedFooterText: poter,
 hydratedButtons: [
 			{ urlButton: { displayText: `Group Bot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
@@ -2560,7 +2132,7 @@ result = `
 ├ Nama : ${rescun[0].nama}
 ├ Ukuran : ${rescun[0].size}
 └ Link : ${rescun[0].link}`
-m.reply(result)
+replyig(result)
 linkk = `${rescun[0].link}`
 kon.sendMessage(m.chat, {document: {url: `${rescun[0].link}`}, mimetype: `${rescun[0].mime}`, fileName: `${rescun[0].nama}`}, { quoted : m })
 }
@@ -2612,7 +2184,7 @@ break
 const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 templateMessage: {
 hydratedTemplate: {
-hydratedContentText: y,
+hydratedContentText: listcmd,
 locationMessage: {
 jpegThumbnail: tod},
 hydratedFooterText: poter,
@@ -2626,11 +2198,6 @@ quickReplyButton: {
 displayText: '📞𝘖𝘸𝘯𝘦𝘳',
 id: '#owner'
 }  
-}, {
-quickReplyButton: {
-displayText: '📊𝘋𝘢𝘴𝘩𝘣𝘰𝘢𝘳𝘥',
-id: '#dashboard'
-}
 }]
 }
 }

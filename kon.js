@@ -33,7 +33,6 @@ const emoji = new EmojiAPI()
 //const ucapanWaktu = "Selamat "+dt.charAt(0).toUpperCase() + dt.slice(1)*/
 const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
-const tamnel = fs.readFileSync('./lib/hisoka.jpg')
 const { mediafiredl } = require('./lib/mediafiredl')
 const { aiovideodl } = require('./lib/scraper2.js')
 const maker = require('mumaker')
@@ -88,6 +87,8 @@ var ucapanWaktu = 'Selamat Pagi🌁'
 if(time2 < "05:00:00"){
 var ucapanWaktu = 'Selamat Malam🌉'
 }
+
+let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 //●●●●●●●●●●●●●●●●●●●●●● GROUP SETTING●●●●●●●●●●●●●●●●●●●●●●
         const groupMetadata = m.isGroup ? await kon.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
@@ -182,7 +183,7 @@ const listcmd = `
  ⍨⃝📚 ${prefix}del (reply pesan bot)
  ⍨⃝📚 ${prefix}q 
  ⍨⃝📚 ${prefix}ssweb 
- ⍨⃝📚 ${prefix}asupan
+ ⍨⃝?? ${prefix}asupan
  
 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
  ⍨⃝📩 ${prefix}play (judul lagu)
@@ -605,21 +606,27 @@ const buttonsDefault = [
 case 'setimgwelcome':{
           if (!quoted) throw`Send Image With Caption ${prefix + command}`
           delb = await kon.downloadAndSaveMediaMessage(quoted)
-			fs.writeFileSync(`./lib/w.jpg`, delb)
+			fs.writeFileSync('./lib/w.jpg', delb)
+			global.tamnel1 = fs.readFileSync('./image/w.jpg')
+			await sleep(5000)
 			replyig('Sukses')
           	}
 			break	
 case 'setimgleave':{
           if (!quoted) throw`Send Image With Caption ${prefix + command}`
           delb = await kon.downloadAndSaveMediaMessage(quoted)
-			fs.writeFileSync(`./lib/l.jpg`, delb)
+			fs.writeFileSync('./lib/l.jpg', delb)
+			global.tamnel2 = fs.readFileSync('./image/l.jpg')
+			await sleep(5000)
 			replyig('Sukses')
           	}
 			break	
 	case 'setthumb':{
 	      if (!quoted) throw`Send Image With Caption ${prefix + command}`
           delb = await kon.downloadAndSaveMediaMessage(quoted)
-			fs.writeFileSync(`./lib/.jpg`, delb)
+			fs.writeFileSync('./lib/hisoka.jpg', delb)
+			tamnel = fs.readFileSync('./lib/hisoka.jpg')
+			await sleep(5000)
 			replyig('Sukses')
           	}
 			break	

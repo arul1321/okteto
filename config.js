@@ -25,6 +25,8 @@ global.author = 'zBot [62815788590761]'
 global.sessionName = 'kon'
 global.prefa = ['','!','.','🐦','🐤','🗿']
 global.sp = '⭔'
+global.tamnel1 = fs.readFileSync('./lib/w.jpg')
+global.tamnel2 = fs.readFileSync('./lib/l.jpg')
 global.mess = {
     success: 'Success',
     admin: 'Khusus Admin Group (tidak termasuk pembuat group)',

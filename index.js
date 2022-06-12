@@ -88,8 +88,6 @@ async function startkon() {
 			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } },
 			{ quickReplyButton: { displayText: `🌀Menu`, id: `menu` } }
 		]
-                const tamnel1 = fs.readFileSync('./lib/w.jpg')
-                const tamnel2 = fs.readFileSync('./lib/l.jpg')
                const reSize = async(buffer, ukur1, ukur2) => {
     return new Promise(async(resolve, reject) => {
         var baper = await Jimp.read(buffer);
@@ -97,8 +95,8 @@ async function startkon() {
         resolve(ab)
     })
 }
-                const todol1 = await reSize(tamnel1, 150, 150)
-                const todol2 = await reSize(tamnel2, 150, 150)
+                const todol1 = await reSize(global.tamnel1, 150, 150)
+                const todol2 = await reSize(global.tamnel2, 150, 150)
                
                 if (anu.action == 'add') {
                     CPT = `*🐣 *Welcome to ${metadata.subject}*🐣*

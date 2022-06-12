@@ -602,21 +602,21 @@ const buttonsDefault = [
     }
 
         switch(command) {
-case 'setimgwelcome':
+case 'setimgwelcome':{
           if (!quoted) throw`Send Image With Caption ${prefix + command}`
           delb = await kon.downloadAndSaveMediaMessage(quoted)
 			fs.writeFileSync(`./lib/w.jpg`, delb)
 			replyig('Sukses')
           	}
 			break	
-case 'setimgleave':
+case 'setimgleave':{
           if (!quoted) throw`Send Image With Caption ${prefix + command}`
           delb = await kon.downloadAndSaveMediaMessage(quoted)
 			fs.writeFileSync(`./lib/l.jpg`, delb)
 			replyig('Sukses')
           	}
 			break	
-	case 'setthumb':
+	case 'setthumb':{
 	      if (!quoted) throw`Send Image With Caption ${prefix + command}`
           delb = await kon.downloadAndSaveMediaMessage(quoted)
 			fs.writeFileSync(`./lib/.jpg`, delb)

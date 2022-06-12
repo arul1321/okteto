@@ -53,7 +53,6 @@ const isCreator = [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '')
 const itsMe = m.sender == botNumber ? true : false
 const text = q = args.join(" ")
 const from = m.key.remoteJid
-/* const sender2 = m.key.fromMe ? kon.user.jid : isGroup ? m.participant : m.key.remoteJid
 const sender = m.isGroup ? m.participant : m.key.remoteJid
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.msg || quoted).mimetype || ''
@@ -132,7 +131,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
         })
 
 //Menu
-const listcmd = `
+let listcmd = `
 ┏━━⊱ 
 ┣🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
 ┗━━⊱
@@ -360,15 +359,10 @@ Text Pro
  ⍨⃝🔕 ${prefix}ahegao 
  ⍨⃝🔕 ${prefix}ass
 `
-const poter =`
+let poter =`
 • Runtime Bot : ${runtime(process.uptime())}
 • Speed Bot     : ${latensi.toFixed(4)} Second
 • Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
-• Waktu            :• Wib  = ${wib}
-                           • Wita = ${wita}
-                           • Wit   = ${wit}
-
-~Hosting Bot By Heroku.com
 `
         // Public & Self
         if (!kon.public) {
@@ -406,7 +400,7 @@ kon.sendMessage(m.chat, {text:`\`\`\`「 Detect Link 」\`\`\`\n\n@${kice.split(
 } else {
 }
 }
- const butlink = [
+ let butlink = [
 						{ urlButton: { displayText: `Link`, url : `${text}` } },
 			{ quickReplyButton: { displayText: `Back to Menu`, id: `${prefix}menu` } },
 				]
@@ -588,13 +582,7 @@ const buttonsDefault = [
         }
         kon.ev.emit('messages.upsert', msg)
         }
- const { addCommands, checkCommands, deleteCommands } = require('./lib/autoresp')
- const commandsDB = JSON.parse(fs.readFileSync('./src/database.json'))
- for (var i = 0; i < commandsDB.length ; i++) {
-				if (budy.toLowerCase() === commandsDB[i].pesan) {
-					kon.sendMessage(m.chat, commandsDB[i].balasan, text, {thumbnail: ofrply, sendEphemeral: true, quoted:mek})
-					}
-			}
+
  //AutoSticker
   let isSticker = m.mtype
   if (isSticker) {
@@ -2105,35 +2093,6 @@ case 'emoji':case 'semoji':{
             kon.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
             }
             break
-            
-               /*case 'addrespon':{
-			if (!isCreator) throw mess.owner
-				if (args.length < 1) return replyig(`Penggunaan ${prefix}addrespon hai|hai juga`)
-				arg = args.join(' ')
-				argz = arg.split('|')
-				if (checkCommands(argz[0], commandsDB) === true) return reply(`Udah ada`)
-				addCommands(argz[0], argz[1], sender2, commandsDB)
-				replyig(`Sukses menambahkan respon ${argz[0]}`)
-				}
-				break
-			case 'delrespon':{
-			if (!isCreator) throw mess.owner
-				if (args.length < 1) return reply(`Penggunaan ${prefix}delrespon hai`)
-				if (!checkCommands(body.slice(11), commandsDB)) return replyig(`Ga ada di database`)
-                deleteCommands(body.slice(11), commandsDB)
-				replyig(`Sukses menghapus respon ${body.slice(11)}`)
-                  }
-				break
-				case 'listrespon':{
-teks = `\`\`\`「 LIST RESPON  」\`\`\`\n\n`
-for (let i = 0; i < commandsDB.length; i ++){
-teks += `❏ *Tanya:* ${commandsDB[i].pesan}\n`
-teks += `❏ *Balasan:* ${commandsDB[i].balasan}\n`
-teks += `❏ *Creator:* ${commandsDB[i].creator}\n\n`
-}
-replyig(teks)
-}
-break*/
               case 'mediafire':{
             if (!isCreator) throw mess.owner
             if (/document/.test(mime)) throw `Link?`
@@ -2555,9 +2514,8 @@ sourceUrl: "https://instagram.com/_daaa_1"
                 let quality = args[1] ? args[1] : '480p'
                 let media = await ytv(text, quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}\n\n*Mohon tunggu sebentar media sedang dikirim...*`
-                replygrup(anu)
-                kon.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: mess.success}, { quoted: m })
+                anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '480p'}`
+                kon.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: anu}, { quoted: m })
             }
             break
             
@@ -2596,25 +2554,8 @@ sourceUrl: "https://instagram.com/_daaa_1"
                 let quality = args[1] ? args[1] : '480p'
                 let media = await ytv(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}\n\n*Mohon tunggu sebentar media sedang dikirim...*` 
-                replyig(anu)
-                kon.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: mess.success}, { quoted: m })
-            }
-            break
-            case 'ytmp32':{
-                if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27`
-                replyig(mess.wait)
-                ini = await fetchJson(`https://api.dapuhy.xyz/api/socialmedia/ytmp3?url=${text}&apikey=wC7ZLKWUPR`)
-                thumb = await getBuffer(ini.result.thumb)
-                kon.sendImage(m.chat, thumb, `🐣 Title : ${ini.result.title}\n📤 File Size : ${ini.result.size}\n🖇 Url : ${ini.result.url}\n🎶 Ext : MP3\n\n *Mohon Tunggu Sebentar Media Sedang Dikirim*`, m)
-                kon.sendMessage(m.chat, {document: { url: ini.result.url }, mimetype: 'audio/mp4', fileName: `${ini.result.title}.mp3 by ©zBot`}, { quoted : m })
-            }
-            break
-            case 'ytmp42':{
-                if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27`
-                replyig(mess.wait)
-                ini = await fetchJson(`https://api.dapuhy.xyz/api/socialmedia/ytmp4?url=${text}&apikey=wC7ZLKWUPR`)
-                kon.sendMessage(m.chat, { video: { url: ini.result.url}, fileName: `${ini.result.title}.mp4`, mimetype: 'video/mp4', caption: `🐣 Title : ${ini.result.title}\n📤 File Size : ${ini.result.size}\n🖇 Url : ${ini.result.url}\n Ext : MP4\n🗃 Resolusi : ${ini.result.quality}` }, { quoted: m })
+                anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '480p'}` 
+                kon.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: anu}, { quoted: m })
             }
             break
             case 'delete': case 'del': {

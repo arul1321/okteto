@@ -211,9 +211,6 @@ const listcmd = `
  ⍨⃝☕ ${prefix}bcgc 
  ⍨⃝☕ ${prefix}bcall 
  ⍨⃝☕ ${prefix}setppbot 
- ⍨⃝☕ ${prefix}setthumb
- ⍨⃝☕ ${prefix}setimgwelcome
- ⍨⃝☕ ${prefix}setimgleave
 
 𝐆𝐫𝐨𝐮𝐩
  ⍨⃝👥 ${prefix}antilink on
@@ -603,33 +600,6 @@ const buttonsDefault = [
     }
 
         switch(command) {
-case 'setimgwelcome':{
-          if (!quoted) throw`Send Image With Caption ${prefix + command}`
-          delb = await kon.downloadAndSaveMediaMessage(quoted)
-			fs.writeFileSync('./lib/w.jpg', delb)
-			global.tamnel1 = fs.readFileSync('./image/w.jpg')
-			await sleep(5000)
-			replyig('Sukses')
-          	}
-			break	
-case 'setimgleave':{
-          if (!quoted) throw`Send Image With Caption ${prefix + command}`
-          delb = await kon.downloadAndSaveMediaMessage(quoted)
-			fs.writeFileSync('./lib/l.jpg', delb)
-			global.tamnel2 = fs.readFileSync('./image/l.jpg')
-			await sleep(5000)
-			replyig('Sukses')
-          	}
-			break	
-	case 'setthumb':{
-	      if (!quoted) throw`Send Image With Caption ${prefix + command}`
-          delb = await kon.downloadAndSaveMediaMessage(quoted)
-			fs.writeFileSync('./lib/hisoka.jpg', delb)
-			tamnel = fs.readFileSync('./lib/hisoka.jpg')
-			await sleep(5000)
-			replyig('Sukses')
-          	}
-			break	
 case 'emojimix2': {
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if (!args.join(" ")) return m.reply(`Example : ${prefix + command} 😅`)

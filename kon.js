@@ -53,6 +53,7 @@ const isCreator = [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '')
 const itsMe = m.sender == botNumber ? true : false
 const text = q = args.join(" ")
 const from = m.key.remoteJid
+const sender2 = m.key.fromMe ? kon.user.jid : isGroup ? m.participant : m.key.remoteJid
 const sender = m.isGroup ? m.participant : m.key.remoteJid
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.msg || quoted).mimetype || ''
@@ -587,6 +588,13 @@ const buttonsDefault = [
         }
         kon.ev.emit('messages.upsert', msg)
         }
+ const { addCommands, checkCommands, deleteCommands } = require('./lib/autoresp')
+ const commandsDB = JSON.parse(fs.readFileSync('./src/database.json'))
+ for (var i = 0; i < commandsDB.length ; i++) {
+				if (budy.toLowerCase() === commandsDB[i].pesan) {
+					kon.sendMessage(m.chat, commandsDB[i].balasan, text, {thumbnail: ofrply, sendEphemeral: true, quoted:mek})
+					}
+			}
  //AutoSticker
   let isSticker = m.mtype
   if (isSticker) {
@@ -2097,6 +2105,35 @@ case 'emoji':case 'semoji':{
             kon.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
             }
             break
+            
+               /*case 'addrespon':{
+			if (!isCreator) throw mess.owner
+				if (args.length < 1) return replyig(`Penggunaan ${prefix}addrespon hai|hai juga`)
+				arg = args.join(' ')
+				argz = arg.split('|')
+				if (checkCommands(argz[0], commandsDB) === true) return reply(`Udah ada`)
+				addCommands(argz[0], argz[1], sender2, commandsDB)
+				replyig(`Sukses menambahkan respon ${argz[0]}`)
+				}
+				break
+			case 'delrespon':{
+			if (!isCreator) throw mess.owner
+				if (args.length < 1) return reply(`Penggunaan ${prefix}delrespon hai`)
+				if (!checkCommands(body.slice(11), commandsDB)) return replyig(`Ga ada di database`)
+                deleteCommands(body.slice(11), commandsDB)
+				replyig(`Sukses menghapus respon ${body.slice(11)}`)
+                  }
+				break
+				case 'listrespon':{
+teks = `\`\`\`「 LIST RESPON  」\`\`\`\n\n`
+for (let i = 0; i < commandsDB.length; i ++){
+teks += `❏ *Tanya:* ${commandsDB[i].pesan}\n`
+teks += `❏ *Balasan:* ${commandsDB[i].balasan}\n`
+teks += `❏ *Creator:* ${commandsDB[i].creator}\n\n`
+}
+replyig(teks)
+}
+break*/
               case 'mediafire':{
             if (!isCreator) throw mess.owner
             if (/document/.test(mime)) throw `Link?`
@@ -2520,14 +2557,7 @@ sourceUrl: "https://instagram.com/_daaa_1"
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}\n\n*Mohon tunggu sebentar media sedang dikirim...*`
                 replygrup(anu)
-                kon.sendMessage(m.chat, {video:{url:args[0]}, mimetype:"video/mp4", caption:"Success", contextInfo:{externalAdReply:{
-title: media.title,
-body:"©YTMP4 by zBot",
-thumbnail: tamnel,
-mediaType:2,
-mediaUrl: "https://instagram.com/_daaa_1",
-sourceUrl: "https://instagram.com/_daaa_1"
-}}}, {quoted:m})
+                kon.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: mess.success}, { quoted: m })
             }
             break
             
@@ -2567,7 +2597,7 @@ sourceUrl: "https://instagram.com/_daaa_1"
                 let media = await ytv(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}\n\n*Mohon tunggu sebentar media sedang dikirim...*` 
-                kon.sendMessage(m.chat, { caption: anu, location: { jpegThumbnail: fs.readFileSync('./lib/hisoka.jpg') }, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
+                replyig(anu)
                 kon.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: mess.success}, { quoted: m })
             }
             break

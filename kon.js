@@ -604,7 +604,7 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
-case 'tiktok': case 'tiktoknowm': {
+case 'ttmp4': case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
                 var { TiktokDownloader } = require('./lib/tiktokdl')
@@ -664,22 +664,21 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
-    case 'tiktokaudio':{
-     if (!text) throw 'enter query link!'
-			    hx.ttdownloader(args[0]).then( data => {
-				  kon.sendMessage(m.chat, {audio:{url: data.nowm}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title: media.title,
-body:"Sound Tiktok by zBot",
+    case 'tiktokaudio': {
+replyig(mess.wait)
+let res = await aiovideodl(args[0])
+kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:true, contextInfo:{externalAdReply:{
+title:"Tiktok Downloader Video",
+body:res.title,
 thumbnail: tamnel,
-mediaType:2,
-mediaUrl: "https://instagram.com/_daaa_1",
-sourceUrl: "https://instagram.com/_daaa_1"
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
 }}}, {quoted:m})
-				}).catch(() => reply('Hmm Erorr Awoakwoakwok'))
-				}
-		        break
+}
+break
 	case 'igstory': case 'instagramstory': {
-if (!args[0]) return m.reply(`Example :\n${prefix + command} deff.xyz`)
+if (!args[0]) return m.reply(`Example :\n${prefix + command} _daaa_1`)
 try {
 hx.igstory(args[0]).then(async(resed) => {
 ini_anu = []
@@ -736,7 +735,7 @@ for(let i of result.medias){
             }).catch((err) => m.reply(`Link tidak valid atau mungkin user private`))
             }
             break
-         case 'igdl': case 'instagram': {
+         case 'ig': case 'igdl': case 'instagram': {
 if (!args[0]) return replyig(`Example :\n${prefix + command} https://www.instagram.com/p/CcvJGuxh9VI/?igshid=YmMyMTA2M2Y=`)
 try {
 hx.igdl(args[0]).then(async(resed) => {
@@ -2620,7 +2619,7 @@ sourceUrl: "https://instagram.com/_daaa_1"
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '480p'}` 
                 let buttons = [
-{buttonId: `${prefix}ytmp3 ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+{buttonId: `${prefix}menu`, buttonText: {displayText: `Back to Menu`}, type: 1}
 ]
 let buttonMessage = {
 video: {url:media.dl_link},

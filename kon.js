@@ -99,6 +99,8 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
     	const isGroupOwner = m.isGroup ? groupOwner.includes(m.sender) : false
         const isGroupAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
         const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
+        const jakol = m.sender
+        const panggil = `@${jakol.split("@")[0]}`
         // Bot Status
         const used = process.memoryUsage()
         const cpus = os.cpus().map(cpu => {
@@ -133,7 +135,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 //Menu
 let listcmd = `
 ┏━━⊱ 
-┣🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+┣🎗 *Hallo Kak ${panggil} ~ ${ucapanWaktu}*
 ┗━━⊱
 
 

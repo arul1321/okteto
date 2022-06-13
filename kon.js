@@ -135,7 +135,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 //Menu
 let listcmd = `
 ┏━━⊱ 
-┣🎗 *Hallo Kak ${panggil} ~ ${ucapanWaktu}*
+┣🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
 ┗━━⊱
 
 
@@ -596,8 +596,26 @@ const buttonsDefault = [
         return true
       }
     }
-
+const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
+kma = doc1
+mhan = await kon.prepareMessage(m.chat, media, document, kma)
+const buttonMessages = {
+documentMessage: mhan.message.documentMessage,
+contentText: text1,
+footerText: desc1,
+buttons: but,
+headerType: "DOCUMENT"
+}
+kon.sendMessage(id, buttonMessages, options)
+}
+kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Dengan Kecepatan ${latensi.toFixed(4)} Second`)
         switch(command) {
+ case 'setbio': {
+if (!isCreator) return m.reply(mess.owner)
+kon.setStatus(text)
+replyig(mess.success)
+}
+break
 case 'emojimix2': {
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if (!args.join(" ")) return m.reply(`Example : ${prefix + command} 😅`)

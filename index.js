@@ -97,14 +97,14 @@ async function startkon() {
 }
                 const todol1 = await reSize(global.tamnel1, 150, 150)
                 const todol2 = await reSize(global.tamnel2, 150, 150)
-               
+     
                 if (anu.action == 'add') {
-                    CPT = `*🐣 *Welcome to ${metadata.subject}*🐣*
+                    CPT = `*Welcome to ${metadata.subject}*
 *Hai* @${num.split("@")[0]} *Kenalan Dulu yuk*
 *Nama :*
 *Umur :*
 *Askot :*
-*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`
+*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*${metadata.description}`
                 kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol1}, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
                 } else if (anu.action == 'remove') {
                     CPT =`@${num.split("@")[0]} *Keluar Dari* ${metadata.subject} *Yah Keluar, Jan Balik Lagi Ngab🗿*`
@@ -162,6 +162,22 @@ async function startkon() {
 	kon.sendMessage(jid, { contacts: { displayName: `${list.length} Kontak`, contacts: list }, ...opts }, { quoted })
     }
 	
+	kon.setStatus = (status) => {
+        kon.query({
+            tag: 'iq',
+            attrs: {
+                to: '@s.whatsapp.net',
+                type: 'set',
+                xmlns: 'status',
+            },
+            content: [{
+                tag: 'status',
+                attrs: {},
+                content: Buffer.from(status, 'utf-8')
+            }]
+        })
+        return status
+    }
     kon.public = true
 
     kon.serializeM = (m) => smsg(kon, m, store)
@@ -211,6 +227,21 @@ async function startkon() {
      * @param {*} quoted 
      * @param {*} options 
      */
+     kon.sendButDoc = async (jid , text = '' , footer = '', docu, ic, mi, logos, but = [], options = {}) =>{
+        let mgDoc = await prepareWAMessageMedia({ document: docu, jpegThumbnail: logos, fileName: ic, mimetype: mi}, { upload: kon.waUploadToServer })
+        var template = generateWAMessageFromContent(jid, proto.Message.fromObject({
+        templateMessage: {
+        hydratedTemplate: {
+documentMessage: mgDoc.documentMessage,
+               "hydratedContentText": text,
+               "hydratedFooterText": footer,
+               "hydratedButtons": but
+            }
+            }
+            }), options)
+            kon.relayMessage(jid, template.message, { messageId: template.key.id })
+    return kon
+}
     kon.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
         let buttonMessage = {
             text,

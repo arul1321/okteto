@@ -85,8 +85,8 @@ async function startkon() {
                 }
                 const buttonsDefault = [
             { urlButton: { displayText: `Group zBot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
-			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } },
-			{ quickReplyButton: { displayText: `🌀Menu`, id: `menu` } }
+			{ quickReplyButton: { displayText: `Owner`, id: `owner` } },
+			{ quickReplyButton: { displayText: `Menu`, id: `menu` } }
 		]
                const reSize = async(buffer, ukur1, ukur2) => {
     return new Promise(async(resolve, reject) => {

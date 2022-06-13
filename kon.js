@@ -132,7 +132,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
             }
         })
 
-//Menu
+//●●●●●●●●●●●●●●●●●●●●●● MENU SETTING●●●●●●●●●●●●●●●●●●●●●●
 let listcmd = `
 ┏━━⊱ 
 ┣🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
@@ -366,18 +366,18 @@ let poter =`
 • Speed Bot     : ${latensi.toFixed(4)} Second
 • Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
 `
-        // Public & Self
+//●●●●●●●●●●●●●●●●●●●●●● PUBLIC & SELF SETTING●●●●●●●●●●●●●●●●●●●●●●
         if (!kon.public) {
             if (!m.key.fromMe && !isCreator) return
         }
 
-        // Push Message To Console && Auto Read
+//●●●●●●●●●●●●●●●●●●●●●● AUTO READ & AUTO RECORDING SETTING●●●●●●●●●●●●●●●●●●●●●●
         if (m.message) {
         kon.sendPresenceUpdate('recording', m.chat, m.sender, [m.key.id])
         kon.sendReadReceipt(m.chat, m.sender, [m.key.id])
             console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
-        
+//●●●●●●●●●●●●●●●●●●●●●● UKURAN GAMBAR LOKASI SETTING●●●●●●●●●●●●●●●●●●●●●●        
 const reSize = async(buffer, ukur1, ukur2) => {
     return new Promise(async(resolve, reject) => {
         var baper = await Jimp.read(buffer);
@@ -385,8 +385,9 @@ const reSize = async(buffer, ukur1, ukur2) => {
         resolve(ab)
     })
 }
-const todol = await reSize(tamnel, 200, 200)       
-///AntiLink
+const todol = await reSize(tamnel, 200, 200)      
+ 
+//●●●●●●●●●●●●●●●●●●●●●● ANTILINK SETTING●●●●●●●●●●●●●●●●●●●●●●
 if (AntiLink) {
 linkgce = await kon.groupInviteCode(m.chat)
 if (budy.includes(`https://chat.whatsapp.com/${linkgce}`)) {
@@ -402,10 +403,20 @@ kon.sendMessage(m.chat, {text:`\`\`\`「 Detect Link 」\`\`\`\n\n@${kice.split(
 } else {
 }
 }
+//●●●●●●●●●●●●●●●●●●●●●● BUTTONS SETTING●●●●●●●●●●●●●●●●●●●●●●
  let butlink = [
 						{ urlButton: { displayText: `Link`, url : `${text}` } },
 			{ quickReplyButton: { displayText: `Back to Menu`, id: `${prefix}menu` } },
 				]
+let menubutlist = [
+  {buttonId: `sc`, buttonText: {displayText: 'Script'}, type: 1},
+  {buttonId: `ping`, buttonText: {displayText: 'Bot Status'}, type: 1},
+  {buttonId: `owner`, buttonText: {displayText: 'Creator Bot'}, type: 1}
+]
+let buttonsDefault = [
+			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
+		]
+//●●●●●●●●●●●●●●●●●●●●●● FAKE SETTING●●●●●●●●●●●●●●●●●●●●●●
 const ftoko = {
 key: {
 			fromMe: false,
@@ -463,24 +474,6 @@ const adyt = {
                           }
                         }
                       }
-const sendFileFromUrl = async (from, url, caption, msg, men) => {
-            let mime = '';
-            let res = await axios.head(url)
-            mime = res.headers['content-type']
-            if (mime.split("/")[1] === "gif") {
-                return kon.sendMessage(from, { video: await convertGif(url), caption: caption, gifPlayback: true, mentions: men ? men : []}, {quoted: m})
-                }
-            let type = mime.split("/")[0]+"Message"
-            if(mime.split("/")[0] === "image"){
-                return kon.sendMessage(from, { image: await getBuffer(url), caption: caption, mentions: men ? men : []}, {quoted: m})
-            } else if(mime.split("/")[0] === "video"){
-                return kon.sendMessage(from, { video: await getBuffer(url), caption: caption, mentions: men ? men : []}, {quoted: m})
-            } else if(mime.split("/")[0] === "audio"){
-                return kon.sendMessage(from, { audio: await getBuffer(url), caption: caption, mentions: men ? men : [], mimetype: 'audio/mpeg'}, {quoted: m })
-            } else {l
-                return kon.sendMessage(from, { document: await getBuffer(url), mimetype: mime, caption: caption, mentions: men ? men : []}, {quoted: m })
-            }
-        }
 async function uptoibb(path){
 return new Promise (async (resolve, reject) => {
 imgbb('91904762b2cd230ce1d861279bd6bf1d', path).then((res) =>{
@@ -488,7 +481,8 @@ resolve(res.url)
 }).catch(reject)
 })
 }
- 
+
+//●●●●●●●●●●●●●●●●●●●●●● REPLY SETTING●●●●●●●●●●●●●●●●●●●●●●
 const sticWait = (hehe) => {
 			ano = fs.readFileSync('./lib/loading.jpg')
 			kon.sendImageAsSticker(m.chat, ano, m, { packname: global.packname, author: global.author })
@@ -514,6 +508,8 @@ sendEphemeral: true,
 "sourceUrl": "https://instagram.com/_daaa_1"
 }}}, { quoted: ftoko, detectLink: true })}
 const replygrup = (teks) => {kon.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Hallo Kak`,"body": `Group Official`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": tamnel,"sourceUrl": `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}}, { quoted: m})}    
+
+//●●●●●●●●●●●●●●●●●●●●●● SENDMESSAGE SETTING●●●●●●●●●●●●●●●●●●●●●●
 const sendButton5 = async (id, text1, desc1, yo) => {
 var buatpesan = await generateWAMessageFromContent(from, {
     "templateMessage": {
@@ -558,14 +554,20 @@ var buatpesan = await generateWAMessageFromContent(from, {
   }, {})
 kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
 }
-        var menubutlist = [
-  {buttonId: `sc`, buttonText: {displayText: 'Script'}, type: 1},
-  {buttonId: `ping`, buttonText: {displayText: 'Bot Status'}, type: 1},
-    {buttonId: `owner`, buttonText: {displayText: 'Creator Bot'}, type: 1}
-]
-const buttonsDefault = [
-			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
-		]
+  
+const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
+kma = doc1
+mhan = await kon.prepareMessage(m.chat, media, document, kma)
+const buttonMessages = {
+documentMessage: mhan.message.documentMessage,
+contentText: text1,
+footerText: desc1,
+buttons: but,
+headerType: "DOCUMENT"
+}
+kon.sendMessage(id, buttonMessages, options)
+}
+//●●●●●●●●●●●●●●●●●●●●●● MEDIA SETTING●●●●●●●●●●●●●●●●●●●●●● 
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in cmdmedia)) {
         let hash = cmdmedia[m.msg.fileSha256.toString('base64')]
         let { text, mentionedJid } = hash
@@ -585,7 +587,7 @@ const buttonsDefault = [
         kon.ev.emit('messages.upsert', msg)
         }
 
- //AutoSticker
+//●●●●●●●●●●●●●●●●●●●●●● AUTOSTICKER SETTING●●●●●●●●●●●●●●●●●●●●●●
   let isSticker = m.mtype
   if (isSticker) {
     if(isSticker === "imageMessage"){
@@ -596,20 +598,248 @@ const buttonsDefault = [
         return true
       }
     }
-const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
-kma = doc1
-mhan = await kon.prepareMessage(m.chat, media, document, kma)
-const buttonMessages = {
-documentMessage: mhan.message.documentMessage,
-contentText: text1,
-footerText: desc1,
-buttons: but,
-headerType: "DOCUMENT"
-}
-kon.sendMessage(id, buttonMessages, options)
-}
+//●●●●●●●●●●●●●●●●●●●●●● AUTO SET BIO SETTING●●●●●●●●●●●●●●●●●●●●●●
 kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Dengan Kecepatan ${latensi.toFixed(4)} Second`)
+
+//●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
+//●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
+case 'tiktok': case 'tiktoknowm': {
+                if (!text) throw 'enter query link!'
+                replyig(mess.wait)
+                var { TiktokDownloader } = require('./lib/tiktokdl')
+res = await TiktokDownloader(`${text}`).catch(e => {
+m.reply('error')
+})
+console.log(res)
+           let buttons = [
+{buttonId: `${prefix}tiktokwm ${text}`, buttonText: {displayText: `With Watermark`}, type: 1},
+{buttonId: `${prefix}tiktokaudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:res.result.nowatermark},
+caption: mess.success,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Tiktok Downloader No Watermak",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+            }
+            break
+            case 'tiktokwm': case 'tiktokwatermark': {
+                if (!text) throw 'enter query link!'
+                replyig(mess.wait)
+                var { TiktokDownloader } = require('./lib/tiktokdl')
+res = await TiktokDownloader(`${text}`).catch(e => {
+m.reply('error')
+})
+console.log(res)
+                let buttons = [
+{buttonId: `${prefix}tiktoknowm ${text}`, buttonText: {displayText: `No Watermark`}, type: 1},
+{buttonId: `${prefix}tiktokaudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:res.result.nowatermark},
+caption: mess.success,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Tiktok Downloader With Watermak",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+            }
+            break
+    case 'tiktokaudio':{
+     if (!text) throw 'enter query link!'
+			    hx.ttdownloader(args[0]).then( data => {
+				  kon.sendMessage(m.chat, {audio:{url: data.nowm}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title: media.title,
+body:"Sound Tiktok by zBot",
+thumbnail: tamnel,
+mediaType:2,
+mediaUrl: "https://instagram.com/_daaa_1",
+sourceUrl: "https://instagram.com/_daaa_1"
+}}}, {quoted:m})
+				}).catch(() => reply('Hmm Erorr Awoakwoakwok'))
+				}
+		        break
+	case 'igstory': case 'instagramstory': {
+if (!args[0]) return m.reply(`Example :\n${prefix + command} deff.xyz`)
+try {
+hx.igstory(args[0]).then(async(resed) => {
+ini_anu = []
+anu_list = []
+textbv = `*| INSTAGRAM STORY |*`
+urut = 1
+for (let i = 0; i < resed.medias.length; i++) {
+ini_anu.push({
+ "type": resed.medias[i].fileType,
+ "url": resed.medias[i].url
+})
+}
+ilod = 1
+for (let i of ini_anu) {
+anu_list.push({buttonId: `ig35 ${i.type} ${i.url}`, buttonText: {displayText: `Media ${ilod++}`}, type: 1})
+}
+textbv += `\n\n_Pilih media dibawah untuk mendownload_`
+let buttons = anu_list
+let buttonMessage = {
+image:tamnel,
+jpegThumbnail:tamnel,
+caption: textbv,
+footer: "zBot",
+buttons: buttons,
+headerType: 4
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+})
+} catch (err) {
+m.reply(String(err))
+}
+}
+break
+case 'ig35': {
+if (args[0] === "mp4") {
+kon.sendMessage(m.chat, {video:{url:args[1]}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
+} else if (args[0] === "jpg") {
+kon.sendMessage(m.chat, {image:{url:args[1]}, caption:'Done!'}, {quoted:m})
+} else {
+m.reply(" Error! ")
+}
+}
+break
+case 'ig22':{
+		replyig(mess.wait)
+hx.igdl(args[0]).then( result => {
+for(let i of result.medias){
+                if(i.url.includes('mp4')){
+                    kon.sendMessage(m.chat, { video: { url: i.url }})
+                } else {
+                    kon.sendMessage(m.chat, { image: { url: i.url }})
+                }
+            }
+            }).catch((err) => m.reply(`Link tidak valid atau mungkin user private`))
+            }
+            break
+         case 'igdl': case 'instagram': {
+if (!args[0]) return replyig(`Example :\n${prefix + command} https://www.instagram.com/p/CcvJGuxh9VI/?igshid=YmMyMTA2M2Y=`)
+try {
+hx.igdl(args[0]).then(async(resed) => {
+ini_anu = []
+anu_list = []
+textbv = `*| INSTAGRAM DOWNLOADER |*\n\n⭔ Username : ${resed.user.username}\n⭔ Followers : ${resed.user.followers}`
+urut = 1
+for (let i = 0; i < resed.medias.length; i++) {
+ini_anu.push({
+ "type": resed.medias[i].fileType,
+ "url": resed.medias[i].url
+})
+}
+ilod = 1
+for (let i of ini_anu) {
+anu_list.push({buttonId: `${prefix}ig6 ${i.type} ${i.url}`, buttonText: {displayText: `Media ${ilod++}`}, type: 1})
+}
+textbv += `\n\n_Pilih media dibawah untuk mendownload_`
+let buttons = anu_list
+let buttonMessage = {
+                    text: textbv,
+                    footer: poter,
+                    buttons: buttons,
+                    headerType: 4
+                }
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+})
+} catch (err) {
+m.reply(String(err))
+}
+}
+break
+case 'ig6': {
+if (args[0] === "mp4") {
+kon.sendMessage(m.chat, {video:{url:args[1]}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
+} else if (args[0] === "jpg") {
+kon.sendMessage(m.chat, {image:{url:args[1]}, caption:'Done!'}, {quoted:m})
+} else {
+replyig(" Error! ")
+}
+}
+break
+case 'twitter': case 'twdl': case 'twmp4': {
+if (!args[0]) return replyig(`Example :\n${prefix + command} https://twitter.com/cinema21/status/1517754155644821504?t=rUnbyqwh4vAE1QXMXlsVeQ&s=19`)
+replyig(mess.wait)
+try {
+let lotwit = await aiovideodl(args[0])
+teks = `*| TWITTER DOWNLOADER |*
+
+Caption : ${lotwit.title ? lotwit.title : "undefined"}
+Type : ${lotwit.medias[1].extension}
+Size : ${lotwit.medias[1].formattedSize}
+Link : ${lotwit.medias[1].url}
+
+_Pilih kualitas video dibawah dengan cara mengklik tombolnya_`
+let buttons = [
+{buttonId: `${prefix}twddl ${lotwit.medias[0].url}`, buttonText: {displayText: `Quality ${lotwit.medias[0].quality}`}, type: 1},
+{buttonId: `${prefix}twddl ${lotwit.medias[2].url}`, buttonText: {displayText: `Quality ${lotwit.medias[2].quality}`}, type: 1}
+]
+let buttonMessage = {
+video: {url:lotwit.medias[1].url},
+caption: teks,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Twitter Downloader",
+body:lotwit.title ? lotwit.title : "Twitter Downloader",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+} catch {
+m.reply(" Link Error!")
+}
+}
+break
+case 'twddl': {
+replyig(mess.wait)
+let buttons = [
+{buttonId: `${prefix}menu`, buttonText: {displayText: 'Menu'}, type: 1}
+]
+let buttonMessage = {
+video: {url:args[0]},
+caption: "Done!",
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Twitter Downloader",
+body: "by ZBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+}
+break
  case 'setbio': {
 if (!isCreator) return m.reply(mess.owner)
 kon.setStatus(text)
@@ -712,51 +942,20 @@ sourceUrl: "https://instagram.com/_daaa_1"
 kon.sendMessage(m.chat, buttonMessage, { quoted: ftoko })
 }
 break
-case 'igstory': case 'instagramstory': {
-if (!args[0]) return m.reply(`Example :\n${prefix + command} deff.xyz`)
-try {
-hx.igstory(args[0]).then(async(resed) => {
-ini_anu = []
-anu_list = []
-textbv = `*| INSTAGRAM STORY |*`
-urut = 1
-for (let i = 0; i < resed.medias.length; i++) {
-ini_anu.push({
- "type": resed.medias[i].fileType,
- "url": resed.medias[i].url
-})
-}
-ilod = 1
-for (let i of ini_anu) {
-anu_list.push({buttonId: `ig35 ${i.type} ${i.url}`, buttonText: {displayText: `Media ${ilod++}`}, type: 1})
-}
-textbv += `\n\n_Pilih media dibawah untuk mendownload_`
-let buttons = anu_list
-let buttonMessage = {
-image:tamnel,
-jpegThumbnail:tamnel,
-caption: textbv,
-footer: "zBot",
-buttons: buttons,
-headerType: 4
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-})
-} catch (err) {
-m.reply(String(err))
-}
-}
-break
-case 'ig35': {
-if (args[0] === "mp4") {
-kon.sendMessage(m.chat, {video:{url:args[1]}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
-} else if (args[0] === "jpg") {
-kon.sendMessage(m.chat, {image:{url:args[1]}, caption:'Done!'}, {quoted:m})
-} else {
-m.reply(" Error! ")
-}
-}
-break
+case 'igdl2': case 'instagram2': case 'ig2':{
+        	if (!text) throw 'enter query link!'
+			let buttons = [
+                    {buttonId: `ig22 ${text}`, buttonText: {displayText: 'Hasil Pencarian'}, type: 1},
+                ]
+                let buttonMessage = {
+                    text: `Hasil Download Dari ${text}`,
+                    footer: 'Downloader Instagram ©zBot',
+                    buttons: buttons,
+                    headerType: 2
+                }
+           kon.sendMessage(m.chat, buttonMessage, { quoted: m })
+                }
+                break
 case 'emojigambar': {
 if (!args.join(" ")) return m.reply('emojinya?')
 emoji.get(args.join(" ")).then(async(emoji) => {
@@ -1752,138 +1951,9 @@ kon.sendMessage(m.chat, { video: { url: apinobg}, mimetype: 'video/mp4', fileNam
 		await kon.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
 	}
 	break
-        	case 'igdl2': case 'instagram2': case 'ig2':{
-        	if (!text) throw 'enter query link!'
-			let buttons = [
-                    {buttonId: `ig22 ${text}`, buttonText: {displayText: 'Hasil Pencarian'}, type: 1},
-                ]
-                let buttonMessage = {
-                    text: `Hasil Download Dari ${text}`,
-                    footer: 'Downloader Instagram ©zBot',
-                    buttons: buttons,
-                    headerType: 2
-                }
-           kon.sendMessage(m.chat, buttonMessage, { quoted: m })
-                }
-                break
-           
+
      case 'owner': case 'creator': {
 kon.sendContact(m.chat, global.owner, m)
-}
-break
-         case 'ig22':{
-		replyig(mess.wait)
-hx.igdl(args[0]).then( result => {
-for(let i of result.medias){
-                if(i.url.includes('mp4')){
-                    kon.sendMessage(m.chat, { video: { url: i.url }})
-                } else {
-                    kon.sendMessage(m.chat, { image: { url: i.url }})
-                }
-            }
-            }).catch((err) => m.reply(`Link tidak valid atau mungkin user private`))
-            }
-            break
-         case 'igdl': case 'instagram': {
-if (!args[0]) return replyig(`Example :\n${prefix + command} https://www.instagram.com/p/CcvJGuxh9VI/?igshid=YmMyMTA2M2Y=`)
-try {
-hx.igdl(args[0]).then(async(resed) => {
-ini_anu = []
-anu_list = []
-textbv = `*| INSTAGRAM DOWNLOADER |*\n\n⭔ Username : ${resed.user.username}\n⭔ Followers : ${resed.user.followers}`
-urut = 1
-for (let i = 0; i < resed.medias.length; i++) {
-ini_anu.push({
- "type": resed.medias[i].fileType,
- "url": resed.medias[i].url
-})
-}
-ilod = 1
-for (let i of ini_anu) {
-anu_list.push({buttonId: `${prefix}ig6 ${i.type} ${i.url}`, buttonText: {displayText: `Media ${ilod++}`}, type: 1})
-}
-textbv += `\n\n_Pilih media dibawah untuk mendownload_`
-let buttons = anu_list
-let buttonMessage = {
-                    text: textbv,
-                    footer: poter,
-                    buttons: buttons,
-                    headerType: 4
-                }
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-})
-} catch (err) {
-m.reply(String(err))
-}
-}
-break
-case 'ig6': {
-if (args[0] === "mp4") {
-kon.sendMessage(m.chat, {video:{url:args[1]}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
-} else if (args[0] === "jpg") {
-kon.sendMessage(m.chat, {image:{url:args[1]}, caption:'Done!'}, {quoted:m})
-} else {
-replyig(" Error! ")
-}
-}
-break
-case 'twitter': case 'twdl': case 'twmp4': {
-if (!args[0]) return replyig(`Example :\n${prefix + command} https://twitter.com/cinema21/status/1517754155644821504?t=rUnbyqwh4vAE1QXMXlsVeQ&s=19`)
-try {
-let lotwit = await aiovideodl(args[0])
-teks = `*| TWITTER DOWNLOADER |*
-
-Caption : ${lotwit.title ? lotwit.title : "undefined"}
-Type : ${lotwit.medias[1].extension}
-Size : ${lotwit.medias[1].formattedSize}
-Link : ${lotwit.medias[1].url}
-
-_Pilih kualitas video dibawah dengan cara mengklik tombolnya_`
-let buttons = [
-{buttonId: `${prefix}twddl ${lotwit.medias[0].url}`, buttonText: {displayText: `Quality ${lotwit.medias[0].quality}`}, type: 1},
-{buttonId: `${prefix}twddl ${lotwit.medias[2].url}`, buttonText: {displayText: `Quality ${lotwit.medias[2].quality}`}, type: 1}
-]
-let buttonMessage = {
-video: {url:lotwit.medias[1].url},
-caption: teks,
-footer: poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Twitter Downloader",
-body:lotwit.title ? lotwit.title : "Twitter Downloader",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-} catch {
-m.reply(" Link Error!")
-}
-}
-break
-case 'twddl': {
-let buttons = [
-{buttonId: `${prefix}menu`, buttonText: {displayText: 'Menu'}, type: 1}
-]
-let buttonMessage = {
-video: {url:args[0]},
-caption: "Done!",
-footer: poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Twitter Downloader",
-body: "Twitter Downloader",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
 }
 break
             case 'imagenobg': case 'removebg': case 'remove-bg': {
@@ -1924,45 +1994,6 @@ break
            kon.sendMessage(m.chat, buttonMessage, { quoted: m })
                 }
                 break
-	case 'tiktok': case 'tiktoknowm': {
-                if (!text) throw 'enter query link!'
-                replyig(mess.wait)
-                var { TiktokDownloader } = require('./lib/tiktokdl')
-res = await TiktokDownloader(`${text}`).catch(e => {
-m.reply('error')
-})
-console.log(res)
-            var tiiiidtod = [
-						{ urlButton: { displayText: `Link`, url : `${text}` } },
-			{ quickReplyButton: { displayText: `Watermark`, id: `${prefix}tiktokwm ${text}` } },
-			{ quickReplyButton: { displayText: `Audio`, id: `${prefix}tiktokaudio ${text}` } },
-				]
-		   kon.sendMessage(m.chat, { caption: `Succes Download Video TikTok, Thanks For Using zBot`, video: {url: res.result.nowatermark}, templateButtons: tiiiidtod, footer: '© zBot', quoted: m} )
-            }
-            break
-            case 'tiktokwm': case 'tiktokwatermark': {
-                if (!text) throw 'enter query link!'
-                replyig(mess.wait)
-                var { TiktokDownloader } = require('./lib/tiktokdl')
-res = await TiktokDownloader(`${text}`).catch(e => {
-m.reply('error')
-})
-console.log(res)
-                var tiiidtod = [
-						{ urlButton: { displayText: `Link`, url : `${text}` } },
-			{ quickReplyButton: { displayText: `No Watermark`, id: `${prefix}tiktoknowm ${text}` } },
-			{ quickReplyButton: { displayText: `Audio`, id: `${prefix}tiktokaudio ${text}` } },
-				]
-		   kon.sendMessage(m.chat, { caption: `Succes Download Video Twitter, Thanks For Using zBot`, video: {url: res.result.watermark}, templateButtons: tiiidtod, footer: '© zBot', quoted: m} )
-            }
-            break
-    case 'tiktokaudio':{
-     if (!text) throw 'enter query link!'
-			    hx.ttdownloader(args[0]).then( data => {
-				  kon.sendMessage(m.chat, {document: { url: data.nowm }, mimetype: 'audio/mp4', fileName: `Sound Tiktok By zBot.mp3`}, { quoted : m })
-				}).catch(() => reply('Hmm Erorr Awoakwoakwok'))
-				}
-		        break
 case 'emoji':case 'semoji':{
 						replyig(mess.wait) 
 									if (!text) throw `Example : !semoji 😁`
@@ -2333,7 +2364,7 @@ nat = `
 ┃➸ *Kecepatan Bot* ${latensi.toFixed(4)} detik
 ┃➸ *Runtime Bot* ${runtime(process.uptime())}
 ┃𝑵𝒐𝒕𝒆 : 𝑱𝒂𝒏𝒈𝒂𝒏 𝑺𝒑𝒂𝒎!!, 
-┃𝑱𝒊𝒌𝒂 𝑭𝒊𝒕𝒖𝒓 𝑻𝒊𝒅𝒂?? 𝑾𝒐𝒓𝒌 𝑳𝒂𝒑??𝒓𝒌𝒂𝒏 𝑲𝒆 𝑶𝒘𝒏𝒆𝒓, 
+┃𝑱??𝒌𝒂 𝑭𝒊𝒕𝒖𝒓 𝑻𝒊𝒅𝒂?? 𝑾𝒐𝒓𝒌 𝑳𝒂𝒑??𝒓𝒌𝒂𝒏 𝑲𝒆 𝑶𝒘𝒏𝒆𝒓, 
 ┃𝑲𝒆𝒕𝒊𝒌 .𝒐𝒘𝒏𝒆𝒓 𝑼𝒏𝒕𝒖𝒌 𝑵𝒐𝒎𝒐𝒓 𝑶𝒘𝒏𝒆𝒓.
 ┗━━━━━━━ `
 let message = await prepareWAMessageMedia({ image: fs.readFileSync('./lib/hisoka.jpg') }, { upload: kon.waUploadToServer })
@@ -2482,11 +2513,6 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
                                     displayText: 'Video',
                                     id: `ytmp4 ${anu.url}`
                                 }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Back to Menu',
-                                    id: 'menu'
-                                }
                             }]
                         }
                     }
@@ -2535,7 +2561,25 @@ sourceUrl: "https://instagram.com/_daaa_1"
                 let media = await ytv(text, quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '480p'}`
-                kon.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: anu}, { quoted: m })
+                let buttons = [
+{buttonId: `${prefix}ytmp3 ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:media.dl_link},
+caption: anu,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Youtube Downloader Video",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
             
@@ -2575,7 +2619,25 @@ sourceUrl: "https://instagram.com/_daaa_1"
                 let media = await ytv(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '480p'}` 
-                kon.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: anu}, { quoted: m })
+                let buttons = [
+{buttonId: `${prefix}ytmp3 ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:media.dl_link},
+caption: anu,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Youtube Downloader Video",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
             case 'delete': case 'del': {

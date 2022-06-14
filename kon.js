@@ -211,6 +211,8 @@ let listcmd = `
  
 𝐎𝐰𝐧𝐞𝐫
  ⍨⃝☕ ${prefix}bcgc 
+ ⍨⃝☕ ${prefix}bcimg
+ ⍨⃝☕ ${prefix}bcvideo
  ⍨⃝☕ ${prefix}bcall 
  ⍨⃝☕ ${prefix}setppbot 
 
@@ -664,10 +666,10 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
-    case 'tiktokaudio1':{
+    case 'tiktokaudio':{
      if (!text) throw 'enter query link!'
      replyig(mess.wait)
-			    hx.ttdownloader(args[1]).then( data => {
+			    hx.ttdownloader(args[0]).then( data => {
 				  kon.sendMessage(m.chat, {document: { url: data.nowm }, mimetype: 'audio/mp4', fileName: `Sound Tiktok By ${kon.user.name}.mp3`}, { quoted : m })
 				}).catch(() => reply('Hmm Erorr Awoakwoakwok'))
 				}
@@ -2274,7 +2276,7 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                 m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
                 for (let i of anu) {
                     await sleep(1500)         
-                      let txt = `🎗  *Broadcast* 🎗\n\n${text}`
+                      let txt = `Broadcast Image by ZBot`
                      
 var tidtoodd8 = [
 						{ urlButton: { displayText: `Group zBot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
@@ -2283,6 +2285,52 @@ var tidtoodd8 = [
 				]
 var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
 kon.sendMessage(i, { caption: text, image: { url: mem }, buttons: but, footer: txt }, { quoted: ftoko })
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
+            case 'bcaudio':{
+                if (!isCreator) throw mess.owner
+                if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
+                let meel = await kon.downloadAndSaveMediaMessage(quoted)
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)    
+                     
+kon.sendMessage(i, {audio:meel, mimetype:"audio/mp4", ptt:true, contextInfo:{externalAdReply:{
+title: media.title,
+body:text,
+thumbnail: tamnel,
+mediaType:2,
+mediaUrl: "https://instagram.com/_daaa_1",
+sourceUrl: "https://instagram.com/_daaa_1"
+}}}, {quoted:ftoko})
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
+            case 'bcvideo':{
+                if (!isCreator) throw mess.owner
+                if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
+                let meel = await kon.downloadAndSaveMediaMessage(quoted)
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)         
+                      let txt = `Broadcast Video by ZBot`
+                     
+var tidtoodd8 = [
+						{ urlButton: { displayText: `Group zBot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
+			{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } },
+			{ quickReplyButton: { displayText: `Menu`, id: `${prefix}menu` } },
+				]
+var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
+kon.sendMessage(i, { caption: text, video: meel, buttons: but, footer: txt }, { quoted: ftoko })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }

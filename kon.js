@@ -212,7 +212,6 @@ let listcmd = `
 𝐎𝐰𝐧𝐞𝐫
  ⍨⃝☕ ${prefix}bcgc 
  ⍨⃝☕ ${prefix}bcimg
- ⍨⃝☕ ${prefix}bcvideo
  ⍨⃝☕ ${prefix}bcall 
  ⍨⃝☕ ${prefix}setppbot 
 
@@ -2269,7 +2268,6 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
                 let meel = await kon.downloadAndSaveMediaMessage(quoted)
-                mem = await TelegraPh(meel)
                 let getGroups = await kon.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                 let anu = groups.map(v => v.id)
@@ -2277,55 +2275,8 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                 for (let i of anu) {
                     await sleep(1500)         
                       let txt = `Broadcast Image by ZBot`
-                     
-var tidtoodd8 = [
-						{ urlButton: { displayText: `Group zBot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
-			{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } },
-			{ quickReplyButton: { displayText: `Menu`, id: `${prefix}menu` } },
-				]
 var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
-kon.sendMessage(i, { caption: text, image: { url: mem }, buttons: but, footer: txt }, { quoted: ftoko })
-                    }
-                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
-            }
-            break
-            case 'bcaudio':{
-                if (!isCreator) throw mess.owner
-                if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
-                let meel = await kon.downloadAndSaveMediaMessage(quoted)
-                let getGroups = await kon.groupFetchAllParticipating()
-                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-                let anu = groups.map(v => v.id)
-                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
-                for (let i of anu) {
-                    await sleep(1500)    
-                     
-kon.sendMessage(i, {audio:meel, mimetype:"audio/mp4", ptt:true, contextInfo:{externalAdReply:{
-title: `Broadcast Audio`,
-body:text,
-thumbnail: tamnel,
-mediaType:2,
-mediaUrl: "https://instagram.com/_daaa_1",
-sourceUrl: "https://instagram.com/_daaa_1"
-}}}, {quoted:ftoko})
-                    }
-                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
-            }
-            break
-            case 'bcvideo':{
-                if (!isCreator) throw mess.owner
-                if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
-                let meel = await kon.downloadAndSaveMediaMessage(quoted)
-                mem = await UploadFileUgu(meel)
-                let getGroups = await kon.groupFetchAllParticipating()
-                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-                let anu = groups.map(v => v.id)
-                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
-                for (let i of anu) {
-                    await sleep(1500)         
-                      let txt = `Broadcast Video by ZBot`
-var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
-kon.sendMessage(i, { caption: text, video:{url:mem}, buttons: but, footer: txt }, { quoted: ftoko })
+kon.sendMessage(i, { caption: text, image: meel, buttons: but, footer: txt }, { quoted: ftoko })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }

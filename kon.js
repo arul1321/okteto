@@ -467,7 +467,7 @@ const adyt = {
                             itemCount : 9,
                             status: 1,
                             surface : 1,
-                            message: `©zBot`, //Kasih namalu
+                            message: poter, //Kasih namalu
                             orderTitle: `Hallo`,
                             thumbnail: fs.readFileSync('./lib/hisoka.jpg'),
                             sellerJid: '0@s.whatsapp.net' 
@@ -491,7 +491,7 @@ const replyy = (teks) => {
 kon.sendMessage(m.chat, teks, text, { quoted: m, contextInfo: { externalAdReply: { title: `zBot`, body: 'By : Galih', sourceUrl: `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`, thumbnail: tamnel }}})
 }             
 const reply2 = (teks) => {
-			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: `©zBot`,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
+			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: poter,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
 		}
 const replyig = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
 mimetype: "image/jpeg",
@@ -696,7 +696,7 @@ let buttonMessage = {
 image:tamnel,
 jpegThumbnail:tamnel,
 caption: textbv,
-footer: "zBot",
+footer: poter,
 buttons: buttons,
 headerType: 4
 }
@@ -1981,7 +1981,7 @@ break
                 ]
                 let buttonMessage = {
                     text: `*Gak Ada Bang*`,
-                    footer: '©zBot',
+                    footer: poter,
                     buttons: buttons,
                     headerType: 2
                 }
@@ -2239,7 +2239,7 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
 _CPU Core(s) Usage (${cpus.length} Core CPU)_
 ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
                 `.trim()
-                kon.sendMessage(m.chat, { caption: respon, location: { jpegThumbnail: todol}, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
+                kon.sendMessage(m.chat, { caption: respon, location: { jpegThumbnail: todol}, templateButtons: buttonsDefault, footer: poter, quoted: m })
             }
             break
             case 'bcgc': case 'bcgroup': {
@@ -2259,6 +2259,30 @@ var tidtoodd8 = [
 			{ quickReplyButton: { displayText: `Menu`, id: `${prefix}menu` } },
 				]
 kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quoted: ftoko})
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
+            case 'bcimg':{
+                if (!isCreator) throw mess.owner
+                if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
+                let meel = await kon.downloadAndSaveMediaMessage(quoted)
+                mem = await TelegraPh(meel)
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)         
+                      let txt = `🎗  *Broadcast* 🎗\n\n${text}`
+                     
+var tidtoodd8 = [
+						{ urlButton: { displayText: `Group zBot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
+			{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } },
+			{ quickReplyButton: { displayText: `Menu`, id: `${prefix}menu` } },
+				]
+var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
+kon.sendMessage(i, { caption: text, image: { url: mem }, buttons: but, footer: txt }, { quoted: ftoko })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
@@ -2315,7 +2339,7 @@ kon.sendMessage(yoi, { text: txt, footer: poter, templateButtons: tidtoodd8, quo
                         hydratedTemplate: {
                             imageMessage: message.imageMessage,
                             hydratedContentText: cap,
-                            hydratedFooterText: `©zBot`,
+                            hydratedFooterText: poter,
                             hydratedButtons: [{
                                 urlButton: {
                                     displayText: 'URL Hasil',
@@ -2367,7 +2391,7 @@ let message = await prepareWAMessageMedia({ image: fs.readFileSync('./lib/hisoka
                         hydratedTemplate: {
                             imageMessage: message.imageMessage,
                             hydratedContentText: nat,
-                            hydratedFooterText: `©zBot`,
+                            hydratedFooterText: poter,
                             hydratedButtons: [{
                                 urlButton: {
                                     displayText: 'Group ©zBot',
@@ -2471,7 +2495,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
                 if (!isBotAdmins) throw mess.botAdmin
                 let response = await kon.groupInviteCode(m.chat)
                 tek = `https://chat.whatsapp.com/${response}\n\nLink Group : ${groupMetadata.subject}`
-                kon.sendMessage(m.chat, { caption: tek, location: { jpegThumbnail: todol) }, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
+                kon.sendMessage(m.chat, { caption: tek, location: { jpegThumbnail: todol}, templateButtons: buttonsDefault, footer: poter, quoted: m })
             }
             break
         case 'play': case 'ytplay': {
@@ -2496,7 +2520,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
                         hydratedTemplate: {
                             imageMessage: message.imageMessage,
                             hydratedContentText: caption,
-                            hydratedFooterText: `©zBot`,
+                            hydratedFooterText: poter,
                             hydratedButtons: [{
                                 quickReplyButton: {
                                     displayText: 'Music',

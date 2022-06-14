@@ -664,19 +664,14 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
-    case 'tiktokaudio': {
-replyig(mess.wait)
-let res = await aiovideodl(args[0])
-kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:true, contextInfo:{externalAdReply:{
-title:"Tiktok Downloader Video",
-body:res.title,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}}, {quoted:m})
-}
-break
+    case 'tiktokaudio1':{
+     if (!text) throw 'enter query link!'
+     replyig(mess.wait)
+			    hx.ttdownloader(args[1]).then( data => {
+				  kon.sendMessage(m.chat, {document: { url: data.nowm }, mimetype: 'audio/mp4', fileName: `Sound Tiktok By ${kon.user.name}.mp3`}, { quoted : m })
+				}).catch(() => reply('Hmm Erorr Awoakwoakwok'))
+				}
+		        break
 	case 'igstory': case 'instagramstory': {
 if (!args[0]) return m.reply(`Example :\n${prefix + command} _daaa_1`)
 try {
@@ -2476,7 +2471,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
                 if (!isBotAdmins) throw mess.botAdmin
                 let response = await kon.groupInviteCode(m.chat)
                 tek = `https://chat.whatsapp.com/${response}\n\nLink Group : ${groupMetadata.subject}`
-                kon.sendMessage(m.chat, { caption: tek, location: { jpegThumbnail: fs.readFileSync('./lib/hisoka.jpg') }, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
+                kon.sendMessage(m.chat, { caption: tek, location: { jpegThumbnail: todol) }, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
             }
             break
         case 'play': case 'ytplay': {

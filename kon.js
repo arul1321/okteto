@@ -189,6 +189,8 @@ let listcmd = `
  
 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
  ⍨⃝📩 ${prefix}play (judul lagu)
+ ⍨⃝📩 ${prefix}jooxplay (judul lagu)
+ ⍨⃝📩 ${prefix}jooxdl <LinkJoox>
    ⍨⃝📩 YouTube
   === Info ===
   ==⍨⃝📩 ${prefix}ytmp4 <LinkYt>
@@ -605,6 +607,52 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
+case 'joox': case 'jooxdl': {
+                if (!text) throw 'urlnya?'
+                replyig(mess.wait)
+                var { jooxdl } = require('./lib/joox')
+let resu = await jooxdl(`${text}`).catch(e => {
+m.reply('error')
+})
+console.log(resu)
+anutxt =`*Judul :* ${resu.lagu}
+*Penyanyi :* ${resu.penyanyi}
+*Publish :* ${resu.publish}
+*Album :* ${resu.album}\n\n_Tunggu Sebentar Media Sedang Dikirim_`
+replygrup(anutxt)
+kon.sendMessage(m.chat, {audio:{url: resu.mp3}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title: resu.lagu,
+body: resu.penyanyi,
+thumbnail: tamnel,
+mediaType:2,
+mediaUrl: "https://instagram.com/_daaa_1",
+sourceUrl: "https://instagram.com/_daaa_1"
+}}}, {quoted:m})
+            }
+            break
+case 'jooxplay':{
+                if (!text) throw 'Judulnya ?'
+                replyig(mess.wait)
+                var { joox } = require('./lib/joox')
+let resu = await joox(`${text}`).catch(e => {
+m.reply('error')
+})
+console.log(resu)
+anutxt =`*Judul :* ${resu.lagu}
+*Penyanyi :* ${resu.penyanyi}
+*Publish :* ${resu.publish}
+*Album :* ${resu.album}\n\n_Tunggu Sebentar Media Sedang Dikirim_`
+replygrup(anutxt)
+kon.sendMessage(m.chat, {audio:{url: resu.mp3}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title: resu.lagu,
+body: resu.penyanyi,
+thumbnail: tamnel,
+mediaType:2,
+mediaUrl: "https://instagram.com/_daaa_1",
+sourceUrl: "https://instagram.com/_daaa_1"
+}}}, {quoted:m})
+            }
+            break
 case 'ttmp4': case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)

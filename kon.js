@@ -2268,6 +2268,7 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
                 let meel = await kon.downloadAndSaveMediaMessage(quoted)
+                mem = await TelegraPh(meel)
                 let getGroups = await kon.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                 let anu = groups.map(v => v.id)
@@ -2275,8 +2276,9 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                 for (let i of anu) {
                     await sleep(1500)         
                       let txt = `Broadcast Image by ZBot`
+                     
 var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
-kon.sendMessage(i, { caption: text, image: meel, buttons: but, footer: txt }, { quoted: ftoko })
+kon.sendMessage(i, { caption: text, image: { url: mem }, buttons: but, footer: txt }, { quoted: ftoko })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }

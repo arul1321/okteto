@@ -12,7 +12,6 @@ const axios = require('axios')
 const { fromBuffer } = require('file-type')
 const path = require('path')
 const os = require('os')
-const caliph = require('caliph-api')
 const Jimp = require('jimp')
 const moment = require("moment-timezone");
 const wib = moment.tz('Asia/Jakarta').format('HH : mm : ss')
@@ -208,7 +207,6 @@ let listcmd = `
   ==⍨⃝📩 ${prefix}igstory <Username IG>
  ⍨⃝📩 ${prefix}getmusic 
  ⍨⃝📩 ${prefix}getvideo 
- ⍨⃝📩 ${prefix}igstalk username
  ⍨⃝📩 ${prefix}mediafire (khusus owner) 
  
 𝐎𝐰𝐧𝐞𝐫
@@ -895,18 +893,6 @@ sourceUrl: args[0]
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-}
-break
-case 'igstalk':{ 
-if (!q) return reply(`Example : ${command} _daaa_1`) 
-igs = await caliph.search.igstalk(q) 
-peks = `Nama : ${q}\nFullname : ${igs.data.fullname}\nBio : ${igs.data.bio}\nFollower : ${igs.data.follower}\nFollowing : ${igs.data.following}\nPostingan : ${igs.data.timeline}\nVerify? : ${igs.data.verified}`
-kon.sendMessage(m.chat, { image : { url : igs.profile.low}, caption : peks}, {quoted : m}) 
-} break
- case 'setbio': {
-if (!isCreator) return m.reply(mess.owner)
-kon.setStatus(text)
-replyig(mess.success)
 }
 break
 case 'emojimix2': {

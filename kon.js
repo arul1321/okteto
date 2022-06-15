@@ -2079,32 +2079,34 @@ case 'emoji':case 'semoji':{
   await fs.unlinkSync(memek)
 }
 					break
-    case 'smeme4':{
-replyig(mess.wait) 
-top = text.split('|')[0]
-bottom = text.split('|')[1]
-var imgbb = require('imgbb-uploader')
-if ((isMedia && !m.message.videoMessage || isQuotedImage || isQuotedSticker) && args.length > 0) {
-ger = isQuotedImage || isQuotedSticker ? JSON.parse(JSON.stringify(m).replace('quotedM','m')).message.extendedTextMessage.contextInfo : m
-owgi = await  kon.downloadAndSaveMediaMessage(ger)
-anu = await imgbb("91904762b2cd230ce1d861279bd6bf1d", owgi)
-teks = `${anu.display_url}`
-ranp = getRandom('.gif')
-rano = getRandom('.webp')
-anu1 = `https://api.memegen.link/images/custom/${top}/${bottom}.png?background=${teks}`
-kon.sendImageAsSticker(m.chat, anu1, m, { packname: global.packname, author: global.author })
+    case 'smeme4': case 'smm': {
+if (!args.join(" ")) return ads("Masukan Textnya!")
+let imgbbUploader = require('imgbb-uploader')
+if (/image/.test(mime)) {
+var media = await kon.downloadAndSaveMediaMessage(quoted, "smeme4")
+imgbbUploader('b9a90f1e63f41bac31532712c87e4c25', media)
+.then(async (data) => {
+var bgsd = args.join(" ")
+var urls = data.display_url
+let meme = `https://api.memegen.link/images/custom/ /${bgsd}.png?background=${urls}`
+kon.sendImageAsSticker(m.chat, meme, m, { packname:global.packname, author: global.packname2 })
+})
+.catch(err => {
+throw err
+})
 } else {
-m.reply('Gunakan foto/stiker!')
+ads("Kirim foto dengan caption smeme")
 }
 }
-break  
+addCmd(command.slice(1), 1, commund)
+break
     case 'smeme': case 'stickermeme': case 'stickmeme': {
   if (!text) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
   if (text.includes('|')) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
   replyig(mess.wait)
   if (!/image/.test(mime)) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
   arg = args.join(' ')
-  mee = await quoted.download()
+  mee = await kon.downloadAndSaveMediaMessage(quoted)
   mem = await TelegraPh(mee).catch(err => {
 m.reply("Harus Menggunakan Gambar")
 })

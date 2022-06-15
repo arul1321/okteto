@@ -418,6 +418,9 @@ let menubutlist = [
 let buttonsDefault = [
 			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
 		]
+let tesbut = [
+			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` }}
+		]
 //●●●●●●●●●●●●●●●●●●●●●● FAKE SETTING●●●●●●●●●●●●●●●●●●●●●●
 const ftoko = {
 key: {
@@ -2325,6 +2328,11 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 kon.sendMessage(m.chat, { caption: respon, location: { jpegThumbnail: todol}, templateButtons: buttonsDefault, footer: poter, quoted: m })
             }
             break
+            case 'tesbut':{
+            let txtg = `ngetes`
+            kon.sendMessage(m.chat, { text: txtg, footer: poter, templateButtons: tesbut, quoted: ftoko})
+}
+break
             case 'bcgc': case 'bcgroup': {
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
@@ -2640,13 +2648,13 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
                 anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}\n\n*Mohon tunggu sebentar media sedang dikirim...*`
                 replygrup(anu)
                 kon.sendMessage(m.chat, {audio:{url: media.dl_link}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title: media.title,
-body:"YTMP3 by zBot",
+title:media.title,
+body:"Downloader Youtube MP3 by zBot",
 thumbnail: tamnel,
-mediaType:2,
-mediaUrl: "https://instagram.com/_daaa_1",
-sourceUrl: "https://instagram.com/_daaa_1"
-}}}, {quoted:m})
+mediaType:1,
+mediaUrl: `https://instagram.com/_daaa_1`,
+sourceUrl: `https://instagram.com/_daaa_1`
+}}}, {quoted:ftoko})
             }
             break
             case 'ytmp4': case 'ytvideo': {
@@ -2694,12 +2702,12 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
                 anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}\n\n*Mohon tunggu sebentar media sedang di kirim....*`
                 replygrup(anu)
                 kon.sendMessage(m.chat, {audio:{url: media.dl_link}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title: media.title,
-body:"YTMP3 by zBot",
+title:media.title,
+body:"Downloader Youtube MP3 by zBot",
 thumbnail: tamnel,
-mediaType:2,
-mediaUrl: "https://instagram.com/_daaa_1",
-sourceUrl: "https://instagram.com/_daaa_1"
+mediaType:1,
+mediaUrl: `https://instagram.com/_daaa_1`,
+sourceUrl: `https://instagram.com/_daaa_1`
 }}}, {quoted:m})
                     }
             break

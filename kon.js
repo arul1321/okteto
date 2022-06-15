@@ -419,7 +419,7 @@ let buttonsDefault = [
 			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
 		]
 let tesbut = [
-			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` },{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` }}
+		{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
 		]
 //●●●●●●●●●●●●●●●●●●●●●● FAKE SETTING●●●●●●●●●●●●●●●●●●●●●●
 const ftoko = {
@@ -2330,7 +2330,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             break
             case 'tesbut':{
             let txtg = `ngetes`
-            kon.sendMessage(m.chat, { text: txtg, footer: poter, templateButtons: tesbut, quoted: ftoko})
+            kon.sendMessage(m.chat, { text: txtg, footer: poter, templateButtons: tesbut, quoted:m})
 }
 break
             case 'bcgc': case 'bcgroup': {

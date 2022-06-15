@@ -2374,14 +2374,14 @@ kon.sendMessage(i, { caption: text, image: { url: mem }, buttons: but, footer: t
             }
             break
             case 'getcase':
-if (!isCreator) return reply(mess.owner)
+if (!isCreator) return replyig(mess.owner)
 const getCase = (cases) => {
 return "case"+`'${cases}'`+fs.readFileSync("./kon.js").toString().split('case \''+cases+'\'')[1].split("break")[0]+"break"
 }
 m.reply(`${getCase(q)}`)
 break
 case 'ttp':{
-if (args.length ==0) return reply(`Text Nya Mana kak? Contoh\n${prefix+command} zBot`)
+if (args.length ==0) return replyig(`Text Nya Mana kak? Contoh\n${prefix+command} zBot`)
 tp = args.join (" ")
 replyig(mess.wait)
 ttp = await getBuffer(`https://hardianto.xyz/api/ttpcustom?text=${encodeURI(q)}&color=black&apikey=hardianto`)

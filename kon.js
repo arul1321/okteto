@@ -12,6 +12,7 @@ const axios = require('axios')
 const { fromBuffer } = require('file-type')
 const path = require('path')
 const os = require('os')
+const caliph = require('caliph-api')
 const Jimp = require('jimp')
 const moment = require("moment-timezone");
 const wib = moment.tz('Asia/Jakarta').format('HH : mm : ss')
@@ -188,6 +189,7 @@ let listcmd = `
  ⍨⃝?? ${prefix}asupan
  
 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
+ ⍨⃝📩 ${prefix}facebook (Link FB)
  ⍨⃝📩 ${prefix}play (judul lagu)
    ⍨⃝📩 YouTube
   === Info ===
@@ -214,6 +216,7 @@ let listcmd = `
  ⍨⃝☕ ${prefix}bcimg
  ⍨⃝☕ ${prefix}bcall 
  ⍨⃝☕ ${prefix}setppbot 
+ ⍨⃝☕ ${prefix}sendsession
 
 𝐆𝐫𝐨𝐮𝐩
  ⍨⃝👥 ${prefix}antilink on
@@ -588,7 +591,7 @@ kon.sendMessage(id, buttonMessages, options)
         kon.ev.emit('messages.upsert', msg)
         }
 
-//●●●●●●●●●●●●●●●●●●●●●● AUTOSTICKER SETTING●●●●●●●●●●●●●●●●●●●●●●
+//●●●●●●●●●●●●●●●●●●●●●● AUTO SETTING●●●●●●●●●●●●●●●●●●●●●●
   let isSticker = m.mtype
   if (isSticker) {
     if(isSticker === "imageMessage"){
@@ -599,12 +602,129 @@ kon.sendMessage(id, buttonMessages, options)
         return true
       }
     }
+    
+  //**let qu =m.quoted ? m.quoted : m
+  //*let jio = m.mtype
+       //*  if (qu.jio == 'viewOnceMessage') {
+            // await kon.copyNForward(m.chat, await kon.loadMessage(m.chat), false, { readViewOnce: true })
+       // }
+        
 //●●●●●●●●●●●●●●●●●●●●●● AUTO SET BIO SETTING●●●●●●●●●●●●●●●●●●●●●●
 kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Dengan Kecepatan ${latensi.toFixed(4)} Second`)
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
+case 'facebook': case 'fbdl': case 'fbmp4': case 'fb': {
+if (!args[0]) return replyig(`Example :\n${prefix + command} https://fb.watch/cAX2dep-BZ/`)
+try {
+let resd = await aiovideodl(args[0])
+teks = `*| FACEBOOK DOWNLOADER |*
+
+Type : video/${resd.medias[0].extension}
+Quality : ${resd.medias[0].quality}
+Size : ${resd.medias[0].formattedSize}
+
+_Untuk kualitas hd anda bisa klik tombol dibawah_`
+let buttons = [
+{buttonId: `${prefix}fbddl ${resd.medias[1].url}`, buttonText: {displayText: 'QualityHD'}, type: 1}
+]
+let buttonMessage = {
+video: {url:resd.medias[0].url},
+caption: teks,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Facebook Downloader",
+body:"facebook downloader",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(from, buttonMessage, {quoted:m})
+} catch {
+m.reply("Link invalid!")
+}
+}
+break
+case 'fbddl': {
+replyig(mess.wait)
+let buttons = [
+{buttonId: `${prefix}menu`, buttonText: {displayText: 'Menu'}, type: 1}
+]
+let buttonMessage = {
+video: {url:args[0]},
+caption: mess.success,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Facebook Downloader",
+body: "Downloader",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+}
+break
+case 'joox': case 'jooxdl': {
+             if (!text) throw 'urlnya?'
+                replyig(mess.wait)
+                var { jooxdl } = require('./lib/joox')
+let resu = await jooxdl(`${text}`)
+console.log(resu)
+anutxt =`*Judul :* ${resu.lagu}        
+*Penyanyi :* ${resu.penyanyi}
+*Publish :* ${resu.publish}                                                      
+*Album :* ${resu.album}\n\n_Tunggu Sebentar Media Sedang Dikirim_`
+replygrup(anutxt)
+kon.sendMessage(m.chat, {audio:{url: resu.mp3}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title: resu.lagu,
+body: resu.penyanyi,
+thumbnail: tamnel,
+mediaType:2,
+mediaUrl: "https://instagram.com/_daaa_1",
+sourceUrl: "https://instagram.com/_daaa_1"           
+}}}, {quoted:m}).catch(e => {
+m.reply('error')
+})                  
+            }
+            break
+case 'jooxplay':{
+                if (!text) throw 'Judulnya ?'
+                replyig(mess.wait)
+                var { joox } = require('./lib/joox')
+let resu = await joox(`${text}`)
+console.log(resu)
+anutxt =`*Judul :* ${resu.lagu}              
+*Penyanyi :* ${resu.penyanyi}        
+*Publish :* ${resu.publish}          
+*Album :* ${resu.album}\n\n_Tunggu Sebentar Media Sedang Dikirim_`
+replygrup(anutxt)
+kon.sendMessage(m.chat, {audio:{url: resu.mp3}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title: resu.lagu,
+body: resu.penyanyi,
+thumbnail: tamnel,
+mediaType:2,
+mediaUrl: "https://instagram.com/_daaa_1",
+sourceUrl: "https://instagram.com/_daaa_1"
+}}}, {quoted:m}).catch(e => {
+m.reply('error')
+})                  
+            }
+            break
+case  'sendsession':{
+if (!isCreator) return reply(mess.owner)
+anuu = fs.readFileSync('./kon.json')
+kon.sendMessage(m.chat, {document: anuu, mimetype: 'application/octet-stream', fileName: `kon.json`}, {quoted:m})  
+}
+break
 case 'ttmp4': case 'tiktok': case 'tiktoknowm': {
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
@@ -835,6 +955,12 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
 }
 break
+case 'igstalk':{ 
+if (!q) return reply(`Example : ${command} _daaa_1`) 
+igs = await caliph.search.igstalk(q) 
+peks = `Nama : ${q}\nFullname : ${igs.data.fullname}\nBio : ${igs.data.bio}\nFollower : ${igs.data.follower}\nFollowing : ${igs.data.following}\nPostingan : ${igs.data.timeline}\nVerify? : ${igs.data.verified}`
+kon.sendMessage(m.chat, { image : { url : igs.profile.low}, caption : peks}, {quoted : m}) 
+} break
  case 'setbio': {
 if (!isCreator) return m.reply(mess.owner)
 kon.setStatus(text)

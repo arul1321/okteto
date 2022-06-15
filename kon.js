@@ -2078,18 +2078,40 @@ case 'emoji':case 'semoji':{
 					memek = await kon.sendImageAsSticker(m.chat, anu4, m, { packname: global.packname, author: global.author })
   await fs.unlinkSync(memek)
 }
-					break 
+					break
+    case 'smeme4':{
+replyig(mess.wait) 
+top = text.split('|')[0]
+bottom = text.split('|')[1]
+var imgbb = require('imgbb-uploader')
+if ((isMedia && !m.message.videoMessage || isQuotedImage || isQuotedSticker) && args.length > 0) {
+ger = isQuotedImage || isQuotedSticker ? JSON.parse(JSON.stringify(m).replace('quotedM','m')).message.extendedTextMessage.contextInfo : m
+owgi = await  kon.downloadAndSaveMediaMessage(ger)
+anu = await imgbb("91904762b2cd230ce1d861279bd6bf1d", owgi)
+teks = `${anu.display_url}`
+ranp = getRandom('.gif')
+rano = getRandom('.webp')
+anu1 = `https://api.memegen.link/images/custom/${top}/${bottom}.png?background=${teks}`
+kon.sendImageAsSticker(m.chat, anu1, m, { packname: global.packname, author: global.author })
+} else {
+m.reply('Gunakan foto/stiker!')
+}
+}
+break  
     case 'smeme': case 'stickermeme': case 'stickmeme': {
   if (!text) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
   if (text.includes('|')) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
   replyig(mess.wait)
   if (!/image/.test(mime)) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
   arg = args.join(' ')
-  mee = await kon.downloadAndSaveMediaMessage(quoted)
-  mem = await TelegraPh(mee)
+  mee = await quoted.download()
+  mem = await TelegraPh(mee).catch(err => {
+m.reply("Harus Menggunakan Gambar")
+})
   meme = `https://api.memegen.link/images/custom/-/${arg}.png?background=${mem}`
-  memek = await kon.sendImageAsSticker(m.chat, meme, m, { packname: global.packname, author: global.author })
-  await fs.unlinkSync(memek)
+  kon.sendImageAsSticker(m.chat, meme, m, { packname: global.packname, author: global.author }).catch(err => {
+m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks")
+})
   }
   break
   case 'memegen': case 'smeme2': {
@@ -2101,10 +2123,14 @@ case 'emoji':case 'semoji':{
   atas = arg.split('|')[0]
   bawah = arg.split('|')[1]
   let abeb = await kon.downloadAndSaveMediaMessage(quoted)
-  let abe = await TelegraPh(abeb)
+  let abe = await TelegraPh(abeb).catch(err => {
+m.reply("Harus Menggunakan Gambar")
+})
   let upz = `https://api.memegen.link/images/custom/${atas}/${bawah}.png?background=${util.format(abe)}`
-  let mengmeme = await kon.sendImageAsSticker(m.chat, upz, m, { packname: global.packname, author: global.author })
-  await fs.unlinkSync(mengmeme)
+  kon.sendImageAsSticker(m.chat, upz, m, { packname: global.packname, author: global.author }).catch(err => {
+m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks|teks")
+})
+ 
   }
   break
     case 'wm': case 'swm': {

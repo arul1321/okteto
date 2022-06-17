@@ -2072,6 +2072,30 @@ case 'emoji':case 'semoji':{
                 }
             }
             break
+    case 'bcs':{
+                if (!isCreator) throw mess.owner
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)         
+                if (/image/.test(mime)) {
+                let media = await quoted.download()
+                let encmedia = await kon.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+                await fs.unlinkSync(encmedia)
+            } else if (/video/.test(mime)) {
+                if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
+                let media = await quoted.download()
+                let encmedia = await kon.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+                await fs.unlinkSync(encmedia)
+            } else {
+                throw `Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
+                }
+                }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
     case 'triggered': case 'gay': case 'glass': case 'passed': case 'jail': case 'comrade':case 'green': case 'blue': case 'sepia': case 'wasted': case 'greyscale': case 'blurple2': case 'blurple': case 'red': case 'invertgreyscale': case 'invert':{
                     replyig(mess.wait)
 					if (!/image/.test(mime)) return replyig(`Kirim/Reply Foto Dengan Caption ${prefix + command}`)
@@ -2369,6 +2393,24 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                      
 var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
 kon.sendMessage(i, { caption: text, image: { url: mem }, buttons: but, footer: txt }, { quoted: ftoko })
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
+            case 'bcv':{
+                if (!isCreator) throw mess.owner
+                if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
+                let meel = await kon.downloadAndSaveMediaMessage(quoted)
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)         
+                      let txt = `Broadcast Image by ZBot`
+                     
+var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
+kon.sendMessage(i, { caption: text, video: meel, buttons: but, footer: txt }, { quoted: ftoko })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }

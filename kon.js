@@ -211,7 +211,10 @@ let listcmd = `
  
 𝐎𝐰𝐧𝐞𝐫
  ⍨⃝☕ ${prefix}bcgc 
- ⍨⃝☕ ${prefix}bcimg
+ ⍨⃝☕ ${prefix}bcimage
+ ⍨⃝☕ ${prefix}bcvideo
+ ⍨⃝☕ ${prefix}bcsticker
+ ⍨⃝☕ ${prefix}bcaudio
  ⍨⃝☕ ${prefix}bcall 
  ⍨⃝☕ ${prefix}setppbot 
  ⍨⃝☕ ${prefix}sendsession
@@ -2072,7 +2075,7 @@ case 'emoji':case 'semoji':{
                 }
             }
             break
-    case 'bcs':{
+    case 'bcs': case 'bcs':{
                 if (!isCreator) throw mess.owner
                 let getGroups = await kon.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
@@ -2376,7 +2379,7 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
             break
-            case 'bcimg':{
+            case 'bcimage': case 'bcimg':{
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
                 let meel = await kon.downloadAndSaveMediaMessage(quoted)
@@ -2405,10 +2408,25 @@ kon.sendMessage(i, { caption: text, image: { url: mem }, buttons: but, footer: t
                 m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
                 for (let i of anu) {
                     await sleep(1500)         
-                      let txt = `Broadcast Image by ZBot`
-                     
+                      let txt = `Broadcast ZBot`
+                     let bufff = fs.readFileSync(meel)
 var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
-kon.sendMessage(i, { caption: text, video: meel, buttons: but, footer: txt }, { quoted: ftoko })
+kon.sendMessage(i, { caption: text, video: bufff, buttons: but, footer: txt }, { quoted: ftoko })
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
+            case 'bcaudio': case 'bca':{
+                if (!isCreator) throw mess.owner           
+                let buff = await kon.downloadAndSaveMediaMessage(quoted)
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)         
+                      let bufff = fs.readFileSync(buff)
+                      kon.sendMessage(i, { audio: bufff, mimetype: 'audio/mpeg' }, { quoted : ftoko })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }

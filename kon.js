@@ -2082,13 +2082,11 @@ case 'emoji':case 'semoji':{
                     await sleep(1500)         
                 if (/image/.test(mime)) {
                 let media = await quoted.download()
-                let encmedia = await kon.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
-                await fs.unlinkSync(encmedia)
+                let encmedia = await kon.sendImageAsSticker(i, media, ftoko, { packname: global.packname, author: global.author })
             } else if (/video/.test(mime)) {
                 if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
                 let media = await quoted.download()
-                let encmedia = await kon.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
-                await fs.unlinkSync(encmedia)
+                let encmedia = await kon.sendVideoAsSticker(i, media, ftoko, { packname: global.packname, author: global.author })
             } else {
                 throw `Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
                 }

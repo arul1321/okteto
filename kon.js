@@ -2383,7 +2383,7 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
                 let meel = await kon.downloadAndSaveMediaMessage(quoted)
-                mem = await TelegraPh(meel)
+                mem = fs.readFileSync(meel)
                 let getGroups = await kon.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                 let anu = groups.map(v => v.id)
@@ -2416,6 +2416,22 @@ kon.sendMessage(i, { caption: text, video: bufff, buttons: but, footer: txt }, {
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
             break
+            case 'bcv2':{
+                if (!isCreator) throw mess.owner
+                if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
+                let meel = await kon.downloadAndSaveMediaMessage(quoted)
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)         
+                    let bufff = fs.readFileSync(meel)
+kon.sendMessage(i, { video: bufff, mimetype: 'video/mp4', fileName: `Broadcast.mp4`, caption: text, viewOnce:true}, { quoted: m })
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
             case 'bcaudio': case 'bca':{
                 if (!isCreator) throw mess.owner           
                 let buff = await kon.downloadAndSaveMediaMessage(quoted)
@@ -2438,18 +2454,18 @@ return "case"+`'${cases}'`+fs.readFileSync("./kon.js").toString().split('case \'
 }
 m.reply(`${getCase(q)}`)
 break
-case 'ttp':{
-if (args.length ==0) return replyig(`Text Nya Mana kak? Contoh\n${prefix+command} zBot`)
-tp = args.join (" ")
-replyig(mess.wait)
-ttp = await getBuffer(`https://hardianto.xyz/api/ttpcustom?text=${encodeURI(q)}&color=black&apikey=hardianto`)
-kon.sendMessage(m.chat, { sticker : ttp}) 
-}
-break
-case 'attp': {
+case 'setexif': {
+               if (!isCreator) throw mess.owner
+               if (!text) throw `Example : ${prefix + command} packname|author`
+          global.packname = text.split("|")[0]
+          global.author = text.split("|")[1]
+          m.reply(`Exif berhasil diubah menjadi\n\n⭔ Packname : ${global.packname}\n⭔ Author : ${global.author}`)
+            }
+            break
+case 'attp': case 'ttp':{
 if (!text) throw `text nya...?`
 replyig(mess.wait)
-const buff = await getBuffer(`https://api.xteam.xyz/attp?file&text=${encodeURIComponent(q)}`)
+const buff = await getBuffer(`https://api.xteam.xyz/${command}?file&text=${encodeURIComponent(q)}`)
 kon.sendMessage(m.chat, { sticker : buff}) 
 }
 break
@@ -2644,6 +2660,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
             break
         case 'play': case 'ytplay': {
                 if (!text) throw `Example : ${prefix + command} story wa anime`
+                replyig(mess.wait)
                 let yts = require("yt-search")
                 let search = await yts(text)
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]

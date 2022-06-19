@@ -185,16 +185,16 @@ let listcmd = `
  ⍨⃝📚 ${prefix}del (reply pesan bot)
  ⍨⃝📚 ${prefix}q 
  ⍨⃝📚 ${prefix}ssweb 
- ⍨⃝?? ${prefix}asupan
+ ⍨⃝📚 ${prefix}asupan
  
 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
  ⍨⃝📩 ${prefix}play (judul lagu)
+ ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
+ ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
    ⍨⃝📩 YouTube
   === Info ===
   ==⍨⃝📩 ${prefix}ytmp4 <LinkYt>
   ==⍨⃝📩 ${prefix}ytmp3 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp32 <LinkYt>
-  ==⍨⃝📩 ${prefix}ytmp42 <LinkYt>
  ⍨⃝📩 TikTok
   === Info ===
   ==⍨⃝📩 ${prefix}tiktoknowm <Link Tiktok>
@@ -369,7 +369,7 @@ Text Pro
 let poter =`
 • Runtime Bot : ${runtime(process.uptime())}
 • Speed Bot     : ${latensi.toFixed(4)} Second
-• Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
+• Tanggal        : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
 `
 //●●●●●●●●●●●●●●●●●●●●●● PUBLIC & SELF SETTING●●●●●●●●●●●●●●●●●●●●●●
         if (!kon.public) {
@@ -799,6 +799,7 @@ for(let i of result.medias){
             break
          case 'ig': case 'igdl': case 'instagram': {
 if (!args[0]) return replyig(`Example :\n${prefix + command} https://www.instagram.com/p/CcvJGuxh9VI/?igshid=YmMyMTA2M2Y=`)
+replyig(mess.wait)
 try {
 hx.igdl(args[0]).then(async(resed) => {
 ini_anu = []
@@ -1921,6 +1922,45 @@ kon.sendMessage(m.chat, { video: { url: apinobg}, mimetype: 'video/mp4', fileNam
 					anu = await fetchJson(`https://shot.screenshotapi.net/screenshot?&url=${text}`)
 					buff = await getBuffer(anu.screenshot)
 					kon.sendMessage(m.chat, { image: { url: anu.screenshot}})
+}
+					break
+            case 'soundcloud': case 'scdl':{
+                if (!text) throw 'url ?'
+                replyig(mess.wait)
+					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/scdl?link=${text}`)
+					kon.sendMessage(m.chat, {audio:{url: anu.link}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title:anu.title,
+body:"Downloader Soundcloud by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `https://instagram.com/_daaa_1`,
+sourceUrl: `https://instagram.com/_daaa_1`
+}}}, {quoted:ftoko})
+}
+					break
+			case 'pinterestdl':{
+                if (!text) throw 'url ?'
+                replyig(mess.wait)
+					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${text}`)
+					let buttons = [
+{buttonId: `${prefix}menu`, buttonText: {displayText: `Back to Menu`}, type: 1}
+]
+let buttonMessage = {
+video: {url:anu.result},
+caption: mess.success,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Pinterest Downloader MP4",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
 }
 					break
         	case 'setname': case 'setsubject': {

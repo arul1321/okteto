@@ -8,6 +8,7 @@ const chalk = require('chalk')
 const { exec, spawn, execSync } = require("child_process")
 const hx = require('hxz-api')
 const xfar = require('xfarr-api')
+const bocil = require('@bochilteam/scraper') 
 const axios = require('axios')
 const { fromBuffer } = require('file-type')
 const path = require('path')
@@ -619,59 +620,41 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
-case 'joox': case 'jooxdl': {
-             if (!text) throw 'urlnya?'
-                replyig(mess.wait)
-                var { jooxdl } = require('./lib/joox')
-let resu = await jooxdl(`${text}`)
-console.log(resu)
-anutxt =`*Judul :* ${resu.lagu}        
-*Penyanyi :* ${resu.penyanyi}
-*Publish :* ${resu.publish}                                                      
-*Album :* ${resu.album}\n\n_Tunggu Sebentar Media Sedang Dikirim_`
-replygrup(anutxt)
-kon.sendMessage(m.chat, {audio:{url: resu.mp3}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title: resu.lagu,
-body: resu.penyanyi,
+case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
+if (!text) throw 'urlnya?'
+replyig(mess.wait)
+let res = await bocil.tiktokdl(text)
+console.log(res)
+anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
+let buttons = [
+{buttonId: `${prefix}ping`, buttonText: {displayText: `Status Bot`}, type: 1},
+{buttonId: `${prefix}owner`, buttonText: {displayText: `Owner`}, type: 1}
+]
+let buttonMessage = {
+video: {url:res.video.no_watermark},
+caption: anutxt,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Tiktok Downloader No Watermak",
+body:"Downloader by zBot",
 thumbnail: tamnel,
-mediaType:2,
-mediaUrl: "https://instagram.com/_daaa_1",
-sourceUrl: "https://instagram.com/_daaa_1"           
-}}}, {quoted:m}).catch(e => {
-m.reply('error')
-})                  
-            }
-            break
-case 'jooxplay':{
-                if (!text) throw 'Judulnya ?'
-                replyig(mess.wait)
-                var { joox } = require('./lib/joox')
-let resu = await joox(`${text}`)
-console.log(resu)
-anutxt =`*Judul :* ${resu.lagu}              
-*Penyanyi :* ${resu.penyanyi}        
-*Publish :* ${resu.publish}          
-*Album :* ${resu.album}\n\n_Tunggu Sebentar Media Sedang Dikirim_`
-replygrup(anutxt)
-kon.sendMessage(m.chat, {audio:{url: resu.mp3}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title: resu.lagu,
-body: resu.penyanyi,
-thumbnail: tamnel,
-mediaType:2,
-mediaUrl: "https://instagram.com/_daaa_1",
-sourceUrl: "https://instagram.com/_daaa_1"
-}}}, {quoted:m}).catch(e => {
-m.reply('error')
-})                  
-            }
-            break
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+}
+break
 case  'sendsession':{
 if (!isCreator) return reply(mess.owner)
 anuu = fs.readFileSync('./kon.json')
 kon.sendMessage(m.chat, {document: anuu, mimetype: 'application/octet-stream', fileName: `kon.json`}, {quoted:m})  
 }
 break
-case 'ttmp4': case 'tiktok': case 'tiktoknowm': {
+case 'ttmp45':{
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
                 var { TiktokDownloader } = require('./lib/tiktokdl')
@@ -685,6 +668,36 @@ console.log(res)
 ]
 let buttonMessage = {
 video: {url:res.result.nowatermark},
+caption: mess.success,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Tiktok Downloader No Watermak",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+            }
+            break
+            case 'ttmp42': {
+                if (!text) throw 'enter query link!'
+                replyig(mess.wait)
+                var { tiktok2 } = require('./lib/tiktokdl')
+res = await tiktok2(`${text}`).catch(e => {
+m.reply('error')
+})
+console.log(res)
+           let buttons = [
+{buttonId: `${prefix}tiktokwm ${text}`, buttonText: {displayText: `With Watermark`}, type: 1},
+{buttonId: `${prefix}tiktokaudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:res.urlList.video},
 caption: mess.success,
 footer: poter,
 buttons: buttons,

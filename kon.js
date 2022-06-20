@@ -2408,7 +2408,7 @@ kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quote
                       let txt = `Broadcast Image by ZBot`
                      
 var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
-kon.sendMessage(i, { caption: text, image: { url: mem }, buttons: but, footer: txt }, { quoted: ftoko })
+kon.sendMessage(i, { caption: text, image: mem, buttons: but, footer: txt }, { quoted: ftoko })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }

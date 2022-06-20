@@ -620,6 +620,84 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
+case 'tiktokaudio': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp32': case 'tiktoknowm2': {
+if (!isUrl(args[0])) return replyig(`Example :\n${prefix + command} <url>\nUses :\n${prefix + command} https://vt.tiktok.com/ZSdDo97dC/`)
+let res = await aiovideodl(args[0])
+if (isUrl(args[0])) {
+texttk = `*| TIKTOK DOWNLOADER |*
+
+Caption : ${res.title}
+Size : ${res.medias[1].formattedSize}
+Type : ${res.medias[1].extension ? "video/" + res.medias[1].extension : "undefined"}
+
+_Pilih watermak atau audio dan tunggu beberapa saat_`
+let buttons = [
+{buttonId: `${prefix}ttvd ${args[0]}}`, buttonText: {displayText: '× Watermak'}, type: 1},
+{buttonId: `${prefix}ttad ${args[0]}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+]
+let buttonMessage = {
+video: {url:res.medias[1].url},
+caption: texttk,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Tiktok Downloader",
+body:res.title,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:ftoko})
+} else {
+replyig("Link Error!")
+}
+}
+break
+case 'ttad': {
+let res = await aiovideodl(args[0])
+kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:true, contextInfo:{externalAdReply:{
+title:"Tiktok Downloader",
+body:res.title,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}}, {quoted:ftoko})
+}
+break
+case 'ttvd': {
+let res = await aiovideodl(args[0])
+texttk = `*| TIKTOK DOWNLOADER |*
+
+Caption : ${res.title}
+Size : ${res.medias[0].formattedSize}
+Type : ${res.medias[0].extension ? "video/" + res.medias[0].extension : "undefined"}
+
+_untuk melihat list menu pencet tombol dibawah atau ketik menu_`
+let buttons = [
+{buttonId: `${prefix}menu`, buttonText: {displayText: 'Menu'}, type: 1}
+]
+let buttonMessage = {
+video: {url:res.medias[0].url},
+caption: texttk,
+footer: tamnel,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Tiktok Downloader",
+body:res.title,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(from, buttonMessage, {quoted:ftoko})
+}
+break
 case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
 if (!text) throw 'urlnya?'
 replyig(mess.wait)
@@ -684,7 +762,7 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
-            case 'ttmp42': {
+            case 'ttmp43': {
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
                 var { tiktok2 } = require('./lib/tiktokdl')
@@ -714,7 +792,7 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
-            case 'tiktokwm': case 'tiktokwatermark': {
+            case 'tiktokwm2': case 'tiktokwatermark2': {
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
                 var { TiktokDownloader } = require('./lib/tiktokdl')
@@ -744,7 +822,7 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
-    case 'tiktokaudio':{
+    case 'tiktokaudio2':{
      if (!text) throw 'enter query link!'
      replyig(mess.wait)
 			    hx.ttdownloader(args[0]).then( data => {
@@ -1083,7 +1161,7 @@ m.reply("Linknya Error")
 }
 break
 case 'jpeg': {
-if (!args[0]) return ads("Linknya mana kak?")
+if (!args[0]) return replyig("Linknya mana kak?")
 try {
 kon.sendMessage(m.chat, {image:{url:args[0]}, caption:"Succes", contextInfo:{externalAdReply:{
 title:"zBot by Galih",

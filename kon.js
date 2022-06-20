@@ -620,8 +620,9 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
-case 'tiktokaudio': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp32': case 'tiktoknowm2': {
+case 'tiktokdl': case 'tiktokaudio': case 'ttdl': case 'tiktok': case 'ttmp4': case 'ttmp3': case 'tiktoknowm': {
 if (!isUrl(args[0])) return replyig(`Example :\n${prefix + command} <url>\nUses :\n${prefix + command} https://vt.tiktok.com/ZSdDo97dC/`)
+replyig(mess.wait)
 let res = await aiovideodl(args[0])
 if (isUrl(args[0])) {
 texttk = `*| TIKTOK DOWNLOADER |*
@@ -657,8 +658,9 @@ replyig("Link Error!")
 }
 break
 case 'ttad': {
+replyig(mess.wait)
 let res = await aiovideodl(args[0])
-kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:true, contextInfo:{externalAdReply:{
+kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
 title:"Tiktok Downloader",
 body:res.title,
 thumbnail: tamnel,
@@ -669,6 +671,7 @@ sourceUrl: args[0]
 }
 break
 case 'ttvd': {
+replyig(mess.wait)
 let res = await aiovideodl(args[0])
 texttk = `*| TIKTOK DOWNLOADER |*
 
@@ -683,7 +686,7 @@ let buttons = [
 let buttonMessage = {
 video: {url:res.medias[0].url},
 caption: texttk,
-footer: tamnel,
+footer: poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -698,7 +701,7 @@ sourceUrl: args[0]
 kon.sendMessage(from, buttonMessage, {quoted:ftoko})
 }
 break
-case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
+case 'ttmp42': case 'tiktok2': case 'tiktoknowm2':{
 if (!text) throw 'urlnya?'
 replyig(mess.wait)
 let res = await bocil.tiktokdl(text)
@@ -732,7 +735,7 @@ anuu = fs.readFileSync('./kon.json')
 kon.sendMessage(m.chat, {document: anuu, mimetype: 'application/octet-stream', fileName: `kon.json`}, {quoted:m})  
 }
 break
-case 'ttmp45':{
+case 'ttmp43':{
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
                 var { TiktokDownloader } = require('./lib/tiktokdl')
@@ -762,37 +765,7 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
-            case 'ttmp43': {
-                if (!text) throw 'enter query link!'
-                replyig(mess.wait)
-                var { tiktok2 } = require('./lib/tiktokdl')
-res = await tiktok2(`${text}`).catch(e => {
-m.reply('error')
-})
-console.log(res)
-           let buttons = [
-{buttonId: `${prefix}tiktokwm ${text}`, buttonText: {displayText: `With Watermark`}, type: 1},
-{buttonId: `${prefix}tiktokaudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
-]
-let buttonMessage = {
-video: {url:res.urlList.video},
-caption: mess.success,
-footer: poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Tiktok Downloader No Watermak",
-body:"Downloader by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-            }
-            break
-            case 'tiktokwm2': case 'tiktokwatermark2': {
+            case 'tiktokwm3': case 'tiktokwatermark3': {
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
                 var { TiktokDownloader } = require('./lib/tiktokdl')
@@ -822,7 +795,7 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
             }
             break
-    case 'tiktokaudio2':{
+    case 'tiktokaudio3':{
      if (!text) throw 'enter query link!'
      replyig(mess.wait)
 			    hx.ttdownloader(args[0]).then( data => {

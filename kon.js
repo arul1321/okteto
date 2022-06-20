@@ -620,10 +620,10 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
-case 'tiktokdl': case 'tiktokaudio': case 'ttdl': case 'tiktok': case 'ttmp4': case 'ttmp3': case 'tiktoknowm': {
+case 'tiktokdl2': case 'tiktokaudio3': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp3': case 'tiktoknowm': {
 if (!isUrl(args[0])) return replyig(`Example :\n${prefix + command} <url>\nUses :\n${prefix + command} https://vt.tiktok.com/ZSdDo97dC/`)
 replyig(mess.wait)
-let res = await aiovideodl(args[0])
+let res = await bocil.aiovideodl(args[0])
 if (isUrl(args[0])) {
 texttk = `*| TIKTOK DOWNLOADER |*
 
@@ -659,7 +659,7 @@ replyig("Link Error!")
 break
 case 'ttad': {
 replyig(mess.wait)
-let res = await aiovideodl(args[0])
+let res = await bocil.aiovideodl(args[0])
 kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
 title:"Tiktok Downloader",
 body:res.title,
@@ -672,7 +672,7 @@ sourceUrl: args[0]
 break
 case 'ttvd': {
 replyig(mess.wait)
-let res = await aiovideodl(args[0])
+let res = await bocil.aiovideodl(args[0])
 texttk = `*| TIKTOK DOWNLOADER |*
 
 Caption : ${res.title}
@@ -701,7 +701,7 @@ sourceUrl: args[0]
 kon.sendMessage(from, buttonMessage, {quoted:ftoko})
 }
 break
-case 'ttmp42': case 'tiktok2': case 'tiktoknowm2':{
+case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
 if (!text) throw 'urlnya?'
 replyig(mess.wait)
 let res = await bocil.tiktokdl(text)

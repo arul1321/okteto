@@ -1928,7 +1928,8 @@ kon.sendMessage(m.chat, { video: { url: apinobg}, mimetype: 'video/mp4', fileNam
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
 					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/scdl?link=${text}`)
-					kon.sendMessage(m.chat, {audio:{url: anu.link}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+					lol = await getBuffer(anu.link)
+					kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
 title:anu.title,
 body:"Downloader Soundcloud by zBot",
 thumbnail: tamnel,
@@ -1942,27 +1943,24 @@ sourceUrl: `https://instagram.com/_daaa_1`
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
 					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${text}`)
-					let buttons = [
-{buttonId: `${prefix}menu`, buttonText: {displayText: `Back to Menu`}, type: 1}
-]
-let buttonMessage = {
-video: {url:anu.result},
-caption: mess.success,
-footer: poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Pinterest Downloader MP4",
-body:"Downloader by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
+					tol = await getBuffer(anu.result)
+					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-}
-					break
+break
+            case 'smeme': {
+	        let respond = `Kirim/reply image/sticker dengan caption ${prefix + command} text1|text2`
+	        if (!/image/.test(mime)) throw respond
+            if (!text) throw respond
+	        replyig(mess.wait)
+            bawah = text.split('|')[1] ? text.split('|')[1] : '-'
+	        let dwnld = await quoted.download()
+	        let { floNime } = require('./lib/uploader')
+	        let fatGans = await floNime(dwnld)
+	        let smeme = `https://api.memegen.link/images/custom/ /${encodeURIComponent(bawah)}.png?background=${fatGans.result.url}`
+	        let FaTiH = await kon.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.auhor })
+	        await fs.unlinkSync(FaTiH)
+            }
+	       break     
         	case 'setname': case 'setsubject': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
@@ -2120,7 +2118,7 @@ case 'emoji':case 'semoji':{
                 let getGroups = await kon.groupFetchAllParticipating()
                 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
                 let anu = groups.map(v => v.id)
-                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)              
                 for (let i of anu) {
                     await sleep(1500)         
                 if (/image/.test(mime)) {
@@ -2147,43 +2145,6 @@ case 'emoji':case 'semoji':{
   await fs.unlinkSync(memek)
 }
 					break
-    case 'smeme4': case 'smm': {
-if (!args.join(" ")) return ads("Masukan Textnya!")
-let imgbbUploader = require('imgbb-uploader')
-if (/image/.test(mime)) {
-var media = await kon.downloadAndSaveMediaMessage(quoted, "smeme4")
-imgbbUploader('b9a90f1e63f41bac31532712c87e4c25', media)
-.then(async (data) => {
-var bgsd = args.join(" ")
-var urls = data.display_url
-let meme = `https://api.memegen.link/images/custom/ /${bgsd}.png?background=${urls}`
-kon.sendImageAsSticker(m.chat, meme, m, { packname:global.packname, author: global.packname2 })
-})
-.catch(err => {
-throw err
-})
-} else {
-ads("Kirim foto dengan caption smeme")
-}
-}
-addCmd(command.slice(1), 1, commund)
-break
-    case 'smeme': case 'stickermeme': case 'stickmeme': {
-  if (!text) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
-  if (text.includes('|')) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
-  replyig(mess.wait)
-  if (!/image/.test(mime)) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
-  arg = args.join(' ')
-  mee = await kon.downloadAndSaveMediaMessage(quoted)
-  mem = await TelegraPh(mee).catch(err => {
-m.reply("Harus Menggunakan Gambar")
-})
-  meme = `https://api.memegen.link/images/custom/-/${arg}.png?background=${mem}`
-  kon.sendImageAsSticker(m.chat, meme, m, { packname: global.packname, author: global.author }).catch(err => {
-m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks")
-})
-  }
-  break
   case 'memegen': case 'smeme2': {
   if (!text) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks|teks*`)
   if (!text.includes('|')) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks|teks*`)
@@ -2502,7 +2463,7 @@ case 'setexif': {
           m.reply(`Exif berhasil diubah menjadi\n\n⭔ Packname : ${global.packname}\n⭔ Author : ${global.author}`)
             }
             break
-case 'attp': case 'ttp':{
+case 'attp': {
 if (!text) throw `text nya...?`
 replyig(mess.wait)
 const buff = await getBuffer(`https://api.xteam.xyz/${command}?file&text=${encodeURIComponent(q)}`)

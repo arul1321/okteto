@@ -1952,11 +1952,12 @@ break
 	        if (!/image/.test(mime)) throw respond
             if (!text) throw respond
 	        replyig(mess.wait)
+	        atas = text.split('|')[0] ? text.split('|')[0] : '-'
             bawah = text.split('|')[1] ? text.split('|')[1] : '-'
 	        let dwnld = await quoted.download()
 	        let { floNime } = require('./lib/uploader')
 	        let fatGans = await floNime(dwnld)
-	        let smeme = `https://api.memegen.link/images/custom/ /${encodeURIComponent(bawah)}.png?background=${fatGans.result.url}`
+	        let smeme = `https://api.memegen.link/images/custom/${encodeURIComponent(bawah)}/${encodeURIComponent(atas)}.png?background=${fatGans.result.url}`
 	        let FaTiH = await kon.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.auhor })
 	        await fs.unlinkSync(FaTiH)
             }

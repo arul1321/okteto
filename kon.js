@@ -632,6 +632,7 @@ if (!isUrl(args[0])) return replyig(`Example :\n${prefix + command} <url>\nUses 
 replyig(mess.wait)
 let res = await aiovideodl(args[0]).catch(e => {
 m.reply('error')
+})
 if (isUrl(args[0])) {
 texttk = `*| TIKTOK DOWNLOADER |*
 
@@ -661,6 +662,7 @@ sourceUrl: args[0]
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:ftoko}).catch(e => {
 m.reply('error')
+})
 } else {
 replyig("Link Error!")
 }
@@ -668,7 +670,9 @@ replyig("Link Error!")
 break
 case 'ttad': {
 replyig(mess.wait)
-let res = await aiovideodl(args[0])
+let res = await aiovideodl(args[0]).catch(e => {
+m.reply('error')
+})
 kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
 title:"Tiktok Downloader",
 body:res.title,
@@ -678,12 +682,14 @@ mediaUrl: args[0],
 sourceUrl: args[0]
 }}}, {quoted:ftoko}).catch(e => {
 m.reply('error')
+})
 }
 break
 case 'ttvd': {
 replyig(mess.wait)
 let res = await aiovideodl(args[0]).catch(e => {
 m.reply('error')
+})
 texttk = `*| TIKTOK DOWNLOADER |*
 
 Caption : ${res.title}
@@ -711,6 +717,7 @@ sourceUrl: args[0]
 }
 kon.sendMessage(from, buttonMessage, {quoted:ftoko}).catch(e => {
 m.reply('error')
+})
 }
 break
 case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
@@ -718,6 +725,7 @@ if (!text) throw 'urlnya?'
 replyig(mess.wait)
 let res = await bocil.tiktokdl(text).catch(e => {
 m.reply('error')
+})
 console.log(res)
 anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
 let buttons = [
@@ -741,6 +749,7 @@ sourceUrl: args[0]
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
 m.reply('error')
+})
 }
 break
 case  'sendsession':{
@@ -778,6 +787,7 @@ sourceUrl: args[0]
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
 m.reply('error')
+})
             }
             break
             case 'tiktokwm3': case 'tiktokwatermark3': {
@@ -809,6 +819,7 @@ sourceUrl: args[0]
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
 m.reply('error')
+})
             }
             break
     case 'tiktokaudio3':{
@@ -816,7 +827,7 @@ m.reply('error')
      replyig(mess.wait)
 			    hx.ttdownloader(args[0]).then( data => {
 				  kon.sendMessage(m.chat, {document: { url: data.nowm }, mimetype: 'audio/mp4', fileName: `Sound Tiktok By ${kon.user.name}.mp3`}, { quoted : m })
-				}).catch(() => reply('Hmm Erorr Awoakwoakwok'))
+				}).catch(() => m.reply('Hmm Erorr Awoakwoakwok'))
 				}
 		        break
 	case 'igstory': case 'instagramstory': {

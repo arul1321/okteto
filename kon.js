@@ -868,7 +868,7 @@ for(let i of result.medias){
             }).catch((err) => m.reply(`Link tidak valid atau mungkin user private`))
             }
             break
-         case 'ig': case 'igdl': case 'instagram': {
+         case 'ig2': case 'igdl2': case 'instagram2': {
 if (!args[0]) return replyig(`Example :\n${prefix + command} https://www.instagram.com/p/CcvJGuxh9VI/?igshid=YmMyMTA2M2Y=`)
 replyig(mess.wait)
 try {
@@ -1068,7 +1068,7 @@ sourceUrl: "https://instagram.com/_daaa_1"
 kon.sendMessage(m.chat, buttonMessage, { quoted: ftoko })
 }
 break
-case 'igdl2': case 'instagram2': case 'ig2':{
+case 'igdl': case 'instagram': case 'ig':{
         	if (!text) throw 'enter query link!'
 			let buttons = [
                     {buttonId: `ig22 ${text}`, buttonText: {displayText: 'Hasil Pencarian'}, type: 1},

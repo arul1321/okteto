@@ -630,7 +630,8 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 case 'tiktokdl2': case 'tiktokaudio2': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp3': case 'tiktoknowm2': {
 if (!isUrl(args[0])) return replyig(`Example :\n${prefix + command} <url>\nUses :\n${prefix + command} https://vt.tiktok.com/ZSdDo97dC/`)
 replyig(mess.wait)
-let res = await aiovideodl(args[0])
+let res = await aiovideodl(args[0]).catch(e => {
+m.reply('error')
 if (isUrl(args[0])) {
 texttk = `*| TIKTOK DOWNLOADER |*
 
@@ -658,7 +659,8 @@ mediaUrl: args[0],
 sourceUrl: args[0]
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted:ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted:ftoko}).catch(e => {
+m.reply('error')
 } else {
 replyig("Link Error!")
 }
@@ -674,12 +676,14 @@ thumbnail: tamnel,
 mediaType:1,
 mediaUrl: args[0],
 sourceUrl: args[0]
-}}}, {quoted:ftoko})
+}}}, {quoted:ftoko}).catch(e => {
+m.reply('error')
 }
 break
 case 'ttvd': {
 replyig(mess.wait)
-let res = await aiovideodl(args[0])
+let res = await aiovideodl(args[0]).catch(e => {
+m.reply('error')
 texttk = `*| TIKTOK DOWNLOADER |*
 
 Caption : ${res.title}
@@ -705,13 +709,15 @@ mediaUrl: args[0],
 sourceUrl: args[0]
 }}
 }
-kon.sendMessage(from, buttonMessage, {quoted:ftoko})
+kon.sendMessage(from, buttonMessage, {quoted:ftoko}).catch(e => {
+m.reply('error')
 }
 break
 case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
 if (!text) throw 'urlnya?'
 replyig(mess.wait)
-let res = await bocil.tiktokdl(text)
+let res = await bocil.tiktokdl(text).catch(e => {
+m.reply('error')
 console.log(res)
 anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
 let buttons = [
@@ -733,7 +739,8 @@ mediaUrl: args[0],
 sourceUrl: args[0]
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
+m.reply('error')
 }
 break
 case  'sendsession':{
@@ -769,7 +776,8 @@ mediaUrl: args[0],
 sourceUrl: args[0]
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
+m.reply('error')
             }
             break
             case 'tiktokwm3': case 'tiktokwatermark3': {
@@ -799,7 +807,8 @@ mediaUrl: args[0],
 sourceUrl: args[0]
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
+m.reply('error')
             }
             break
     case 'tiktokaudio3':{

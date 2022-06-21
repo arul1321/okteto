@@ -135,16 +135,14 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 
 //●●●●●●●●●●●●●●●●●●●●●● MENU SETTING●●●●●●●●●●●●●●●●●●●●●●
 let listcmd = `
-┏━━⊱ 
-┣🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
-┗━━⊱
-
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
 
 𝐈𝐧𝐟𝐨
  ⍨⃝⚠️ ${prefix}menu
  ⍨⃝⚠️ ${prefix}ping
  ⍨⃝⚠️ ${prefix}owner
  
+ Note : _Jika Bot Tidak Merespon, Ulangi Command 2 - 3x_
  
 𝐂𝐨𝐧𝐯𝐞𝐫𝐭
  ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)
@@ -154,7 +152,7 @@ let listcmd = `
  ⍨⃝🐣 ${prefix}tovn (reply audio)
  ⍨⃝🐣 ${prefix}tourl (reply media)
  ⍨⃝🐣 ${prefix}tomp3 (reply video)
-  ⍨⃝🐣 ${prefix}shortlink (link)
+ ⍨⃝🐣 ${prefix}shortlink (link)
  ⍨⃝🐣 Sticker
   === Info ===
  ==⍨⃝🐣 ${prefix}sticker (reply gambar)
@@ -194,16 +192,24 @@ let listcmd = `
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
    ⍨⃝📩 YouTube
   === Info ===
+  ==> Downloader by y2mate
   ==⍨⃝📩 ${prefix}ytmp4 <LinkYt>
   ==⍨⃝📩 ${prefix}ytmp3 <LinkYt>
  ⍨⃝📩 TikTok
   === Info ===
-  ==⍨⃝📩 ${prefix}tiktoknowm <Link Tiktok>
-  ==⍨⃝📩 ${prefix}tiktokwm <Link Tiktok>
-  ==⍨⃝📩 ${prefix}tiktokaudio <Link Tiktok>
+  ==> Downloader by Snaptik
+      ==⍨⃝📩 ${prefix}tiktok <Link Tiktok>
+  ==> Downloader by Aoivideodl
+      ==⍨⃝📩 ${prefix}tiktok2 <Link Tiktok>
+      ==⍨⃝📩 ${prefix}tiktokaudio2 <Link Tiktok>
+  ==> Downloader by Ttdownloader
+      ==⍨⃝📩 ${prefix}tiktok3 <Link Tiktok>
+  ==> Downloader by @hxz-api
+      ==⍨⃝📩 ${prefix}tiktokaudio3 <Link Tiktok>
  ⍨⃝📩 ${prefix}twitter (link twitter)
  ⍨⃝📩 Instagram
   === Info ===
+  ==> Downloader by @hxz-api
   ==⍨⃝📩 ${prefix}instagram <Link Instagram>
   ==⍨⃝📩 ${prefix}igstory <Username IG>
  ⍨⃝📩 ${prefix}getmusic 
@@ -219,6 +225,7 @@ let listcmd = `
  ⍨⃝☕ ${prefix}bcall 
  ⍨⃝☕ ${prefix}setppbot 
  ⍨⃝☕ ${prefix}sendsession
+ ⍨⃝☕ ${prefix}setexif
 
 𝐆𝐫𝐨𝐮𝐩
  ⍨⃝👥 ${prefix}antilink on
@@ -368,9 +375,9 @@ Text Pro
  ⍨⃝🔕 ${prefix}ass
 `
 let poter =`
-• Runtime Bot : ${runtime(process.uptime())}
-• Speed Bot     : ${latensi.toFixed(4)} Second
-• Tanggal        : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
+🐣 Runtime Bot : ${runtime(process.uptime())}
+🌀 Speed Bot     : ${latensi.toFixed(4)} Second
+☕ Tanggal        : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
 `
 //●●●●●●●●●●●●●●●●●●●●●● PUBLIC & SELF SETTING●●●●●●●●●●●●●●●●●●●●●●
         if (!kon.public) {
@@ -620,10 +627,10 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
-case 'tiktokdl2': case 'tiktokaudio3': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp3': case 'tiktoknowm': {
+case 'tiktokdl2': case 'tiktokaudio2': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp3': case 'tiktoknowm2': {
 if (!isUrl(args[0])) return replyig(`Example :\n${prefix + command} <url>\nUses :\n${prefix + command} https://vt.tiktok.com/ZSdDo97dC/`)
 replyig(mess.wait)
-let res = await bocil.aiovideodl(args[0])
+let res = await aiovideodl(args[0])
 if (isUrl(args[0])) {
 texttk = `*| TIKTOK DOWNLOADER |*
 
@@ -659,7 +666,7 @@ replyig("Link Error!")
 break
 case 'ttad': {
 replyig(mess.wait)
-let res = await bocil.aiovideodl(args[0])
+let res = await aiovideodl(args[0])
 kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
 title:"Tiktok Downloader",
 body:res.title,
@@ -672,7 +679,7 @@ sourceUrl: args[0]
 break
 case 'ttvd': {
 replyig(mess.wait)
-let res = await bocil.aiovideodl(args[0])
+let res = await aiovideodl(args[0])
 texttk = `*| TIKTOK DOWNLOADER |*
 
 Caption : ${res.title}
@@ -708,8 +715,8 @@ let res = await bocil.tiktokdl(text)
 console.log(res)
 anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
 let buttons = [
-{buttonId: `${prefix}ping`, buttonText: {displayText: `Status Bot`}, type: 1},
-{buttonId: `${prefix}owner`, buttonText: {displayText: `Owner`}, type: 1}
+{buttonId: `${prefix}tiktokaudio3 ${text}`, buttonText: {displayText: `Audio`}, type: 1},
+{buttonId: `${prefix}tiktokwm3 ${text}`, buttonText: {displayText: `With Watermark`}, type: 1}
 ]
 let buttonMessage = {
 video: {url:res.video.no_watermark},
@@ -735,7 +742,7 @@ anuu = fs.readFileSync('./kon.json')
 kon.sendMessage(m.chat, {document: anuu, mimetype: 'application/octet-stream', fileName: `kon.json`}, {quoted:m})  
 }
 break
-case 'ttmp43':{
+case 'tiktoknowm3': case 'tiktokdl3': case 'tiktok3': case 'ttmp43':{
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
                 var { TiktokDownloader } = require('./lib/tiktokdl')
@@ -744,8 +751,8 @@ m.reply('error')
 })
 console.log(res)
            let buttons = [
-{buttonId: `${prefix}tiktokwm ${text}`, buttonText: {displayText: `With Watermark`}, type: 1},
-{buttonId: `${prefix}tiktokaudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+{buttonId: `${prefix}tiktokwm3 ${text}`, buttonText: {displayText: `With Watermark`}, type: 1},
+{buttonId: `${prefix}tiktokaudio3 ${text}`, buttonText: {displayText: `Audio`}, type: 1}
 ]
 let buttonMessage = {
 video: {url:res.result.nowatermark},
@@ -774,8 +781,8 @@ m.reply('error')
 })
 console.log(res)
                 let buttons = [
-{buttonId: `${prefix}tiktoknowm ${text}`, buttonText: {displayText: `No Watermark`}, type: 1},
-{buttonId: `${prefix}tiktokaudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+{buttonId: `${prefix}tiktoknowm3 ${text}`, buttonText: {displayText: `No Watermark`}, type: 1},
+{buttonId: `${prefix}tiktokaudio3 ${text}`, buttonText: {displayText: `Audio`}, type: 1}
 ]
 let buttonMessage = {
 video: {url:res.result.nowatermark},
@@ -967,7 +974,6 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
 }
 break
 case 'emojimix2': {
-if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if (!args.join(" ")) return m.reply(`Example : ${prefix + command} 😅`)
 try {
 let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(text)}`)
@@ -1635,6 +1641,7 @@ case 'lava': case 'rock': case 'bloodglas': case 'hallowen': case 'darkgold': ca
 	    }
             break*/
             case 'asupan':{
+            	kon.sendMessage(m.chat, { react: { text: `😋`, key: m.key }})
             	replyig(mess.wait)
              let apirnobg = [
 "https://b.top4top.io/m_1931yxodg0.mp4",
@@ -2111,6 +2118,7 @@ break
 	break
 
      case 'owner': case 'creator': {
+kon.sendMessage(m.chat, { react: { text: `☕`, key: m.key }})
 kon.sendContact(m.chat, global.owner, m)
 }
 break
@@ -2402,6 +2410,7 @@ kon.relayMessage(m.chat, template.message, { messageId: template.key.id })
 break
 
               case 'ping': case 'botstatus': case 'statusbot': {
+              kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
                 respon = `
 Kecepatan Respon ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\n\nRuntime : ${runtime(process.uptime())}
 
@@ -2639,6 +2648,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
 					}
 					break
         case 'yts': case 'ytsearch': {
+        	    kon.sendMessage(m.chat, { react: { text: `🔎`, key: m.key }})
                 if (!text) throw `Example : ${prefix + command} story wa anime`
                 replyig(mess.wait)
                 let yts = require("yt-search")

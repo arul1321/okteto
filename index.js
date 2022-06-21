@@ -104,11 +104,11 @@ async function startkon() {
 *Nama :*
 *Umur :*
 *Askot :*
-*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*${metadata.description}`
-                kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol1}, templateButtons: buttonsDefault, footer: 'Â©zBot', quoted: m })
+*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`
+                kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol1}, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
                 } else if (anu.action == 'remove') {
-                    CPT =`@${num.split("@")[0]} *Keluar Dari* ${metadata.subject} *Yah Keluar, Jan Balik Lagi NgabðŸ—¿*`
-                    kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol2}, templateButtons: buttonsDefault, footer: 'Â©zBot', quoted: m })
+                    CPT =`@${num.split("@")[0]} *Keluar Dari* ${metadata.subject} *Yah Keluar, Jan Balik Lagi Ngab *`
+                    kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol2}, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
                 }
             }
         } catch (err) {
@@ -227,6 +227,40 @@ async function startkon() {
      * @param {*} quoted 
      * @param {*} options 
      */
+     kon.copyNForward = async (jid, message, forceForward = false, options = {}) => {
+        let vtype
+		if (options.readViewOnce) {
+			message.message = message.message && message.message.ephemeralMessage && message.message.ephemeralMessage.message ? message.message.ephemeralMessage.message : (message.message || undefined)
+			vtype = Object.keys(message.message.viewOnceMessage.message)[0]
+			delete(message.message && message.message.ignore ? message.message.ignore : (message.message || undefined))
+			delete message.message.viewOnceMessage.message[vtype].viewOnce
+			message.message = {
+				...message.message.viewOnceMessage.message
+			}
+		}
+
+        let mtype = Object.keys(message.message)[0]
+        let content = await generateForwardMessageContent(message, forceForward)
+        let ctype = Object.keys(content)[0]
+		let context = {}
+        if (mtype != "conversation") context = message.message[mtype].contextInfo
+        content[ctype].contextInfo = {
+            ...context,
+            ...content[ctype].contextInfo
+        }
+        const waMessage = await generateWAMessageFromContent(jid, content, options ? {
+            ...content[ctype],
+            ...options,
+            ...(options.contextInfo ? {
+                contextInfo: {
+                    ...content[ctype].contextInfo,
+                    ...options.contextInfo
+                }
+            } : {})
+        } : {})
+        await kon.relayMessage(jid, waMessage.message, { messageId:  waMessage.key.id })
+        return waMessage
+    }
      kon.sendButDoc = async (jid , text = '' , footer = '', docu, ic, mi, logos, but = [], options = {}) =>{
         let mgDoc = await prepareWAMessageMedia({ document: docu, jpegThumbnail: logos, fileName: ic, mimetype: mi}, { upload: kon.waUploadToServer })
         var template = generateWAMessageFromContent(jid, proto.Message.fromObject({

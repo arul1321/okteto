@@ -374,11 +374,6 @@ Text Pro
  ⍨⃝🔕 ${prefix}ahegao 
  ⍨⃝🔕 ${prefix}ass
 `
-let poter =`
-🐣 Runtime Bot : ${runtime(process.uptime())}
-🌀 Speed Bot     : ${latensi.toFixed(4)} Second
-☕ Tanggal        : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
-`
 //●●●●●●●●●●●●●●●●●●●●●● PUBLIC & SELF SETTING●●●●●●●●●●●●●●●●●●●●●●
         if (!kon.public) {
             if (!m.key.fromMe && !isCreator) return
@@ -483,7 +478,7 @@ const adyt = {
                             itemCount : 9,
                             status: 1,
                             surface : 1,
-                            message: poter, //Kasih namalu
+                            message: global.poter, //Kasih namalu
                             orderTitle: `Hallo`,
                             thumbnail: fs.readFileSync('./lib/hisoka.jpg'),
                             sellerJid: '0@s.whatsapp.net' 
@@ -507,7 +502,7 @@ const replyy = (teks) => {
 kon.sendMessage(m.chat, teks, text, { quoted: m, contextInfo: { externalAdReply: { title: `zBot`, body: 'By : Galih', sourceUrl: `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`, thumbnail: tamnel }}})
 }             
 const reply2 = (teks) => {
-			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: poter,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
+			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: global.poter,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
 		}
 const replyig = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
 mimetype: "image/jpeg",
@@ -648,7 +643,7 @@ let buttons = [
 let buttonMessage = {
 video: {url:res.medias[1].url},
 caption: texttk,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -703,7 +698,7 @@ let buttons = [
 let buttonMessage = {
 video: {url:res.medias[0].url},
 caption: texttk,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -735,7 +730,7 @@ let buttons = [
 let buttonMessage = {
 video: {url:res.video.no_watermark},
 caption: anutxt,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -773,7 +768,7 @@ console.log(res)
 let buttonMessage = {
 video: {url:res.result.nowatermark},
 caption: mess.success,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -805,7 +800,7 @@ console.log(res)
 let buttonMessage = {
 video: {url:res.result.nowatermark},
 caption: mess.success,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -854,7 +849,7 @@ let buttonMessage = {
 image:tamnel,
 jpegThumbnail:tamnel,
 caption: textbv,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4
 }
@@ -911,7 +906,7 @@ textbv += `\n\n_Pilih media dibawah untuk mendownload_`
 let buttons = anu_list
 let buttonMessage = {
                     text: textbv,
-                    footer: poter,
+                    footer: global.poter,
                     buttons: buttons,
                     headerType: 4
                 }
@@ -952,7 +947,7 @@ let buttons = [
 let buttonMessage = {
 video: {url:lotwit.medias[1].url},
 caption: teks,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -978,7 +973,7 @@ let buttons = [
 let buttonMessage = {
 video: {url:args[0]},
 caption: "Done!",
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -1034,7 +1029,7 @@ await kon.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`Sukses Men
 			{ quickReplyButton: { displayText: `Editinfo Open`, id: `editinfo open` } },
 			{ quickReplyButton: { displayText: `Editinfo Close`, id: `editinfo close` } }
 		]
-				kon.sendMessage(m.chat, { text: anu, footer: poter, templateButtons: buttonsDefault3, quoted: m} )
+				kon.sendMessage(m.chat, { text: anu, footer: global.poter, templateButtons: buttonsDefault3, quoted: m} )
 
 }
 }
@@ -1073,7 +1068,7 @@ let buttons = [
 let buttonMessage = {
 image: tamnel,
 caption: listcmd,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -1185,7 +1180,7 @@ var catalog = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 "productId": "7091718154232528",
 "title": `MENU ZBot`,
 "description": listcmd,
-"footerText": poter,
+"footerText": global.poter,
 "currencyCode": "IDR",
 "priceAmount1000": "100000000000000000",
 "productImageCount": 1,
@@ -1207,7 +1202,7 @@ templateMessage: {
 hydratedTemplate: {
 videoMessage: message.videoMessage,
 hydratedContentText: listcmd,
-hydratedFooterText: poter,
+hydratedFooterText: global.poter,
 hydratedButtons: [
 			{ urlButton: { displayText: `Group Bot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
 			{ quickReplyButton: { displayText: `🖇Status Bot`, id: `ping` } },
@@ -2173,7 +2168,7 @@ break
                 ]
                 let buttonMessage = {
                     text: `*Gak Ada Bang*`,
-                    footer: poter,
+                    footer: global.poter,
                     buttons: buttons,
                     headerType: 2
                 }
@@ -2410,7 +2405,7 @@ hydratedTemplate: {
 hydratedContentText: listcmd,
 locationMessage: {
 jpegThumbnail: tod},
-hydratedFooterText: poter,
+hydratedFooterText: global.poter,
 hydratedButtons: [{
 quickReplyButton: {
 displayText: '📈𝘚𝘵𝘢𝘵𝘶𝘴',
@@ -2445,12 +2440,12 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
 _CPU Core(s) Usage (${cpus.length} Core CPU)_
 ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
                 `.trim()
-                kon.sendMessage(m.chat, { caption: respon, location: { jpegThumbnail: todol}, templateButtons: buttonsDefault, footer: poter, quoted: m })
+                kon.sendMessage(m.chat, { caption: respon, location: { jpegThumbnail: todol}, templateButtons: buttonsDefault, footer: global.poter, quoted: m })
             }
             break
             case 'tesbut':{
             let txtg = `ngetes`
-            kon.sendMessage(m.chat, { text: txtg, footer: poter, templateButtons: tesbut, quoted:m})
+            kon.sendMessage(m.chat, { text: txtg, footer: global.poter, templateButtons: tesbut, quoted:m})
 }
 break
             case 'bcgc': case 'bcgroup': {
@@ -2469,7 +2464,7 @@ var tidtoodd8 = [
 			{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } },
 			{ quickReplyButton: { displayText: `Menu`, id: `${prefix}menu` } },
 				]
-kon.sendMessage(i, { text: txt, footer: poter, templateButtons: tidtoodd8, quoted: ftoko})
+kon.sendMessage(i, { text: txt, footer: global.poter, templateButtons: tidtoodd8, quoted: ftoko})
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
@@ -2557,6 +2552,13 @@ case 'setexif': {
           m.reply(`Exif berhasil diubah menjadi\n\n⭔ Packname : ${global.packname}\n⭔ Author : ${global.author}`)
             }
             break
+case 'setfooter': {
+               if (!isCreator) throw mess.owner
+               if (!text) throw `Example : ${prefix + command} packname|author`
+          global.poter = ${text}
+          m.reply(`Footer berhasil diubah menjadi\n\n⭔ Footer : ${global.poter}`)
+            }
+            break
 case 'attp': {
 if (!text) throw `text nya...?`
 replyig(mess.wait)
@@ -2577,7 +2579,7 @@ var tidtoodd8 = [
 			{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } },
 			{ quickReplyButton: { displayText: `Menu`, id: `${prefix}menu` } },
 				]
-kon.sendMessage(yoi, { text: txt, footer: poter, templateButtons: tidtoodd8, quoted: ftoko})
+kon.sendMessage(yoi, { text: txt, footer: global.poter, templateButtons: tidtoodd8, quoted: ftoko})
 		}
 		m.reply('Sukses Broadcast')
             }
@@ -2594,7 +2596,7 @@ kon.sendMessage(yoi, { text: txt, footer: poter, templateButtons: tidtoodd8, quo
                         hydratedTemplate: {
                             imageMessage: message.imageMessage,
                             hydratedContentText: cap,
-                            hydratedFooterText: poter,
+                            hydratedFooterText: global.poter,
                             hydratedButtons: [{
                                 urlButton: {
                                     displayText: 'URL Hasil',
@@ -2646,7 +2648,7 @@ let message = await prepareWAMessageMedia({ image: fs.readFileSync('./lib/hisoka
                         hydratedTemplate: {
                             imageMessage: message.imageMessage,
                             hydratedContentText: nat,
-                            hydratedFooterText: poter,
+                            hydratedFooterText: global.poter,
                             hydratedButtons: [{
                                 urlButton: {
                                     displayText: 'Group ©zBot',
@@ -2711,7 +2713,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
                     caption: `*-------🐣 GIMAGE SEARCH 🐣-------*
 🐣  *Query* : ${text}
 🗂 *Media Url* : ${images}`,
-                    footer: kon.user.name,
+                    footer: global.poter,
                     buttons: buttons,
                     headerType: 4
                 }
@@ -2741,7 +2743,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
 			{ quickReplyButton: { displayText: `Group Open`, id: `group open` } },
 			{ quickReplyButton: { displayText: `Group Close`, id: `group close` } }
 		]
-				kon.sendMessage(m.chat, { text: anu, footer: poter, templateButtons: buttonsDefault3, quoted: m} )
+				kon.sendMessage(m.chat, { text: anu, footer: global.poter, templateButtons: buttonsDefault3, quoted: m} )
 
              }
             }
@@ -2751,7 +2753,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
                 if (!isBotAdmins) throw mess.botAdmin
                 let response = await kon.groupInviteCode(m.chat)
                 tek = `https://chat.whatsapp.com/${response}\n\nLink Group : ${groupMetadata.subject}`
-                kon.sendMessage(m.chat, { caption: tek, location: { jpegThumbnail: todol}, templateButtons: buttonsDefault, footer: poter, quoted: m })
+                kon.sendMessage(m.chat, { caption: tek, location: { jpegThumbnail: todol}, templateButtons: buttonsDefault, footer: global.poter, quoted: m })
             }
             break
         case 'play': case 'ytplay': {
@@ -2777,7 +2779,7 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
                         hydratedTemplate: {
                             imageMessage: message.imageMessage,
                             hydratedContentText: caption,
-                            hydratedFooterText: poter,
+                            hydratedFooterText: global.poter,
                             hydratedButtons: [{
                                 quickReplyButton: {
                                     displayText: 'Music',
@@ -2842,7 +2844,7 @@ sourceUrl: `https://instagram.com/_daaa_1`
 let buttonMessage = {
 video: {url:media.dl_link},
 caption: anu,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -2900,7 +2902,7 @@ sourceUrl: `https://instagram.com/_daaa_1`
 let buttonMessage = {
 video: {url:media.dl_link},
 caption: anu,
-footer: poter,
+footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{

@@ -18,6 +18,11 @@ global.APIKeys = {
 }
 
 // Other
+global.poter = `
+🐣 Runtime Bot : ${runtime(process.uptime())}
+🌀 Speed Bot     : ${latensi.toFixed(4)} Second
+☕ Tanggal        : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}
+`
 global.owner = ['6281229859085','6285869134434','62815788590761']
 global.ntilink = ['120363043965529911@g.us','120363022988111568@g.us']
 global.packname = 'Sticker by'

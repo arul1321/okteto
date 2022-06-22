@@ -572,18 +572,6 @@ var buatpesan = await generateWAMessageFromContent(from, {
 kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
 }
   
-const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
-kma = doc1
-mhan = await kon.prepareMessage(m.chat, media, document, kma)
-const buttonMessages = {
-documentMessage: mhan.message.documentMessage,
-contentText: text1,
-footerText: desc1,
-buttons: but,
-headerType: "DOCUMENT"
-}
-kon.sendMessage(id, buttonMessages, options)
-}
 //●●●●●●●●●●●●●●●●●●●●●● MEDIA SETTING●●●●●●●●●●●●●●●●●●●●●● 
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in cmdmedia)) {
         let hash = cmdmedia[m.msg.fileSha256.toString('base64')]
@@ -630,13 +618,15 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
 case 'gitdownload': case 'gitclone':{
 if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
-	replyig(mess.wait)
-	teks3 = `${text}/archive/refs/heads/master.zip`
-	kon.sendMessage(m.chat, {document: {url: teks3}, mimetype: 'zip', fileName: `RepoGithub`}, { quoted : m })
-	var tidtoodd8 = [
-						{ urlButton: { displayText: `Download`, url : teks3 } }
-				]
-kon.sendMessage(m.chat, { text: `Jika Doc di atas eror, download manual klik urlbutton di bawah`, footer: global.poter, templateButtons: tidtoodd8, quoted: ftoko})
+	const regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
+    if (!args[0]) throw `Example ${prefix+command} https://github.com/Bayu/botwa`
+    let [_, user, repo] = args[0].match(regex) || []
+    repo = repo.replace(/.git$/, '')
+    let url = `https://api.github.com/repos/${user}/${repo}/zipball`
+    let filename = `${repo}`
+    replyig(mess.wait)
+    kon.sendMessage(m.chat, {document: {url: `${url}`}, mimetype: 'application/zip', fileName: `${filename}`}, { quoted : ftoko })
+
 }
 break
 case 'tiktokdl2': case 'tiktokaudio2': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp3': case 'tiktoknowm2': {
@@ -2027,7 +2017,7 @@ m.reply('error')
 })
 					buff = await getBuffer(anu.screenshot)
 					kon.sendMessage(m.chat, { image: { url: anu.screenshot}}).catch(e => {
-m.reply('Tunggu Beberapa Hari Kedepan')
+m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 					break
@@ -2046,7 +2036,7 @@ mediaType:1,
 mediaUrl: `https://instagram.com/_daaa_1`,
 sourceUrl: `https://instagram.com/_daaa_1`
 }}}, {quoted:ftoko}).catch(e => {
-m.reply('Tunggu Beberapa Hari Kedepan')
+m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 					break
@@ -2058,19 +2048,17 @@ m.reply('error')
 })
 					tol = await getBuffer(anu.result.HD)
 					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply('Tunggu Beberapa Hari Kedepan')
+m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 break
 case 'fbdl': case 'fb': case 'facebook':{
                 if (!text) throw 'url ?'
-                replyig(mess.wait)
-					anu = await fetchJson(`https://yui-api.herokuapp.com/api/facebook?URL=${text}`).catch(e => {
-m.reply('error')
-})
-					tol = await getBuffer(anu.result.HD)
-					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply('Tunggu Beberapa Hari Kedepan')
+ let { facebookdl, facebookdlv2 } = require('@bochilteam/scraper')
+    const { result } = await facebookdl(args[0]).catch(async _ => await facebookdlv2(args[0]))
+    for (const { url, isVideo } of result.reverse())
+    kon.sendMessage(m.chat, { video:{url:url}, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
+m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 break
@@ -2089,7 +2077,7 @@ mediaType:1,
 mediaUrl: `https://instagram.com/_daaa_1`,
 sourceUrl: `https://instagram.com/_daaa_1`
 }}}, {quoted:ftoko}).catch(e => {
-m.reply('Tunggu Beberapa Hari Kedepan')
+m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 					break
@@ -2101,7 +2089,7 @@ m.reply('error')
 })
 					tol = await getBuffer(anu.result)
 					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply('Tunggu Beberapa Hari Kedepan')
+m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 break

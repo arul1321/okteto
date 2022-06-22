@@ -3,10 +3,17 @@
    * Contact Me on wa.me/6281229859085
    * Follow https://github.com/DikaArdnt
 */
-
+const { exec, spawn, execSync } = require("child_process")
+const moment = require("moment-timezone");
+const speed = require('performance-now')
 const fs = require('fs')
 const chalk = require('chalk')
-
+const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
+moment.tz.setDefault("Asia/Jakarta").locale("id");
+let timestamp = speed()
+                let latensi = speed() - timestamp
+                neww = performance.now()
+                oldd = performance.now()
 // Website Api
 global.APIs = {
 	zenz: 'https://zenzapi.xyz',

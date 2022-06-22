@@ -2555,7 +2555,7 @@ case 'setexif': {
 case 'setfooter': {
                if (!isCreator) throw mess.owner
                if (!text) throw `Example : ${prefix + command} packname|author`
-          global.poter = ${text}
+          global.poter = `${text}`
           m.reply(`Footer berhasil diubah menjadi\n\n⭔ Footer : ${global.poter}`)
             }
             break

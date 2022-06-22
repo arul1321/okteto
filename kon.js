@@ -192,6 +192,7 @@ let listcmd = `
  ⍨⃝📩 ${prefix}play (judul lagu)
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
+ ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
  ⍨⃝📩 ${prefix}facebook <Link Facebook>
  ⍨⃝📩 ${prefix}fbaudio <Link Facebook>
    ⍨⃝📩 YouTube
@@ -627,13 +628,15 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
-case 'gitdownload':{
+case 'gitdownload': case 'gitclone':{
 if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
 	replyig(mess.wait)
-	teks1 = q.split("|")[0]
-	teks2 = q.split("|")[1]
-	teks3 = `https://github.com/${teks1}/${teks2}/archive/refs/heads/master.zip`
-	kon.sendMessage(m.chat, {document: {url: teks3}, mimetype: 'zip', fileName: `${teks2}`}, { quoted : m })
+	teks3 = `${text}/archive/refs/heads/master.zip`
+	kon.sendMessage(m.chat, {document: {url: teks3}, mimetype: 'zip', fileName: `RepoGithub`}, { quoted : m })
+	var tidtoodd8 = [
+						{ urlButton: { displayText: `Download`, url : teks3 } }
+				]
+kon.sendMessage(m.chat, { text: `Jika Doc di atas eror, download manual klik urlbutton di bawah`, footer: global.poter, templateButtons: tidtoodd8, quoted: ftoko})
 }
 break
 case 'tiktokdl2': case 'tiktokaudio2': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp3': case 'tiktoknowm2': {
@@ -2019,15 +2022,21 @@ kon.sendMessage(m.chat, { video: { url: apinobg}, mimetype: 'video/mp4', fileNam
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
 					teks = q
-					anu = await fetchJson(`https://shot.screenshotapi.net/screenshot?&url=${text}`)
+					anu = await fetchJson(`https://shot.screenshotapi.net/screenshot?&url=${text}`).catch(e => {
+m.reply('error')
+})
 					buff = await getBuffer(anu.screenshot)
-					kon.sendMessage(m.chat, { image: { url: anu.screenshot}})
+					kon.sendMessage(m.chat, { image: { url: anu.screenshot}}).catch(e => {
+m.reply('Tunggu Beberapa Hari Kedepan')
+})
 }
 					break
             case 'soundcloud': case 'scdl':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
-					anu = await fetchJson(`https://yui-api.herokuapp.com/api/soundcloud?URL=${text}`)
+					anu = await fetchJson(`https://yui-api.herokuapp.com/api/soundcloud?URL=${text}`).catch(e => {
+m.reply('error')
+})
 					lol = await getBuffer(anu.result.dlink)
 					kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
 title:anu.result.title,
@@ -2036,29 +2045,41 @@ thumbnail: tamnel,
 mediaType:1,
 mediaUrl: `https://instagram.com/_daaa_1`,
 sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:ftoko})
+}}}, {quoted:ftoko}).catch(e => {
+m.reply('Tunggu Beberapa Hari Kedepan')
+})
 }
 					break
 		   case 'twitter':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
-					anu = await fetchJson(`https://yui-api.herokuapp.com/api/twitter?URL=${text}`)
-					tol = await getBuffer(anu.result.url[1])
-					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
+					anu = await fetchJson(`https://yuzzu-api.herokuapp.com/api/twitter?link=${text}`).catch(e => {
+m.reply('error')
+})
+					tol = await getBuffer(anu.result.HD)
+					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
+m.reply('Tunggu Beberapa Hari Kedepan')
+})
 }
 break
 case 'fbdl': case 'fb': case 'facebook':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
-					anu = await fetchJson(`https://yui-api.herokuapp.com/api/facebook?URL=${text}`)
+					anu = await fetchJson(`https://yui-api.herokuapp.com/api/facebook?URL=${text}`).catch(e => {
+m.reply('error')
+})
 					tol = await getBuffer(anu.result.HD)
-					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
+					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
+m.reply('Tunggu Beberapa Hari Kedepan')
+})
 }
 break
 case 'fbaudio':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
-					anu = await fetchJson(`https://yui-api.herokuapp.com/api/facebook?URL=${text}`)
+					anu = await fetchJson(`https://yui-api.herokuapp.com/api/facebook?URL=${text}`).catch(e => {
+m.reply('error')
+})
 					lol = await getBuffer(anu.result.audio)
 					kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
 title:anu.result.title,
@@ -2067,7 +2088,9 @@ thumbnail: tamnel,
 mediaType:1,
 mediaUrl: `https://instagram.com/_daaa_1`,
 sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:ftoko})
+}}}, {quoted:ftoko}).catch(e => {
+m.reply('Tunggu Beberapa Hari Kedepan')
+})
 }
 					break
 			case 'pinterestdl':{
@@ -2077,7 +2100,9 @@ sourceUrl: `https://instagram.com/_daaa_1`
 m.reply('error')
 })
 					tol = await getBuffer(anu.result)
-					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
+					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
+m.reply('Tunggu Beberapa Hari Kedepan')
+})
 }
 break
             case 'smeme': {

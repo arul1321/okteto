@@ -136,13 +136,15 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 //●●●●●●●●●●●●●●●●●●●●●● MENU SETTING●●●●●●●●●●●●●●●●●●●●●●
 let listcmd = `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal        : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+📑 *Note :* _Jika Bot Tidak Merespon, Ulangi Command 2 - 3x_
 
 𝐈𝐧𝐟𝐨
  ⍨⃝⚠️ ${prefix}menu
  ⍨⃝⚠️ ${prefix}ping
  ⍨⃝⚠️ ${prefix}owner
- 
- Note : _Jika Bot Tidak Merespon, Ulangi Command 2 - 3x_
  
 𝐂𝐨𝐧𝐯𝐞𝐫𝐭
  ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)
@@ -190,6 +192,8 @@ let listcmd = `
  ⍨⃝📩 ${prefix}play (judul lagu)
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
+ ⍨⃝📩 ${prefix}facebook <Link Facebook>
+ ⍨⃝📩 ${prefix}fbaudio <Link Facebook>
    ⍨⃝📩 YouTube
   === Info ===
   ==> Downloader by y2mate
@@ -226,6 +230,7 @@ let listcmd = `
  ⍨⃝☕ ${prefix}setppbot 
  ⍨⃝☕ ${prefix}sendsession
  ⍨⃝☕ ${prefix}setexif
+ ⍨⃝☕ ${prefix}setfooter
 
 𝐆𝐫𝐨𝐮𝐩
  ⍨⃝👥 ${prefix}antilink on
@@ -622,6 +627,15 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
+case 'gitdownload':{
+if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	teks3 = `https://github.com/${teks1}/${teks2}/archive/refs/heads/master.zip`
+	kon.sendMessage(m.chat, {document: {url: teks3}, mimetype: 'zip', fileName: `${teks2}`}, { quoted : m })
+}
+break
 case 'tiktokdl2': case 'tiktokaudio2': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp3': case 'tiktoknowm2': {
 if (!isUrl(args[0])) return replyig(`Example :\n${prefix + command} <url>\nUses :\n${prefix + command} https://vt.tiktok.com/ZSdDo97dC/`)
 replyig(mess.wait)
@@ -927,7 +941,7 @@ replyig(" Error! ")
 }
 }
 break
-case 'twitter': case 'twdl': case 'twmp4': {
+case 'twitter2': case 'twdl2': case 'twmp42': {
 if (!args[0]) return replyig(`Example :\n${prefix + command} https://twitter.com/cinema21/status/1517754155644821504?t=rUnbyqwh4vAE1QXMXlsVeQ&s=19`)
 replyig(mess.wait)
 try {
@@ -1063,7 +1077,7 @@ break
 case 'menu': {
 kon.sendMessage(m.chat, { react: { text: `🗿`, key: m.key }})
 let buttons = [
-{buttonId: `${prefix}owner`, buttonText: {displayText: 'Owner'}, type: 1}
+{buttonId: `${prefix}owner`, buttonText: {displayText: 'Owner'}, type: 1}, {buttonId: `${prefix}ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
 ]
 let buttonMessage = {
 image: tamnel,
@@ -2013,10 +2027,41 @@ kon.sendMessage(m.chat, { video: { url: apinobg}, mimetype: 'video/mp4', fileNam
             case 'soundcloud': case 'scdl':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
-					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/scdl?link=${text}`)
-					lol = await getBuffer(anu.link)
+					anu = await fetchJson(`https://yui-api.herokuapp.com/api/soundcloud?URL=${text}`)
+					lol = await getBuffer(anu.result.dlink)
 					kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title:anu.title,
+title:anu.result.title,
+body:"Downloader Soundcloud by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `https://instagram.com/_daaa_1`,
+sourceUrl: `https://instagram.com/_daaa_1`
+}}}, {quoted:ftoko})
+}
+					break
+		   case 'twitter':{
+                if (!text) throw 'url ?'
+                replyig(mess.wait)
+					anu = await fetchJson(`https://yui-api.herokuapp.com/api/twitter?URL=${text}`)
+					tol = await getBuffer(anu.result.url[1])
+					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
+}
+break
+case 'fbdl': case 'fb': case 'facebook':{
+                if (!text) throw 'url ?'
+                replyig(mess.wait)
+					anu = await fetchJson(`https://yui-api.herokuapp.com/api/facebook?URL=${text}`)
+					tol = await getBuffer(anu.result.HD)
+					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
+}
+break
+case 'fbaudio':{
+                if (!text) throw 'url ?'
+                replyig(mess.wait)
+					anu = await fetchJson(`https://yui-api.herokuapp.com/api/facebook?URL=${text}`)
+					lol = await getBuffer(anu.result.audio)
+					kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title:anu.result.title,
 body:"Downloader Soundcloud by zBot",
 thumbnail: tamnel,
 mediaType:1,
@@ -2028,7 +2073,9 @@ sourceUrl: `https://instagram.com/_daaa_1`
 			case 'pinterestdl':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
-					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${text}`)
+					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${text}`).catch(e => {
+m.reply('error')
+})
 					tol = await getBuffer(anu.result)
 					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
 }

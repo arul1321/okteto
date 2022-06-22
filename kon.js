@@ -193,8 +193,6 @@ let listcmd = `
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
- ⍨⃝📩 ${prefix}facebook <Link Facebook>
- ⍨⃝📩 ${prefix}fbaudio <Link Facebook>
    ⍨⃝📩 YouTube
   === Info ===
   ==> Downloader by y2mate
@@ -2052,35 +2050,6 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 break
-case 'fbdl': case 'fb': case 'facebook':{
-                if (!text) throw 'url ?'
- let { facebookdl, facebookdlv2 } = require('@bochilteam/scraper')
-    const { result } = await facebookdl(args[0]).catch(async _ => await facebookdlv2(args[0]))
-    for (const { url, isVideo } of result.reverse())
-    kon.sendMessage(m.chat, { video:{url:url}, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
-})
-}
-break
-case 'fbaudio':{
-                if (!text) throw 'url ?'
-                replyig(mess.wait)
-					anu = await fetchJson(`https://yui-api.herokuapp.com/api/facebook?URL=${text}`).catch(e => {
-m.reply('error')
-})
-					lol = await getBuffer(anu.result.audio)
-					kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title:anu.result.title,
-body:"Downloader Soundcloud by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `https://instagram.com/_daaa_1`,
-sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:ftoko}).catch(e => {
-m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
-})
-}
-					break
 			case 'pinterestdl':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)

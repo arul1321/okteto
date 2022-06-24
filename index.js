@@ -99,16 +99,15 @@ async function startkon() {
                 const todol2 = await reSize(global.tamnel2, 150, 150)
      
                 if (anu.action == 'add') {
-                    CPT = `*Welcome to ${metadata.subject}*
-*Hai* @${num.split("@")[0]} *Kenalan Dulu yuk*
-*Nama :*
-*Umur :*
-*Askot :*
-*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`
-                kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol1}, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
+                     	var button = [
+             { buttonId: `ahsudahlah`, buttonText: { displayText: `Welcome` }, type: 1}
+             ]
+        kon.sendMessage( anu.id, { caption: `*Hello @${num.split("@")[0]} Welcome to ${metadata.subject} Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`, location: { jpegThumbnail: await reSize(ppuser, 200, 200) }, buttons: button, footer: global.poter, mentions: [num] })
                 } else if (anu.action == 'remove') {
-                    CPT =`@${num.split("@")[0]} *Keluar Dari* ${metadata.subject} *Yah Keluar, Jan Balik Lagi Ngab *`
-                    kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol2}, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
+                         	var button = [
+             { buttonId: `ahsudahlah`, buttonText: { displayText: `Byee` }, type: 1}
+             ]
+        kon.sendMessage( anu.id, { caption: `*@${num.split("@")[0]} Keluar Dari ${metadata.subject} Semoga Nanti Betah Kalau Join Lagi *`, location: { jpegThumbnail: await reSize(ppuser, 200, 200) }, buttons: button, footer: global.poter, mentions: [num] })
                 }
             }
         } catch (err) {

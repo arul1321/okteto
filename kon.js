@@ -594,7 +594,6 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
   let isSticker = m.mtype
   if (isSticker) {
     if(isSticker === "imageMessage"){
-          replygrup('AutoSticker On\nOtomatis Membuat Sticker') // ganti text terserah kamu 
                let mediaaan = await quoted.download()
                 let encmedialik = await kon.sendImageAsSticker(m.chat, mediaaan, m, { packname: global.packname, author: global.author })
                 await fs.unlinkSync(encmedialik)

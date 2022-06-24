@@ -9,6 +9,7 @@ const { default: konConnect, useSingleFileAuthState, DisconnectReason, generateF
 const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
 const pino = require('pino')
 const fs = require('fs')
+const axios = require('axios')
 const chalk = require('chalk')
 const Jimp = require('jimp')
 const FileType = require('file-type')
@@ -63,6 +64,22 @@ async function startkon() {
             console.log(err)
         }
     })
+    
+kon.ev.on('messages.upsert', async chatUpdate => {
+        //console.log(JSON.stringify(chatUpdate, undefined, 2))
+        try {
+        mek = chatUpdate.messages[0]
+        if (!mek.message) return
+        mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
+        if (mek.key && mek.key.remoteJid === 'status@broadcast') return
+        if (!kon.public && !mek.key.fromMe && chatUpdate.type === 'notify') return
+        if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
+        m = smsg(kon, mek, store)
+        require("./kon")(kon, m, chatUpdate, store)
+        } catch (err) {
+            console.log(err)
+        }
+    })
 
     kon.ev.on('group-participants.update', async (anu) => {
         console.log(anu)
@@ -83,11 +100,6 @@ async function startkon() {
                 } catch {
                     ppgroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
                 }
-                const buttonsDefault = [
-            { urlButton: { displayText: `Group zBot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
-			{ quickReplyButton: { displayText: `Owner`, id: `owner` } },
-			{ quickReplyButton: { displayText: `Menu`, id: `menu` } }
-		]
                const reSize = async(buffer, ukur1, ukur2) => {
     return new Promise(async(resolve, reject) => {
         var baper = await Jimp.read(buffer);
@@ -99,24 +111,67 @@ async function startkon() {
                 const todol2 = await reSize(global.tamnel2, 150, 150)
      
                 if (anu.action == 'add') {
-                    CPT = `*Welcome to ${metadata.subject}*
-*Hai* @${num.split("@")[0]} *Kenalan Dulu yuk*
-*Nama :*
-*Umur :*
-*Askot :*
-*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`
-                kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol1}, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
-                } else if (anu.action == 'remove') {
-                    CPT =`@${num.split("@")[0]} *Keluar Dari* ${metadata.subject} *Yah Keluar, Jan Balik Lagi Ngab *`
-                    kon.sendMessage(anu.id, { caption: CPT, location: { jpegThumbnail: todol2}, templateButtons: buttonsDefault, footer: '©zBot', quoted: m })
+                	var button = [
+             { buttonId: `ahsudahlah`, buttonText: { displayText: `Welcome` }, type: 1}
+             ]
+        kon.sendMessage(
+         anu.id, 
+         { 
+         caption: `*Hello @${num.split("@")[0]} Welcome to ${metadata.subject} Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`, 
+         location: { 
+          jpegThumbnail: await reSize(ppuser, 200, 200) 
+         }, 
+         buttons: button, 
+         footer: global.poter, mentions: [num] })
+         }else if (anu.action == 'remove') {
+                    var button = [
+             { buttonId: `ahsudahlah`, buttonText: { displayText: `Bye` }, type: 1}
+             ]
+        kon.sendMessage(
+         anu.id, 
+         { 
+         caption: `*@${num.split("@")[0]} Keluar Dari ${metadata.subject} Kalau Masuk Lagi Semoga Aja Betah*`, 
+         location: { 
+          jpegThumbnail: await reSize(ppuser, 200, 200) 
+         }, 
+         buttons: button, 
+         footer: global.poter, mentions: [num] })
                 }
             }
         } catch (err) {
             console.log(err)
         }
     })
-	
 
+        // Group Update
+    kon.ev.on('groups.update', async pea => {
+    //console.log(pea)
+    try {
+    for(let ciko of pea) {
+    // Get Profile Picture Group
+       try {
+       ppgc = await kon.profilePictureUrl(ciko.id, 'image')
+       } catch {
+       ppgc = 'https://tinyurl.com/yx93l6da'
+       }
+       let wm_fatih = { url : ppgc }
+       if (ciko.announce == true) {
+       kon.send5ButImg(ciko.id, ` Group Settings Change \n\nGroup telah ditutup oleh admin, Sekarang hanya admin yang dapat mengirim pesan !`, `Group Settings Change Message`, wm_fatih, [])
+       } else if (ciko.announce == false) {
+       kon.send5ButImg(ciko.id, ` Group Settings Change \n\nGroup telah dibuka oleh admin, Sekarang peserta dapat mengirim pesan !`, `Group Settings Change Message`, wm_fatih, [])
+       } else if (ciko.restrict == true) {
+       kon.send5ButImg(ciko.id, ` Group Settings Change \n\nInfo group telah dibatasi, Sekarang hanya admin yang dapat mengedit info group !`, `Group Settings Change Message`, wm_fatih, [])
+       } else if (ciko.restrict == false) {
+       kon.send5ButImg(ciko.id, ` Group Settings Change \n\nInfo group telah dibuka, Sekarang peserta dapat mengedit info group !`, `Group Settings Change Message`, wm_fatih, [])
+       } else {
+       kon.send5ButImg(ciko.id, ` Group Settings Change \n\nGroup Subject telah diganti menjadi *${ciko.subject}*`, `Group Settings Change Message`, wm_fatih, [])
+     }
+    }
+    } catch (err){
+    console.log(err)
+    }
+    })
+    
     // Setting
     kon.decodeJid = (jid) => {
         if (!jid) return jid
@@ -162,6 +217,13 @@ async function startkon() {
 	kon.sendMessage(jid, { contacts: { displayName: `${list.length} Kontak`, contacts: list }, ...opts }, { quoted })
     }
 	
+	kon.reSize = async (image, width, height) => {
+       let jimp = require('jimp')
+       var oyy = await jimp.read(image);
+       var kiyomasa = await oyy.resize(width, height).getBufferAsync(jimp.MIME_JPEG)
+       return kiyomasa
+      }
+      
 	kon.setStatus = (status) => {
         kon.query({
             tag: 'iq',
@@ -203,9 +265,48 @@ async function startkon() {
      * @param {*} options
      * @returns
      */
+     kon.send5ButLoc = async (jid , text = '' , footer = '', lok, but = [], options = {}) =>{
+       let resize = await kon.reSize(lok, 300, 150)
+       var template = generateWAMessageFromContent(jid, {
+       "templateMessage": {
+       "hydratedTemplate": {
+       "locationMessage": {
+       "degreesLatitude": 0,
+       "degreesLongitude": 0,
+       "jpegThumbnail": resize
+       },
+       "hydratedContentText": text,
+       "hydratedFooterText": footer,
+       "hydratedButtons": but
+       }
+       }
+       }, options)
+       kon.relayMessage(jid, template.message, { messageId: template.key.id })
+      }
+     kon.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
+      let mime = '';
+      let res = await axios.head(url)
+      mime = res.headers['content-type']
+      if (mime.split("/")[1] === "gif") {
+     return kon.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options}, { quoted: quoted, ...options})
+      }
+      let type = mime.split("/")[0]+"Message"
+      if(mime === "application/pdf"){
+     return kon.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options}, { quoted: quoted, ...options })
+      }
+      if(mime.split("/")[0] === "image"){
+     return kon.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options}, { quoted: quoted, ...options})
+      }
+      if(mime.split("/")[0] === "video"){
+     return kon.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options}, { quoted: quoted, ...options })
+      }
+      if(mime.split("/")[0] === "audio"){
+     return kon.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options}, { quoted: quoted, ...options })
+      }
+      }
     kon.send5ButImg = async (jid , text = '' , footer = '', img, but = [], options = {}) =>{
         let message = await prepareWAMessageMedia({ image: img }, { upload: kon.waUploadToServer })
-        var template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+        var template = generateWAMessageFromContent(jid, proto.Message.fromObject({
         templateMessage: {
         hydratedTemplate: {
         imageMessage: message.imageMessage,

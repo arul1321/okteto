@@ -67,6 +67,10 @@ async function startkon() {
     kon.ev.on('group-participants.update', async (anu) => {
         console.log(anu)
         try {
+        	const mdata = await kon.groupMetadata(anu.id)
+			const iniGc = anu.id.endsWith('@g.us')
+			const des = mdata.desc
+			const jumlahMem = iniGc ? mdata.participants : ''
             let metadata = await kon.groupMetadata(anu.id)
             let participants = anu.participants
             for (let num of participants) {
@@ -83,11 +87,6 @@ async function startkon() {
                 } catch {
                     ppgroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
                 }
-                const buttonsDefault = [
-            { urlButton: { displayText: `Group zBot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
-			{ quickReplyButton: { displayText: `Owner`, id: `owner` } },
-			{ quickReplyButton: { displayText: `Menu`, id: `menu` } }
-		]
                const reSize = async(buffer, ukur1, ukur2) => {
     return new Promise(async(resolve, reject) => {
         var baper = await Jimp.read(buffer);
@@ -95,19 +94,16 @@ async function startkon() {
         resolve(ab)
     })
 }
-                const todol1 = await reSize(global.tamnel1, 150, 150)
-                const todol2 = await reSize(global.tamnel2, 150, 150)
-     
                 if (anu.action == 'add') {
                      	var button = [
              { buttonId: `ahsudahlah`, buttonText: { displayText: `Welcome` }, type: 1}
              ]
-        kon.sendMessage( anu.id, { caption: `*Hello @${num.split("@")[0]} Welcome to ${metadata.subject} Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`, location: { jpegThumbnail: await reSize(ppuser, 200, 200) }, buttons: button, footer: global.poter, mentions: [num] })
+        kon.sendMessage( anu.id, { caption: `[ *SELAMAT DATANG* ]\n❏ *NAME* : @${num.split("@")[0]}\n❏ *GROUP* : ${metadata.subject}\n❏ *MEMBER* : ${jumlahMem.length} \n\n*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`, location: { jpegThumbnail: await reSize(ppuser, 200, 200) }, buttons: button, footer: `*Description Group :*\n${des}`, mentions: [num] })
                 } else if (anu.action == 'remove') {
                          	var button = [
              { buttonId: `ahsudahlah`, buttonText: { displayText: `Byee` }, type: 1}
              ]
-        kon.sendMessage( anu.id, { caption: `*@${num.split("@")[0]} Keluar Dari ${metadata.subject} Semoga Nanti Betah Kalau Join Lagi *`, location: { jpegThumbnail: await reSize(ppuser, 200, 200) }, buttons: button, footer: global.poter, mentions: [num] })
+        kon.sendMessage( anu.id, { caption: `[ *SELAMAT TINGGAL* ]\n❏ *NAME* : @${num.split("@")[0]}\n❏ *GROUP* : ${metadata.subject}\n❏ *JUMLAH MEMBER* : ${jumlahMem.length}\n\n*Semoga Nanti Betah Kalau Join Lagi*`, location: { jpegThumbnail: await reSize(ppuser, 200, 200) }, buttons: button, footer: global.poter, mentions: [num] })
                 }
             }
         } catch (err) {

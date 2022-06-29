@@ -105,7 +105,7 @@ let buttons = [
 let buttonMessage = {
 document: fs.readFileSync('./lib/tes.xlsx'),
 mimetype: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-jpegThumbnail: fs.readFileSync('./lib/hisoka'),
+jpegThumbnail: fs.readFileSync('./lib/hisoka.jpg'),
 mentions: [num],
 fileName: `Welcome Message Z-Bot Whatsapp`,
 fileLength: 99999999999999,

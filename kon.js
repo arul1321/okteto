@@ -2402,15 +2402,15 @@ footer: poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
-title: `Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
-body: `Follow Instagram @_daaa_1`,
-mediaType:2,
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
 thumbnail: tamnel,
-sourceUrl: `instagram.com/_daaa_1`,
+mediaType:1,
 mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftrol2})
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
 }
 break
               case 'ping': case 'botstatus': case 'statusbot': {

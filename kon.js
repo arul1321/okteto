@@ -569,14 +569,6 @@ var buatpesan = await generateWAMessageFromContent(from, {
 kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
 }
 
-//anu
-function pickRandom(list) {
-return list[Math.floor(list.length * Math.random())]
-}
-//dokumen random
-let doku = [f1,f2,f3,f4,f5,f6]
-let feler = pickRandom(doku)
-// yoi  
 //●●●●●●●●●●●●●●●●●●●●●● MEDIA SETTING●●●●●●●●●●●●●●●●●●●●●● 
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in cmdmedia)) {
         let hash = cmdmedia[m.msg.fileSha256.toString('base64')]
@@ -2393,7 +2385,7 @@ break
 ]
 let buttonMessage = {
 document: fs.readFileSync('./lib/tes.xlsx'),
-mimetype: feler,
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
 jpegThumbnail:tamnel,
 fileName: `Z-Bot Whatsapp MD`,
 fileLength: 99999999999999,

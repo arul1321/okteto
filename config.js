@@ -37,6 +37,12 @@ global.prefa = ['','!','.','🐦','🐤','🗿']
 global.sp = '⭔'
 global.tamnel1 = fs.readFileSync('./lib/w.jpg')
 global.tamnel2 = fs.readFileSync('./lib/l.jpg')
+global.f1 = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+global.f2 = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+global.f3 = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+global.f4 = 'application/zip'
+global.f5 = 'application/pdf'
+global.f6 = 'application/vnd.android.package-archive'
 global.mess = {
     success: 'Success',
     admin: 'Khusus Admin Group (tidak termasuk pembuat group)',

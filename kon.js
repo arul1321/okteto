@@ -138,8 +138,7 @@ let listcmd = `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
 🐣 *Runtime Bot : ${runtime(process.uptime())}*
 🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
-☕ *Tanggal        : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
-📑 *Note :* _Jika Bot Tidak Merespon, Ulangi Command 2 - 3x_
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
 
 𝐈𝐧𝐟𝐨
  ⍨⃝⚠️ ${prefix}menu
@@ -569,7 +568,15 @@ var buatpesan = await generateWAMessageFromContent(from, {
   }, {})
 kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
 }
-  
+
+//anu
+function pickRandom(list) {
+return list[Math.floor(list.length * Math.random())]
+}
+//dokumen random
+let doku = [f1,f2,f3,f4,f5,f6]
+let feler = pickRandom(doku)
+// yoi  
 //●●●●●●●●●●●●●●●●●●●●●● MEDIA SETTING●●●●●●●●●●●●●●●●●●●●●● 
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in cmdmedia)) {
         let hash = cmdmedia[m.msg.fileSha256.toString('base64')]
@@ -1064,7 +1071,7 @@ m.reply('on untuk mengaktifkan, off untuk menonaktifkan')
 }
 }
 break
-case 'menu': {
+case 'menu2': {
 kon.sendMessage(m.chat, { react: { text: `🗿`, key: m.key }})
 let buttons = [
 {buttonId: `${prefix}owner`, buttonText: {displayText: 'Owner'}, type: 1}, {buttonId: `${prefix}ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
@@ -1173,51 +1180,6 @@ sourceUrl: "https://youtu.be/TmX43Io_v8s"
 m.reply("Linknya Error")
 }
 }
-break
-case 'menu4': { // Nemu di Sc chika
-kon.sendMessage(m.chat, { react: { text: `🗿`, key: m.key }})
-var messa = await prepareWAMessageMedia({ image: tamnel}, { upload: kon.waUploadToServer })
-var catalog = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-"productMessage": {
-"product": {
-"productImage": messa.imageMessage,
-"productId": "7091718154232528",
-"title": `MENU ZBot`,
-"description": listcmd,
-"footerText": global.poter,
-"currencyCode": "IDR",
-"priceAmount1000": "100000000000000000",
-"productImageCount": 1,
-"firstImageId": 1,
-"salePriceAmount1000": "1000",
-"retailerId": `Ulangi 2 - 3 Kali Command jika bot tidak merespon`,
-"url": ``
-},
-"businessOwnerJid": "6281229859085@s.whatsapp.net",
-}
-}), { userJid: m.chat, quoted: ftoko })
-kon.relayMessage(m.chat, catalog.message, { messageId: catalog.key.id })
-}
-break
-case 'help2': case 'menu2': {
-let message = await prepareWAMessageMedia({ video: fs.readFileSync('./lib/zbot.mp4'), gifPlayback:true, jpegThumbnail: tamnel }, { upload: kon.waUploadToServer })
-const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-templateMessage: {
-hydratedTemplate: {
-videoMessage: message.videoMessage,
-hydratedContentText: listcmd,
-hydratedFooterText: global.poter,
-hydratedButtons: [
-			{ urlButton: { displayText: `Group Bot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },
-			{ quickReplyButton: { displayText: `🖇Status Bot`, id: `ping` } },
-			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
-		]
-}
-}
-}), { userJid: m.chat, quoted: fdoc })
-kon.relayMessage(m.chat, template.message, { messageId: template.key.id })
-}
-
 break
 case 'react': {
                 if (!isCreator) return replyig(mess.owner)
@@ -2424,34 +2386,33 @@ break
                 await fs.unlinkSync(media)
             }
             break
-            case 'menuuu': {
-            	y =`tes`
- tod = await reSize(tamnel, 200, 200)            
-const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-templateMessage: {
-hydratedTemplate: {
-hydratedContentText: listcmd,
-locationMessage: {
-jpegThumbnail: tod},
-hydratedFooterText: global.poter,
-hydratedButtons: [{
-quickReplyButton: {
-displayText: '📈𝘚𝘵𝘢𝘵𝘶𝘴',
-id: '#ping'
+            case 'menu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: feler,
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listcmd,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title: `Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body: `Follow Instagram @_daaa_1`,
+mediaType:2,
+thumbnail: tamnel,
+sourceUrl: `instagram.com/_daaa_1`,
+mediaUrl: `instagram.com/_daaa_1`,
+}}
 }
-}, {
-quickReplyButton: {
-displayText: '📞𝘖𝘸𝘯𝘦𝘳',
-id: '#owner'
-}  
-}]
-}
-}
-}), { userJid: m.chat, quoted: m })
-kon.relayMessage(m.chat, template.message, { messageId: template.key.id })
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftrol2})
 }
 break
-
               case 'ping': case 'botstatus': case 'statusbot': {
               kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
                 respon = `

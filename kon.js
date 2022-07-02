@@ -132,7 +132,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 			    irq: 0
             }
         })
-
+        
 //●●●●●●●●●●●●●●●●●●●●●● MENU SETTING●●●●●●●●●●●●●●●●●●●●●●
 let listcmd = `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
@@ -154,7 +154,7 @@ let listcmd = `
  ⍨⃝🐣 ${prefix}tourl (reply media)
  ⍨⃝🐣 ${prefix}tomp3 (reply video)
  ⍨⃝🐣 ${prefix}shortlink (link)
- ⍨⃝🐣 Sticker
+ ⍨⃝🐣  *Sticker*
   === Info ===
  ==⍨⃝🐣 ${prefix}sticker (reply gambar)
  ==⍨⃝🐣 ${prefix}swm (reply gambar)
@@ -376,6 +376,283 @@ Text Pro
  ⍨⃝🔕 ${prefix}bdsm 
  ⍨⃝🔕 ${prefix}ahegao 
  ⍨⃝🔕 ${prefix}ass
+`
+let listnsfw =`
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+𝐍𝐬𝐟𝐰
+ ⍨⃝🔕 ${prefix}yuri 
+ ⍨⃝🔕 ${prefix}pussy 
+ ⍨⃝🔕 ${prefix}panties 
+ ⍨⃝🔕 ${prefix}orgy 
+ ⍨⃝🔕 ${prefix}neko 
+ ⍨⃝🔕 ${prefix}masturbation 
+ ⍨⃝🔕 ${prefix}jahy 
+ ⍨⃝🔕 ${prefix}glasses 
+ ⍨⃝🔕 ${prefix}gangbang 
+ ⍨⃝🔕 ${prefix}foot 
+ ⍨⃝🔕 ${prefix}femdom 
+ ⍨⃝🔕 ${prefix}ero 
+ ⍨⃝🔕 ${prefix}cum 
+ ⍨⃝🔕 ${prefix}cuckkold 
+ ⍨⃝🔕 ${prefix}blowjob 
+ ⍨⃝🔕 ${prefix}bdsm 
+ ⍨⃝🔕 ${prefix}ahegao 
+ ⍨⃝🔕 ${prefix}ass`
+ 
+ let listmaker = `
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+Text Pro
+⍨⃝🎬 ${prefix}candy (masukan teks)
+⍨⃝🎬 ${prefix}christmas (masukan teks)
+⍨⃝🎬 ${prefix}3dchristmas (masukan teks)
+⍨⃝🎬 ${prefix}sparklechristmas (masukan teks)
+⍨⃝🎬 ${prefix}deepsea (masukan teks)
+⍨⃝🎬 ${prefix}scifi (masukan teks)
+⍨⃝🎬 ${prefix}rainbow (masukan teks)
+⍨⃝🎬 ${prefix}waterpipe (masukan teks)
+⍨⃝🎬 ${prefix}spooky (masukan teks)
+⍨⃝🎬 ${prefix}pencil (masukan teks)
+⍨⃝🎬 ${prefix}circuit (masukan teks)
+⍨⃝🎬 ${prefix}discovery (masukan teks)
+⍨⃝🎬 ${prefix}metalic (masukan teks)
+⍨⃝🎬 ${prefix}fiction (masukan teks)
+⍨⃝🎬 ${prefix}demon (masukan teks)
+⍨⃝🎬 ${prefix}transformer (masukan teks)
+⍨⃝🎬 ${prefix}berry (masukan teks)
+⍨⃝🎬 ${prefix}thunder (masukan teks)
+⍨⃝🎬 ${prefix}magma (masukan teks)
+⍨⃝🎬 ${prefix}3dstone (masukan teks)
+⍨⃝🎬 ${prefix}neonlight (masukan teks)
+⍨⃝🎬 ${prefix}glitch (masukan teks)
+⍨⃝🎬 ${prefix}harrypotter (masukan teks)
+⍨⃝🎬 ${prefix}brokenglass (masukan teks)
+⍨⃝🎬 ${prefix}papercut (masukan teks)
+⍨⃝🎬 ${prefix}watercolor (masukan teks)
+⍨⃝🎬 ${prefix}multicolor (masukan teks)
+⍨⃝🎬 ${prefix}neondevil (masukan teks)
+⍨⃝🎬 ${prefix}underwater (masukan teks)
+⍨⃝🎬 ${prefix}graffitibike (masukan teks)
+⍨⃝🎬 ${prefix}snow (masukan teks)
+⍨⃝🎬 ${prefix}cloud (masukan teks)
+⍨⃝🎬 ${prefix}honey (masukan teks)
+⍨⃝🎬 ${prefix}ice (masukan teks)
+⍨⃝🎬 ${prefix}fruitjuice (masukan teks)
+⍨⃝🎬 ${prefix}biscuit (masukan teks)
+⍨⃝🎬 ${prefix}wood (masukan teks)
+⍨⃝🎬 ${prefix}chocolate (masukan teks)
+⍨⃝🎬 ${prefix}strawberry (masukan teks)
+⍨⃝🎬 ${prefix}matrix (masukan teks)
+⍨⃝🎬 ${prefix}blood (masukan teks)
+⍨⃝🎬 ${prefix}dropwater (masukan teks)
+⍨⃝🎬 ${prefix}toxic (masukan teks)
+⍨⃝🎬 ${prefix}lava (masukan teks)
+⍨⃝🎬 ${prefix}rock (masukan teks)
+⍨⃝🎬 ${prefix}bloodglas (masukan teks)
+⍨⃝🎬 ${prefix}hallowen (masukan teks)
+⍨⃝🎬 ${prefix}darkgold (masukan teks)
+⍨⃝🎬 ${prefix}joker (masukan teks)
+⍨⃝🎬 ${prefix}wicker(masukan teks)
+⍨⃝🎬 ${prefix}firework (masukan teks)
+⍨⃝🎬 ${prefix}skeleton (masukan teks)
+⍨⃝🎬 ${prefix}blackpink (masukan teks)
+⍨⃝🎬 ${prefix}sand (masukan teks)
+⍨⃝🎬 ${prefix}glue (masukan teks)
+⍨⃝🎬 ${prefix}1917 (masukan teks)
+⍨⃝🎬 ${prefix}leaves (masukan teks)
+⍨⃝🎬 ${prefix}pencil (masukan teks)
+⍨⃝🎬 ${prefix}carbon (masukan teks)
+⍨⃝🎬 ${prefix}natural (masukan teks)
+⍨⃝🎬 ${prefix}neonlight (masukan teks)
+⍨⃝🎬 ${prefix}dropwater (masukan teks)
+⍨⃝🎬 ${prefix}joker (masukan teks)
+⍨⃝🎬 ${prefix}hollographic (masukan teks)
+⍨⃝🎬 ${prefix}bokeh (masukan teks)
+⍨⃝🎬 ${prefix}greenneon (masukan teks)
+⍨⃝🎬 ${prefix}neon (masukan teks)
+⍨⃝🎬 ${prefix}3dneon (masukan teks)
+⍨⃝🎬 ${prefix}blackping (masukan teks)
+⍨⃝🎬 ${prefix}window (masukan teks)
+⍨⃝🎬 ${prefix}thunder (masukan teks)
+⍨⃝🎬 ${prefix}3davengers (masukan teks)
+⍨⃝🎬 ${prefix}3dstone (masukan teks)
+⍨⃝🎬 ${prefix}neondevil (masukan teks)
+⍨⃝🎬 ${prefix}transformer (masukan teks)
+⍨⃝🎬 ${prefix}papercut (masukan teks)
+⍨⃝🎬 ${prefix}lion2 (masukan teks)
+⍨⃝🎬 ${prefix}drapwater (masukan teks)
+⍨⃝🎬 ${prefix}3dbox (masukan teks)
+⍨⃝🎬 ${prefix}herryp (masukan teks)
+⍨⃝🎬 ${prefix}grafiti (masukan teks)
+⍨⃝🎬 ${prefix}pornhub (masukan teks)
+⍨⃝🎬 ${prefix}glitch2 (masukan teks)
+⍨⃝🎬 ${prefix}glitch3 (masukan teks)
+⍨⃝🎬 ${prefix}3dspace (masukan teks)
+⍨⃝🎬 ${prefix}lion (masukan teks)
+⍨⃝🎬 ${prefix}bear (masukan teks)
+⍨⃝🎬 ${prefix}wolf (masukan teks)
+⍨⃝🎬 ${prefix}thewall (masukan teks)
+`
+let listvoice = `
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+𝐕𝐨𝐢𝐜𝐞 𝐂𝐡𝐚𝐧𝐠𝐞𝐫
+ ⍨⃝🎧 ${prefix}bass (reply audio)
+ ⍨⃝🎧 ${prefix}blown (reply audio)
+ ⍨⃝🎧 ${prefix}deep (reply audio)
+ ⍨⃝🎧 ${prefix}earrape (reply audio)
+ ⍨⃝🎧 ${prefix}fast (reply audio)
+ ⍨⃝🎧 ${prefix}fat (reply audio)
+ ⍨⃝🎧 ${prefix}nightcore (reply audio)
+ ⍨⃝🎧 ${prefix}reverse (reply audio)
+ ⍨⃝🎧 ${prefix}robot (reply audio)
+ ⍨⃝🎧 ${prefix}slow (reply audio)
+ ⍨⃝🎧 ${prefix}tupai (reply audio)
+`
+let listgroup = `
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+𝐆𝐫𝐨𝐮𝐩
+ ⍨⃝👥 ${prefix}antilink on
+ ⍨⃝👥 ${prefix}antilink off
+ ⍨⃝👥 ${prefix}tagall 
+ ⍨⃝👥 ${prefix}hidetag
+ ⍨⃝👥 ${prefix}grup  
+ ⍨⃝👥 ${prefix}editinfo 
+ ⍨⃝👥 ${prefix}linkgc
+ ⍨⃝👥 ${prefix}setppgc [image]
+ ⍨⃝👥 ${prefix}setname [text]
+ ⍨⃝👥 ${prefix}setdesc [text]
+ ⍨⃝👥 ${prefix}add @user
+ ⍨⃝👥 ${prefix}kick @user
+ ⍨⃝👥 ${prefix}promote @user
+ ⍨⃝👥 ${prefix}demote @user
+`
+let listsearch =`
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+𝐒𝐞𝐚𝐫𝐜𝐡
+ ⍨⃝🔎 ${prefix}wikipedia 
+ ⍨⃝🔎 ${prefix}ytsearch (judul)
+ ⍨⃝🔎 ${prefix}google 
+ ⍨⃝🔎 ${prefix}gimage 
+ ⍨⃝🔎 ${prefix}pinterest 
+`
+let listowner =`
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+𝐎𝐰𝐧𝐞𝐫
+ ⍨⃝☕ ${prefix}bcgc 
+ ⍨⃝☕ ${prefix}bcimage
+ ⍨⃝☕ ${prefix}bcvideo
+ ⍨⃝☕ ${prefix}bcsticker
+ ⍨⃝☕ ${prefix}bcaudio
+ ⍨⃝☕ ${prefix}bcall 
+ ⍨⃝☕ ${prefix}setppbot 
+ ⍨⃝☕ ${prefix}sendsession
+ ⍨⃝☕ ${prefix}setexif
+ ⍨⃝☕ ${prefix}setfooter
+`
+let listdownload = `
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
+ ⍨⃝📩 ${prefix}play (judul lagu)
+ ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
+ ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
+ ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
+   ⍨⃝📩 YouTube
+  === Info ===
+  ==> Downloader by y2mate
+  ==⍨⃝📩 ${prefix}ytmp4 <LinkYt>
+  ==⍨⃝📩 ${prefix}ytmp3 <LinkYt>
+ ⍨⃝📩 TikTok
+  === Info ===
+  ==> Downloader by Snaptik
+      ==⍨⃝📩 ${prefix}tiktok <Link Tiktok>
+  ==> Downloader by Aoivideodl
+      ==⍨⃝📩 ${prefix}tiktok2 <Link Tiktok>
+      ==⍨⃝📩 ${prefix}tiktokaudio2 <Link Tiktok>
+  ==> Downloader by Ttdownloader
+      ==⍨⃝📩 ${prefix}tiktok3 <Link Tiktok>
+  ==> Downloader by @hxz-api
+      ==⍨⃝📩 ${prefix}tiktokaudio3 <Link Tiktok>
+ ⍨⃝📩 ${prefix}twitter (link twitter)
+ ⍨⃝📩 Instagram
+  === Info ===
+  ==> Downloader by @hxz-api
+  ==⍨⃝📩 ${prefix}instagram <Link Instagram>
+  ==⍨⃝📩 ${prefix}igstory <Username IG>
+ ⍨⃝📩 ${prefix}getmusic 
+ ⍨⃝📩 ${prefix}getvideo 
+ ⍨⃝📩 ${prefix}mediafire (khusus owner) 
+`
+let listtools = `
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+𝐓𝐨𝐨𝐥𝐬
+ ⍨⃝📚 ${prefix}removebg (reply gambar)
+ ⍨⃝📚 ${prefix}emojimix (masukan emoji)
+ ⍨⃝📚 ${prefix}emojimix2 (masukan emoji)
+ ⍨⃝📚 ${prefix}emoji (masukan emoji)
+ ⍨⃝📚 ${prefix}del (reply pesan bot)
+ ⍨⃝📚 ${prefix}q 
+ ⍨⃝📚 ${prefix}ssweb 
+ ⍨⃝📚 ${prefix}asupan
+`
+let listconvert = `
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+𝐂𝐨𝐧𝐯𝐞𝐫𝐭
+ ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)
+ ⍨⃝🐣 ${prefix}toaudio (reply audio)
+ ⍨⃝🐣 ${prefix}togif (reply sticker gif)
+ ⍨⃝🐣 ${prefix}toimg (reply sticker)
+ ⍨⃝🐣 ${prefix}tovn (reply audio)
+ ⍨⃝🐣 ${prefix}tourl (reply media)
+ ⍨⃝🐣 ${prefix}tomp3 (reply video)
+ ⍨⃝🐣 ${prefix}shortlink (link)
+ ⍨⃝🐣  *Sticker*
+  === Info ===
+ ==⍨⃝🐣 ${prefix}sticker (reply gambar)
+ ==⍨⃝🐣 ${prefix}swm (reply gambar)
+ ==⍨⃝🐣 ${prefix}smeme (reply gambar)
+ ==⍨⃝🐣 ${prefix}smeme2 (reply gambar)
+ ==⍨⃝🐣 ${prefix}triggered (reply gambar)
+ ==⍨⃝🐣 ${prefix}gay (reply gambar)
+ ==⍨⃝🐣 ${prefix}glass (reply gambar)
+ ==⍨⃝🐣 ${prefix}passed (reply gambar)
+ ==⍨⃝🐣 ${prefix}jail (reply gambar)
+ ==⍨⃝🐣 ${prefix}comrade (reply gambar)
+ ==⍨⃝🐣 ${prefix}green (reply gambar)
+ ==⍨⃝🐣 ${prefix}blue (reply gambar)
+ ==⍨⃝🐣 ${prefix}sepia (reply gambar)
+ ==⍨⃝🐣 ${prefix}wasted (reply gambar)
+ ==⍨⃝🐣 ${prefix}greyscale (reply gambar)
+ ==⍨⃝🐣 ${prefix}blurple2 (reply gambar)
+ ==⍨⃝🐣 ${prefix}blurple (reply gambar)
+ ==⍨⃝🐣 ${prefix}red (reply gambar)
+ ==⍨⃝🐣 ${prefix}invertgreyscale (reply gambar)
+ ==⍨⃝🐣 ${prefix}invert (reply gambar)
 `
 //●●●●●●●●●●●●●●●●●●●●●● PUBLIC & SELF SETTING●●●●●●●●●●●●●●●●●●●●●●
         if (!kon.public) {
@@ -611,6 +888,351 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
+case 'allmenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listcmd,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'ownermenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listowner,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'groupmenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listgroup,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'makermenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listmaker,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'downloadmenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listdownload,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'searchmenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listsearch,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'toolmenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listtools,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'nsfwmenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listnsfw,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'voicemenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listvoice,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'convertmenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listconvert,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
+case 'menu': case 'help': case 'list': case 'command': {
+let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+                listMessage :{
+                    title: `
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*`,
+                    description: `Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+                    buttonText: "Menu",
+                    footerText: `Silahkan Klik Menu Di Bawah Untuk Mengetahui Commandnya  😊`,
+                    listType: "SINGLE_SELECT",
+                    sections: [
+							{
+								"title": "Z-Bot Whatsapp Features ❤️",
+								"rows": [
+									{
+										"title": "All Menu 🥀",
+										"description": "Displays The List Of All The Features!",
+										"rowId": `${prefix}allmenu`
+									},
+									{
+										"title": "Owner Menu 💠",
+										"description": "Displays The List Of Owner Features",
+										"rowId": `${prefix}ownermenu`
+										},
+									{
+										"title": "Group Menu ✨",
+										"description": "Displays The List Of Group Features",
+										"rowId": `${prefix}groupmenu`
+										},
+										{
+										"title": "Maker Menu 🌈",
+										"description": "Displays The List Of Logo Making Features",
+										"rowId": `${prefix}makermenu`
+									},
+									{
+										"title": "Download Menu ↘️",
+										"description": "Displays The List Of Download Features",
+										"rowId": `${prefix}downloadmenu`
+									},
+									{
+										"title": "Search Menu 🔎",
+										"description": "Displays The List Of Searching Features",
+										"rowId": `${prefix}searchmenu`
+									},
+									{
+										"title": "Tool Menu ⚙️",
+										"description": "Displays The List Of Tool Features",
+										"rowId": `${prefix}toolmenu`
+									},
+									{
+										"title": "Nsfw Menu 🤓",
+										"description": "Displays The List Of Nsfe Features",
+										"rowId": `${prefix}nsfwmenu`
+									     },
+										{
+											"title": "Voice Changer Menu 🕺",
+										"description": "Displays The List Of Voice Changer Features",
+										"rowId": `${prefix}voicemenu`
+										},
+										{
+											"title": "Convert Menu ⚒️",
+										"description": "Displays The List Of Convert Features",
+										"rowId": `${prefix}convertmenu`
+										}
+								]
+							}
+						],
+          listType: 1
+                }
+            }), {})
+            kon.relayMessage(m.chat, template.message, { messageId: template.key.id })
+            }
+            break
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
 case 'gitdownload': case 'gitclone':{
 if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
@@ -1109,7 +1731,7 @@ kon.sendMessage(m.chat, { image: mese, caption: mess.success}, { quoted: fdoc})
 }
 break
 case 'tes2':{
-	replyig(mess.wait)
+	m.reply(mess.wait)
 }
 break
 case'glitch3':
@@ -2378,33 +3000,6 @@ break
                 await fs.unlinkSync(media)
             }
             break
-            case 'menu':{
-            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
-            let buttons = [
-{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
-]
-let buttonMessage = {
-document: fs.readFileSync('./lib/tes.xlsx'),
-mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-jpegThumbnail:tamnel,
-fileName: `Z-Bot Whatsapp MD`,
-fileLength: 99999999999999,
-caption: listcmd,
-footer: poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
-body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
-}
-break
               case 'ping': case 'botstatus': case 'statusbot': {
               kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
                 respon = `

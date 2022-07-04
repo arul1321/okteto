@@ -888,6 +888,29 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
+case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
+if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
+let { facebookdlv3, facebookdlv2 } = require('@bochilteam/scraper')
+    if (!args[0]) throw `Use example ${usedPrefix}${command} https://fb.watch/azFEBmFRcy/`
+    const { result } = await facebookdlv3(args[0]).catch(async _ => await facebookdlv2(args[0]))
+    for (const { url, isVideo } of result.reverse()) kon.sendMessage(m.chat, {video:{url:url}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
+}
+break
+case 'fb2':{
+let kon = await bocil.savefrom(`${text}`)
+console.log(kon)
+let buttons = [
+                    {buttonId: `${prefix}mp4 ${kon.hd.url}`, buttonText: {displayText: 'Hasil Pencarian'}, type: 1},
+                ]
+                let buttonMessage = {
+                    text: `• Title : ${kon.meta.title}\n• Duration : ${kon.meta.duration}\n• Source : ${kon.meta.source}`,
+                    footer: global.poter,
+                    buttons: buttons,
+                    headerType: 2
+                }
+           kon.sendMessage(m.chat, buttonMessage, { quoted: m })
+}
+break
 case 'allmenu':{
             kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
             let buttons = [

@@ -192,6 +192,8 @@ let listcmd = `
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
+ ⍨⃝📩 ${prefix}facebook <Link>
+ ⍨⃝📩 ${prefix}facebook2 <Link>
    ⍨⃝📩 YouTube
   === Info ===
   ==> Downloader by y2mate
@@ -576,6 +578,8 @@ let listdownload = `
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
+ ⍨⃝📩 ${prefix}facebook <Link>
+ ⍨⃝📩 ${prefix}facebook2 <Link>
    ⍨⃝📩 YouTube
   === Info ===
   ==> Downloader by y2mate
@@ -888,22 +892,26 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
-case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
+case 'facebook2': case 'fbdl2': case 'facebook2': case 'fb2':{
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
+if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
 let { facebookdlv3, facebookdlv2 } = require('@bochilteam/scraper')
     if (!args[0]) throw `Use example ${usedPrefix}${command} https://fb.watch/azFEBmFRcy/`
     const { result } = await facebookdlv3(args[0]).catch(async _ => await facebookdlv2(args[0]))
     for (const { url, isVideo } of result.reverse()) kon.sendMessage(m.chat, {video:{url:url}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
 }
 break
-case 'fb2':{
-let kon = await bocil.savefrom(`${text}`)
-console.log(kon)
+case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
+if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+let kin = await bocil.savefrom(`${text}`).catch(e => {
+m.reply('Server 1 Eror silahkan ketik .facebook2 <URL>')
+})
+let iin = `• Title : ${kin.meta.title}\n• Duration : ${kin.meta.duration}\n• Source : ${kin.meta.source}`
 let buttons = [
-                    {buttonId: `${prefix}mp4 ${kon.hd.url}`, buttonText: {displayText: 'Hasil Pencarian'}, type: 1},
+                    {buttonId: `${prefix}mp4 ${kin.hd.url}`, buttonText: {displayText: 'Hasil Pencarian'}, type: 1},
                 ]
                 let buttonMessage = {
-                    text: `• Title : ${kon.meta.title}\n• Duration : ${kon.meta.duration}\n• Source : ${kon.meta.source}`,
+                    text: iin,
                     footer: global.poter,
                     buttons: buttons,
                     headerType: 2

@@ -193,7 +193,6 @@ let listcmd = `
  ⍨⃝📩 ${prefix}cocofun <Link Cocofun>
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
- ⍨⃝📩 ${prefix}soundcloud2 <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
  ⍨⃝📩 ${prefix}facebook <Link>
  ⍨⃝📩 ${prefix}facebook2 <Link>
@@ -215,7 +214,7 @@ let listcmd = `
       ==⍨⃝📩 ${prefix}tiktokaudio3 <Link Tiktok>
  ⍨⃝📩 ${prefix}twitter (link twitter)
  ⍨⃝📩 ${prefix}twitter2 (link twitter)
- ⍨⃝📩 ${prefix}twitteraudio (link twitter)
+ ⍨⃝📩 ${prefix}telesticker (link sticker tele)
  ⍨⃝📩 Instagram
   === Info ===
   ==> Downloader by @hxz-api
@@ -583,7 +582,6 @@ let listdownload = `
  ⍨⃝📩 ${prefix}cocofun <Link Cocofun>
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
- ⍨⃝📩 ${prefix}soundcloud2 <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
  ⍨⃝📩 ${prefix}facebook <Link>
  ⍨⃝📩 ${prefix}facebook2 <Link>
@@ -605,7 +603,7 @@ let listdownload = `
       ==⍨⃝📩 ${prefix}tiktokaudio3 <Link Tiktok>
  ⍨⃝📩 ${prefix}twitter (link twitter)
  ⍨⃝📩 ${prefix}twitter2 (link twitter)
- ⍨⃝📩 ${prefix}twitteraudio (link twitter)
+ ⍨⃝📩 ${prefix}telesticker (link sticker tele)
  ⍨⃝📩 Instagram
   === Info ===
   ==> Downloader by @hxz-api
@@ -1859,6 +1857,18 @@ m.reply("Linknya Error")
 }
 }
 break
+case 'mp3':{
+if (!args[0]) return replyig("Linknya mana kak?")
+kon.sendMessage(m.chat, {audio:{url: media.dl_link}, mimetype:"audio/mp4", ptt: true, contextInfo:{externalAdReply:{
+title: `Z-Bot Whatsapp`,
+body:"Downloader Youtube MP3 by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `https://instagram.com/_daaa_1`,
+sourceUrl: `https://instagram.com/_daaa_1`
+}}}, {quoted:ftoko})
+}
+break
 case 'jpeg': {
 if (!args[0]) return replyig("Linknya mana kak?")
 try {
@@ -2694,25 +2704,6 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 break
-            case 'soundcloud2': case 'scdl2':{
-                if (!text) throw 'url ?'
-                replyig(mess.wait)
-					anu = await fetchJson(`https://yui-api.herokuapp.com/api/soundcloud?URL=${text}`).catch(e => {
-m.reply('error')
-})
-					lol = await getBuffer(anu.result.dlink)
-					kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title:anu.result.title,
-body:"Downloader Soundcloud by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `https://instagram.com/_daaa_1`,
-sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:ftoko}).catch(e => {
-m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
-})
-}
-					break
 		   case 'twitter2':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
@@ -3032,6 +3023,12 @@ m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks|teks")
                 m.reply(e)
                 }
                 break
+    case 'whatmusic':{
+let media = await kon.downloadAndSaveMediaMessage(quoted)
+let ky = await xfar.search.whatmusic(media)
+console.log(ky)
+}
+break
 	case 'toaud': case 'toaudio': {
             if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
             if (!quoted) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
@@ -3249,6 +3246,22 @@ case 'setfooter': {
           m.reply(`Footer berhasil diubah menjadi\n\n⭔ Footer : ${global.poter}`)
             }
             break
+case 'sticktele': case 'telesticker': case 'telestick': case 'stickertele':{
+if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group! Karena Dapat Menyebabkan Spam')
+if (!text) throw `Example : ${prefix + command} https://t.me/addstickers/rndomnih`
+replyig(mess.wait)
+let packName = args[0].replace("https://t.me/addstickers/", "")
+let gas = await fetchJson(`https://api.telegram.org/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/getStickerSet?name=${encodeURIComponent(packName)}`, { method: "GET", headers: { "User-Agent": "GoogleBot" } })
+m.reply(`*Total stiker:* ${gas.result.stickers.length}
+*Estimasi selesai:* ${gas.result.stickers.length * 1.5} detik`.trim())
+for (let i = 0; i < gas.result.stickers.length; i++) {
+        let fileId = gas.result.stickers[i].thumb.file_id
+        let gasIn = await fetchJson(`https://api.telegram.org/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/getFile?file_id=${fileId}`)
+        let stick = "https://api.telegram.org/file/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/" + gasIn.result.file_path
+        let media = await getBuffer(stick)
+        kon.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })}
+}
+break
 case 'attp': {
 if (!text) throw `text nya...?`
 replyig(mess.wait)
@@ -3256,16 +3269,10 @@ const buff = await getBuffer(`https://api.xteam.xyz/${command}?file&text=${encod
 kon.sendMessage(m.chat, { sticker : buff}) 
 }
 break
-case 'sends':
+case 'sendsticker':
+if (!text) throw `Url nya.....?\n *Note : Harus Berupa Url Gambar*`
 buff = await getBuffer(args[0])
 kon.sendMessage(m.chat, { sticker : buff}) 
-break
-case 'telestik':{
-let tele = await telesticker(`${text}`)
-console.log(tele)
-log = `${tele.i.result.url}`
-m.reply(log)
-}
 break
             case 'bc': case 'broadcast': case 'bcall': {
                 if (!isCreator) throw mess.owner

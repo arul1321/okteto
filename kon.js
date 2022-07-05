@@ -36,6 +36,7 @@ const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
 const { mediafiredl } = require('./lib/mediafiredl')
 const { aiovideodl } = require('./lib/scraper2.js')
+const { pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
 const maker = require('mumaker')
 const cmdmedia = JSON.parse(fs.readFileSync('./src/cmdmedia.json'))
 
@@ -211,6 +212,8 @@ let listcmd = `
   ==> Downloader by @hxz-api
       ==⍨⃝📩 ${prefix}tiktokaudio3 <Link Tiktok>
  ⍨⃝📩 ${prefix}twitter (link twitter)
+ ⍨⃝📩 ${prefix}twitter2 (link twitter)
+ ⍨⃝📩 ${prefix}twitteraudio (link twitter)
  ⍨⃝📩 Instagram
   === Info ===
   ==> Downloader by @hxz-api
@@ -597,6 +600,8 @@ let listdownload = `
   ==> Downloader by @hxz-api
       ==⍨⃝📩 ${prefix}tiktokaudio3 <Link Tiktok>
  ⍨⃝📩 ${prefix}twitter (link twitter)
+ ⍨⃝📩 ${prefix}twitter2 (link twitter)
+ ⍨⃝📩 ${prefix}twitteraudio (link twitter)
  ⍨⃝📩 Instagram
   === Info ===
   ==> Downloader by @hxz-api
@@ -894,7 +899,8 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
         switch(command) {
 case 'facebook2': case 'fbdl2': case 'facebook2': case 'fb2':{
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
-if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+if(!text) return replyig(`Penggunaan ${prefix + command} link`)
+replyig(mess.wait)
 let { facebookdlv3, facebookdlv2 } = require('@bochilteam/scraper')
     if (!args[0]) throw `Use example ${usedPrefix}${command} https://fb.watch/azFEBmFRcy/`
     const { result } = await facebookdlv3(args[0]).catch(async _ => await facebookdlv2(args[0]))
@@ -902,13 +908,14 @@ let { facebookdlv3, facebookdlv2 } = require('@bochilteam/scraper')
 }
 break
 case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
-if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+if(!text) return replyig(`Penggunaan ${prefix + command} link`)
+replyig(mess.wait)
 let kin = await bocil.savefrom(`${text}`).catch(e => {
 m.reply('Server 1 Eror silahkan ketik .facebook2 <URL>')
 })
 let iin = `• Title : ${kin.meta.title}\n• Duration : ${kin.meta.duration}\n• Source : ${kin.meta.source}`
 let buttons = [
-                    {buttonId: `${prefix}mp4 ${kin.hd.url}`, buttonText: {displayText: 'Hasil Pencarian'}, type: 1},
+                    {buttonId: `${prefix}mp4dwn ${kin.hd.url}`, buttonText: {displayText: 'Video HD'}, type: 1},       {buttonId: `${prefix}mp4dwn ${kin.sd.url}`, buttonText: {displayText: 'Video SD'}, type: 1},
                 ]
                 let buttonMessage = {
                     text: iin,
@@ -917,6 +924,22 @@ let buttons = [
                     headerType: 2
                 }
            kon.sendMessage(m.chat, buttonMessage, { quoted: m })
+}
+break
+case 'mp4dwn' : {
+if (!args[0]) return m.reply("Linknya mana kak?")
+try {
+kon.sendMessage(m.chat, {video:{url:args[0]}, caption:"Succes", contextInfo:{externalAdReply:{
+title:"Z-Bot Whatsapp",
+body:"©BotWhatsapp",
+thumbnail: tamnel,
+mediaType:2,
+mediaUrl: "https://youtu.be/TmX43Io_v8s",
+sourceUrl: "https://youtu.be/TmX43Io_v8s"
+}}}, {quoted:ftoko})
+} catch {
+m.reply("Linknya Error")
+}
 }
 break
 case 'allmenu':{
@@ -1265,8 +1288,106 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
             }
             break
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
+case 'twitterdl': case 'twit': case 'twitter':{
+	if (!text) throw 'enter query link!'
+                replyig(mess.wait)
+let yut = await twitter(args[0])
+console.log(yut)
+anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
+                let buttons = [
+{buttonId: `${prefix}twt720 ${text}`, buttonText: {displayText: `Video 720p`}, type: 1}, {buttonId: `${prefix}twt360 ${text}`, buttonText: {displayText: `Video 360p`}, type: 1}
+]
+let buttonMessage = {
+video: {url:yut.quality_270},
+caption: anu,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Twitter Downloader Video",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+}
+break
+case 'twt360':{
+if (!text) throw 'enter query link!'
+                replyig(mess.wait)
+let yut = await twitter(args[0])
+console.log(yut)
+anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
+                let buttons = [
+{buttonId: `${prefix}twitteraudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:yut.quality_360},
+caption: anu,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Twitter Downloader Video",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+}
+break
+case 'twt720':{
+if (!text) throw 'enter query link!'
+                replyig(mess.wait)
+let yut = await twitter(args[0])
+console.log(yut)
+anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
+                let buttons = [
+{buttonId: `${prefix}twitteraudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:yut.quality_720},
+caption: anu,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Twitter Downloader Video",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+}
+break
+case 'twittermp3': case 'twitteraudio':{
+if (!text) throw 'enter query link!'
+                replyig(mess.wait)
+let yut = await twitter(args[0])
+let tuk = `• nickname : ${yut.nickname}`
+console.log(yut)
+kon.sendMessage(m.chat, {audio:{url: yut.mp3}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title: tuk,
+body:"Downloader Twitter MP3 by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `https://instagram.com/_daaa_1`,
+sourceUrl: `https://instagram.com/_daaa_1`
+}}}, {quoted: m})
+}
+break
 case 'gitdownload': case 'gitclone':{
 if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+replyig(mess.wait)
 	const regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
     if (!args[0]) throw `Example ${prefix+command} https://github.com/Bayu/botwa`
     let [_, user, repo] = args[0].match(regex) || []
@@ -1583,67 +1704,6 @@ replyig(" Error! ")
 }
 }
 break
-case 'twitter2': case 'twdl2': case 'twmp42': {
-if (!args[0]) return replyig(`Example :\n${prefix + command} https://twitter.com/cinema21/status/1517754155644821504?t=rUnbyqwh4vAE1QXMXlsVeQ&s=19`)
-replyig(mess.wait)
-try {
-let lotwit = await aiovideodl(args[0])
-teks = `*| TWITTER DOWNLOADER |*
-
-Caption : ${lotwit.title ? lotwit.title : "undefined"}
-Type : ${lotwit.medias[1].extension}
-Size : ${lotwit.medias[1].formattedSize}
-Link : ${lotwit.medias[1].url}
-
-_Pilih kualitas video dibawah dengan cara mengklik tombolnya_`
-let buttons = [
-{buttonId: `${prefix}twddl ${lotwit.medias[0].url}`, buttonText: {displayText: `Quality ${lotwit.medias[0].quality}`}, type: 1},
-{buttonId: `${prefix}twddl ${lotwit.medias[2].url}`, buttonText: {displayText: `Quality ${lotwit.medias[2].quality}`}, type: 1}
-]
-let buttonMessage = {
-video: {url:lotwit.medias[1].url},
-caption: teks,
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Twitter Downloader",
-body:lotwit.title ? lotwit.title : "Twitter Downloader",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-} catch {
-m.reply(" Link Error!")
-}
-}
-break
-case 'twddl': {
-replyig(mess.wait)
-let buttons = [
-{buttonId: `${prefix}menu`, buttonText: {displayText: 'Menu'}, type: 1}
-]
-let buttonMessage = {
-video: {url:args[0]},
-caption: "Done!",
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Twitter Downloader",
-body: "by ZBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-}
-break
 case 'emojimix2': {
 if (!args.join(" ")) return m.reply(`Example : ${prefix + command} 😅`)
 try {
@@ -1804,7 +1864,7 @@ thumbnail: tamnel,
 mediaType:2,
 mediaUrl: "https://youtu.be/TmX43Io_v8s",
 sourceUrl: "https://youtu.be/TmX43Io_v8s"
-}}}, {quoted:ftrol2})
+}}}, {quoted:ftoko})
 } catch {
 m.reply("Linknya Error")
 }
@@ -1820,7 +1880,7 @@ thumbnail: tamnel,
 mediaType:2,
 mediaUrl: "https://youtu.be/TmX43Io_v8s",
 sourceUrl: "https://youtu.be/TmX43Io_v8s"
-}}}, {quoted:ftrol2})
+}}}, {quoted:ftoko})
 } catch {
 m.reply("Linknya Error")
 }
@@ -2644,7 +2704,7 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 					break
-		   case 'twitter':{
+		   case 'twitter2':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
 					anu = await fetchJson(`https://yuzzu-api.herokuapp.com/api/twitter?link=${text}`).catch(e => {
@@ -3171,6 +3231,17 @@ if (!text) throw `text nya...?`
 replyig(mess.wait)
 const buff = await getBuffer(`https://api.xteam.xyz/${command}?file&text=${encodeURIComponent(q)}`)
 kon.sendMessage(m.chat, { sticker : buff}) 
+}
+break
+case 'sends':
+buff = await getBuffer(args[0])
+kon.sendMessage(m.chat, { sticker : buff}) 
+break
+case 'telestik':{
+let tele = await telesticker(`${text}`)
+console.log(tele)
+log = `${tele.i.result.url}`
+m.reply(log)
 }
 break
             case 'bc': case 'broadcast': case 'bcall': {

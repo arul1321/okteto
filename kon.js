@@ -36,7 +36,7 @@ const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
 const { mediafiredl } = require('./lib/mediafiredl')
 const { aiovideodl } = require('./lib/scraper2.js')
-const { soundcloud, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
+const { soundcloud2, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
 const maker = require('mumaker')
 const cmdmedia = JSON.parse(fs.readFileSync('./src/cmdmedia.json'))
 

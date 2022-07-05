@@ -889,7 +889,7 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
     }
     
   
-    if (/^.*tiktok/i.test(m.text)) {
+    /*if (/^.*tiktok/i.test(m.text)) {
     	let url = m.text.split(/\n| /i)[0]  
         let res = await bocil.tiktokdl(url)
         console.log(res)
@@ -914,7 +914,7 @@ sourceUrl: args[0]
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-    }
+  }*/
  if (/^https?:\/\/.*youtu/i.test(m.text)) {
  let url = m.text.split(/\n| /i)[0]  
  let { ytv } = require('./lib/y2mate')

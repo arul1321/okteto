@@ -895,8 +895,8 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
         console.log(res)
         anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
 let buttons = [
-{buttonId: `${prefix}tiktokaudio3 ${text}`, buttonText: {displayText: `Audio`}, type: 1},
-{buttonId: `${prefix}tiktokwm3 ${text}`, buttonText: {displayText: `With Watermark`}, type: 1}
+{buttonId: `${prefix}tiktokaudio3 ${url}`, buttonText: {displayText: `Audio`}, type: 1},
+{buttonId: `${prefix}tiktokwm3 ${url}`, buttonText: {displayText: `With Watermark`}, type: 1}
 ]
 let buttonMessage = {
 video: {url:res.video.no_watermark},
@@ -924,7 +924,7 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
                 if (media.filesize >= 100000) return replyig('File Melebihi Batas '+util.format(media))
                 anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '480p'}`
                 let buttons = [
-{buttonId: `${prefix}ytmp3 ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+{buttonId: `${prefix}ytmp3 ${url}`, buttonText: {displayText: `Audio`}, type: 1}
 ]
 let buttonMessage = {
 video: {url:media.dl_link},

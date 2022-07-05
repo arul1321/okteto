@@ -36,7 +36,7 @@ const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
 const { mediafiredl } = require('./lib/mediafiredl')
 const { aiovideodl } = require('./lib/scraper2.js')
-const { pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
+const { soundcloud, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
 const maker = require('mumaker')
 const cmdmedia = JSON.parse(fs.readFileSync('./src/cmdmedia.json'))
 
@@ -190,8 +190,10 @@ let listcmd = `
  
 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
  ⍨⃝📩 ${prefix}play (judul lagu)
+ ⍨⃝📩 ${prefix}cocofun <Link Cocofun>
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
+ ⍨⃝📩 ${prefix}soundcloud2 <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
  ⍨⃝📩 ${prefix}facebook <Link>
  ⍨⃝📩 ${prefix}facebook2 <Link>
@@ -221,7 +223,7 @@ let listcmd = `
   ==⍨⃝📩 ${prefix}igstory <Username IG>
  ⍨⃝📩 ${prefix}getmusic 
  ⍨⃝📩 ${prefix}getvideo 
- ⍨⃝📩 ${prefix}mediafire (khusus owner) 
+ ⍨⃝📩 ${prefix}mediafire
  
 𝐎𝐰𝐧𝐞𝐫
  ⍨⃝☕ ${prefix}bcgc 
@@ -578,8 +580,10 @@ let listdownload = `
 ☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
  ⍨⃝📩 ${prefix}play (judul lagu)
+ ⍨⃝📩 ${prefix}cocofun <Link Cocofun>
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
+ ⍨⃝📩 ${prefix}soundcloud2 <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
  ⍨⃝📩 ${prefix}facebook <Link>
  ⍨⃝📩 ${prefix}facebook2 <Link>
@@ -609,7 +613,7 @@ let listdownload = `
   ==⍨⃝📩 ${prefix}igstory <Username IG>
  ⍨⃝📩 ${prefix}getmusic 
  ⍨⃝📩 ${prefix}getvideo 
- ⍨⃝📩 ${prefix}mediafire (khusus owner) 
+ ⍨⃝📩 ${prefix}mediafire
 `
 let listtools = `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
@@ -928,6 +932,7 @@ let buttons = [
 break
 case 'mp4dwn' : {
 if (!args[0]) return m.reply("Linknya mana kak?")
+replyig(mess.wait)
 try {
 kon.sendMessage(m.chat, {video:{url:args[0]}, caption:"Succes", contextInfo:{externalAdReply:{
 title:"Z-Bot Whatsapp",
@@ -936,7 +941,7 @@ thumbnail: tamnel,
 mediaType:2,
 mediaUrl: "https://youtu.be/TmX43Io_v8s",
 sourceUrl: "https://youtu.be/TmX43Io_v8s"
-}}}, {quoted:ftoko})
+}}}, {quoted: m})
 } catch {
 m.reply("Linknya Error")
 }
@@ -1288,6 +1293,24 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
             }
             break
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
+case 'cocodl': case 'cocofun':{
+if (!text) throw 'enter query link!'
+replyig(mess.wait)
+let yut = await cocofun(args[0])
+console.log(yut)
+tuki =`🐣 Topik : ${yut.topic}\n🐣 Caption : ${yut.caption}\n🐣 Tayangan : ${yut.play}\🐣 Like : ${yut.like}\🐣 Share : ${yut.share}`
+let buttons = [
+                    {buttonId: `mp4dwn ${yut.watermark}`, buttonText: {displayText: 'With Watermark'}, type: 1},       {buttonId: `mp4dwn ${yut.no_watermark}`, buttonText: {displayText: 'No Watermark'}, type: 1},
+                ]
+                let buttonMessage = {
+                    text: tuki,
+                    footer: global.poter,
+                    buttons: buttons,
+                    headerType: 2
+                }
+           kon.sendMessage(m.chat, buttonMessage, { quoted: m })
+}
+break
 case 'twitterdl': case 'twit': case 'twitter':{
 	if (!text) throw 'enter query link!'
                 replyig(mess.wait)
@@ -1320,26 +1343,9 @@ if (!text) throw 'enter query link!'
                 replyig(mess.wait)
 let yut = await twitter(args[0])
 console.log(yut)
+
 anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
-                let buttons = [
-{buttonId: `${prefix}twitteraudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
-]
-let buttonMessage = {
-video: {url:yut.quality_360},
-caption: anu,
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Twitter Downloader Video",
-body:"Downloader by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+kon.sendMessage(m.chat, { video:{url:yut.quality_360}, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: anu}, { quoted: m })
 }
 break
 case 'twt720':{
@@ -1348,25 +1354,7 @@ if (!text) throw 'enter query link!'
 let yut = await twitter(args[0])
 console.log(yut)
 anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
-                let buttons = [
-{buttonId: `${prefix}twitteraudio ${text}`, buttonText: {displayText: `Audio`}, type: 1}
-]
-let buttonMessage = {
-video: {url:yut.quality_720},
-caption: anu,
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Twitter Downloader Video",
-body:"Downloader by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+kon.sendMessage(m.chat, { video:{url:yut.quality_720}, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: anu}, { quoted: m })
 }
 break
 case 'twittermp3': case 'twitteraudio':{
@@ -1375,7 +1363,8 @@ if (!text) throw 'enter query link!'
 let yut = await twitter(args[0])
 let tuk = `• nickname : ${yut.nickname}`
 console.log(yut)
-kon.sendMessage(m.chat, {audio:{url: yut.mp3}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+let buff = await getBuffer(yut.mp3)
+kon.sendMessage(m.chat, {audio: buff, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
 title: tuk,
 body:"Downloader Twitter MP3 by zBot",
 thumbnail: tamnel,
@@ -2685,7 +2674,27 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 					break
-            case 'soundcloud': case 'scdl':{
+		   case 'soundcloud':{
+if (!text) throw 'url ?'
+replyig(mess.wait)
+let yut = await soundcloud(args[0])
+console.log(yut)
+let ter = `🐣 Judul : ${yut.title}\n🐣 Durasi : ${yut.duration}\n🐣 Quality : ${yut.quality}\n🐣 Thumb : ${thumbnail}\n\n Tunggu Sebentar Media Sedang Dikirim....`
+replyig(ter)
+lol = await getBuffer(yut.download)
+kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
+title:yut.title,
+body:"Downloader Soundcloud by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `https://instagram.com/_daaa_1`,
+sourceUrl: `https://instagram.com/_daaa_1`
+}}}, {quoted:ftoko}).catch(e => {
+m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
+})
+}
+break
+            case 'soundcloud2': case 'scdl2':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
 					anu = await fetchJson(`https://yui-api.herokuapp.com/api/soundcloud?URL=${text}`).catch(e => {
@@ -2949,8 +2958,8 @@ m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks|teks")
   break
     case 'wm': case 'swm': {
     	if (!text) throw `Example : !swm zBOT.Botz`
-    	   top = text.split('.')[0]
-           bot = text.split('.')[1]
+    	   top = text.split('|')[0]
+           bot = text.split('|')[1]
             if (!quoted) throw`Example : #swm ©zBot|ArulGanz`
             replyig(mess.wait)
                     if (/image/.test(mime)) {
@@ -3033,12 +3042,26 @@ m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks|teks")
             kon.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
             }
             break
-              case 'mediafire':{
+              case 'mediafire': {
+if (!text) return replyig('Linknya...? ')
+replyig(mess.wait)
+const baby1 = await mediafiredl(text)
+if (baby1[0].size.split('MB')[0] >= 120) return replyig('*File Terlalu Besar* '+util.format(baby1))
+const result4 = `*MEDIAFIRE DOWNLOADER*
+				
+*Name* : ${baby1[0].nama}
+*Size* : ${baby1[0].size}
+*Mime* : ${baby1[0].mime}
+*Link* : ${baby1[0].link}`
+replyig(`${result4}`)
+kon.sendMessage(m.chat, { document : { url : baby1[0].link}, fileName : baby1[0].nama, mimetype: baby1[0].mime }, { quoted : m }).catch ((err) => replyig('Lagi Eror...'))
+}
+break
+              case 'mediafire2':{
             if (!isCreator) throw mess.owner
             if (/document/.test(mime)) throw `Link?`
             if (!text) throw `Example : ${prefix + command} https://mediafire.com/snekjdakkk`
 rescun = await mediafiredl(text)
-       if (rescun.size >= 10000) return m.reply('File Melebihi Batas Silahkan Download Menggunakan Link\n${rescun[0].link}')
        replyig(mess.wait)
 result = `
 ➸「MediaFire Download」

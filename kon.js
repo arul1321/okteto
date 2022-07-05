@@ -2679,7 +2679,7 @@ if (!text) throw 'url ?'
 replyig(mess.wait)
 let yut = await soundcloud(args[0])
 console.log(yut)
-let ter = `🐣 Judul : ${yut.title}\n🐣 Durasi : ${yut.duration}\n🐣 Quality : ${yut.quality}\n🐣 Thumb : ${thumbnail}\n\n Tunggu Sebentar Media Sedang Dikirim....`
+let ter = `🐣 Judul : ${yut.title}\n🐣 Durasi : ${yut.duration}\n🐣 Quality : ${yut.quality}\n🐣 Thumb : ${yut.thumbnail}\n\n Tunggu Sebentar Media Sedang Dikirim....`
 replyig(ter)
 lol = await getBuffer(yut.download)
 kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{

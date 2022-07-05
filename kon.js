@@ -888,12 +888,62 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
       }
     }
     
-  //**let qu =m.quoted ? m.quoted : m
-  //*let jio = m.mtype
-       //*  if (qu.jio == 'viewOnceMessage') {
-            // await kon.copyNForward(m.chat, await kon.loadMessage(m.chat), false, { readViewOnce: true })
-       // }
-        
+  
+    if (/^.*tiktok/i.test(m.text)) {
+    	let url = m.text.split(/\n| /i)[0]  
+        let res = await bocil.tiktokdl(url)
+        console.log(res)
+        anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
+let buttons = [
+{buttonId: `${prefix}tiktokaudio3 ${text}`, buttonText: {displayText: `Audio`}, type: 1},
+{buttonId: `${prefix}tiktokwm3 ${text}`, buttonText: {displayText: `With Watermark`}, type: 1}
+]
+let buttonMessage = {
+video: {url:res.video.no_watermark},
+caption: anutxt,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Auto Downloader Tiktok",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+    }
+ if (/^https?:\/\/.*youtu/i.test(m.text)) {
+ let url = m.text.split(/\n| /i)[0]  
+ let { ytv } = require('./lib/y2mate')
+                let quality = args[1] ? args[1] : '480p'
+                let media = await ytv(url, quality)
+                console.log(media)
+                if (media.filesize >= 100000) return replyig('File Melebihi Batas '+util.format(media))
+                anu = `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '480p'}`
+                let buttons = [
+{buttonId: `${prefix}ytmp3 ${text}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:media.dl_link},
+caption: anu,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Auto Download Youtube",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+ }
+
 //●●●●●●●●●●●●●●●●●●●●●● AUTO SET BIO SETTING●●●●●●●●●●●●●●●●●●●●●●
 kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Dengan Kecepatan ${latensi.toFixed(4)} Second`)
 
@@ -912,12 +962,12 @@ break
 case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
 replyig(mess.wait)
-let kin = await bocil.savefrom(`${text}`).catch(e => {
+let kin = await facebook(args[0]).catch(e => {
 m.reply('Server 1 Eror silahkan ketik .facebook2 <URL>')
 })
-let iin = `• Title : ${kin.meta.title}\n• Duration : ${kin.meta.duration}\n• Source : ${kin.meta.source}`
+let iin = `• Title : ${kin.title}`
 let buttons = [
-                    {buttonId: `${prefix}mp4dwn ${kin.hd.url}`, buttonText: {displayText: 'Video HD'}, type: 1},       {buttonId: `${prefix}mp4dwn ${kin.sd.url}`, buttonText: {displayText: 'Video SD'}, type: 1},
+                    {buttonId: `${prefix}mp4dwn ${kin.hd}`, buttonText: {displayText: 'Video HD'}, type: 1},       {buttonId: `${prefix}mp4dwn ${kin.sd}`, buttonText: {displayText: 'Video SD'}, type: 1},
                 ]
                 let buttonMessage = {
                     text: iin,
@@ -937,8 +987,8 @@ title:"Z-Bot Whatsapp",
 body:"©BotWhatsapp",
 thumbnail: tamnel,
 mediaType:2,
-mediaUrl: "https://youtu.be/TmX43Io_v8s",
-sourceUrl: "https://youtu.be/TmX43Io_v8s"
+mediaUrl: "https://instagram/_daaa_1",
+sourceUrl: "https://instagram/_daaa_1"
 }}}, {quoted: m})
 } catch {
 m.reply("Linknya Error")

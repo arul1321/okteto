@@ -1318,8 +1318,10 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
                     description: `Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
                     buttonText: "Menu",
                     footerText: `
-🐣 IsAuto :🎈Sticker [true]
-                   🎈Download : ⭔ YouTube [true]
+🐣 IsAuto : 
+                   🎈 *Sticker* [true]
+                   🎈 *Download :* 
+                                            ⭔ YouTube [true]
                                             ⭔ TikTok [true]
                                             ⭔ Instagram [true]
                                             ⭔ Twitter [true]`,

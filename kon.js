@@ -889,6 +889,7 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
     }
     
    if (/^https?:\/\/.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
+    replyig('*Auto Download Instagram*\nTunggu Sebentar Media Sedang Dikirim....')
     let url = m.text.split(/\n| /i)[0]  
     hx.igdl(url).then( result => {
 console.log(result)
@@ -903,6 +904,7 @@ for(let i of result.medias){
             })
     }
     if (/^https?:\/\/.*twitter.com\//i.test(m.text)) {
+    replyig('*Auto Download Twitter*\nTunggu Sebentar Media Sedang Dikirim....')
     let url = m.text.split(/\n| /i)[0]  
     let yut = await twitter(url)
 console.log(yut)
@@ -928,6 +930,7 @@ sourceUrl: `instagram.com/_daaa_1`
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
     }
     if (/^https?:\/\/.*tiktok.com/i.test(m.text)) {
+    	replyig('*Auto Download Tiktok*\nTunggu Sebentar Media Sedang Dikirim....')
     	let url = m.text.split(/\n| /i)[0]  
         let res = await bocil.tiktokdl(url)
         console.log(res)
@@ -954,6 +957,7 @@ sourceUrl: args[0]
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
   }
  if (/^https?:\/\/.*youtu/i.test(m.text)) {
+ replyig('*Auto Download Youtube*\nTunggu Sebentar Media Sedang Dikirim....')
  let url = m.text.split(/\n| /i)[0]  
  let { ytv } = require('./lib/y2mate')
                 let quality = args[1] ? args[1] : '480p'
@@ -1313,7 +1317,12 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 ☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*`,
                     description: `Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
                     buttonText: "Menu",
-                    footerText: `Silahkan Klik Menu Di Bawah Untuk Mengetahui Commandnya  😊`,
+                    footerText: `
+🐣 IsAuto :🎈Sticker [true]
+                   🎈Download : ⭔ YouTube [true]
+                                            ⭔ TikTok [true]
+                                            ⭔ Instagram [true]
+                                            ⭔ Twitter [true]`,
                     listType: "SINGLE_SELECT",
                     sections: [
 							{

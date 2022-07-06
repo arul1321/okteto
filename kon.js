@@ -888,8 +888,46 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
       }
     }
     
-  
-    /*if (/^.*tiktok/i.test(m.text)) {
+   if (/^https?:\/\/.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
+    let url = m.text.split(/\n| /i)[0]  
+    hx.igdl(url).then( result => {
+console.log(result)
+let kyu = `*Auto Download Instagram*\n🐣 Username : ${result.user.username}\n🐣 Followers : ${result.user.followers}`
+for(let i of result.medias){
+                if(i.url.includes('mp4')){
+                    kon.sendMessage(m.chat, {video:{url:i.url}, caption: kyu, mimetype:'video/mp4'}, {quoted:m})
+                } else {
+                    kon.sendMessage(m.chat, { image: { url: i.url }, caption: kyu}, { quoted: m })
+                }
+            }
+            })
+    }
+    if (/^https?:\/\/.*twitter.com\//i.test(m.text)) {
+    let url = m.text.split(/\n| /i)[0]  
+    let yut = await twitter(url)
+console.log(yut)
+anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
+                let buttons = [
+{buttonId: `${prefix}twt720 ${text}`, buttonText: {displayText: `Video 720p`}, type: 1}, {buttonId: `${prefix}twt360 ${text}`, buttonText: {displayText: `Video 360p`}, type: 1}
+]
+let buttonMessage = {
+video: {url:yut.quality_270},
+caption: anu,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Auto Download Twitter Video",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+    }
+    if (/^https?:\/\/.*tiktok.com/i.test(m.text)) {
     	let url = m.text.split(/\n| /i)[0]  
         let res = await bocil.tiktokdl(url)
         console.log(res)
@@ -914,7 +952,7 @@ sourceUrl: args[0]
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-  }*/
+  }
  if (/^https?:\/\/.*youtu/i.test(m.text)) {
  let url = m.text.split(/\n| /i)[0]  
  let { ytv } = require('./lib/y2mate')
@@ -1684,14 +1722,16 @@ m.reply(" Error! ")
 }
 }
 break
-case 'ig22':{
+case 'igdl': case 'instagram': case 'ig':{
+        	if (!text) throw 'enter query link!'
 		replyig(mess.wait)
 hx.igdl(args[0]).then( result => {
+let kyu = `*Download Instagram*\n🐣 Username : ${result.user.username}\n🐣 Followers : ${result.user.followers}`
 for(let i of result.medias){
-                if(i.url.includes('mp4')){
-                    kon.sendMessage(m.chat, { video: { url: i.url }})
+              if(i.url.includes('mp4')){
+                    kon.sendMessage(m.chat, {video:{url:i.url}, caption: kyu, mimetype:'video/mp4'}, {quoted:m})
                 } else {
-                    kon.sendMessage(m.chat, { image: { url: i.url }})
+                    kon.sendMessage(m.chat, { image: { url: i.url }, caption: kyu}, { quoted: m })
                 }
             }
             }).catch((err) => m.reply(`Link tidak valid atau mungkin user private`))
@@ -1836,20 +1876,6 @@ sourceUrl: "https://instagram.com/_daaa_1"
 kon.sendMessage(m.chat, buttonMessage, { quoted: ftoko })
 }
 break
-case 'igdl': case 'instagram': case 'ig':{
-        	if (!text) throw 'enter query link!'
-			let buttons = [
-                    {buttonId: `ig22 ${text}`, buttonText: {displayText: 'Hasil Pencarian'}, type: 1},
-                ]
-                let buttonMessage = {
-                    text: `Hasil Download Dari ${text}`,
-                    footer: 'Downloader Instagram ©zBot',
-                    buttons: buttons,
-                    headerType: 2
-                }
-           kon.sendMessage(m.chat, buttonMessage, { quoted: m })
-                }
-                break
 case 'emojigambar': {
 if (!args.join(" ")) return m.reply('emojinya?')
 emoji.get(args.join(" ")).then(async(emoji) => {

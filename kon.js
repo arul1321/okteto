@@ -910,7 +910,7 @@ for(let i of result.medias){
 console.log(yut)
 anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
                 let buttons = [
-{buttonId: `${prefix}twt720 ${text}`, buttonText: {displayText: `Video 720p`}, type: 1}, {buttonId: `${prefix}twt360 ${text}`, buttonText: {displayText: `Video 360p`}, type: 1}
+{buttonId: `${prefix}twt720 ${url}`, buttonText: {displayText: `Video 720p`}, type: 1}, {buttonId: `${prefix}twt360 ${url}`, buttonText: {displayText: `Video 360p`}, type: 1}
 ]
 let buttonMessage = {
 video: {url:yut.quality_270},
@@ -1316,7 +1316,7 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
 🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
 ☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*`,
                     description: `Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
-                    buttonText: "Menu",
+                    buttonText: "Menu Click Here",
                     footerText: `
 🐣 IsAuto : 
                    🎈 *Sticker* [true]

@@ -889,11 +889,39 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
         return true
       }
     }
-    
+    if (/^https?:\/\/.*(fb.watch|facebook.com)/i.test(m.text)) {
+    	replyig('*Auto Download Cocofun*\nTunggu Sebentar Media Sedang Dikirim....')
+        let url = m.text.split(/\n| /i)[0] 
+        let kin = await facebook(url).catch(e => {
+m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+})
+let iin = `• Title : ${kin.title}`
+let buttons = [
+{buttonId: `mp4dwn ${kin.hd}`, buttonText: {displayText: 'Video HD'}, type: 1}
+]
+let buttonMessage = {
+video: {url:kin.sd},
+caption: iin,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Auto Downloader Facebook Video",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+    }
     if (/^https?:\/\/.*cocofun/i.test(m.text)) {
     	replyig('*Auto Download Cocofun*\nTunggu Sebentar Media Sedang Dikirim....')
     	let url = m.text.split(/\n| /i)[0] 
-        let yut = await cocofun(url)
+        let yut = await cocofun(url).catch(e => {
+m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+})
         console.log(yut)
         tuki =`🐣 Topik : ${yut.topic}\n🐣 Caption : ${yut.caption}\n🐣 Tayangan : ${yut.play}\🐣 Like : ${yut.like}\🐣 Share : ${yut.share}`
         let buttons = [
@@ -919,10 +947,13 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
     if (/^https?:\/\/.*(pinterest.com\/pin|pin.it)/i.test(m.text)) {
       replyig('*Auto Download Pinterest*\nTunggu Sebentar Media Sedang Dikirim....')
       let url = m.text.split(/\n| /i)[0]  
-      let yut = await pinterestdlv2(url)
-      console.log(yut)
-      let tol = await getBuffer(yut.result)
-      kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
+      anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${url}`).catch(e => {
+m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+})
+					tol = await getBuffer(anu.result)
+					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
+m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
+})
     }
    if (/^https?:\/\/.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
     replyig('*Auto Download Instagram*\nTunggu Sebentar Media Sedang Dikirim....')
@@ -942,7 +973,9 @@ for(let i of result.medias){
     if (/^https?:\/\/.*twitter.com\//i.test(m.text)) {
     replyig('*Auto Download Twitter*\nTunggu Sebentar Media Sedang Dikirim....')
     let url = m.text.split(/\n| /i)[0]  
-    let yut = await twitter(url)
+    let yut = await twitter(url).catch(e => {
+m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+})
 console.log(yut)
 anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
                 let buttons = [
@@ -968,7 +1001,9 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
     if (/^https?:\/\/.*tiktok.com/i.test(m.text)) {
     	replyig('*Auto Download Tiktok*\nTunggu Sebentar Media Sedang Dikirim....')
     	let url = m.text.split(/\n| /i)[0]  
-        let res = await bocil.tiktokdl(url)
+        let res = await bocil.tiktokdl(url).catch(e => {
+m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+})
         console.log(res)
         anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
 let buttons = [
@@ -995,7 +1030,9 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
  if (/^https?:\/\/.*youtu/i.test(m.text)) {
  replyig('*Auto Download Youtube*\nTunggu Sebentar Media Sedang Dikirim....')
  let url = m.text.split(/\n| /i)[0]  
- let { ytv } = require('./lib/y2mate')
+ let { ytv } = require('./lib/y2mate').catch(e => {
+m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+})
                 let quality = args[1] ? args[1] : '480p'
                 let media = await ytv(url, quality)
                 console.log(media)
@@ -1027,7 +1064,7 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
-case 'pinterestdl':{
+case 'pinterestdl2':{
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
 let yut = await pinterestdlv2(args[0])
 replyig(mess.wait)
@@ -1354,15 +1391,15 @@ break
 case 'menu': case 'help': case 'list': case 'command': {
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
-                    title: `
+                    title: `*Berikut Command Z-Bot Whatsapp*`,
+                    description: `Note : Ulangi Command 2 - 3x Jika Bot Tidak Merespon & Segera Laporkan Ke Owner Jika Menemukam Bug/Semacamnya`,
+                    buttonText: "Menu Click Here",
+                    footerText: `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
 🐣 *Runtime Bot : ${runtime(process.uptime())}*
 🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
-☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*`,
-                    description: `Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
-                    buttonText: "Menu Click Here",
-                    footerText: `
-🐣 IsAuto : 
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+🐣 *IsAuto :*
                    🎈 *Sticker* [true]
                    🎈 *Download :* 
                                             ⭔ YouTube [true]
@@ -1370,7 +1407,8 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
                                             ⭔ Instagram [true]
                                             ⭔ Twitter [true]
                                             ⭔ Pinterest [true]
-                                            ⭔ Cocofun [true]`,
+                                            ⭔ Cocofun [true]
+                                            ⭔ Facebook [true]`,
                     listType: "SINGLE_SELECT",
                     sections: [
 							{
@@ -1432,7 +1470,7 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
           listType: 1
                 }
             }), {})
-            kon.relayMessage(m.chat, template.message, { messageId: template.key.id })
+            kon.relayMessage(m.chat, template.message, { messageId: template.key.id }, {quoted: m})
             }
             break
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
@@ -2849,7 +2887,7 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 break
-			case 'pinterestdl2':{
+			case 'pinterestdl':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
 					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${text}`).catch(e => {

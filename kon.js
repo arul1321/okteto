@@ -36,7 +36,7 @@ const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
 const { mediafiredl } = require('./lib/mediafiredl')
 const { aiovideodl } = require('./lib/scraper2.js')
-const { soundcloud2, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
+const { joox, jooxdl, soundcloud2, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
 const maker = require('mumaker')
 const cmdmedia = JSON.parse(fs.readFileSync('./src/cmdmedia.json'))
 
@@ -991,6 +991,21 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
+case 'jooxplay':{
+let res = await joox(args[0])
+console.log(res)
+let yut =`⭔ Lagu : ${lagu}\n⭔ Album : ${album}\n⭔ Penyanyi : ${penyanyi}\n⭔ Publish : ${publish}`
+m.reply(yut)
+kon.sendMessage(m.chat, {audio:{url: res.mp3}, mimetype:"audio/mp4", ptt: false, contextInfo:{externalAdReply:{
+title: `Z-Bot Whatsapp`,
+body:"Downloader Youtube MP3 by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `https://instagram.com/_daaa_1`,
+sourceUrl: `https://instagram.com/_daaa_1`
+}}}, {quoted:ftoko})
+}
+break
 case 'facebook2': case 'fbdl2': case 'facebook2': case 'fb2':{
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
@@ -1946,7 +1961,7 @@ m.reply("Linknya Error")
 break
 case 'mp3':{
 if (!args[0]) return replyig("Linknya mana kak?")
-kon.sendMessage(m.chat, {audio:{url: media.dl_link}, mimetype:"audio/mp4", ptt: true, contextInfo:{externalAdReply:{
+kon.sendMessage(m.chat, {audio:{url: args[0]}, mimetype:"audio/mp4", ptt: true, contextInfo:{externalAdReply:{
 title: `Z-Bot Whatsapp`,
 body:"Downloader Youtube MP3 by zBot",
 thumbnail: tamnel,

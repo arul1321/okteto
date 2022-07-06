@@ -36,7 +36,7 @@ const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
 const { mediafiredl } = require('./lib/mediafiredl')
 const { aiovideodl } = require('./lib/scraper2.js')
-const { joox, jooxdl, soundcloud2, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
+const { soundcloud2, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
 const maker = require('mumaker')
 const cmdmedia = JSON.parse(fs.readFileSync('./src/cmdmedia.json'))
 
@@ -192,6 +192,7 @@ let listcmd = `
  ⍨⃝📩 ${prefix}play (judul lagu)
  ⍨⃝📩 ${prefix}cocofun <Link Cocofun>
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
+ ⍨⃝📩 ${prefix}pinterestdl2 <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
  ⍨⃝📩 ${prefix}facebook <Link>
@@ -581,6 +582,7 @@ let listdownload = `
  ⍨⃝📩 ${prefix}play (judul lagu)
  ⍨⃝📩 ${prefix}cocofun <Link Cocofun>
  ⍨⃝📩 ${prefix}pinterestdl <Link Pinterest>
+ ⍨⃝📩 ${prefix}pinterestdl2 <Link Pinterest>
  ⍨⃝📩 ${prefix}soundcloud <Link Soundcloud>
  ⍨⃝📩 ${prefix}gitclone <Link RepoGit>
  ⍨⃝📩 ${prefix}facebook <Link>
@@ -888,6 +890,40 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
       }
     }
     
+    if (/^https?:\/\/.*cocofun/i.test(m.text)) {
+    	replyig('*Auto Download Cocofun*\nTunggu Sebentar Media Sedang Dikirim....')
+    	let url = m.text.split(/\n| /i)[0] 
+        let yut = await cocofun(url)
+        console.log(yut)
+        tuki =`🐣 Topik : ${yut.topic}\n🐣 Caption : ${yut.caption}\n🐣 Tayangan : ${yut.play}\🐣 Like : ${yut.like}\🐣 Share : ${yut.share}`
+        let buttons = [
+{buttonId: `mp4dwn ${yut.watermark}`, buttonText: {displayText: 'With Watermark'}, type: 1}
+]
+let buttonMessage = {
+video: {url:yut.no_watermark},
+caption: tuki,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Auto Downloader Cocofun No Watermak",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+    }
+    if (/^https?:\/\/.*(pinterest.com\/pin|pin.it)/i.test(m.text)) {
+      replyig('*Auto Download Pinterest*\nTunggu Sebentar Media Sedang Dikirim....')
+      let url = m.text.split(/\n| /i)[0]  
+      let yut = await pinterestdlv2(url)
+      console.log(yut)
+      let tol = await getBuffer(yut.result)
+      kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
+    }
    if (/^https?:\/\/.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
     replyig('*Auto Download Instagram*\nTunggu Sebentar Media Sedang Dikirim....')
     let url = m.text.split(/\n| /i)[0]  
@@ -991,21 +1027,14 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
-case 'jooxplay':{
-let res = await joox(args[0])
-console.log(res)
-let yut =`⭔ Lagu : ${lagu}\n⭔ Album : ${album}\n⭔ Penyanyi : ${penyanyi}\n⭔ Publish : ${publish}`
-m.reply(yut)
-kon.sendMessage(m.chat, {audio:{url: res.mp3}, mimetype:"audio/mp4", ptt: false, contextInfo:{externalAdReply:{
-title: `Z-Bot Whatsapp`,
-body:"Downloader Youtube MP3 by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `https://instagram.com/_daaa_1`,
-sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:ftoko})
-}
-break
+case 'pinterestdl':{
+if(!text) return replyig(`Penggunaan ${prefix + command} link`)
+let yut = await pinterestdlv2(args[0])
+replyig(mess.wait)
+console.log(yut)
+let tol = await getBuffer(yut.result)
+kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
+}break
 case 'facebook2': case 'fbdl2': case 'facebook2': case 'fb2':{
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
@@ -1339,7 +1368,9 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
                                             ⭔ YouTube [true]
                                             ⭔ TikTok [true]
                                             ⭔ Instagram [true]
-                                            ⭔ Twitter [true]`,
+                                            ⭔ Twitter [true]
+                                            ⭔ Pinterest [true]
+                                            ⭔ Cocofun [true]`,
                     listType: "SINGLE_SELECT",
                     sections: [
 							{
@@ -2818,7 +2849,7 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 })
 }
 break
-			case 'pinterestdl':{
+			case 'pinterestdl2':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
 					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${text}`).catch(e => {

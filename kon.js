@@ -1030,9 +1030,7 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
  if (/^https?:\/\/.*youtu/i.test(m.text)) {
  replyig('*Auto Download Youtube*\nTunggu Sebentar Media Sedang Dikirim....')
  let url = m.text.split(/\n| /i)[0]  
- let { ytv } = require('./lib/y2mate').catch(e => {
-m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
-})
+ let { ytv } = require('./lib/y2mate')
                 let quality = args[1] ? args[1] : '480p'
                 let media = await ytv(url, quality)
                 console.log(media)

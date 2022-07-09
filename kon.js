@@ -36,7 +36,7 @@ const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
 const { mediafiredl } = require('./lib/mediafiredl')
 const { aiovideodl } = require('./lib/scraper2.js')
-const { soundcloud2, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
+const { like, soundcloud2, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
 const maker = require('mumaker')
 const cmdmedia = JSON.parse(fs.readFileSync('./src/cmdmedia.json'))
 
@@ -157,6 +157,10 @@ let listcmd = `
  ⍨⃝🐣 ${prefix}shortlink (link)
  ⍨⃝🐣  *Sticker*
   === Info ===
+ ==⍨⃝🐣 ${prefix}sendsticker (link)
+ ==⍨⃝🐣 ${prefix}ttp (teks)
+ ==⍨⃝🐣 ${prefix}attp (teks)
+ ==⍨⃝🐣 ${prefix}ttpcustom (teks|warna)
  ==⍨⃝🐣 ${prefix}sticker (reply gambar)
  ==⍨⃝🐣 ${prefix}swm (reply gambar)
  ==⍨⃝🐣 ${prefix}smeme (reply gambar)
@@ -224,6 +228,9 @@ let listcmd = `
  ⍨⃝📩 ${prefix}getmusic 
  ⍨⃝📩 ${prefix}getvideo 
  ⍨⃝📩 ${prefix}mediafire
+ ⍨⃝📩 ${prefix}jpeg <Link Gambar>
+ ⍨⃝📩 ${prefix}mp3 <Link Music>
+ ⍨⃝📩 ${prefix}mp4 <Link Video>
  
 𝐎𝐰𝐧𝐞𝐫
  ⍨⃝☕ ${prefix}bcgc 
@@ -596,12 +603,12 @@ let listdownload = `
   === Info ===
   ==> Downloader by Snaptik
       ==⍨⃝📩 ${prefix}tiktok <Link Tiktok>
+      ==⍨⃝📩 ${prefix}tiktokaudio <Link Tiktok>
   ==> Downloader by Aoivideodl
       ==⍨⃝📩 ${prefix}tiktok2 <Link Tiktok>
       ==⍨⃝📩 ${prefix}tiktokaudio2 <Link Tiktok>
   ==> Downloader by Ttdownloader
       ==⍨⃝📩 ${prefix}tiktok3 <Link Tiktok>
-  ==> Downloader by @hxz-api
       ==⍨⃝📩 ${prefix}tiktokaudio3 <Link Tiktok>
  ⍨⃝📩 ${prefix}twitter (link twitter)
  ⍨⃝📩 ${prefix}twitter2 (link twitter)
@@ -614,6 +621,9 @@ let listdownload = `
  ⍨⃝📩 ${prefix}getmusic 
  ⍨⃝📩 ${prefix}getvideo 
  ⍨⃝📩 ${prefix}mediafire
+ ⍨⃝📩 ${prefix}jpeg <Link Gambar>
+ ⍨⃝📩 ${prefix}mp3 <Link Music>
+ ⍨⃝📩 ${prefix}mp4 <Link Video>
 `
 let listtools = `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
@@ -646,6 +656,10 @@ let listconvert = `
  ⍨⃝🐣 ${prefix}shortlink (link)
  ⍨⃝🐣  *Sticker*
   === Info ===
+ ==⍨⃝🐣 ${prefix}sendsticker (link)
+ ==⍨⃝🐣 ${prefix}ttp (teks)
+ ==⍨⃝🐣 ${prefix}attp (teks)
+ ==⍨⃝🐣 ${prefix}ttpcustom (teks|warna)
  ==⍨⃝🐣 ${prefix}sticker (reply gambar)
  ==⍨⃝🐣 ${prefix}swm (reply gambar)
  ==⍨⃝🐣 ${prefix}smeme (reply gambar)
@@ -734,7 +748,7 @@ key: {
 						"jpegThumbnail": tamnel//Gambarnye
 					},
 					"title": 'zBot', 
-					"description": "by Galih", 
+					"description": "by Z-Bot Whatsapp", 
 					"currencyCode": "IDR",
 					"priceAmount1000": "70000000",
 					"retailerId": 'Whatsapp Bot',
@@ -792,7 +806,7 @@ const sticWait = (hehe) => {
 			kon.sendImageAsSticker(m.chat, ano, m, { packname: global.packname, author: global.author })
 		}
 const replyy = (teks) => {
-kon.sendMessage(m.chat, teks, text, { quoted: m, contextInfo: { externalAdReply: { title: `zBot`, body: 'By : Galih', sourceUrl: `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`, thumbnail: tamnel }}})
+kon.sendMessage(m.chat, teks, text, { quoted: m, contextInfo: { externalAdReply: { title: `zBot`, body: 'By : Z-Bot Whatsapp', sourceUrl: `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`, thumbnail: tamnel }}})
 }             
 const reply2 = (teks) => {
 			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: global.poter,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
@@ -1567,95 +1581,37 @@ replyig(mess.wait)
 
 }
 break
-case 'tiktokdl2': case 'tiktokaudio2': case 'ttdl2': case 'tiktok2': case 'ttmp42': case 'ttmp3': case 'tiktoknowm2': {
-if (!isUrl(args[0])) return replyig(`Example :\n${prefix + command} <url>\nUses :\n${prefix + command} https://vt.tiktok.com/ZSdDo97dC/`)
-replyig(mess.wait)
-let res = await aiovideodl(args[0]).catch(e => {
-m.reply('error')
+case 'likee':{
+let yut = await like(text)
+console.log(yut)
+}
+break
+case 'tiktokdl2': case 'tiktok2':{
+if (!text) throw 'urlnya?'
+let yut = await bocil.tiktokdlv3(text).catch(e => {
+m.reply('Fitur Sedang Eror, Segera Laporkan Ke Owner dan Tunggu Beberapa Hari Kedepan')
 })
-if (isUrl(args[0])) {
-texttk = `*| TIKTOK DOWNLOADER |*
-
-Caption : ${res.title}
-Size : ${res.medias[1].formattedSize}
-Type : ${res.medias[1].extension ? "video/" + res.medias[1].extension : "undefined"}
-
-_Pilih watermak atau audio dan tunggu beberapa saat_`
+console.log(yut)
+anutxt = `• Author : ${yut.author.nickname}\n• Description : ${yut.author.description}\n• Avatar : ${yut.author.avatar}`
 let buttons = [
-{buttonId: `${prefix}ttvd ${args[0]}}`, buttonText: {displayText: '× Watermak'}, type: 1},
-{buttonId: `${prefix}ttad ${args[0]}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+{buttonId: `${prefix}mp3 ${yut.author.music}`, buttonText: {displayText: `Audio`}, type: 1}
 ]
 let buttonMessage = {
-video: {url:res.medias[1].url},
-caption: texttk,
+video: {url:yut.author.no_watermark},
+caption: anutxt,
 footer: global.poter,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
-title:"Tiktok Downloader",
-body:res.title,
+title:"Tiktok Downloader No Watermak",
+body:"Downloader by zBot",
 thumbnail: tamnel,
 mediaType:1,
 mediaUrl: args[0],
 sourceUrl: args[0]
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted:ftoko}).catch(e => {
-m.reply('error')
-})
-} else {
-replyig("Link Error!")
-}
-}
-break
-case 'ttad': {
-replyig(mess.wait)
-let res = await aiovideodl(args[0]).catch(e => {
-m.reply('error')
-})
-kon.sendMessage(m.chat, {audio:{url:res.medias[2].url}, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title:"Tiktok Downloader",
-body:res.title,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}}, {quoted:ftoko}).catch(e => {
-m.reply('error')
-})
-}
-break
-case 'ttvd': {
-replyig(mess.wait)
-let res = await aiovideodl(args[0]).catch(e => {
-m.reply('error')
-})
-texttk = `*| TIKTOK DOWNLOADER |*
-
-Caption : ${res.title}
-Size : ${res.medias[0].formattedSize}
-Type : ${res.medias[0].extension ? "video/" + res.medias[0].extension : "undefined"}
-
-_untuk melihat list menu pencet tombol dibawah atau ketik menu_`
-let buttons = [
-{buttonId: `${prefix}menu`, buttonText: {displayText: 'Menu'}, type: 1}
-]
-let buttonMessage = {
-video: {url:res.medias[0].url},
-caption: texttk,
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Tiktok Downloader",
-body:res.title,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(from, buttonMessage, {quoted:ftoko}).catch(e => {
+kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
 m.reply('error')
 })
 }
@@ -1664,7 +1620,7 @@ case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
 if (!text) throw 'urlnya?'
 replyig(mess.wait)
 let res = await bocil.tiktokdl(text).catch(e => {
-m.reply('error')
+m.reply('Fitur Sedang Eror, Segera Laporkan Ke Owner dan Tunggu Beberapa Hari Kedepan')
 })
 console.log(res)
 anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
@@ -1762,11 +1718,11 @@ m.reply('error')
 })
             }
             break
-    case 'tiktokaudio3':{
+    case 'tiktokaudio': case 'tiktokaudio2': case 'tiktokaudio3':{
      if (!text) throw 'enter query link!'
      replyig(mess.wait)
 			    hx.ttdownloader(args[0]).then( data => {
-				  kon.sendMessage(m.chat, {document: { url: data.nowm }, mimetype: 'audio/mp4', fileName: `Sound Tiktok By ${kon.user.name}.mp3`}, { quoted : m })
+				  kon.sendMessage(m.chat, {document: { url: data.nowm }, mimetype: 'audio/mp4', fileName: `Sound Tiktok By Z-BotWhatsapp.mp3`}, { quoted : m })
 				}).catch(() => m.reply('Hmm Erorr Awoakwoakwok'))
 				}
 		        break
@@ -2014,19 +1970,19 @@ case 'mp4' : {
 if (!args[0]) return m.reply("Linknya mana kak?")
 try {
 kon.sendMessage(m.chat, {video:{url:args[0]}, caption:"Succes", contextInfo:{externalAdReply:{
-title:"zbot By Galih",
+title:"zbot By Z-Bot Whatsapp",
 body:"©BotWhatsapp",
 thumbnail: tamnel,
 mediaType:2,
 mediaUrl: "https://youtu.be/TmX43Io_v8s",
 sourceUrl: "https://youtu.be/TmX43Io_v8s"
-}}}, {quoted:ftoko})
+}}}, {quoted: m})
 } catch {
 m.reply("Linknya Error")
 }
 }
 break
-case 'mp3':{
+case 'mpeg3': case 'mp3':{
 if (!args[0]) return replyig("Linknya mana kak?")
 kon.sendMessage(m.chat, {audio:{url: args[0]}, mimetype:"audio/mp4", ptt: true, contextInfo:{externalAdReply:{
 title: `Z-Bot Whatsapp`,
@@ -2035,20 +1991,20 @@ thumbnail: tamnel,
 mediaType:1,
 mediaUrl: `https://instagram.com/_daaa_1`,
 sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:ftoko})
+}}}, {quoted: m})
 }
 break
-case 'jpeg': {
+case 'jpg': case 'jpeg': {
 if (!args[0]) return replyig("Linknya mana kak?")
 try {
 kon.sendMessage(m.chat, {image:{url:args[0]}, caption:"Succes", contextInfo:{externalAdReply:{
-title:"zBot by Galih",
+title:"zBot by Z-Bot Whatsapp",
 body:"©Bot Whatsapp",
 thumbnail: tamnel,
 mediaType:2,
 mediaUrl: "https://youtu.be/TmX43Io_v8s",
 sourceUrl: "https://youtu.be/TmX43Io_v8s"
-}}}, {quoted:ftoko})
+}}}, {quoted: m})
 } catch {
 m.reply("Linknya Error")
 }
@@ -2858,7 +2814,7 @@ if (!text) throw 'url ?'
 replyig(mess.wait)
 let yut = await soundcloud(args[0])
 console.log(yut)
-let ter = `🐣 Judul : ${yut.title}\n🐣 Durasi : ${yut.duration}\n🐣 Quality : ${yut.quality}\n🐣 Thumb : ${yut.thumbnail}\n\n Tunggu Sebentar Media Sedang Dikirim....`
+let ter = `🐣 Judul : ${yut.title}\n?? Durasi : ${yut.duration}\n🐣 Quality : ${yut.quality}\n🐣 Thumb : ${yut.thumbnail}\n\n Tunggu Sebentar Media Sedang Dikirim....`
 replyig(ter)
 lol = await getBuffer(yut.download)
 kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
@@ -3434,10 +3390,44 @@ break
 case 'attp': {
 if (!text) throw `text nya...?`
 replyig(mess.wait)
+const buff = await getBuffer(`https://hardianto.xyz/api/maker/attp?text=${encodeURIComponent(q)}&apikey=hardianto`)
+kon.sendMessage(m.chat, { sticker : buff}) 
+}
+break
+case'attp2': {
+if (!text) throw `text nya...?`
+replyig(mess.wait)
 const buff = await getBuffer(`https://api.xteam.xyz/${command}?file&text=${encodeURIComponent(q)}`)
 kon.sendMessage(m.chat, { sticker : buff}) 
 }
 break
+case 'ttp':{
+if (!text) throw `text nya...?`
+let ih = `https://hardianto.xyz/api/maker/ttp?text=${encodeURIComponent(q)}&apikey=hardianto`
+buff = await getBuffer(ih)
+kon.sendImageAsSticker(m.chat, buff, m, { packname: global.packname, author: global.author })
+}
+break
+case 'ttpcustom':{
+if (!text) throw `text nya...?`
+if (!text.includes('|')) return m.reply(`Kek Gini Caranya ${prefix + command} *teks|warna*\n\nBerikut List Warnanya : 
+1. black
+2. yellow
+3. red
+4. green
+5. blue
+6. brown
+7. grey
+8. pink
+9. gold
+10. purple`)
+  arg = args.join(' ')
+  atas = arg.split('|')[0]
+  bawah = arg.split('|')[1]
+let ih = `https://hardianto.xyz/api/ttpcustom?text=${encodeURIComponent(atas)}&color=${bawah}&apikey=hardianto`
+buff = await getBuffer(ih)
+kon.sendImageAsSticker(m.chat, buff, m, { packname: global.packname, author: global.author })
+}break
 case 'sendsticker':
 if (!text) throw `Url nya.....?\n *Note : Harus Berupa Url Gambar*`
 buff = await getBuffer(args[0])

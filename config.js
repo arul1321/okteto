@@ -28,7 +28,7 @@ global.APIKeys = {
 global.poter = `
 ☕Hosting Zbot by Heroku.com
 `
-global.owner = ['6281229859085','6285869134434','62815788590761']
+global.owner = ['6281578859076','6285869134434','62815788590761']
 global.ntilink = ['120363043965529911@g.us','120363022988111568@g.us']
 global.packname = 'Sticker by'
 global.author = 'zBot [62815788590761]'

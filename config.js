@@ -56,8 +56,8 @@ global.mess = {
     endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
 }
 global.limitawal = {
-    premium: "Infinity",
-    free: 20
+    premium: "1000",
+    free: "10",
 }
 global.thumb = fs.readFileSync('./lib/hisoka.jpg')
 

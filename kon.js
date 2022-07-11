@@ -1,7 +1,7 @@
 
 require('./config')
 //●●●●●●●●●●●●●●●●●●●●●● CONST ●●●●●●●●●●●●●●●●●●●●●●
-const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser } = require('@adiwajshing/baileys')
+const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType} = require('@adiwajshing/baileys')
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
@@ -118,7 +118,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
         }
         // reset limit every 12 hours
         let cron = require('node-cron')
-        cron.schedule('00 17 * * *', () => {
+        cron.schedule('00 12 * * *', () => {
             let user = Object.keys(global.db.data.users)
             let limitUser = isPremium ? global.limitpremium : global.limitfree
             for (let jid of user) global.db.data.users[jid].limit = limitUser
@@ -935,6 +935,7 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
     if (/^https?:\/\/.*(fb.watch|facebook.com)/i.test(m.text)) {
     	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	   db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
     	replyig('*Auto Download Cocofun*\nTunggu Sebentar Media Sedang Dikirim....')
         let url = m.text.split(/\n| /i)[0] 
         let kin = await facebook(url).catch(e => {
@@ -964,6 +965,7 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
     if (/^https?:\/\/.*cocofun/i.test(m.text)) {
     	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	   db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
     	replyig('*Auto Download Cocofun*\nTunggu Sebentar Media Sedang Dikirim....')
     	let url = m.text.split(/\n| /i)[0] 
         let yut = await cocofun(url).catch(e => {
@@ -1005,6 +1007,7 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
    if (/^https?:\/\/.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
    if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
     replyig('*Auto Download Instagram*\nTunggu Sebentar Media Sedang Dikirim....')
     let url = m.text.split(/\n| /i)[0]  
     hx.igdl(url).then( result => {
@@ -1022,6 +1025,7 @@ for(let i of result.medias){
     if (/^https?:\/\/.*twitter.com\//i.test(m.text)) {
     if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
     replyig('*Auto Download Twitter*\nTunggu Sebentar Media Sedang Dikirim....')
     let url = m.text.split(/\n| /i)[0]  
     let yut = await twitter(url).catch(e => {
@@ -1052,6 +1056,7 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
     if (/^https?:\/\/.*tiktok.com/i.test(m.text)) {
     	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	    db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
     	replyig('*Auto Download Tiktok*\nTunggu Sebentar Media Sedang Dikirim....')
     	let url = m.text.split(/\n| /i)[0]  
         let res = await bocil.tiktokdl(url).catch(e => {
@@ -1083,6 +1088,7 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
  if (/^https?:\/\/.*youtu/i.test(m.text)) {
  if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
  replyig('*Auto Download Youtube*\nTunggu Sebentar Media Sedang Dikirim....')
  let url = m.text.split(/\n| /i)[0]  
  let { ytv } = require('./lib/y2mate')
@@ -1118,9 +1124,43 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
-case 'lij':
-kon.sendMessage(m.chat, {text:` https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}, m)
-break
+case 'addmsg': {
+                if (!m.quoted) throw 'Reply Message Yang Ingin Disave Di Database'
+                if (!text) throw `Example : ${prefix + command} nama file`
+                let msgs = global.db.data.database
+                if (text.toLowerCase() in msgs) throw `'${text}' telah terdaftar di list pesan`
+                msgs[text.toLowerCase()] = quoted.fakeObj
+m.reply(`Berhasil menambahkan pesan di list pesan sebagai '${text}'
+    
+Akses dengan ${prefix}getmsg ${text}
+
+Lihat list Pesan Dengan ${prefix}listmsg`)
+            }
+            break
+            case 'getmsg': {
+                if (!text) throw `Example : ${prefix + command} file name\n\nLihat list pesan dengan ${prefix}listmsg`
+                let msgs = global.db.data.database
+                if (!(text.toLowerCase() in msgs)) throw `'${text}' tidak terdaftar di list pesan`
+                kon.copyNForward(m.chat, msgs[text.toLowerCase()], true)
+            }
+            break
+            case 'listmsg': {
+                let msgs = JSON.parse(fs.readFileSync('./src/database.json'))
+	        let seplit = Object.entries(global.db.data.database).map(([nama, isi]) => { return { nama, ...isi } })
+		let teks = '「 LIST DATABASE 」\n\n'
+		for (let i of seplit) {
+		    teks += `⬡ *Name :* ${i.nama}\n⬡ *Type :* ${getContentType(i.message).replace(/Message/i, '')}\n────────────────────────\n\n`
+	        }
+	        m.reply(teks)
+	    }
+	    break
+            case 'delmsg': case 'deletemsg': {
+	        let msgs = global.db.data.database
+	        if (!(text.toLowerCase() in msgs)) return m.reply(`'${text}' tidak terdaftar didalam list pesan`)
+		delete msgs[text.toLowerCase()]
+		m.reply(`Berhasil menghapus '${text}' dari list pesan`)
+            }
+	    break
 case 'antilink': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin
@@ -1152,9 +1192,10 @@ kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4
 }break
 case 'facebook2': case 'fbdl2': case 'facebook2': case 'fb2':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-db.data.users[m.sender].limit -= 1 // -1 limit
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 replyig(mess.wait)
 let { facebookdlv3, facebookdlv2 } = require('@bochilteam/scraper')
     if (!args[0]) throw `Use example ${usedPrefix}${command} https://fb.watch/azFEBmFRcy/`
@@ -1164,9 +1205,10 @@ let { facebookdlv3, facebookdlv2 } = require('@bochilteam/scraper')
 break
 case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-db.data.users[m.sender].limit -= 1 // -1 limit
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 let kin = await facebook(args[0]).catch(e => {
 m.reply('Server 1 Eror silahkan ketik .facebook2 <URL>')
 })
@@ -1557,8 +1599,11 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
             break
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●
 case 'cocodl': case 'cocofun':{
+if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 if (!text) throw 'enter query link!'
 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 let yut = await cocofun(args[0])
 console.log(yut)
 tuki =`🐣 Topik : ${yut.topic}\n🐣 Caption : ${yut.caption}\n🐣 Tayangan : ${yut.play}\🐣 Like : ${yut.like}\🐣 Share : ${yut.share}`
@@ -1576,9 +1621,10 @@ let buttons = [
 break
 case 'twitterdl': case 'twit': case 'twitter':{
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
 	if (!text) throw 'enter query link!'
                 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 let yut = await twitter(args[0])
 console.log(yut)
 anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
@@ -1624,9 +1670,10 @@ kon.sendMessage(m.chat, { video:{url:yut.quality_720}, mimetype: 'video/mp4', fi
 break
 case 'twittermp3': case 'twitteraudio':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 let yut = await twitter(args[0])
 let tuk = `• nickname : ${yut.nickname}`
 console.log(yut)
@@ -1643,9 +1690,10 @@ sourceUrl: `https://instagram.com/_daaa_1`
 break
 case 'gitdownload': case 'gitclone':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
 if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
 replyig(mess.wait)
+    db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 	const regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
     if (!args[0]) throw `Example ${prefix+command} https://github.com/Bayu/botwa`
     let [_, user, repo] = args[0].match(regex) || []
@@ -1664,8 +1712,9 @@ console.log(yut)
 break
 case 'tiktokdl2': case 'tiktok2':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-db.data.users[m.sender].limit -= 1 // -1 limit
 if (!text) throw 'urlnya?'
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 let yut = await bocil.tiktokdlv3(text).catch(e => {
 m.reply('Fitur Sedang Eror, Segera Laporkan Ke Owner dan Tunggu Beberapa Hari Kedepan')
 })
@@ -1696,9 +1745,10 @@ m.reply('error')
 break
 case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-db.data.users[m.sender].limit -= 1 // -1 limit
 if (!text) throw 'urlnya?'
 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 let res = await bocil.tiktokdl(text).catch(e => {
 m.reply('Fitur Sedang Eror, Segera Laporkan Ke Owner dan Tunggu Beberapa Hari Kedepan')
 })
@@ -1736,9 +1786,10 @@ kon.sendMessage(m.chat, {document: anuu, mimetype: 'application/octet-stream', f
 break
 case 'tiktoknowm3': case 'tiktokdl3': case 'tiktok3': case 'ttmp43':{
 	           if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	          db.data.users[m.sender].limit -= 1 // -1 limit
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
+                db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
                 var { TiktokDownloader } = require('./lib/tiktokdl')
 res = await TiktokDownloader(`${text}`).catch(e => {
 m.reply('error')
@@ -1770,9 +1821,10 @@ m.reply('error')
             break
             case 'tiktokwm3': case 'tiktokwatermark3': {
             	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	           db.data.users[m.sender].limit -= 1 // -1 limit
                 if (!text) throw 'enter query link!'
                 replyig(mess.wait)
+                db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
                 var { TiktokDownloader } = require('./lib/tiktokdl')
 res = await TiktokDownloader(`${text}`).catch(e => {
 m.reply('error')
@@ -1804,9 +1856,10 @@ m.reply('error')
             break
     case 'tiktokaudio': case 'tiktokaudio2': case 'tiktokaudio3':{
     if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
      if (!text) throw 'enter query link!'
      replyig(mess.wait)
+     db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 			    hx.ttdownloader(args[0]).then( data => {
 				  kon.sendMessage(m.chat, {document: { url: data.nowm }, mimetype: 'audio/mp4', fileName: `Sound Tiktok By Z-BotWhatsapp.mp3`}, { quoted : m })
 				}).catch(() => m.reply('Hmm Erorr Awoakwoakwok'))
@@ -1814,8 +1867,9 @@ m.reply('error')
 		        break
 	case 'igstory': case 'instagramstory': {
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-db.data.users[m.sender].limit -= 1 // -1 limit
 if (!args[0]) return m.reply(`Example :\n${prefix + command} _daaa_1`)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 try {
 hx.igstory(args[0]).then(async(resed) => {
 ini_anu = []
@@ -1861,9 +1915,11 @@ m.reply(" Error! ")
 break
 case 'igdl': case 'instagram': case 'ig':{
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
+	
         	if (!text) throw 'enter query link!'
 		replyig(mess.wait)
+		db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 hx.igdl(args[0]).then( result => {
 let kyu = `*Download Instagram*\n🐣 Username : ${result.user.username}\n🐣 Followers : ${result.user.followers}`
 for(let i of result.medias){
@@ -1878,9 +1934,10 @@ for(let i of result.medias){
             break
          case 'ig2': case 'igdl2': case 'instagram2': {
          if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
 if (!args[0]) return replyig(`Example :\n${prefix + command} https://www.instagram.com/p/CcvJGuxh9VI/?igshid=YmMyMTA2M2Y=`)
 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 try {
 hx.igdl(args[0]).then(async(resed) => {
 ini_anu = []
@@ -2002,6 +2059,7 @@ break
 case 'tes2':{
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 	m.reply(mess.wait)
 }
 break
@@ -2879,9 +2937,10 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 					break
 		   case 'soundcloud':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
 if (!text) throw 'url ?'
 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 let yut = await soundcloud(args[0])
 console.log(yut)
 let ter = `🐣 Judul : ${yut.title}\n?? Durasi : ${yut.duration}\n🐣 Quality : ${yut.quality}\n🐣 Thumb : ${yut.thumbnail}\n\n Tunggu Sebentar Media Sedang Dikirim....`
@@ -2901,9 +2960,10 @@ m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
 break
 		   case 'twitter2':{
 			   if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
+                db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 					anu = await fetchJson(`https://yuzzu-api.herokuapp.com/api/twitter?link=${text}`).catch(e => {
 m.reply('error')
 })
@@ -3238,9 +3298,10 @@ break
             break
               case 'mediafire': {
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-db.data.users[m.sender].limit -= 1 // -1 limit
 if (!text) return replyig('Linknya...? ')
 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 const baby1 = await mediafiredl(text)
 if (baby1[0].size.split('MB')[0] >= 120) return replyig('*File Terlalu Besar* '+util.format(baby1))
 const result4 = `*MEDIAFIRE DOWNLOADER*
@@ -3447,10 +3508,11 @@ case 'setfooter': {
             break
 case 'sticktele': case 'telesticker': case 'telestick': case 'stickertele':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	db.data.users[m.sender].limit -= 1 // -1 limit
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group! Karena Dapat Menyebabkan Spam')
 if (!text) throw `Example : ${prefix + command} https://t.me/addstickers/rndomnih`
 replyig(mess.wait)
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
 let packName = args[0].replace("https://t.me/addstickers/", "")
 let gas = await fetchJson(`https://api.telegram.org/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/getStickerSet?name=${encodeURIComponent(packName)}`, { method: "GET", headers: { "User-Agent": "GoogleBot" } })
 m.reply(`*Total stiker:* ${gas.result.stickers.length}
@@ -3701,9 +3763,11 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
             break
         case 'play': case 'ytplay': {
         	    if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	           db.data.users[m.sender].limit -= 1 // -1 limit
+	           
                 if (!text) throw `Example : ${prefix + command} story wa anime`
                 replyig(mess.wait)
+                db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
                 let yts = require("yt-search")
                 let search = await yts(text)
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
@@ -3758,8 +3822,9 @@ var but = [{buttonId: `${command}`, buttonText: { displayText: 'Next Photo' }, t
             break
 	    case 'ytmp3': case 'ytaudio': {
 		        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	           db.data.users[m.sender].limit -= 1 // -1 limit
 		        replyig(mess.wait)
+		        db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
                 let { yta } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
                 let quality = args[1] ? args[1] : '128kbps'
@@ -3779,8 +3844,9 @@ sourceUrl: `https://instagram.com/_daaa_1`
             break
             case 'ytmp4': case 'ytvideo': {
             	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	           db.data.users[m.sender].limit -= 1 // -1 limit
             	replyig(mess.wait)
+                db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
                 let { ytv } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 360p`
                 let quality = args[1] ? args[1] : '480p'
@@ -3812,8 +3878,9 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
            
 	    case 'getmusic': {
 		        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	           db.data.users[m.sender].limit -= 1 // -1 limit
 		        replyig(mess.wait)
+		        db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
                 let { yta } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} 1`
                 if (!m.quoted) return m.reply('Reply Pesan')
@@ -3837,8 +3904,9 @@ sourceUrl: `https://instagram.com/_daaa_1`
             break
             case 'getvideo': {
             	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	           db.data.users[m.sender].limit -= 1 // -1 limit
             	replyig(mess.wait)
+                db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
                 let { ytv } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} 1`
                 if (!m.quoted) return m.reply('Reply Pesan')
@@ -3955,7 +4023,7 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
 		if (isCmd && budy.toLowerCase() != undefined) {
 		    if (m.chat.endsWith('broadcast')) return
 		    if (m.isBaileys) return
-		    let msgs = JSON.parse(fs.readFileSync('./src/database.json'))
+		    let msgs = global.db.data.database
 		    if (!(budy.toLowerCase() in msgs)) return
 		    kon.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
 		}

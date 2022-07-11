@@ -7,7 +7,7 @@ const util = require('util')
 const chalk = require('chalk')
 const { exec, spawn, execSync } = require("child_process")
 const hx = require('hxz-api')
-const xfar = require('xfarr-api')
+///const xfar = require('xfarr-api')
 const bocil = require('@bochilteam/scraper') 
 const axios = require('axios')
 const { fromBuffer } = require('file-type')
@@ -118,7 +118,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
         }
         // reset limit every 12 hours
         let cron = require('node-cron')
-        cron.schedule('00 14 * * *', () => {
+        cron.schedule('00 16 * * *', () => {
             let user = Object.keys(global.db.data.users)
             let limitUser = isPremium ? global.limitpremium : global.limitfree
             for (let jid of user) global.db.data.users[jid].limit = limitUser
@@ -422,7 +422,7 @@ let listnsfw =`
 ☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
 𝐍𝐬𝐟𝐰
  ⍨⃝🔕 ${prefix}yuri 
- ⍨⃝🔕 ${prefix}pussy 
+ ⍨⃝?? ${prefix}pussy 
  ⍨⃝🔕 ${prefix}panties 
  ⍨⃝🔕 ${prefix}orgy 
  ⍨⃝🔕 ${prefix}neko 
@@ -1118,6 +1118,9 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
+case 'lij':
+kon.sendMessage(m.chat, {text:` https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}, m)
+break
 case 'antilink': {
                 if (!m.isGroup) throw mess.group
                 if (!isBotAdmins) throw mess.botAdmin

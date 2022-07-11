@@ -56,9 +56,11 @@ global.mess = {
     endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
 }
 global.limitawal = {
-    premium: "1000",
-    free: "10",
+    premium: "17",
+    free: "16",
 }
+global.limitpremium = '20'
+global.limitfree = '15'
 global.thumb = fs.readFileSync('./lib/hisoka.jpg')
 
 let file = require.resolve(__filename)

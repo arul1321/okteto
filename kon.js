@@ -105,7 +105,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 	
 	try {
             let isNumber = x => typeof x === 'number' && !isNaN(x)
-            let limitUser = isPremium ? global.limitawal.premium : global.limitawal.free
+            let limitUser = isPremium ? global.limitpremium : global.limitfree
             let user = db.data.users[m.sender]
             if (typeof user !== 'object') db.data.users[m.sender] = {}
             if (user) {   
@@ -118,9 +118,9 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
         }
         // reset limit every 12 hours
         let cron = require('node-cron')
-        cron.schedule('00 13 * * *', () => {
+        cron.schedule('00 14 * * *', () => {
             let user = Object.keys(global.db.data.users)
-            let limitUser = isPremium ? global.limitawal.premium : global.limitawal.free
+            let limitUser = isPremium ? global.limitpremium : global.limitfree
             for (let jid of user) global.db.data.users[jid].limit = limitUser
             console.log('Reseted Limit')
         }, {

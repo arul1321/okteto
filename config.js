@@ -59,8 +59,8 @@ global.limitawal = {
     premium: "19",
     free: "18",
 }
-global.limitpremium = 'Unlimited'
-global.limitfree = '15'
+global.limitpremium = '25'
+global.limitfree = '10'
 global.thumb = fs.readFileSync('./lib/hisoka.jpg')
 
 let file = require.resolve(__filename)

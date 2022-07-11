@@ -118,7 +118,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
         }
         // reset limit every 12 hours
         let cron = require('node-cron')
-        cron.schedule('00 12 * * *', () => {
+        cron.schedule('00 13 * * *', () => {
             let user = Object.keys(global.db.data.users)
             let limitUser = isPremium ? global.limitawal.premium : global.limitawal.free
             for (let jid of user) global.db.data.users[jid].limit = limitUser

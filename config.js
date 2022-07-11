@@ -29,6 +29,7 @@ global.poter = `
 ☕Hosting Zbot by Heroku.com
 `
 global.owner = ['6281578859076','6285869134434','62815788590761']
+global.premium = ['6281578859076']
 global.ntilink = ['120363043965529911@g.us','120363022988111568@g.us']
 global.packname = 'Sticker by'
 global.author = 'zBot [62815788590761]'
@@ -52,6 +53,11 @@ global.mess = {
     private: 'Hanya Bisa Digunakan Di Private Chat',
     bot: 'Khusus Nomor Bot',
     wait: 'Proses...',
+    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
+}
+global.limitawal = {
+    premium: "Infinity",
+    free: 20
 }
 global.thumb = fs.readFileSync('./lib/hisoka.jpg')
 

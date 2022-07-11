@@ -7,7 +7,7 @@ const util = require('util')
 const chalk = require('chalk')
 const { exec, spawn, execSync } = require("child_process")
 const hx = require('hxz-api')
-const xfar = require('xfarr-api')
+///const xfar = require('xfarr-api')
 const bocil = require('@bochilteam/scraper') 
 const axios = require('axios')
 const { fromBuffer } = require('file-type')
@@ -59,7 +59,6 @@ const sender = m.isGroup ? m.participant : m.key.remoteJid
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.msg || quoted).mimetype || ''
 const isMedia = /image|video|sticker|audio/.test(mime)
-const AntiLink = m.isGroup ? ntilink.includes(m.chat) : false
 const isQuotedMsg = type === 'extendedTextMessage' && content.includes('Message')
 const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
 const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
@@ -245,8 +244,6 @@ let listcmd = `
  ⍨⃝☕ ${prefix}setfooter
 
 𝐆𝐫𝐨𝐮𝐩
- ⍨⃝👥 ${prefix}antilink on
- ⍨⃝👥 ${prefix}antilink off
  ⍨⃝👥 ${prefix}tagall 
  ⍨⃝👥 ${prefix}hidetag
  ⍨⃝👥 ${prefix}grup  
@@ -536,8 +533,6 @@ let listgroup = `
 🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
 ☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
 𝐆𝐫𝐨𝐮𝐩
- ⍨⃝👥 ${prefix}antilink on
- ⍨⃝👥 ${prefix}antilink off
  ⍨⃝👥 ${prefix}tagall 
  ⍨⃝👥 ${prefix}hidetag
  ⍨⃝👥 ${prefix}grup  
@@ -702,22 +697,29 @@ const reSize = async(buffer, ukur1, ukur2) => {
 }
 const todol = await reSize(tamnel, 200, 200)      
  
-//●●●●●●●●●●●●●●●●●●●●●● ANTILINK SETTING●●●●●●●●●●●●●●●●●●●●●●
-if (AntiLink) {
-linkgce = await kon.groupInviteCode(m.chat)
-if (budy.includes(`https://chat.whatsapp.com/${linkgce}`)) {
-m.reply(`\`\`\`「 Detect Link 」\`\`\`\n\nAnda tidak akan dikick bot karena yang anda kirim adalah link group yg ada di group ini`)
-} else if (isUrl(m.text)) {
-bvl = `\`\`\`「 Detect Link 」\`\`\`\n\nAdmin telah mengirim link, admin dibebaskan untuk mengirim link apapun`
-if (isAdmins) return m.reply(bvl)
-if (m.key.fromMe) return m.reply(bvl)
-if (isCreator) return m.reply(bvl)
-kice = m.sender
-await kon.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
-kon.sendMessage(m.chat, {text:`\`\`\`「 Detect Link 」\`\`\`\n\n@${kice.split("@")[0]} Telah dikick karena send link di group ini`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
-} else {
-}
-}
+//●●●●●●●●●●●●●●●●●●●●●● DB SETTING●●●●●●●●●●●●●●●●●●●●●●
+let chats = db.data.chats[m.chat]
+            if (typeof chats !== 'object') db.data.chats[m.chat] = {}
+            if (chats) {
+                if (!('antilink' in chats)) chats.antilink = false
+            } else global.db.data.chats[m.chat] = {
+                antilink: false,
+            }
+if (db.data.chats[m.chat].antilink) {
+        if (budy.match(`chat.whatsapp.com`)) {
+        m.reply(`「 ANTI LINK 」\n\nKamu terdeteksi mengirim link group, maaf kamu akan di kick !`)
+        if (!isBotAdmins) return m.reply(`Ehh bot gak admin T_T`)
+        let gclink = (`https://chat.whatsapp.com/`+await kon.groupInviteCode(m.chat))
+        let isLinkThisGc = new RegExp(gclink, 'i')
+        let isgclink = isLinkThisGc.test(m.text)
+        if (isgclink) return m.reply(`Ehh maaf gak jadi, karena kamu ngirim link group ini`)
+        if (isAdmins) return m.reply(`Ehh maaf kamu admin`)
+        if (isCreator) return m.reply(`Ehh maaf kamu owner bot ku`)
+        kon.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+        }
+        }
+        
+        
 //●●●●●●●●●●●●●●●●●●●●●● BUTTONS SETTING●●●●●●●●●●●●●●●●●●●●●●
  let butlink = [
 						{ urlButton: { displayText: `Link`, url : `${text}` } },
@@ -1072,10 +1074,32 @@ kon.sendMessage(m.chat, buttonMessage, {quoted:m})
  }
 
 //●●●●●●●●●●●●●●●●●●●●●● AUTO SET BIO SETTING●●●●●●●●●●●●●●●●●●●●●●
+
 kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Dengan Kecepatan ${latensi.toFixed(4)} Second`)
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
+case 'antilink': {
+                if (!m.isGroup) throw mess.group
+                if (!isBotAdmins) throw mess.botAdmin
+                ///if (!isAdmins) throw mess.admin
+                if (args[0] === "on") {
+                if (db.data.chats[m.chat].antilink) return m.reply(`Sudah Aktif Sebelumnya`)
+                db.data.chats[m.chat].antilink = true
+                m.reply(`Antilink Aktif !`)
+                } else if (args[0] === "off") {
+                if (!db.data.chats[m.chat].antilink) return m.reply(`Sudah Tidak Aktif Sebelumnya`)
+                db.data.chats[m.chat].antilink = false
+                m.reply(`Antilink Tidak Aktif !`)
+                } else {
+                 let buttons = [
+                        { buttonId: 'antilink on', buttonText: { displayText: 'On' }, type: 1 },
+                        { buttonId: 'antilink off', buttonText: { displayText: 'Off' }, type: 1 }
+                    ]
+                    await kon.sendButtonText(m.chat, buttons, `Mode Antilink`, `Z-Bot Whatsapp`, m)
+                }
+             }
+             break
 case 'pinterestdl2':{
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
 let yut = await pinterestdlv2(args[0])
@@ -1873,32 +1897,6 @@ await kon.groupSettingUpdate(m.chat, 'locked').then((res) => m.reply(`Sukses Men
 		]
 				kon.sendMessage(m.chat, { text: anu, footer: global.poter, templateButtons: buttonsDefault3, quoted: m} )
 
-}
-}
-break
-case 'antilink': {
-if (!m.isGroup) return m.reply(mess.group)
-if (!isBotAdmins) return m.reply(mess.botAdmin)
-if (!isAdmins && !isCreator) return m.reply(mess.admin)
-if (args.length < 1) return m.reply('ketik on untuk mengaktifkan\nketik off untuk menonaktifkan')
-if (args[0] === "on") {
-if (AntiLink) return m.reply('Sudah Aktif')
-ntilink.push(m.chat)
-m.reply('Succes menyalakan antilink di group ini')
-var groupe = await kon.groupMetadata(m.chat)
-var members = groupe['participants']
-var mems = []
-members.map(async adm => {
-mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
-})
-kon.sendMessage(m.chat, {text: `PERINGATAN!!! jika bukan admin jangan send link di group ini`, contextInfo: { mentionedJid : mems }}, {quoted:m})
-} else if (args[0] === "off") {
-if (!AntiLink) return m.reply('Sudah Mati')
-let off = ntilink.indexOf(m.chat)
-ntilink.splice(off, 1)
-m.reply('Succes mematikan antilink di group ini')
-} else {
-m.reply('on untuk mengaktifkan, off untuk menonaktifkan')
 }
 }
 break
@@ -3269,7 +3267,7 @@ break
                 m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
                 for (let i of anu) {
                     await sleep(1500)         
-                      let txt = `🎗  *Broadcast* 🎗\n\n${text}`
+                      let txt = `🎗  *Broadcast* ??\n\n${text}`
                      
 var tidtoodd8 = [
 						{ urlButton: { displayText: `Group zBot`, url : `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn` } },

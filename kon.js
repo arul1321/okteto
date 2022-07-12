@@ -7,7 +7,7 @@ const util = require('util')
 const chalk = require('chalk')
 const { exec, spawn, execSync } = require("child_process")
 const hx = require('hxz-api')
-///const xfar = require('xfarr-api')
+const xfar = require('xfarr-api')
 const bocil = require('@bochilteam/scraper') 
 const axios = require('axios')
 const { fromBuffer } = require('file-type')
@@ -29,14 +29,24 @@ const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, slee
 const content = JSON.stringify(m.message)
 const imgbb = require('imgbb-uploader');
 const { EmojiAPI } = require("emoji-api");
-const { TiktokDownloader } = require('./lib/tiktokdl')
 const emoji = new EmojiAPI()
 //const ucapanWaktu = "Selamat "+dt.charAt(0).toUpperCase() + dt.slice(1)*/
 const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
-const { mediafiredl } = require('./lib/mediafiredl')
-const { aiovideodl } = require('./lib/scraper2.js')
-const { like, soundcloud2, cocofun, pinterestdlv2, telesticker, twitter, soundcloud, facebook } = require('./lib/scraper.js')
+const mediafiredl = require('./lib/mediafiredl.js')
+const { 
+igdl,
+igstalk,
+igstory,
+aiovideodl,
+TiktokDownloader,
+like, 
+soundcloud2, 
+cocofun, 
+pinterestdlv2, 
+twitter, 
+soundcloud, 
+facebook } = require('./lib/scraper.js')
 const maker = require('mumaker')
 const cmdmedia = JSON.parse(fs.readFileSync('./src/cmdmedia.json'))
 
@@ -217,6 +227,12 @@ let listcmd = `
  ⍨⃝📚 ${prefix}q 
  ⍨⃝📚 ${prefix}ssweb 
  ⍨⃝📚 ${prefix}asupan
+ 
+ *Database*
+ ⍨⃝🎈 ${prefix}addmsg (reply pesan)
+ ⍨⃝🎈 ${prefix}getmsg 
+ ⍨⃝🎈 ${prefix}delmsg
+ ⍨⃝🎈 ${prefix}listmsg
  
 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
  ⍨⃝📩 ${prefix}play (judul lagu)🇱
@@ -661,6 +677,17 @@ let listtools = `
  ⍨⃝📚 ${prefix}q 
  ⍨⃝📚 ${prefix}ssweb 
  ⍨⃝📚 ${prefix}asupan
+`
+let listdb = `
+🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+*Database*
+ ⍨⃝🎈 ${prefix}addmsg (reply pesan)
+ ⍨⃝🎈 ${prefix}getmsg 
+ ⍨⃝🎈 ${prefix}delmsg
+ ⍨⃝🎈 ${prefix}listmsg
 `
 let listconvert = `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
@@ -1316,6 +1343,33 @@ sourceUrl: `instagram.com/_daaa_1`,
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
 }
 break
+case 'dbmenu':{
+            kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
+            let buttons = [
+{buttonId: `owner`, buttonText: {displayText: 'Owner'}, type: 1},{buttonId: `ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+document: fs.readFileSync('./lib/tes.xlsx'),
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+jpegThumbnail:tamnel,
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: listdb,
+footer: poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
+body:`Follow Instagram @_daaa_1`,
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+}
+break
 case 'groupmenu':{
             kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
             let buttons = [
@@ -1533,6 +1587,85 @@ kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
 }
 break
 case 'menu': case 'help': case 'list': case 'command': {
+let ty =`🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+🐣 *Runtime Bot : ${runtime(process.uptime())}*
+🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
+☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
+🐣 *IsAuto :*
+                   🎈 *Sticker* [true]
+                   🎈 *Download :* 
+                                            ⭔ YouTube [true]
+                                            ⭔ TikTok [true]
+                                            ⭔ Instagram [true]
+                                            ⭔ Twitter [true]
+                                            ⭔ Pinterest [true]
+                                            ⭔ Cocofun [true]
+                                            ⭔ Facebook [true]`
+let sections= [
+							{
+								"title": "Z-Bot Whatsapp Features ❤️",
+								"rows": [
+									{
+										"title": "All Menu 🥀",
+										"description": "Displays The List Of All The Features!",
+										"rowId": `${prefix}allmenu`
+									},
+									{
+										"title": "Owner Menu 💠",
+										"description": "Displays The List Of Owner Features",
+										"rowId": `${prefix}ownermenu`
+										},
+									{
+										"title": "Database Menu 🎈",
+										"description": "Displays The List Of Owner Features",
+										"rowId": `${prefix}dbmenu`
+										},
+									{
+										"title": "Group Menu ✨",
+										"description": "Displays The List Of Group Features",
+										"rowId": `${prefix}groupmenu`
+										},
+										{
+										"title": "Maker Menu 🌈",
+										"description": "Displays The List Of Logo Making Features",
+										"rowId": `${prefix}makermenu`
+									},
+									{
+										"title": "Download Menu ↘️",
+										"description": "Displays The List Of Download Features",
+										"rowId": `${prefix}downloadmenu`
+									},
+									{
+										"title": "Search Menu 🔎",
+										"description": "Displays The List Of Searching Features",
+										"rowId": `${prefix}searchmenu`
+									},
+									{
+										"title": "Tool Menu ⚙️",
+										"description": "Displays The List Of Tool Features",
+										"rowId": `${prefix}toolmenu`
+									},
+									{
+										"title": "Nsfw Menu 🤓",
+										"description": "Displays The List Of Nsfe Features",
+										"rowId": `${prefix}nsfwmenu`
+									     },
+										{
+											"title": "Voice Changer Menu 🕺",
+										"description": "Displays The List Of Voice Changer Features",
+										"rowId": `${prefix}voicemenu`
+										},
+										{
+											"title": "Convert Menu ⚒️",
+										"description": "Displays The List Of Convert Features",
+										"rowId": `${prefix}convertmenu`
+										}
+								]
+							}
+						]
+                kon.sendListMsg(m.chat, `Note : Ulangi Command 2 - 3x Jika Bot Tidak Merespon & Segera Laporkan Ke Owner Jika Menemukam Bug/Semacamnya`, ty, `*Berikut Command Z-Bot Whatsapp*`, `Click Here`, sections, m)
+}break
+case 'menu3': {
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
                     title: `*Berikut Command Z-Bot Whatsapp*`,
@@ -1615,6 +1748,23 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
                 }
             }), {})
             kon.relayMessage(m.chat, template.message, { messageId: template.key.id }, {quoted: m})
+            }
+            break
+            case 'speedtest': {
+            m.reply('Testing Speed...')
+            let cp = require('child_process')
+            let { promisify } = require('util')
+            let exec = promisify(cp.exec).bind(cp)
+          let o
+          try {
+          o = await exec('python speed.py')
+          } catch (e) {
+          o = e
+         } finally {
+        let { stdout, stderr } = o
+        if (stdout.trim()) m.reply(stdout)
+        if (stderr.trim()) m.reply(stderr)
+            }
             }
             break
 //●●●●●●●●●●●●●●●●●●●●●● CASE DOWNLOAD SETTING●●●●●●●●●●●●●●●●●●●●●●

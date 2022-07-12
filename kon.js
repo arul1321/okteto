@@ -933,9 +933,9 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
       }
     }
     if (/^https?:\/\/.*(fb.watch|facebook.com)/i.test(m.text)) {
-    	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	   
-    	replyig('*Auto Download Cocofun*\nTunggu Sebentar Media Sedang Dikirim....')
+    	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis   
+        if (!isUrl(args[0]) && !args[0].includes('m.facebook.com')) return m.reply('Link Invalid!')
+    	replyig('*Auto Download Facebook*\nTunggu Sebentar Media Sedang Dikirim....')
         let url = m.text.split(/\n| /i)[0] 
         let kin = await facebook(url).catch(e => {
 m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
@@ -1201,6 +1201,7 @@ kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4
 case 'facebook2': case 'fbdl2': case 'facebook2': case 'fb2':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
+if (!isUrl(args[0]) && !args[0].includes('m.facebook.com')) return m.reply('Link Invalid!')
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
 
 replyig(mess.wait)
@@ -1214,6 +1215,7 @@ m.reply('1 Limit Telah Di Gunakan')
 break
 case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+if (!isUrl(args[0]) && !args[0].includes('m.facebook.com')) return m.reply('Link Invalid!')
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
 replyig(mess.wait)
 
@@ -1222,15 +1224,24 @@ m.reply('Server 1 Eror silahkan ketik .facebook2 <URL>')
 })
 let iin = `• Title : ${kin.title}`
 let buttons = [
-                    {buttonId: `${prefix}mp4dwn ${kin.hd}`, buttonText: {displayText: 'Video HD'}, type: 1},       {buttonId: `${prefix}mp4dwn ${kin.sd}`, buttonText: {displayText: 'Video SD'}, type: 1},
-                ]
-                let buttonMessage = {
-                    text: iin,
-                    footer: global.poter,
-                    buttons: buttons,
-                    headerType: 2
-                }
-           kon.sendMessage(m.chat, buttonMessage, { quoted: m })
+{buttonId: `mp4dwn ${kin.hd}`, buttonText: {displayText: 'Video HD'}, type: 1}
+]
+let buttonMessage = {
+video: {url:kin.sd},
+caption: iin,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Downloader Facebook Video",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
            db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
 }
@@ -1757,7 +1768,7 @@ db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
 }
 break
-case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
+case 'tt': case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 if (!text) throw 'urlnya?'
 replyig(mess.wait)

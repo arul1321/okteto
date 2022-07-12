@@ -934,7 +934,6 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
     }
     if (/^https?:\/\/.*(fb.watch|facebook.com)/i.test(m.text)) {
     	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis   
-        if (!isUrl(args[0]) && !args[0].includes('m.facebook.com')) return m.reply('Link Invalid!')
     	replyig('*Auto Download Facebook*\nTunggu Sebentar Media Sedang Dikirim....')
         let url = m.text.split(/\n| /i)[0] 
         let kin = await facebook(url).catch(e => {

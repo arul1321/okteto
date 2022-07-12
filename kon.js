@@ -181,6 +181,7 @@ let listcmd = `
  ⍨⃝⚠️ ${prefix}menu
  ⍨⃝⚠️ ${prefix}ping
  ⍨⃝⚠️ ${prefix}owner
+ ⍨⃝⚠️ ${prefix}speedtest
  
 𝐂𝐨𝐧𝐯𝐞𝐫𝐭
  ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)

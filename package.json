@@ -1,6 +1,6 @@
 {
-  "name": "hisoka-morou",
-  "version": "5.0.0",
+  "name": "ZBot-Whatsapp",
+  "version": "2.4.2",
   "description": "WhatsApp Using Lib Baileys Multi Device",
   "main": "index.js",
   "type": "commonjs",
@@ -11,7 +11,7 @@
   "author": "Dika Ardnt.",
   "license": "MIT",
   "dependencies": {
-    "@adiwajshing/baileys": "^4.1.0",
+    "@adiwajshing/baileys" : "^4.3.0",
     "@adiwajshing/keyed-db": "^0.2.4",
     "awesome-phonenumber": "^2.64.0",
     "@bochilteam/scraper": "^2.0.0",
@@ -54,7 +54,7 @@
     "tod-api": "^1.0.5",
     "util": "^0.12.4",
     "yargs": "^17.2.1",
-    "yt-search": "^2.10.2"
+    "yt-search": "^2.10.3"
   },
   "directories": {
     "lib": "lib"

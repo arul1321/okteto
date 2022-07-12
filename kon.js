@@ -3849,10 +3849,10 @@ m.reply('1 Limit Telah Di Gunakan')
             break
 	    case 'ytmp3': case 'ytaudio': {
 		        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-		        replyig(mess.wait)
 		        
                 let { yta } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
+                replyig(mess.wait)
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(text, quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
@@ -3872,10 +3872,9 @@ m.reply('1 Limit Telah Di Gunakan')
             break
             case 'ytmp4': case 'ytvideo': {
             	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-            	replyig(mess.wait)
-                
                 let { ytv } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 360p`
+                replyig(mess.wait)
                 let quality = args[1] ? args[1] : '480p'
                 let media = await ytv(text, quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
@@ -3907,7 +3906,6 @@ m.reply('1 Limit Telah Di Gunakan')
            
 	    case 'getmusic': {
 		        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-		        replyig(mess.wait)
 		        
                 let { yta } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} 1`
@@ -3915,6 +3913,7 @@ m.reply('1 Limit Telah Di Gunakan')
                 if (!m.quoted.isBaileys) throw `Hanya Bisa Membalas Pesan Dari Bot`
 		let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
                 if (!urls) throw `Mungkin pesan yang anda reply tidak mengandung result ytsearch`
+                replyig(mess.wait)
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
@@ -3934,14 +3933,13 @@ m.reply('1 Limit Telah Di Gunakan')
             break
             case 'getvideo': {
             	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-            	replyig(mess.wait)
-                
                 let { ytv } = require('./lib/y2mate')
                 if (!text) throw `Example : ${prefix + command} 1`
                 if (!m.quoted) return m.reply('Reply Pesan')
                 if (!m.quoted.isBaileys) throw `Hanya Bisa Membalas Pesan Dari Bot`
                 let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
                 if (!urls) throw `Mungkin pesan yang anda reply tidak mengandung result ytsearch`
+                replyig(mess.wait)
                 let quality = args[1] ? args[1] : '480p'
                 let media = await ytv(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))

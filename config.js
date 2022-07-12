@@ -53,14 +53,14 @@ global.mess = {
     private: 'Hanya Bisa Digunakan Di Private Chat',
     bot: 'Khusus Nomor Bot',
     wait: 'Proses...',
-    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
+    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12 Siang',
 }
 global.limitawal = {
     premium: "19",
     free: "18",
 }
-global.limitpremium = '25'
-global.limitfree = '10'
+global.limitpremium = '5'
+global.limitfree = '5'
 global.thumb = fs.readFileSync('./lib/hisoka.jpg')
 
 let file = require.resolve(__filename)

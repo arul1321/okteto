@@ -7,7 +7,7 @@ const util = require('util')
 const chalk = require('chalk')
 const { exec, spawn, execSync } = require("child_process")
 const hx = require('hxz-api')
-const xfar = require('xfarr-api')
+//const xfar = require('xfarr-api')
 const bocil = require('@bochilteam/scraper') 
 const axios = require('axios')
 const { fromBuffer } = require('file-type')
@@ -35,11 +35,11 @@ const type = Object.keys(m.message)[0]
 const ofrply = fs.readFileSync('./lib/hisoka.jpg')
 const mediafiredl = require('./lib/mediafiredl.js')
 const { 
-igdl,
+ttp,
+attp,
 igstalk,
 igstory,
 aiovideodl,
-TiktokDownloader,
 like, 
 soundcloud2, 
 cocofun, 
@@ -182,6 +182,8 @@ let listcmd = `
  ⍨⃝⚠️ ${prefix}ping
  ⍨⃝⚠️ ${prefix}owner
  ⍨⃝⚠️ ${prefix}speedtest
+ ⍨⃝⚠️ ${prefix}listgc
+ ⍨⃝⚠️ ${prefix}listpc
  
 𝐂𝐨𝐧𝐯𝐞𝐫𝐭
  ⍨⃝🐣 ${prefix}tomp4 (reply sticker gif)
@@ -196,7 +198,10 @@ let listcmd = `
   === Info ===
  ==⍨⃝🐣 ${prefix}sendsticker (link)
  ==⍨⃝🐣 ${prefix}ttp (teks)
+ ==⍨⃝🐣 ${prefix}ttp2 (teks)
  ==⍨⃝🐣 ${prefix}attp (teks)
+ ==⍨⃝🐣 ${prefix}attp2 (teks)
+ ==⍨⃝🐣 ${prefix}attp3 (teks)
  ==⍨⃝🐣 ${prefix}ttpcustom (teks|warna)
  ==⍨⃝🐣 ${prefix}sticker (reply gambar)
  ==⍨⃝🐣 ${prefix}swm (reply gambar)
@@ -674,7 +679,7 @@ let listtools = `
  ⍨⃝📚 ${prefix}emojimix (masukan emoji)
  ⍨⃝📚 ${prefix}emojimix2 (masukan emoji)
  ⍨⃝📚 ${prefix}emoji (masukan emoji)
- ⍨⃝📚 ${prefix}del (reply pesan bot)
+ ⍨⃝?? ${prefix}del (reply pesan bot)
  ⍨⃝📚 ${prefix}q 
  ⍨⃝📚 ${prefix}ssweb 
  ⍨⃝📚 ${prefix}asupan
@@ -878,8 +883,8 @@ sendEphemeral: true,
 "title": `zBot by Bot Whatsapp`,
 "body": `Follow Instagram My Owner`,
 "previewType": "PHOTO",
-"thumbnailUrl": tamnel,
-"thumbnail": tamnel,
+"thumbnailUrl": todol,
+"thumbnail": todol,
 "sourceUrl": "https://instagram.com/_daaa_1"
 }}}, { quoted: ftoko, detectLink: true })}
 const replygrup = (teks) => {kon.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Hallo Kak`,"body": `Group Official`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": tamnel,"sourceUrl": `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}}, { quoted: m})}    
@@ -1159,6 +1164,20 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
+case 'ttp2':{
+let yut = await ttp(text)
+console.log(yut)
+buff = await getBuffer(yut.result)
+kon.sendImageAsSticker(m.chat, buff, m, { packname: global.packname, author: global.author })
+}
+break
+case 'attp3':{
+let yut = await attp(text)
+console.log(yut)
+let buff = await getBuffer(yut.result)
+kon.sendVideoAsSticker(m.chat, buff, m, { packname: global.packname, author: global.author })
+}
+break
 case 'addmsg': {
                 if (!m.quoted) throw 'Reply Message Yang Ingin Disave Di Database'
                 if (!text) throw `Example : ${prefix + command} nama file`
@@ -3181,7 +3200,7 @@ break
 	        let { floNime } = require('./lib/uploader')
 	        let fatGans = await floNime(dwnld)
 	        let smeme = `https://api.memegen.link/images/custom/${encodeURIComponent(bawah)}/${encodeURIComponent(atas)}.png?background=${fatGans.result.url}`
-	        let FaTiH = await kon.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.auhor })
+	        let FaTiH = await kon.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.author })
 	        await fs.unlinkSync(FaTiH)
             }
 	       break     
@@ -3274,6 +3293,27 @@ kon.sendMessage(m.chat, { react: { text: `☕`, key: m.key }})
 kon.sendContact(m.chat, global.owner, m)
 }
 break
+case 'listpc': {
+                 let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v.id)
+                 let teks = `⬣ *LIST PERSONAL CHAT*\n\nTotal Chat : ${anu.length} Chat\n\n`
+                 for (let i of anu) {
+                     let nama = store.messages[i].array[0].pushName
+                     teks += `⬡ *Nama :* ${nama}\n⬡ *User :* @${i.split('@')[0]}\n⬡ *Chat :* https://wa.me/${i.split('@')[0]}\n\n────────────────────────\n\n`
+                 }
+                 kon.sendTextWithMentions(m.chat, teks, m)
+             }
+             break
+                case 'listgc': {
+                 let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
+                 let teks = `⬣ *LIST GROUP CHAT*\n\nTotal Group : ${anu.length} Group\n\n`
+                 for (let i of anu) {
+                     let metadata = await kon.groupMetadata(i)
+                     
+                     teks += `⬡ *Nama :* ${metadata.subject}\n⬡ *Owner :* ${metadata.owner !== undefined ? '@' + metadata.owner.split`@`[0] : 'Tidak diketahui'}\n⬡ *ID :* ${metadata.id}\n⬡ *Dibuat :* ${moment(metadata.creation * 1000).tz('Asia/Jakarta').format('DD/MM/YYYY HH:mm:ss')}\n⬡ *Member :* ${metadata.participants.length}\n\n────────────────────────\n\n`
+                 }
+                 kon.sendTextWithMentions(m.chat, teks, m)
+             }
+             break
             case 'imagenobg': case 'removebg': case 'remove-bg': {
 	    if (!quoted) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
 	    if (!/image/.test(mime)) throw `Kirim/Reply Image Dengan Caption ${prefix + command}`
@@ -3486,16 +3526,16 @@ if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.
 if (!text) return replyig('Linknya...? ')
 replyig(mess.wait)
 
-const baby1 = await mediafiredl(text)
-if (baby1[0].size.split('MB')[0] >= 120) return replyig('*File Terlalu Besar* '+util.format(baby1))
+const baby1 = await fetchJson(`https://docs-jojo.herokuapp.com/api/mediafire?url=${text}`)
+///if (baby1[0].filesize('MB')[0] >= 120) return replyig('*File Terlalu Besar* '+util.format(baby1))
 const result4 = `*MEDIAFIRE DOWNLOADER*
 				
-*Name* : ${baby1[0].nama}
-*Size* : ${baby1[0].size}
-*Mime* : ${baby1[0].mime}
-*Link* : ${baby1[0].link}`
+*Name* : ${baby1.filename}
+*Size* : ${baby1.filesize}
+*Mime* : ${baby1.filetype}
+*Link* : ${text}`
 replyig(`${result4}`)
-kon.sendMessage(m.chat, { document : { url : baby1[0].link}, fileName : baby1[0].nama, mimetype: baby1[0].mime }, { quoted : m }).catch ((err) => replyig('Lagi Eror...'))
+kon.sendMessage(m.chat, { document : { url : baby1.url}, fileName : baby1.filename, mimetype: 'application/zip' }, { quoted : m }).catch ((err) => replyig('Lagi Eror...'))
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
 }

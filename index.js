@@ -160,7 +160,7 @@ contextInfo:{externalAdReply:{
 title: `Ulangi 2 -3 x Command Jika Bot Tidak Merespon`,
 body: `Follow Instagram Gw lah`,
 mediaType:2,
-thumbnail: buffer,
+thumbnail: ppuser,
 sourceUrl: link,
 mediaUrl: link,
 }}
@@ -189,7 +189,7 @@ contextInfo:{externalAdReply:{
 title: `Ulangi 2 -3 x Command Jika Bot Tidak Merespon`,
 body: `Follow Instagram Gw lah`,
 mediaType:2,
-thumbnail: buffer,
+thumbnail: ppuser,
 sourceUrl: link,
 mediaUrl: link,
 }}

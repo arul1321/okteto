@@ -139,7 +139,7 @@ async function startkon() {
 }
                 if (anu.action == 'add') {
                 	   var buffer = await reSize(ppuser, 200, 200)
-                let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: buffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+                let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 10,status: 20, thumbnail: buffer, surface: 20, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
                 he = `[ *SELAMAT DATANG* ]\n❏ *NAME* : @${num.split("@")[0]}\n❏ *GROUP* : ${metadata.subject}\n❏ *MEMBER* : ${jumlahMem.length} \n\n*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`
                 let link = `https://instagram.com/_daaa_1`
 let buttons = [
@@ -168,7 +168,7 @@ mediaUrl: link,
         kon.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
                 } else if (anu.action == 'remove') {
                          	var buffer = await reSize(ppuser, 200, 200)
-                let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: buffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+                let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9,status: 20, thumbnail: buffer, surface: 20, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
                 he = `[ *SELAMAT TINGGAL* ]\n❏ *NAME* : @${num.split("@")[0]}\n❏ *GROUP* : ${metadata.subject}\n❏ *MEMBER* : ${jumlahMem.length} \n\n*Semoga Nanti Betah Kalau Masuk Lagi*`
                 let link = `https://instagram.com/_daaa_1`
 let buttons = [

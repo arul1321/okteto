@@ -1607,7 +1607,23 @@ kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
 }
 break
 case 'menu': case 'help': case 'list': case 'command': {
-let ty =`🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
+let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 10,status: 20, thumbnail: todol, surface: 20, message: `Z-Bot MD`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+let foot = `
+➤ *Berikut Command Z-Bot MD*➤
+ ┃ ➤ *[𝙸𝚗𝚏𝚘 & 𝚁𝚞𝚕𝚎𝚜 𝙱𝚘𝚝] :*
+ ┃      1. Jangan Telpon/Vc Bot
+ ┃      2. Jangan Spam Bot
+ ┃      3. Dilarang Toxic
+ ┃      4. Bot Tidak Menyimpan Data Pengguna              
+ ┃      5. Jika Bot Tidak Merespon, Mungkin Bot Off
+ ┃      6. Dilarang Kirim Virtex/Bug Atau
+ ┃      7. Dilarang Kirim Media 18+
+ ┃      8. Ulangi Command Jika Bot Tidak Merespon
+ ┃      9. Laporkan Ke Owner Jika Menemukan Bug/
+ ┃          Eror
+ ┃     10. Menu Pencet Di Bawah
+ ┗━━━━━━━`
+let ty =`
 🐣 *Runtime Bot : ${runtime(process.uptime())}*
 🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
 ☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
@@ -1683,7 +1699,7 @@ let sections= [
 								]
 							}
 						]
-                kon.sendListMsg(m.chat, `Note : Ulangi Command 2 - 3x Jika Bot Tidak Merespon & Segera Laporkan Ke Owner Jika Menemukam Bug/Semacamnya`, ty, `*Berikut Command Z-Bot Whatsapp*`, `Click Here`, sections, m)
+                kon.sendListMsg(m.chat, foot, ty, `➤ *Hallo Kak ${pushname} ~ ${ucapanWaktu}*`, `Click Here`, sections, fgclink)
 }break
 case 'menu3': {
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({

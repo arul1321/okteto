@@ -1659,9 +1659,9 @@ case 'setmenu': {
                 {
                 title: "CHANGE MENU BOT",
                 rows: [
-                {title: "Template Menu1", rowId: `setmenu templateImage`, description: `Change menu bot to Template Image`},
-                {title: "Template Menu2", rowId: `setmenu templateVideo`, description: `Change menu bot to Template Video`},
-                {title: "Template Menu3", rowId: `setmenu templateGif`, description: `Change menu bot to Template Gif`}
+                {title: "Template Menu1", rowId: `setmenu templateMenu1`, description: `Change menu bot to Template Menu1`},
+                {title: "Template Menu2", rowId: `setmenu templateMenu2`, description: `Change menu bot to Template Menu2`},
+                {title: "Template Menu3", rowId: `setmenu templateMenu3`, description: `Change menu bot to Template Menu3`}
                 ]
                 },
                 ]

@@ -785,9 +785,9 @@ if (db.data.chats[m.chat].antilink) {
         let setting = db.data.settings[botNumber]
         if (typeof setting !== 'object') db.data.settings[botNumber] = {}
 	    if (setting) {
-		if (!('templateMenu1' in setting)) setting.templateImage = true
-		if (!('templateMenu2' in setting)) setting.templateVideo = false
-		if (!('templateMenu3' in setting)) setting.templateGif = false
+		if (!('templateMenu1' in setting)) setting.templateMenu1 = true
+		if (!('templateMenu2' in setting)) setting.templateMenu2 = false
+		if (!('templateMenu3' in setting)) setting.templateMenu3 = false
 	    } else global.db.data.settings[botNumber] = {
 		templateMenu1: true,
 		templateMenu2: false,

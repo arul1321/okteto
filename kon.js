@@ -7,7 +7,7 @@ const util = require('util')
 const chalk = require('chalk')
 const { exec, spawn, execSync } = require("child_process")
 const hx = require('hxz-api')
-const xfar = require('xfarr-api')
+// const xfar = require('xfarr-api')
 const bocil = require('@bochilteam/scraper') 
 const axios = require('axios')
 const { fromBuffer } = require('file-type')
@@ -291,6 +291,8 @@ let listcmd = `
  ⍨⃝☕ ${prefix}sendsession
  ⍨⃝☕ ${prefix}setexif
  ⍨⃝☕ ${prefix}setfooter
+ ⍨⃝☕ ${prefix}setmenu
+ 
 
 𝐆𝐫𝐨𝐮𝐩
  ⍨⃝👥 ${prefix}tagall 
@@ -623,6 +625,7 @@ let listowner =`
  ⍨⃝☕ ${prefix}sendsession
  ⍨⃝☕ ${prefix}setexif
  ⍨⃝☕ ${prefix}setfooter
+ ⍨⃝☕ ${prefix}setmenu
 `
 let listdownload = `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
@@ -779,6 +782,17 @@ if (db.data.chats[m.chat].antilink) {
         }
         }
         
+        let setting = db.data.settings[botNumber]
+        if (typeof setting !== 'object') db.data.settings[botNumber] = {}
+	    if (setting) {
+		if (!('templateMenu1' in setting)) setting.templateImage = true
+		if (!('templateMenu2' in setting)) setting.templateVideo = false
+		if (!('templateMenu3' in setting)) setting.templateGif = false
+	    } else global.db.data.settings[botNumber] = {
+		templateMenu1: true,
+		templateMenu2: false,
+		templateMenu3: false,
+	    }
         
 //●●●●●●●●●●●●●●●●●●●●●● BUTTONS SETTING●●●●●●●●●●●●●●●●●●●●●●
  let butlink = [
@@ -791,7 +805,9 @@ let menubutlist = [
   {buttonId: `owner`, buttonText: {displayText: 'Creator Bot'}, type: 1}
 ]
 let buttonsDefault = [
-			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
+            { urlButton: { displayText: `Instagram`, url : `instagram.com/_daaa_1` } },
+			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } },
+			{ quickReplyButton: { displayText: `🚹Status Bot`, id: `owner` } }
 		]
 let tesbut = [
 		{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
@@ -874,6 +890,20 @@ const reply2 = (teks) => {
 			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: global.poter,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
 		}
 const replyig = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
+mimetype: "image/jpeg",
+text: "Bot Whatsapp",
+"forwardingScore": 1000000000,
+isForwarded: true,
+sendEphemeral: true,
+"externalAdReply": {
+"title": `zBot by Bot Whatsapp`,
+"body": `Follow Instagram My Owner`,
+"previewType": "PHOTO",
+"thumbnailUrl": todol,
+"thumbnail": todol,
+"sourceUrl": "https://instagram.com/_daaa_1"
+}}}, { quoted: ftoko, detectLink: true })}
+const reply = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
 mimetype: "image/jpeg",
 text: "Bot Whatsapp",
 "forwardingScore": 1000000000,
@@ -1606,8 +1636,43 @@ sourceUrl: `instagram.com/_daaa_1`,
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
 }
 break
+case 'setmenu': {
+            if (!isCreator) throw mess.owner
+            let setbot = db.data.settings[botNumber]
+               if (args[0] === 'templateMenu1'){
+                setbot.templateMenu1 = true
+                setbot.templateMenu2 = false
+                setbot.templateMenu3 = false
+                m.reply(mess.success)
+                } else if (args[0] === 'templateMenu2'){
+                setbot.templateMenu1 = false
+                setbot.templateMenu2 = true
+                setbot.templateMenu3 = false
+                m.reply(mess.success)
+                } else if (args[0] === 'templateMenu3'){
+                setbot.templateMenu1 = false
+                setbot.templateMenu2 = false
+                setbot.templateMenu3 = true
+                m.reply(mess.success)
+                } else {
+                let sections = [
+                {
+                title: "CHANGE MENU BOT",
+                rows: [
+                {title: "Template Menu1", rowId: `setmenu templateImage`, description: `Change menu bot to Template Image`},
+                {title: "Template Menu2", rowId: `setmenu templateVideo`, description: `Change menu bot to Template Video`},
+                {title: "Template Menu3", rowId: `setmenu templateGif`, description: `Change menu bot to Template Gif`}
+                ]
+                },
+                ]
+                kon.sendListMsg(m.chat, `Please select the menu you want to change!`, kon.user.name, `Hello Owner !`, `Click Here`, sections, m)
+                }
+            }
+            break
 case 'menu': case 'help': case 'list': case 'command': {
-let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 10,status: 20, thumbnail: todol, surface: 20, message: `Z-Bot MD`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+let setbot = db.data.settings[botNumber]
+                        if (setbot.templateMenu1) {
+                        let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 10,status: 20, thumbnail: todol, surface: 20, message: `Z-Bot MD`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
 let foot = `
 ➤ *Berikut Command Z-Bot MD*➤
  ┃ ➤ *[𝙸𝚗𝚏𝚘 & 𝚁𝚞𝚕𝚎𝚜 𝙱𝚘𝚝] :*
@@ -1699,93 +1764,33 @@ let sections= [
 								]
 							}
 						]
-                kon.sendListMsg(m.chat, foot, ty, `➤ *Hallo Kak ${pushname} ~ ${ucapanWaktu}*`, `Click Here`, sections, fgclink)
-}break
-case 'menu3': {
-let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                listMessage :{
-                    title: `*Berikut Command Z-Bot Whatsapp*`,
-                    description: `Note : Ulangi Command 2 - 3x Jika Bot Tidak Merespon & Segera Laporkan Ke Owner Jika Menemukam Bug/Semacamnya`,
-                    buttonText: "Menu Click Here",
-                    footerText: `
-🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
-🐣 *Runtime Bot : ${runtime(process.uptime())}*
-🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
-☕ *Tanggal         : ${moment.tz('Asia/Jakarta').format('DD / MM / YY')}*
-🐣 *IsAuto :*
-                   🎈 *Sticker* [true]
-                   🎈 *Download :* 
-                                            ⭔ YouTube [true]
-                                            ⭔ TikTok [true]
-                                            ⭔ Instagram [true]
-                                            ⭔ Twitter [true]
-                                            ⭔ Pinterest [true]
-                                            ⭔ Cocofun [true]
-                                            ⭔ Facebook [true]`,
-                    listType: "SINGLE_SELECT",
-                    sections: [
-							{
-								"title": "Z-Bot Whatsapp Features ❤️",
-								"rows": [
-									{
-										"title": "All Menu 🥀",
-										"description": "Displays The List Of All The Features!",
-										"rowId": `${prefix}allmenu`
-									},
-									{
-										"title": "Owner Menu 💠",
-										"description": "Displays The List Of Owner Features",
-										"rowId": `${prefix}ownermenu`
-										},
-									{
-										"title": "Group Menu ✨",
-										"description": "Displays The List Of Group Features",
-										"rowId": `${prefix}groupmenu`
-										},
-										{
-										"title": "Maker Menu 🌈",
-										"description": "Displays The List Of Logo Making Features",
-										"rowId": `${prefix}makermenu`
-									},
-									{
-										"title": "Download Menu ↘️",
-										"description": "Displays The List Of Download Features",
-										"rowId": `${prefix}downloadmenu`
-									},
-									{
-										"title": "Search Menu 🔎",
-										"description": "Displays The List Of Searching Features",
-										"rowId": `${prefix}searchmenu`
-									},
-									{
-										"title": "Tool Menu ⚙️",
-										"description": "Displays The List Of Tool Features",
-										"rowId": `${prefix}toolmenu`
-									},
-									{
-										"title": "Nsfw Menu 🤓",
-										"description": "Displays The List Of Nsfe Features",
-										"rowId": `${prefix}nsfwmenu`
-									     },
-										{
-											"title": "Voice Changer Menu 🕺",
-										"description": "Displays The List Of Voice Changer Features",
-										"rowId": `${prefix}voicemenu`
-										},
-										{
-											"title": "Convert Menu ⚒️",
-										"description": "Displays The List Of Convert Features",
-										"rowId": `${prefix}convertmenu`
-										}
-								]
-							}
-						],
-          listType: 1
-                }
-            }), {})
-            kon.relayMessage(m.chat, template.message, { messageId: template.key.id }, {quoted: m})
-            }
-            break
+kon.sendListMsg(m.chat, foot, ty, `➤ *Hallo Kak ${pushname} ~ ${ucapanWaktu}*`, `Click Here`, sections, fgclink)
+                        } else if (setbot.Menu2) {
+kon.sendMessage(m.chat, { react: { text: `🗿`, key: m.key }})
+let buttons = [
+{buttonId: `${prefix}owner`, buttonText: {displayText: 'Owner'}, type: 1}, {buttonId: `${prefix}ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
+]
+let buttonMessage = {
+image: tamnel,
+caption: listcmd,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Gunakan Bot Sebaik Mungkin, Ulangi Command 2 - 3 Kali Jika Bot Tidak Merespon",
+body:"zBot by Bot Whatsapp",
+thumbnail: tamnel,
+mediaType:2,
+mediaUrl: "https://instagram.com/_daaa_1",
+sourceUrl: "https://instagram.com/_daaa_1"
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, { quoted: ftoko })
+                        } else if (setbot.Menu3) {
+kon.sendMessage(m.chat, { text: listcmd, footer: global.poter, templateButtons: buttonsDefault, quoted:m})
+                        } 
+}
+break
             case 'speedtest': {
             m.reply('Testing Speed...')
             let cp = require('child_process')

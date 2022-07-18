@@ -26,13 +26,13 @@ global.APIKeys = {
 
 // Other
 global.poter = `
-☕Hosting Zbot by Heroku.com
+® Z-Bot Whatsapp Multi-Device
 `
 global.owner = ['6281578859076','6285869134434','62815788590761']
 global.premium = ['6281578859076']
 global.ntilink = ['120363043965529911@g.us','120363022988111568@g.us']
 global.packname = 'Sticker by'
-global.author = 'zBot [62815788590761]'
+global.author = 'zBot MultiDevice'
 global.sessionName = 'kon'
 global.prefa = ['','!','.','🐦','🐤','🗿']
 global.sp = '⭔'
@@ -53,7 +53,7 @@ global.mess = {
     private: 'Hanya Bisa Digunakan Di Private Chat',
     bot: 'Khusus Nomor Bot',
     wait: 'Proses...',
-    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12 Siang',
+    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12 Siang, Coba Lagi Setelah Jam 12 Siang',
 }
 global.limitawal = {
     premium: "19",

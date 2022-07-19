@@ -7,7 +7,7 @@ const util = require('util')
 const chalk = require('chalk')
 const { exec, spawn, execSync } = require("child_process")
 const hx = require('hxz-api')
-// const xfar = require('xfarr-api')
+const xfar = require('xfarr-api')
 const bocil = require('@bochilteam/scraper') 
 const axios = require('axios')
 const { fromBuffer } = require('file-type')
@@ -198,10 +198,7 @@ let listcmd = `
   === Info ===
  ==⍨⃝🐣 ${prefix}sendsticker (link)
  ==⍨⃝🐣 ${prefix}ttp (teks)
- ==⍨⃝🐣 ${prefix}ttp2 (teks)
  ==⍨⃝🐣 ${prefix}attp (teks)
- ==⍨⃝🐣 ${prefix}attp2 (teks)
- ==⍨⃝🐣 ${prefix}attp3 (teks)
  ==⍨⃝🐣 ${prefix}ttpcustom (teks|warna)
  ==⍨⃝🐣 ${prefix}sticker (reply gambar)
  ==⍨⃝🐣 ${prefix}swm (reply gambar)
@@ -314,6 +311,7 @@ let listcmd = `
  ⍨⃝🔎 ${prefix}google 
  ⍨⃝🔎 ${prefix}gimage 
  ⍨⃝🔎 ${prefix}pinterest 
+ ⍨⃝🔎 ${prefix}lirik
  
 𝐕𝐨𝐢𝐜𝐞 𝐂𝐡𝐚𝐧𝐠𝐞𝐫
  ⍨⃝🎧 ${prefix}bass (reply audio)
@@ -608,6 +606,7 @@ let listsearch =`
  ⍨⃝🔎 ${prefix}google 
  ⍨⃝🔎 ${prefix}gimage 
  ⍨⃝🔎 ${prefix}pinterest 
+ ⍨⃝🔎 ${prefix}lirik
 `
 let listowner =`
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
@@ -989,10 +988,12 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
   let isSticker = m.mtype
   if (isSticker) {
     if(isSticker === "imageMessage"){
-               let mediaaan = await quoted.download()
-                let encmedialik = await kon.sendImageAsSticker(m.chat, mediaaan, m, { packname: global.packname, author: global.author })
-                await fs.unlinkSync(encmedialik)
-        return true
+               let mediaaan = await quoted.download().catch(e => {
+//m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+})
+                let encmedialik = await kon.sendImageAsSticker(m.chat, mediaaan, m, { packname: global.packname, author: global.author }).catch(e => {
+//m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+})
       }
     }
     if (/^https?:\/\/.*(fb.watch|facebook.com)/i.test(m.text)) {
@@ -1194,6 +1195,12 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
         switch(command) {
+case 'lirik':{
+            if(!text) return m.reply('lagu apa?')
+            let song = await bocil.lyrics(text)
+            m.reply(song.lyrics)
+            }
+            break
 case 'ttp2':{
 let yut = await ttp(text)
 console.log(yut)
@@ -3529,6 +3536,12 @@ m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks|teks")
     case 'whatmusic':{
 let media = await kon.downloadAndSaveMediaMessage(quoted)
 let ky = await xfar.search.whatmusic(media)
+console.log(ky)
+}
+break
+case 'whatimage':{
+let media = await kon.downloadAndSaveMediaMessage(quoted)
+let ky = await xfar.search.whatimage(media)
 console.log(ky)
 }
 break

@@ -1765,7 +1765,7 @@ let sections= [
 							}
 						]
 kon.sendListMsg(m.chat, foot, ty, `➤ *Hallo Kak ${pushname} ~ ${ucapanWaktu}*`, `Click Here`, sections, fgclink)
-                        } else if (setbot.Menu2) {
+                        } else if (setbot.templateMenu2) {
 kon.sendMessage(m.chat, { react: { text: `🗿`, key: m.key }})
 let buttons = [
 {buttonId: `${prefix}owner`, buttonText: {displayText: 'Owner'}, type: 1}, {buttonId: `${prefix}ping`, buttonText: {displayText: 'Status Bot'}, type: 1}
@@ -1786,7 +1786,7 @@ sourceUrl: "https://instagram.com/_daaa_1"
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, { quoted: ftoko })
-                        } else if (setbot.Menu3) {
+                        } else if (setbot.templateMenu3) {
 kon.sendMessage(m.chat, { text: listcmd, footer: global.poter, templateButtons: buttonsDefault, quoted:m})
                         } 
 }

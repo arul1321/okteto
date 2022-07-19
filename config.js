@@ -45,6 +45,7 @@ global.f4 = 'application/zip'
 global.f5 = 'application/pdf'
 global.f6 = 'application/vnd.android.package-archive'
 global.mess = {
+	erorr: 'Maaf Server Fitur Ini Sedang Erorr, Akan Kami Perbaiki Segera, Coba Lagi Dalam Beberapa Hari Kedepan🙏🙏',
     success: 'Success',
     admin: 'Khusus Admin Group (tidak termasuk pembuat group)',
     botAdmin: 'Bot Harus Menjadi Admin',

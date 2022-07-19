@@ -81,25 +81,26 @@ moment.tz.setDefault("Asia/Jakarta").locale("id");
 const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 const time2 = moment().tz('Asia/Jakarta').format('HH:mm:ss')
 if(time2 < "23:59:00"){
-var ucapanWaktu = 'Selamat Malam🌃'
+var ucapanWaktu = 'Good night🌃'
 }
 if(time2 < "19:00:00"){
-var ucapanWaktu = 'Selamat Petang🌆'
+var ucapanWaktu = 'Good afternoon🌆'
 }
 if(time2 < "18:00:00"){
-var ucapanWaktu = 'Selamat Sore🌅'
+var ucapanWaktu = 'Good afternoon🌅'
 }
 if(time2 < "15:00:00"){
-var ucapanWaktu = 'Selamat Siang🏙'
+var ucapanWaktu = 'Good day🏙'
 }
 if(time2 < "11:00:00"){
-var ucapanWaktu = 'Selamat Pagi🌁'
+var ucapanWaktu = 'Good morning🌁'
 }
 if(time2 < "05:00:00"){
-var ucapanWaktu = 'Selamat Malam🌉'
+var ucapanWaktu = 'Good morning🌉'
 }
 
 let tamnel = fs.readFileSync('./lib/hisoka.jpg')
+let tamn = fs.readFileSync('./lib/doc.jpg')
 //●●●●●●●●●●●●●●●●●●●●●● GROUP SETTING●●●●●●●●●●●●●●●●●●●●●●
         const groupMetadata = m.isGroup ? await kon.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
@@ -758,6 +759,7 @@ const reSize = async(buffer, ukur1, ukur2) => {
     })
 }
 const todol = await reSize(tamnel, 200, 200)      
+const dooo = await reSize(tamn, 200, 200)      
  
 //●●●●●●●●●●●●●●●●●●●●●● DB SETTING●●●●●●●●●●●●●●●●●●●●●●
 let chats = db.data.chats[m.chat]
@@ -769,14 +771,14 @@ let chats = db.data.chats[m.chat]
             }
 if (db.data.chats[m.chat].antilink) {
         if (budy.match(`chat.whatsapp.com`)) {
-        m.reply(`「 ANTI LINK 」\n\nKamu terdeteksi mengirim link group, maaf kamu akan di kick !`)
-        if (!isBotAdmins) return m.reply(`Ehh bot gak admin T_T`)
+        m.reply(`「 ANTI LINK 」\n\nYou have been detected sending a group link, sorry you will be kicked!`)
+        if (!isBotAdmins) return m.reply(`Eh bot not admin T_T`)
         let gclink = (`https://chat.whatsapp.com/`+await kon.groupInviteCode(m.chat))
         let isLinkThisGc = new RegExp(gclink, 'i')
         let isgclink = isLinkThisGc.test(m.text)
-        if (isgclink) return m.reply(`Ehh maaf gak jadi, karena kamu ngirim link group ini`)
-        if (isAdmins) return m.reply(`Ehh maaf kamu admin`)
-        if (isCreator) return m.reply(`Ehh maaf kamu owner bot ku`)
+        if (isgclink) return m.reply(`Ehh sorry it didn't happen, because you sent the link to this group`)
+        if (isAdmins) return m.reply(`Ehh sorry you admin`)
+        if (isCreator) return m.reply(`Ehh sorry you are the owner of my bot`)
         kon.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
         }
         }
@@ -787,10 +789,12 @@ if (db.data.chats[m.chat].antilink) {
 		if (!('templateMenu1' in setting)) setting.templateMenu1 = true
 		if (!('templateMenu2' in setting)) setting.templateMenu2 = false
 		if (!('templateMenu3' in setting)) setting.templateMenu3 = false
+		if (!('templateMenu4' in setting)) setting.templateMenu4 = false
 	    } else global.db.data.settings[botNumber] = {
 		templateMenu1: true,
 		templateMenu2: false,
 		templateMenu3: false,
+		templateMenu4: false
 	    }
         
 //●●●●●●●●●●●●●●●●●●●●●● BUTTONS SETTING●●●●●●●●●●●●●●●●●●●●●●
@@ -985,14 +989,24 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
         }
 
 //●●●●●●●●●●●●●●●●●●●●●● AUTO SETTING●●●●●●●●●●●●●●●●●●●●●●
+let miok = ['😨','😅','😂','😳','😎', '🥵', '😱', '🐦', '🙄', '🐤','🗿','🐦','🤨','😐','👆','😔', '👀','👎']
+const pickRandom = (arr) => {
+			return arr[Math.floor(Math.random() * arr.length)]
+		}
+kon.sendMessage(m.chat, {
+          react: {
+            text: pickRandom(miok),
+            key: m.key,
+          }})
+          
   let isSticker = m.mtype
   if (isSticker) {
     if(isSticker === "imageMessage"){
                let mediaaan = await quoted.download().catch(e => {
-//m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+//m.reply(mess.erorr)
 })
                 let encmedialik = await kon.sendImageAsSticker(m.chat, mediaaan, m, { packname: global.packname, author: global.author }).catch(e => {
-//m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+//m.reply(mess.erorr)
 })
       }
     }
@@ -1001,7 +1015,7 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
     	replyig('*Auto Download Facebook*\nTunggu Sebentar Media Sedang Dikirim....')
         let url = m.text.split(/\n| /i)[0] 
         let kin = await facebook(url).catch(e => {
-m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 let iin = `• Title : ${kin.title}`
 let buttons = [
@@ -1032,7 +1046,7 @@ m.reply('1 Limit Telah Di Gunakan')
     	replyig('*Auto Download Cocofun*\nTunggu Sebentar Media Sedang Dikirim....')
     	let url = m.text.split(/\n| /i)[0] 
         let yut = await cocofun(url).catch(e => {
-m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
         console.log(yut)
         tuki =`🐣 Topik : ${yut.topic}\n🐣 Caption : ${yut.caption}\n🐣 Tayangan : ${yut.play}\🐣 Like : ${yut.like}\🐣 Share : ${yut.share}`
@@ -1062,7 +1076,7 @@ m.reply('1 Limit Telah Di Gunakan')
       replyig('*Auto Download Pinterest*\nTunggu Sebentar Media Sedang Dikirim....')
       let url = m.text.split(/\n| /i)[0]  
       anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${url}`).catch(e => {
-m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 					tol = await getBuffer(anu.result)
 					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
@@ -1096,7 +1110,7 @@ m.reply('1 Limit Telah Di Gunakan')
     replyig('*Auto Download Twitter*\nTunggu Sebentar Media Sedang Dikirim....')
     let url = m.text.split(/\n| /i)[0]  
     let yut = await twitter(url).catch(e => {
-m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 console.log(yut)
 anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
@@ -1128,7 +1142,7 @@ m.reply('1 Limit Telah Di Gunakan')
     	replyig('*Auto Download Tiktok*\nTunggu Sebentar Media Sedang Dikirim....')
     	let url = m.text.split(/\n| /i)[0]  
         let res = await bocil.tiktokdl(url).catch(e => {
-m.reply('Server Sedang Eror Coba Lagi Dalam Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
         console.log(res)
         anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
@@ -1197,7 +1211,7 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
         switch(command) {
 case 'lirik':{
             if(!text) return m.reply('lagu apa?')
-            let song = await bocil.lyrics(text)
+            let song = await bocil.lyricsv2(text)
             m.reply(song.lyrics)
             }
             break
@@ -1291,7 +1305,7 @@ replyig(mess.wait)
 let { facebookdlv3, facebookdlv2 } = require('@bochilteam/scraper')
     if (!args[0]) throw `Use example ${usedPrefix}${command} https://fb.watch/azFEBmFRcy/`
     const { result } = await facebookdlv3(args[0]).catch(async _ => await facebookdlv2(args[0]))
-    for (const { url, isVideo } of result.reverse()) kon.sendMessage(m.chat, {video:{url:url}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
+    for (const { url, isVideo } of result.reverse()) kon.sendMessage(m.chat, {video:{url:url}, caption: mess.success, mimetype:'video/mp4'}, {quoted:m})
     db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
 }
@@ -1303,7 +1317,7 @@ if(!text) return replyig(`Penggunaan ${prefix + command} link`)
 replyig(mess.wait)
 
 let kin = await facebook(args[0]).catch(e => {
-m.reply('Server 1 Eror silahkan ketik .facebook2 <URL>')
+m.reply(mess.erorr)
 })
 let iin = `• Title : ${kin.title}`
 let buttons = [
@@ -1342,7 +1356,7 @@ mediaUrl: "https://instagram/_daaa_1",
 sourceUrl: "https://instagram/_daaa_1"
 }}}, {quoted: m})
 } catch {
-m.reply("Linknya Error")
+m.reply(mess.erorr)
 }
 }
 break
@@ -1650,16 +1664,25 @@ case 'setmenu': {
                 setbot.templateMenu1 = true
                 setbot.templateMenu2 = false
                 setbot.templateMenu3 = false
+                setbot.templateMenu4 = false
                 m.reply(mess.success)
                 } else if (args[0] === 'templateMenu2'){
                 setbot.templateMenu1 = false
                 setbot.templateMenu2 = true
                 setbot.templateMenu3 = false
+                setbot.templateMenu4 = false
                 m.reply(mess.success)
                 } else if (args[0] === 'templateMenu3'){
                 setbot.templateMenu1 = false
                 setbot.templateMenu2 = false
                 setbot.templateMenu3 = true
+                setbot.templateMenu4 = false
+                m.reply(mess.success)
+                } else if (args[0] === 'templateMenu4'){
+                setbot.templateMenu1 = false
+                setbot.templateMenu2 = false
+                setbot.templateMenu3 = false
+                setbot.templateMenu4 = true
                 m.reply(mess.success)
                 } else {
                 let sections = [
@@ -1668,7 +1691,8 @@ case 'setmenu': {
                 rows: [
                 {title: "Template Menu1", rowId: `setmenu templateMenu1`, description: `Change menu bot to Template Menu1`},
                 {title: "Template Menu2", rowId: `setmenu templateMenu2`, description: `Change menu bot to Template Menu2`},
-                {title: "Template Menu3", rowId: `setmenu templateMenu3`, description: `Change menu bot to Template Menu3`}
+                {title: "Template Menu3", rowId: `setmenu templateMenu3`, description: `Change menu bot to Template Menu3`},
+                 {title: "Template Menu4", rowId: `setmenu templateMenu4`, description: `Change menu bot to Template Menu4`}
                 ]
                 },
                 ]
@@ -1795,6 +1819,8 @@ sourceUrl: "https://instagram.com/_daaa_1"
 kon.sendMessage(m.chat, buttonMessage, { quoted: ftoko })
                         } else if (setbot.templateMenu3) {
 kon.sendMessage(m.chat, { text: listcmd, footer: global.poter, templateButtons: buttonsDefault, quoted:m})
+                        } else if (setbot.templateMenu4) {
+kon.sendMessage(m.chat, { caption: listcmd, document: fs.readFileSync('./lib/tes.xlsx'), jpegThumbnail:dooo, mimetype: `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`, fileName: `Z-Bot MultiDevice`, templateButtons: buttonsDefault, footer: global.poter, quoted: m })
                         } 
 }
 break
@@ -1936,7 +1962,7 @@ if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.
 if (!text) throw 'urlnya?'
 
 let yut = await bocil.tiktokdlv3(text).catch(e => {
-m.reply('Fitur Sedang Eror, Segera Laporkan Ke Owner dan Tunggu Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 console.log(yut)
 anutxt = `• Author : ${yut.author.nickname}\n• Description : ${yut.author.description}\n• Avatar : ${yut.author.avatar}`
@@ -1959,7 +1985,7 @@ sourceUrl: args[0]
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
-m.reply('error')
+m.reply(mess.erorr)
 })
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
@@ -1971,7 +1997,7 @@ if (!text) throw 'urlnya?'
 replyig(mess.wait)
 
 let res = await bocil.tiktokdl(text).catch(e => {
-m.reply('Fitur Sedang Eror, Segera Laporkan Ke Owner dan Tunggu Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 console.log(res)
 anutxt = `• Author : ${res.author.nickname}\n• Description : ${res.description}`
@@ -1995,7 +2021,7 @@ sourceUrl: args[0]
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
-m.reply('error')
+m.reply(mess.erorr)
 })
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
@@ -2014,7 +2040,7 @@ case 'tiktoknowm3': case 'tiktokdl3': case 'tiktok3': case 'ttmp43':{
                 
                 var { TiktokDownloader } = require('./lib/tiktokdl')
 res = await TiktokDownloader(`${text}`).catch(e => {
-m.reply('error')
+m.reply(mess.erorr)
 })
 console.log(res)
            let buttons = [
@@ -2037,7 +2063,7 @@ sourceUrl: args[0]
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
-m.reply('error')
+m.reply(mess.erorr)
 })
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
@@ -2050,7 +2076,7 @@ m.reply('1 Limit Telah Di Gunakan')
                 
                 var { TiktokDownloader } = require('./lib/tiktokdl')
 res = await TiktokDownloader(`${text}`).catch(e => {
-m.reply('error')
+m.reply(mess.erorr)
 })
 console.log(res)
                 let buttons = [
@@ -2073,7 +2099,7 @@ sourceUrl: args[0]
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
-m.reply('error')
+m.reply(mess.erorr)
 })
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
@@ -2124,7 +2150,7 @@ headerType: 4
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
 })
 } catch (err) {
-m.reply(String(err))
+m.reply(mess.erorr)
 }
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
@@ -2132,9 +2158,9 @@ m.reply('1 Limit Telah Di Gunakan')
 break
 case 'ig35': {
 if (args[0] === "mp4") {
-kon.sendMessage(m.chat, {video:{url:args[1]}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
+kon.sendMessage(m.chat, {video:{url:args[1]}, caption: mess.success, mimetype:'video/mp4'}, {quoted:m})
 } else if (args[0] === "jpg") {
-kon.sendMessage(m.chat, {image:{url:args[1]}, caption:'Done!'}, {quoted:m})
+kon.sendMessage(m.chat, {image:{url:args[1]}, caption: mess.success}, {quoted:m})
 } else {
 m.reply(" Error! ")
 }
@@ -2159,7 +2185,7 @@ m.reply('1 Limit Telah Di Gunakan')
 m.reply('1 Limit Telah Di Gunakan')
                 }
             }
-            }).catch((err) => m.reply(`Link tidak valid atau mungkin user private`))
+            }).catch((err) => m.reply(mess.erorr))
             }
             break
          case 'ig2': case 'igdl2': case 'instagram2': {
@@ -2194,7 +2220,7 @@ let buttonMessage = {
 kon.sendMessage(m.chat, buttonMessage, {quoted:m})
 })
 } catch (err) {
-m.reply(String(err))
+m.reply(mess.erorr)
 }
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
@@ -2202,9 +2228,9 @@ m.reply('1 Limit Telah Di Gunakan')
 break
 case 'ig6': {
 if (args[0] === "mp4") {
-kon.sendMessage(m.chat, {video:{url:args[1]}, caption:'Done!', mimetype:'video/mp4'}, {quoted:m})
+kon.sendMessage(m.chat, {video:{url:args[1]}, caption: mess.success, mimetype:'video/mp4'}, {quoted:m})
 } else if (args[0] === "jpg") {
-kon.sendMessage(m.chat, {image:{url:args[1]}, caption:'Done!'}, {quoted:m})
+kon.sendMessage(m.chat, {image:{url:args[1]}, caption: mess.success}, {quoted:m})
 } else {
 replyig(" Error! ")
 }
@@ -2218,9 +2244,9 @@ for (let res of anu.results) {
 let encmedia = await kon.sendImageAsSticker(sender, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
 await fs.unlinkSync(encmedia)
 }
-m.reply('Success') 
+m.reply(mess.success) 
 } catch {
-m.reply("Tidak ditemukan!")
+m.reply(mess.erorr)
 }
 }
 break
@@ -2232,7 +2258,7 @@ anu = await axios.get(`https://tinyurl.com/api-create.php?url=${link}`)
 m.reply(`${anu.data}`)
 } catch (e) {
 emror = String(e)
-m.reply(`${e}`)
+m.reply(mess.erorr)
 }
 }
 break
@@ -2334,7 +2360,7 @@ mediaUrl: "https://youtu.be/TmX43Io_v8s",
 sourceUrl: "https://youtu.be/TmX43Io_v8s"
 }}}, {quoted: m})
 } catch {
-m.reply("Linknya Error")
+m.reply(mess.erorr)
 }
 }
 break
@@ -2362,7 +2388,7 @@ mediaUrl: "https://youtu.be/TmX43Io_v8s",
 sourceUrl: "https://youtu.be/TmX43Io_v8s"
 }}}, {quoted: m})
 } catch {
-m.reply("Linknya Error")
+m.reply(mess.erorr)
 }
 }
 break
@@ -2796,7 +2822,7 @@ case 'lava': case 'rock': case 'bloodglas': case 'hallowen': case 'darkgold': ca
              	if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
                 if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'
              	let anu = await maker.textpro(link, text)
-                kon.sendMessage(m.chat, { image: { url: anu }, caption: `*Done*` }, { quoted: ftoko })
+                kon.sendMessage(m.chat, { image: { url: anu }, caption: mess.success }, { quoted: ftoko })
              }
              break
 /* case 'blue': case 'juice': case 'purple': case 'toxic': case 'peridot':case 'metal': case 'realistic': case 'impressive': case 'cracked': case 'magma': case 'thunder': case 'berry': case 'transformer': case 'horror': case 'metallic': case 'circuit': case 'sketch': case 'halloween':{
@@ -3157,11 +3183,11 @@ kon.sendMessage(m.chat, { video: { url: apinobg}, mimetype: 'video/mp4', fileNam
                 replyig(mess.wait)
 					teks = q
 					anu = await fetchJson(`https://shot.screenshotapi.net/screenshot?&url=${text}`).catch(e => {
-m.reply('error')
+m.reply(mess.erorr)
 })
 					buff = await getBuffer(anu.screenshot)
 					kon.sendMessage(m.chat, { image: { url: anu.screenshot}}).catch(e => {
-m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 }
 					break
@@ -3183,7 +3209,7 @@ mediaType:1,
 mediaUrl: `https://instagram.com/_daaa_1`,
 sourceUrl: `https://instagram.com/_daaa_1`
 }}}, {quoted:ftoko}).catch(e => {
-m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
@@ -3195,11 +3221,11 @@ break
                 replyig(mess.wait)
                 
 					anu = await fetchJson(`https://yuzzu-api.herokuapp.com/api/twitter?link=${text}`).catch(e => {
-m.reply('error')
+m.reply(mess.erorr)
 })
 					tol = await getBuffer(anu.result.HD)
 					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
@@ -3213,7 +3239,7 @@ m.reply('error')
 })
 					tol = await getBuffer(anu.result)
 					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
+m.reply(mess.erorr)
 })
 }
 break
@@ -3530,7 +3556,7 @@ m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks|teks")
                 })
                 } else m.reply(`Balas audio yang ingin diubah dengan caption *${prefix + command}*`)
                 } catch (e) {
-                m.reply(e)
+                m.reply(mess.erorr)
                 }
                 break
     case 'whatmusic':{
@@ -3569,7 +3595,7 @@ const result4 = `*MEDIAFIRE DOWNLOADER*
 *Mime* : ${baby1.filetype}
 *Link* : ${text}`
 replyig(`${result4}`)
-kon.sendMessage(m.chat, { document : { url : baby1.url}, fileName : baby1.filename, mimetype: 'application/zip' }, { quoted : m }).catch ((err) => replyig('Lagi Eror...'))
+kon.sendMessage(m.chat, { document : { url : baby1.url}, fileName : baby1.filename, mimetype: 'application/zip' }, { quoted : m }).catch ((err) => replyig(mess.erorr))
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
 }

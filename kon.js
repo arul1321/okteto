@@ -816,6 +816,17 @@ let tesbut = [
 		{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
 		]
 //●●●●●●●●●●●●●●●●●●●●●● FAKE SETTING●●●●●●●●●●●●●●●●●●●●●●
+const flokasi = {
+key : {
+ participant : '0@s.whatsapp.net'
+},
+message: {
+locationMessage: {
+name: 'Russia',
+jpegThumbnail: todol
+}
+}
+}
 const ftoko = {
 key: {
 			fromMe: false,
@@ -846,7 +857,7 @@ participant : '0@s.whatsapp.net'
 message: {
 documentMessage: {
 title: `Hallo`, 
-jpegThumbnail: tamnel
+jpegThumbnail: todol
 }
 }
 }           
@@ -868,7 +879,7 @@ const adyt = {
                             surface : 1,
                             message: global.poter, //Kasih namalu
                             orderTitle: `Hallo`,
-                            thumbnail: fs.readFileSync('./lib/hisoka.jpg'),
+                            thumbnail: todol,
                             sellerJid: '0@s.whatsapp.net' 
                           }
                         }
@@ -1378,10 +1389,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/allmenu.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1405,10 +1416,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/owner.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1432,10 +1443,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/database.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1459,10 +1470,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/group.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1486,10 +1497,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/maker.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1513,10 +1524,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/download.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1540,10 +1551,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/search.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1567,10 +1578,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/tools.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1594,10 +1605,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/nsfw'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1621,10 +1632,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/voice.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1648,10 +1659,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`,
+thumbnail: fs.readFileSync('./lib/gambar/convert.jpg'),
+mediaType:2,
+mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
+sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1707,17 +1718,17 @@ let setbot = db.data.settings[botNumber]
 let foot = `
 ➤ *Berikut Command Z-Bot MD*➤
  ┃ ➤ *[𝙸𝚗𝚏𝚘 & 𝚁𝚞𝚕𝚎𝚜 𝙱𝚘𝚝] :*
- ┃      1. Jangan Telpon/Vc Bot
- ┃      2. Jangan Spam Bot
- ┃      3. Dilarang Toxic
- ┃      4. Bot Tidak Menyimpan Data Pengguna              
- ┃      5. Jika Bot Tidak Merespon, Mungkin Bot Off
- ┃      6. Dilarang Kirim Virtex/Bug Atau
- ┃      7. Dilarang Kirim Media 18+
- ┃      8. Ulangi Command Jika Bot Tidak Merespon
- ┃      9. Laporkan Ke Owner Jika Menemukan Bug/
- ┃          Eror
- ┃     10. Menu Pencet Di Bawah
+ ┃⍨⃝⚠️      1. Jangan Telpon/Vc Bot
+ ┃⍨⃝⚠️      2. Jangan Spam Bot
+ ┃⍨⃝⚠️      3. Dilarang Toxic
+ ┃⍨⃝⚠️      4. Bot Tidak Menyimpan Data Pengguna              
+ ┃⍨⃝⚠️      5. Jika Bot Tidak Merespon, Mungkin Bot Off
+ ┃⍨⃝⚠️      6. Dilarang Kirim Virtex/Bug Atau
+ ┃⍨⃝⚠️      7. Dilarang Kirim Media 18+
+ ┃⍨⃝⚠️      8. Ulangi Command Jika Bot Tidak Merespon
+ ┃⍨⃝⚠️      9. Laporkan Ke Owner Jika Menemukan Bug/
+ ┃⍨⃝⚠️          Eror
+ ┃⍨⃝⚠️     10. Menu Pencet Di Bawah
  ┗━━━━━━━`
 let ty =`
 🐣 *Runtime Bot : ${runtime(process.uptime())}*

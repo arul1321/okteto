@@ -101,6 +101,17 @@ var ucapanWaktu = 'Good morning🌉'
 
 let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 let tamn = fs.readFileSync('./lib/doc.jpg')
+let allmenu.jpg = fs.readFileSync('./lib/gambar/allmenu.jpg')
+let group.jpg = fs.readFileSync('./lib/gambar/group.jpg')
+let owner.jpg = fs.readFileSync('./lib/gambar/owner.jpg')
+let maker.jpg = fs.readFileSync('./lib/gambar/maker.jpg)
+let convert.jpg = fs.readFileSync('./lib/gambar/conver.jpg')
+let database.jpg = fs.readFileSync('./lib/gambar/database.jpg')
+let search.jpg = fs.readFileSync('./lib/gambar/search.jpg')
+let tools.jpg = fs.readFileSync('./lib/gambar/tools.jpg')
+let voice.jpg = fs.readFileSync('./lib/gambar/voice.jpg')
+let download.jpg = fs.readFileSync('./lib/gambar/download.jpg')
+let nsfw.jpg = fs.readFileSync('./lib/gambar/nsfw.jpg')
 //●●●●●●●●●●●●●●●●●●●●●● GROUP SETTING●●●●●●●●●●●●●●●●●●●●●●
         const groupMetadata = m.isGroup ? await kon.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
@@ -760,7 +771,17 @@ const reSize = async(buffer, ukur1, ukur2) => {
 }
 const todol = await reSize(tamnel, 200, 200)      
 const dooo = await reSize(tamn, 200, 200)      
- 
+const allmenu.jpg1 = await reSize(allmenu.jpg, 200, 200)
+const group.jpg1 = await reSize(group.jpg, 200, 200)
+const owner.jpg1 = await reSize(owner.jpg, 200, 200)
+const maker.jpg1 = await reSize(maker.jpg, 200, 200)
+const convert.jpg1 = await reSize(convert.jpg, 200, 200)
+const database.jpg1 = await reSize(database.jpg, 200, 200)
+const search.jpg1 = await reSize(search.jpg, 200, 200)
+const tools.jpg1 = await reSize(tools.jpg, 200, 200)
+const voice.jpg1 = await reSize(voice.jpg, 200, 200)
+const download.jpg1 = await reSize(download.jpg, 200, 200)
+const nsfw.jpg1 = await reSize(nsfw.jpg, 200, 200)
 //●●●●●●●●●●●●●●●●●●●●●● DB SETTING●●●●●●●●●●●●●●●●●●●●●●
 let chats = db.data.chats[m.chat]
             if (typeof chats !== 'object') db.data.chats[m.chat] = {}
@@ -1389,10 +1410,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/allmenu.jpg'),
+thumbnail: allmenu.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1416,10 +1437,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/owner.jpg'),
+thumbnail: owner.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1443,10 +1464,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/database.jpg'),
+thumbnail: database.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1470,10 +1491,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/group.jpg'),
+thumbnail: group.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1497,10 +1518,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/maker.jpg'),
+thumbnail: maker.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1524,10 +1545,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/download.jpg'),
+thumbnail: download.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1551,10 +1572,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/search.jpg'),
+thumbnail: search.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1578,10 +1599,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/tools.jpg'),
+thumbnail: tools.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1605,10 +1626,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/nsfw'),
+thumbnail: nsfw.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1632,10 +1653,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/voice.jpg'),
+thumbnail: voice.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
@@ -1659,10 +1680,10 @@ headerType: 4,
 contextInfo:{externalAdReply:{
 title:`Ulangi Command 2 - 3x Jika Bot Tidak Merespon`,
 body:`Follow Instagram @_daaa_1`,
-thumbnail: fs.readFileSync('./lib/gambar/convert.jpg'),
+thumbnail: convert.jpg1,
 mediaType:2,
-mediaUrl: `https://youtu.be/GCNJTx5Ij3w`,
-sourceUrl: `https://youtu.be/GCNJTx5Ij3w`,
+mediaUrl: `instagram.com/_daaa_1`,
+sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
 kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})

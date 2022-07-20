@@ -1021,16 +1021,6 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
         }
 
 //●●●●●●●●●●●●●●●●●●●●●● AUTO SETTING●●●●●●●●●●●●●●●●●●●●●●
-let miok = ['😨','😅','😂','😳','😎', '🥵', '😱', '🐦', '🙄', '🐤','🗿','🐦','🤨','😐','👆','😔', '👀','👎']
-const pickRandom = (arr) => {
-			return arr[Math.floor(Math.random() * arr.length)]
-		}
-kon.sendMessage(m.chat, {
-          react: {
-            text: pickRandom(miok),
-            key: m.key,
-          }})
-          
   let isSticker = m.mtype
   if (isSticker) {
     if(isSticker === "imageMessage"){

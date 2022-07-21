@@ -807,14 +807,14 @@ if (db.data.chats[m.chat].antilink) {
         let setting = db.data.settings[botNumber]
         if (typeof setting !== 'object') db.data.settings[botNumber] = {}
 	    if (setting) {
-		if (!('templateMenu1' in setting)) setting.templateMenu1 = true
+		if (!('templateMenu1' in setting)) setting.templateMenu1 = false
 		if (!('templateMenu2' in setting)) setting.templateMenu2 = false
-		if (!('templateMenu3' in setting)) setting.templateMenu3 = false
+		if (!('templateMenu3' in setting)) setting.templateMenu3 = true
 		if (!('templateMenu4' in setting)) setting.templateMenu4 = false
 	    } else global.db.data.settings[botNumber] = {
-		templateMenu1: true,
+		templateMenu1: false,
 		templateMenu2: false,
-		templateMenu3: false,
+		templateMenu3: true,
 		templateMenu4: false
 	    }
         
@@ -1727,20 +1727,7 @@ let setbot = db.data.settings[botNumber]
                         if (setbot.templateMenu1) {
                         let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 10,status: 20, thumbnail: todol, surface: 20, message: `Z-Bot MD`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
 let foot = `
-➤ *Berikut Command Z-Bot MD*➤
- ┃ ➤ *[𝙸𝚗𝚏𝚘 & 𝚁𝚞𝚕𝚎𝚜 𝙱𝚘𝚝] :*
- ┃⍨⃝⚠️      1. Jangan Telpon/Vc Bot
- ┃⍨⃝⚠️      2. Jangan Spam Bot
- ┃⍨⃝⚠️      3. Dilarang Toxic
- ┃⍨⃝⚠️      4. Bot Tidak Menyimpan Data Pengguna              
- ┃⍨⃝⚠️      5. Jika Bot Tidak Merespon, Mungkin Bot Off
- ┃⍨⃝⚠️      6. Dilarang Kirim Virtex/Bug Atau
- ┃⍨⃝⚠️      7. Dilarang Kirim Media 18+
- ┃⍨⃝⚠️      8. Ulangi Command Jika Bot Tidak Merespon
- ┃⍨⃝⚠️      9. Laporkan Ke Owner Jika Menemukan Bug/
- ┃⍨⃝⚠️          Eror
- ┃⍨⃝⚠️     10. Menu Pencet Di Bawah
- ┗━━━━━━━`
+➤ *Berikut Command Z-Bot MD*➤`
 let ty =`
 🐣 *Runtime Bot : ${runtime(process.uptime())}*
 🌀 *Speed Bot     : ${latensi.toFixed(4)} Second*
@@ -1750,11 +1737,7 @@ let ty =`
                    🎈 *Download :* 
                                             ⭔ YouTube [true]
                                             ⭔ TikTok [true]
-                                            ⭔ Instagram [true]
-                                            ⭔ Twitter [true]
-                                            ⭔ Pinterest [true]
-                                            ⭔ Cocofun [true]
-                                            ⭔ Facebook [true]`
+                                            ⭔ Instagram [true]`
 let sections= [
 							{
 								"title": "Z-Bot Whatsapp Features ❤️",
@@ -1817,7 +1800,7 @@ let sections= [
 								]
 							}
 						]
-kon.sendListMsg(m.chat, foot, ty, `➤ *Hallo Kak ${pushname} ~ ${ucapanWaktu}*`, `Click Here`, sections, fgclink)
+kon.sendListMsg(m.chat, foot, ty, `➤ *Hallo Kak ${pushname} ~ ${ucapanWaktu}*`, `Click Here`, sections, m)
                         } else if (setbot.templateMenu2) {
 kon.sendMessage(m.chat, { react: { text: `🗿`, key: m.key }})
 let buttons = [

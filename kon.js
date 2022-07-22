@@ -924,7 +924,8 @@ kon.sendMessage(m.chat, teks, text, { quoted: m, contextInfo: { externalAdReply:
 const reply2 = (teks) => {
 			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: global.poter,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
 		}
-const replyig = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
+const replyig = m.reply
+const replyig2 = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
 mimetype: "image/jpeg",
 text: "Bot Whatsapp",
 "forwardingScore": 1000000000,
@@ -937,7 +938,7 @@ sendEphemeral: true,
 "thumbnailUrl": todol,
 "thumbnail": todol,
 "sourceUrl": "https://instagram.com/_daaa_1"
-}}}, { quoted: ftoko, detectLink: true })}
+}}}, { quoted: m, detectLink: true })}
 const reply = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
 mimetype: "image/jpeg",
 text: "Bot Whatsapp",
@@ -951,7 +952,7 @@ sendEphemeral: true,
 "thumbnailUrl": todol,
 "thumbnail": todol,
 "sourceUrl": "https://instagram.com/_daaa_1"
-}}}, { quoted: ftoko, detectLink: true })}
+}}}, { quoted: m, detectLink: true })}
 const replygrup = (teks) => {kon.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Hallo Kak`,"body": `Group Official`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": tamnel,"sourceUrl": `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}}, { quoted: m})}    
 
 //●●●●●●●●●●●●●●●●●●●●●● SENDMESSAGE SETTING●●●●●●●●●●●●●●●●●●●●●●
@@ -1406,7 +1407,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'ownermenu':{
@@ -1433,7 +1434,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'dbmenu':{
@@ -1460,7 +1461,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'groupmenu':{
@@ -1487,7 +1488,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'makermenu':{
@@ -1514,7 +1515,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'downloadmenu':{
@@ -1541,7 +1542,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'searchmenu':{
@@ -1568,7 +1569,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'toolmenu':{
@@ -1595,7 +1596,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'nsfwmenu':{
@@ -1622,7 +1623,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'voicemenu':{
@@ -1649,7 +1650,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'convertmenu':{
@@ -1676,7 +1677,7 @@ mediaUrl: `instagram.com/_daaa_1`,
 sourceUrl: `instagram.com/_daaa_1`,
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, {quoted: ftoko})
+kon.sendMessage(m.chat, buttonMessage, {quoted: m})
 }
 break
 case 'setmenu': {
@@ -1821,7 +1822,7 @@ mediaUrl: "https://instagram.com/_daaa_1",
 sourceUrl: "https://instagram.com/_daaa_1"
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, { quoted: ftoko })
+kon.sendMessage(m.chat, buttonMessage, { quoted: m })
                         } else if (setbot.templateMenu3) {
 kon.sendMessage(m.chat, { text: listcmd, footer: global.poter, templateButtons: buttonsDefault, quoted:m})
                         } else if (setbot.templateMenu4) {
@@ -1952,7 +1953,7 @@ replyig(mess.wait)
     let url = `https://api.github.com/repos/${user}/${repo}/zipball`
     let filename = `${repo}`
     replyig(mess.wait)
-    kon.sendMessage(m.chat, {document: {url: `${url}`}, mimetype: 'application/zip', fileName: `${filename}`}, { quoted : ftoko })
+    kon.sendMessage(m.chat, {document: {url: `${url}`}, mimetype: 'application/zip', fileName: `${filename}`}, { quoted : m })
     db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
 }
@@ -2307,7 +2308,7 @@ mediaUrl: "https://instagram.com/_daaa_1",
 sourceUrl: "https://instagram.com/_daaa_1"
 }}
 }
-kon.sendMessage(m.chat, buttonMessage, { quoted: ftoko })
+kon.sendMessage(m.chat, buttonMessage, { quoted: m })
 }
 break
 case 'emojigambar': {
@@ -2319,9 +2320,7 @@ kon.sendMessage(m.chat, { image: mese, caption: mess.success}, { quoted: fdoc})
 }
 break
 case 'tes2':{
-	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	
-	m.reply(mess.wait)
+	replyig(mess.wait)
 }
 break
 case'glitch3':
@@ -2827,7 +2826,7 @@ case 'lava': case 'rock': case 'bloodglas': case 'hallowen': case 'darkgold': ca
              	if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
                 if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'
              	let anu = await maker.textpro(link, text)
-                kon.sendMessage(m.chat, { image: { url: anu }, caption: mess.success }, { quoted: ftoko })
+                kon.sendMessage(m.chat, { image: { url: anu }, caption: mess.success }, { quoted: m })
              }
              break
 /* case 'blue': case 'juice': case 'purple': case 'toxic': case 'peridot':case 'metal': case 'realistic': case 'impressive': case 'cracked': case 'magma': case 'thunder': case 'berry': case 'transformer': case 'horror': case 'metallic': case 'circuit': case 'sketch': case 'halloween':{
@@ -3213,7 +3212,7 @@ thumbnail: tamnel,
 mediaType:1,
 mediaUrl: `https://instagram.com/_daaa_1`,
 sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:ftoko}).catch(e => {
+}}}, {quoted:m}).catch(e => {
 m.reply(mess.erorr)
 })
 db.data.users[m.sender].limit -= 1 // -1 limit
@@ -3447,11 +3446,11 @@ case 'emoji':case 'semoji':{
                     await sleep(1500)         
                 if (/image/.test(mime)) {
                 let media = await quoted.download()
-                let encmedia = await kon.sendImageAsSticker(i, media, ftoko, { packname: global.packname, author: global.author })
+                let encmedia = await kon.sendImageAsSticker(i, media, m, { packname: global.packname, author: global.author })
             } else if (/video/.test(mime)) {
                 if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
                 let media = await quoted.download()
-                let encmedia = await kon.sendVideoAsSticker(i, media, ftoko, { packname: global.packname, author: global.author })
+                let encmedia = await kon.sendVideoAsSticker(i, media, m, { packname: global.packname, author: global.author })
             } else {
                 throw `Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
                 }
@@ -3702,7 +3701,7 @@ var tidtoodd8 = [
 			{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } },
 			{ quickReplyButton: { displayText: `Menu`, id: `${prefix}menu` } },
 				]
-kon.sendMessage(i, { text: txt, footer: global.poter, templateButtons: tidtoodd8, quoted: ftoko})
+kon.sendMessage(i, { text: txt, footer: global.poter, templateButtons: tidtoodd8, quoted: m})
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
@@ -3721,7 +3720,7 @@ kon.sendMessage(i, { text: txt, footer: global.poter, templateButtons: tidtoodd8
                       let txt = `Broadcast Image by ZBot`
                      
 var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
-kon.sendMessage(i, { caption: text, image: mem, buttons: but, footer: txt }, { quoted: ftoko })
+kon.sendMessage(i, { caption: text, image: mem, buttons: but, footer: txt }, { quoted: m })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
@@ -3739,7 +3738,7 @@ kon.sendMessage(i, { caption: text, image: mem, buttons: but, footer: txt }, { q
                       let txt = `Broadcast ZBot`
                      let bufff = fs.readFileSync(meel)
 var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
-kon.sendMessage(i, { caption: text, video: bufff, buttons: but, footer: txt }, { quoted: ftoko })
+kon.sendMessage(i, { caption: text, video: bufff, buttons: but, footer: txt }, { quoted: m })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
@@ -3770,7 +3769,7 @@ kon.sendMessage(i, { video: bufff, mimetype: 'video/mp4', fileName: `Broadcast.m
                 for (let i of anu) {
                     await sleep(1500)         
                       let bufff = fs.readFileSync(buff)
-                      kon.sendMessage(i, { audio: bufff, mimetype: 'audio/mpeg' }, { quoted : ftoko })
+                      kon.sendMessage(i, { audio: bufff, mimetype: 'audio/mpeg' }, { quoted : m })
                     }
                 m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
             }
@@ -3876,7 +3875,7 @@ var tidtoodd8 = [
 			{ quickReplyButton: { displayText: `Owner`, id: `${prefix}owner` } },
 			{ quickReplyButton: { displayText: `Menu`, id: `${prefix}menu` } },
 				]
-kon.sendMessage(yoi, { text: txt, footer: global.poter, templateButtons: tidtoodd8, quoted: ftoko})
+kon.sendMessage(yoi, { text: txt, footer: global.poter, templateButtons: tidtoodd8, quoted: m})
 		}
 		m.reply('Sukses Broadcast')
             }
@@ -4131,7 +4130,7 @@ thumbnail: tamnel,
 mediaType:1,
 mediaUrl: `https://instagram.com/_daaa_1`,
 sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:ftoko})
+}}}, {quoted:m})
 db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
             }

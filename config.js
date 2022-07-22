@@ -45,16 +45,16 @@ global.f4 = 'application/zip'
 global.f5 = 'application/pdf'
 global.f6 = 'application/vnd.android.package-archive'
 global.mess = {
-	erorr: 'Maaf Server Fitur Ini Sedang Erorr, Akan Kami Perbaiki Segera, Coba Lagi Dalam Beberapa Hari Kedepan🙏🙏',
+error: 'Sorry, this feature server is in error, we will fix it soon, try again in the next few days🙏🙏',
     success: 'Success',
-    admin: 'Khusus Admin Group (tidak termasuk pembuat group)',
-    botAdmin: 'Bot Harus Menjadi Admin',
-    owner: 'Khusus Owner Bot',
-    group: 'Hanya Bisa Digunakan Di Group',
-    private: 'Hanya Bisa Digunakan Di Private Chat',
-    bot: 'Khusus Nomor Bot',
-    wait: 'Proses...',
-    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12 Siang, Coba Lagi Setelah Jam 12 Siang',
+    admin: 'Group Admin only (excluding group creators)',
+    botAdmin: 'Bot Must Be Admin',
+    owner: 'Owner Bot only',
+    group: 'Only Can Be Used In Groups',
+    private: 'Only Can Be Used In Private Chat',
+    bot: 'Bot Number Only',
+    wait: 'Process...',
+    endLimit: 'Your Daily Limit Has Expired, Limit Will Be Reset Every 12 Noon, Try Again After 12 Noon',
 }
 global.limitawal = {
     premium: "19",

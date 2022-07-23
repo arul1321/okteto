@@ -1033,79 +1033,6 @@ kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
 })
       }
     }
-    if (/^https?:\/\/.*(fb.watch|facebook.com)/i.test(m.text)) {
-    	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis   
-    	replyig('*Auto Download Facebook*\nTunggu Sebentar Media Sedang Dikirim....')
-        let url = m.text.split(/\n| /i)[0] 
-        let kin = await facebook(url).catch(e => {
-m.reply(mess.erorr)
-})
-let iin = `• Title : ${kin.title}`
-let buttons = [
-{buttonId: `mp4dwn ${kin.hd}`, buttonText: {displayText: 'Video HD'}, type: 1}
-]
-let buttonMessage = {
-video: {url:kin.sd},
-caption: iin,
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Auto Downloader Facebook Video",
-body:"Downloader by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-db.data.users[m.sender].limit -= 1 // -1 limit
-m.reply('1 Limit Telah Di Gunakan')
-    }
-    if (/^https?:\/\/.*cocofun/i.test(m.text)) {
-    	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	   
-    	replyig('*Auto Download Cocofun*\nTunggu Sebentar Media Sedang Dikirim....')
-    	let url = m.text.split(/\n| /i)[0] 
-        let yut = await cocofun(url).catch(e => {
-m.reply(mess.erorr)
-})
-        console.log(yut)
-        tuki =`🐣 Topik : ${yut.topic}\n🐣 Caption : ${yut.caption}\n🐣 Tayangan : ${yut.play}\🐣 Like : ${yut.like}\🐣 Share : ${yut.share}`
-        let buttons = [
-{buttonId: `mp4dwn ${yut.watermark}`, buttonText: {displayText: 'With Watermark'}, type: 1}
-]
-let buttonMessage = {
-video: {url:yut.no_watermark},
-caption: tuki,
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Auto Downloader Cocofun No Watermak",
-body:"Downloader by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-db.data.users[m.sender].limit -= 1 // -1 limit
-m.reply('1 Limit Telah Di Gunakan')
-    }
-    if (/^https?:\/\/.*(pinterest.com\/pin|pin.it)/i.test(m.text)) {
-      replyig('*Auto Download Pinterest*\nTunggu Sebentar Media Sedang Dikirim....')
-      let url = m.text.split(/\n| /i)[0]  
-      anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${url}`).catch(e => {
-m.reply(mess.erorr)
-})
-					tol = await getBuffer(anu.result)
-					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply('Fitur Sedang Eror Tunggu Beberapa Hari Kedepan')
-})
-    }
    if (/^https?:\/\/.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
    if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	
@@ -1126,38 +1053,6 @@ m.reply('1 Limit Telah Di Gunakan')
                 }
             }
             })
-    }
-    if (/^https?:\/\/.*twitter.com\//i.test(m.text)) {
-    if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	
-    replyig('*Auto Download Twitter*\nTunggu Sebentar Media Sedang Dikirim....')
-    let url = m.text.split(/\n| /i)[0]  
-    let yut = await twitter(url).catch(e => {
-m.reply(mess.erorr)
-})
-console.log(yut)
-anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
-                let buttons = [
-{buttonId: `${prefix}twt720 ${url}`, buttonText: {displayText: `Video 720p`}, type: 1}, {buttonId: `${prefix}twt360 ${url}`, buttonText: {displayText: `Video 360p`}, type: 1}
-]
-let buttonMessage = {
-video: {url:yut.quality_270},
-caption: anu,
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Auto Download Twitter Video",
-body:"Downloader by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `instagram.com/_daaa_1`,
-sourceUrl: `instagram.com/_daaa_1`
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-db.data.users[m.sender].limit -= 1 // -1 limit
-m.reply('1 Limit Telah Di Gunakan')
     }
     if (/^https?:\/\/.*tiktok.com/i.test(m.text)) {
     	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis

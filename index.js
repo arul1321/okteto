@@ -137,65 +137,6 @@ async function startkon() {
         resolve(ab)
     })
 }
-                if (anu.action == 'add') {
-                	   var buffer = await reSize(ppuser, 200, 200)
-                let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 10,status: 20, thumbnail: buffer, surface: 20, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-                he = `[ *SELAMAT DATANG* ]\n❏ *NAME* : @${num.split("@")[0]}\n❏ *GROUP* : ${metadata.subject}\n❏ *MEMBER* : ${jumlahMem.length} \n\n*Semoga Betah, Jangan Lupa Baca Rules, dan Patuhi Aturan Grup*`
-                let link = `https://instagram.com/_daaa_1`
-let buttons = [
-{buttonId: `halo`, buttonText: {displayText: 'WELCOME'}, type: 1}
-]
-let buttonMessage = {
-document: fs.readFileSync('./lib/tes.xlsx'),
-mimetype: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-jpegThumbnail: fs.readFileSync('./lib/hisoka.jpg'),
-mentions: [num],
-fileName: `Welcome Message Z-Bot Whatsapp`,
-fileLength: 99999999999999,
-caption: he,
-footer: `*Description Group :*\n${des}`,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title: `Ulangi 2 -3 x Command Jika Bot Tidak Merespon`,
-body: `Follow Instagram Gw lah`,
-mediaType:2,
-thumbnail: buffer,
-sourceUrl: link,
-mediaUrl: link,
-}}
-}
-        kon.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
-                } else if (anu.action == 'remove') {
-                         	var buffer = await reSize(ppuser, 200, 200)
-                let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "6289523258649-1604595598@g.us"}, "message": {orderMessage: {itemCount: 9,status: 20, thumbnail: buffer, surface: 20, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-                he = `[ *SELAMAT TINGGAL* ]\n❏ *NAME* : @${num.split("@")[0]}\n❏ *GROUP* : ${metadata.subject}\n❏ *MEMBER* : ${jumlahMem.length} \n\n*Semoga Nanti Betah Kalau Masuk Lagi*`
-                let link = `https://instagram.com/_daaa_1`
-let buttons = [
-{buttonId: `halo`, buttonText: {displayText: 'GOOD BYE'}, type: 1}
-]
-let buttonMessage = {
-document: fs.readFileSync('./lib/tes.xlsx'),
-mimetype: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-jpegThumbnail:fs.readFileSync('./lib/hisoka.jpg'),
-mentions: [num],
-fileName: `Z-Bot Whatsapp`,
-fileLength: 99999999999999,
-caption: he,
-footer: `Leave Message by Z-Bot Whatsapp`,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title: `Ulangi 2 -3 x Command Jika Bot Tidak Merespon`,
-body: `Follow Instagram Gw lah`,
-mediaType:2,
-thumbnail: buffer,
-sourceUrl: link,
-mediaUrl: link,
-}}
-}
-        kon.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
-                }
             }
         } catch (err) {
             console.log(err)

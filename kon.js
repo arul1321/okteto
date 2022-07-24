@@ -209,13 +209,10 @@ let listcmd = `
  ⍨⃝🐣  *Sticker*
   === Info ===
  ==⍨⃝🐣 ${prefix}sendsticker (link)
- ==⍨⃝🐣 ${prefix}ttp (teks)
- ==⍨⃝🐣 ${prefix}attp (teks)
- ==⍨⃝🐣 ${prefix}ttpcustom (teks|warna)
  ==⍨⃝🐣 ${prefix}sticker (reply gambar)
  ==⍨⃝🐣 ${prefix}swm (reply gambar)
- ==⍨⃝🐣 ${prefix}smeme (reply gambar)
- ==⍨⃝🐣 ${prefix}smeme2 (reply gambar)
+ ==⍨⃝🐣 ${prefix}smeme (reply gambar)🇱
+ ==⍨⃝🐣 ${prefix}smeme2 (reply gambar)🇱
  ==⍨⃝🐣 ${prefix}triggered (reply gambar)
  ==⍨⃝🐣 ${prefix}gay (reply gambar)
  ==⍨⃝🐣 ${prefix}glass (reply gambar)
@@ -234,8 +231,8 @@ let listcmd = `
  ==⍨⃝🐣 ${prefix}invert (reply gambar)
  
 𝐓𝐨𝐨𝐥𝐬
- ⍨⃝📚 ${prefix}removebg (reply gambar)
- ⍨⃝📚 ${prefix}emojimix (masukan emoji)
+ ⍨⃝📚 ${prefix}removebg (reply gambar)🇱
+ ⍨⃝📚 ${prefix}emojimix (masukan emoji)🇱
  ⍨⃝📚 ${prefix}emojimix2 (masukan emoji)
  ⍨⃝📚 ${prefix}emoji (masukan emoji)
  ⍨⃝📚 ${prefix}del (reply pesan bot)
@@ -267,21 +264,12 @@ let listcmd = `
   === Info ===
   ==> Downloader by Snaptik
       ==⍨⃝📩 ${prefix}tiktok <Link Tiktok>🇱
-  ==> Downloader by Aoivideodl
-      ==⍨⃝📩 ${prefix}tiktok2 <Link Tiktok>🇱
-      ==⍨⃝📩 ${prefix}tiktokaudio2 <Link Tiktok>🇱
-  ==> Downloader by Ttdownloader
-      ==⍨⃝📩 ${prefix}tiktok3 <Link Tiktok>🇱
-  ==> Downloader by @hxz-api
       ==⍨⃝📩 ${prefix}tiktokaudio3 <Link Tiktok>🇱
- ⍨⃝📩 ${prefix}twitter (link twitter)🇱
- ⍨⃝📩 ${prefix}twitter2 (link twitter)🇱
  ⍨⃝📩 ${prefix}telesticker (link sticker tele)🇱
  ⍨⃝📩 Instagram
   === Info ===
   ==> Downloader by @hxz-api
   ==⍨⃝📩 ${prefix}instagram <Link Instagram>🇱
-  ==⍨⃝📩 ${prefix}igstory <Username IG>🇱
  ⍨⃝📩 ${prefix}getmusic🇱
  ⍨⃝📩 ${prefix}getvideo🇱
  ⍨⃝📩 ${prefix}mediafire🇱
@@ -1133,20 +1121,6 @@ case 'lirik':{
             m.reply(song.lyrics)
             }
             break
-case 'ttp2':{
-let yut = await ttp(text)
-console.log(yut)
-buff = await getBuffer(yut.result)
-kon.sendImageAsSticker(m.chat, buff, m, { packname: global.packname, author: global.author })
-}
-break
-case 'attp3':{
-let yut = await attp(text)
-console.log(yut)
-let buff = await getBuffer(yut.result)
-kon.sendVideoAsSticker(m.chat, buff, m, { packname: global.packname, author: global.author })
-}
-break
 case 'addmsg': {
                 if (!m.quoted) throw 'Reply Message Yang Ingin Disave Di Database'
                 if (!text) throw `Example : ${prefix + command} nama file`
@@ -1205,17 +1179,8 @@ case 'antilink': {
                 }
              }
              break
-case 'pinterestdl2':{
-if(!text) return replyig(`Penggunaan ${prefix + command} link`)
-let yut = await pinterestdlv2(args[0])
-replyig(mess.wait)
-console.log(yut)
-let tol = await getBuffer(yut.result)
-kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m })
-}break
-case 'facebook2': case 'fbdl2': case 'facebook2': case 'fb2':{
+case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if (!isUrl(args[0]) && !args[0].includes('m.facebook.com')) return m.reply('Link Invalid!')
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
 
@@ -1228,7 +1193,7 @@ let { facebookdlv3, facebookdlv2 } = require('@bochilteam/scraper')
 m.reply('1 Limit Telah Di Gunakan')
 }
 break
-case 'facebook': case 'fbdl': case 'facebook': case 'fb':{
+case 'facebook2': case 'fbdl2': case 'facebook2': case 'fb2':{
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 if (!isUrl(args[0]) && !args[0].includes('m.facebook.com')) return m.reply('Link Invalid!')
 if(!text) return replyig(`Penggunaan ${prefix + command} link`)
@@ -1762,77 +1727,6 @@ let buttons = [
                 }
            kon.sendMessage(m.chat, buttonMessage, { quoted: m })
            db.data.users[m.sender].limit -= 1 // -1 limit
-m.reply('1 Limit Telah Di Gunakan')
-}
-break
-case 'twitterdl': case 'twit': case 'twitter':{
-	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-	if (!text) throw 'enter query link!'
-                replyig(mess.wait)
-
-let yut = await twitter(args[0])
-console.log(yut)
-anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
-                let buttons = [
-{buttonId: `${prefix}twt720 ${text}`, buttonText: {displayText: `Video 720p`}, type: 1}, {buttonId: `${prefix}twt360 ${text}`, buttonText: {displayText: `Video 360p`}, type: 1}
-]
-let buttonMessage = {
-video: {url:yut.quality_270},
-caption: anu,
-footer: global.poter,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:"Twitter Downloader Video",
-body:"Downloader by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: args[0],
-sourceUrl: args[0]
-}}
-}
-kon.sendMessage(m.chat, buttonMessage, {quoted:m})
-db.data.users[m.sender].limit -= 1 // -1 limit
-m.reply('1 Limit Telah Di Gunakan')
-}
-break
-case 'twt360':{
-if (!text) throw 'enter query link!'
-                replyig(mess.wait)
-let yut = await twitter(args[0])
-console.log(yut)
-
-anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
-kon.sendMessage(m.chat, { video:{url:yut.quality_360}, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: anu}, { quoted: m })
-}
-break
-case 'twt720':{
-if (!text) throw 'enter query link!'
-                replyig(mess.wait)
-let yut = await twitter(args[0])
-console.log(yut)
-anu = `⭔ Username : ${yut.nickname}\n⭔ Caption : ${yut.caption}\n⭔ Thumb : ${yut.thumbnail}`
-kon.sendMessage(m.chat, { video:{url:yut.quality_720}, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: anu}, { quoted: m })
-}
-break
-case 'twittermp3': case 'twitteraudio':{
-if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-if (!text) throw 'enter query link!'
-                replyig(mess.wait)
-
-let yut = await twitter(args[0])
-let tuk = `• nickname : ${yut.nickname}`
-console.log(yut)
-let buff = await getBuffer(yut.mp3)
-kon.sendMessage(m.chat, {audio: buff, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title: tuk,
-body:"Downloader Twitter MP3 by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `https://instagram.com/_daaa_1`,
-sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted: m})
-db.data.users[m.sender].limit -= 1 // -1 limit
 m.reply('1 Limit Telah Di Gunakan')
 }
 break
@@ -3090,59 +2984,8 @@ m.reply(mess.erorr)
 })
 }
 					break
-		   case 'soundcloud':{
-if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-if (!text) throw 'url ?'
-replyig(mess.wait)
-
-let yut = await soundcloud(args[0])
-console.log(yut)
-let ter = `🐣 Judul : ${yut.title}\n?? Durasi : ${yut.duration}\n🐣 Quality : ${yut.quality}\n🐣 Thumb : ${yut.thumbnail}\n\n Tunggu Sebentar Media Sedang Dikirim....`
-replyig(ter)
-lol = await getBuffer(yut.download)
-kon.sendMessage(m.chat, {audio:lol, mimetype:"audio/mp4", ptt:false, contextInfo:{externalAdReply:{
-title:yut.title,
-body:"Downloader Soundcloud by zBot",
-thumbnail: tamnel,
-mediaType:1,
-mediaUrl: `https://instagram.com/_daaa_1`,
-sourceUrl: `https://instagram.com/_daaa_1`
-}}}, {quoted:m}).catch(e => {
-m.reply(mess.erorr)
-})
-db.data.users[m.sender].limit -= 1 // -1 limit
-m.reply('1 Limit Telah Di Gunakan')
-}
-break
-		   case 'twitter2':{
-			   if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
-                if (!text) throw 'url ?'
-                replyig(mess.wait)
-                
-					anu = await fetchJson(`https://yuzzu-api.herokuapp.com/api/twitter?link=${text}`).catch(e => {
-m.reply(mess.erorr)
-})
-					tol = await getBuffer(anu.result.HD)
-					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply(mess.erorr)
-})
-db.data.users[m.sender].limit -= 1 // -1 limit
-m.reply('1 Limit Telah Di Gunakan')
-}
-break
-			case 'pinterestdl':{
-                if (!text) throw 'url ?'
-                replyig(mess.wait)
-					anu = await fetchJson(`https://tyz-api.herokuapp.com/downloader/pindl?link=${text}`).catch(e => {
-m.reply('error')
-})
-					tol = await getBuffer(anu.result)
-					kon.sendMessage(m.chat, { video: tol, mimetype: 'video/mp4', fileName: `zbot.mp4`, caption: mess.success}, { quoted: m }).catch(e => {
-m.reply(mess.erorr)
-})
-}
-break
             case 'smeme': {
+            if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	        let respond = `Kirim/reply image/sticker dengan caption ${prefix + command} text1|text2`
 	        if (!/image/.test(mime)) throw respond
             if (!text) throw respond
@@ -3154,6 +2997,8 @@ break
 	        let fatGans = await floNime(dwnld)
 	        let smeme = `https://api.memegen.link/images/custom/${encodeURIComponent(bawah)}/${encodeURIComponent(atas)}.png?background=${fatGans.result.url}`
 	        let FaTiH = await kon.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.author })
+	        db.data.users[m.sender].limit -= 1 // -1 limit
+            m.reply('1 Limit Telah Di Gunakan')
 	        await fs.unlinkSync(FaTiH)
             }
 	       break     
@@ -3364,6 +3209,7 @@ case 'emoji':case 'semoji':{
 }
 					break
   case 'memegen': case 'smeme2': {
+  if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
   if (!text) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks|teks*`)
   if (!text.includes('|')) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks|teks*`)
   if (!/image/.test(mime)) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks|teks*`)
@@ -3376,6 +3222,8 @@ case 'emoji':case 'semoji':{
 m.reply("Harus Menggunakan Gambar")
 })
   let upz = `https://api.memegen.link/images/custom/${atas}/${bawah}.png?background=${util.format(abe)}`
+  db.data.users[m.sender].limit -= 1 // -1 limit
+  m.reply('1 Limit Telah Di Gunakan')
   kon.sendImageAsSticker(m.chat, upz, m, { packname: global.packname, author: global.author }).catch(err => {
 m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks|teks")
 })
@@ -3418,11 +3266,14 @@ m.reply("Caranya Kirim/Reply Gambar dengan caption .smeme teks|teks")
             }
             break
             case 'emojimix': {
+            if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
 	        if (!text) throw `Example : ${prefix + command} 😀+😁`
 		let [emoji1, emoji2] = text.split`+`
 		let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 		for (let res of anu.results) {
 		    let encmedia = await kon.sendImageAsSticker(m.chat, res.url, m, { packname: global.packname, author: global.author, categories: res.tags })
+		    db.data.users[m.sender].limit -= 1 // -1 limit
+            m.reply('1 Limit Telah Di Gunakan')
 		    await fs.unlinkSync(encmedia)
 		}
 	    }
@@ -3624,10 +3475,8 @@ kon.sendMessage(i, { caption: text, image: mem, buttons: but, footer: txt }, { q
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
                 let meel = await kon.downloadAndSaveMediaMessage(quoted)
-                let getGroups = await kon.groupFetchAllParticipating()
-                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-                let anu = groups.map(v => v.id)
-                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                let anu = await store.chats.all().map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Chat, Waktu Selesai ${anu.length * 1.5} detik`)
                 for (let i of anu) {
                     await sleep(1500)         
                       let txt = `Broadcast ZBot`
@@ -3642,9 +3491,7 @@ kon.sendMessage(i, { caption: text, video: bufff, buttons: but, footer: txt }, {
                 if (!isCreator) throw mess.owner
                 if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
                 let meel = await kon.downloadAndSaveMediaMessage(quoted)
-                let getGroups = await kon.groupFetchAllParticipating()
-                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-                let anu = groups.map(v => v.id)
+                let anu = await store.chats.all().map(v => v.id)
                 m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
                 for (let i of anu) {
                     await sleep(1500)         
@@ -3657,9 +3504,7 @@ kon.sendMessage(i, { video: bufff, mimetype: 'video/mp4', fileName: `Broadcast.m
             case 'bcaudio': case 'bca':{
                 if (!isCreator) throw mess.owner           
                 let buff = await kon.downloadAndSaveMediaMessage(quoted)
-                let getGroups = await kon.groupFetchAllParticipating()
-                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-                let anu = groups.map(v => v.id)
+                let anu = await store.chats.all().map(v => v.id)
                 m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
                 for (let i of anu) {
                     await sleep(1500)         
@@ -3711,47 +3556,6 @@ for (let i = 0; i < gas.result.stickers.length; i++) {
 m.reply('1 Limit Telah Di Gunakan')
 }
 break
-case 'attp': {
-if (!text) throw `text nya...?`
-replyig(mess.wait)
-const buff = await getBuffer(`https://hardianto.xyz/api/maker/attp?text=${encodeURIComponent(q)}&apikey=hardianto`)
-kon.sendMessage(m.chat, { sticker : buff}) 
-}
-break
-case'attp2': {
-if (!text) throw `text nya...?`
-replyig(mess.wait)
-const buff = await getBuffer(`https://api.xteam.xyz/${command}?file&text=${encodeURIComponent(q)}`)
-kon.sendMessage(m.chat, { sticker : buff}) 
-}
-break
-case 'ttp':{
-if (!text) throw `text nya...?`
-let ih = `https://hardianto.xyz/api/maker/ttp?text=${encodeURIComponent(q)}&apikey=hardianto`
-buff = await getBuffer(ih)
-kon.sendImageAsSticker(m.chat, buff, m, { packname: global.packname, author: global.author })
-}
-break
-case 'ttpcustom':{
-if (!text) throw `text nya...?`
-if (!text.includes('|')) return m.reply(`Kek Gini Caranya ${prefix + command} *teks|warna*\n\nBerikut List Warnanya : 
-1. black
-2. yellow
-3. red
-4. green
-5. blue
-6. brown
-7. grey
-8. pink
-9. gold
-10. purple`)
-  arg = args.join(' ')
-  atas = arg.split('|')[0]
-  bawah = arg.split('|')[1]
-let ih = `https://hardianto.xyz/api/ttpcustom?text=${encodeURIComponent(atas)}&color=${bawah}&apikey=hardianto`
-buff = await getBuffer(ih)
-kon.sendImageAsSticker(m.chat, buff, m, { packname: global.packname, author: global.author })
-}break
 case 'sendsticker':
 if (!text) throw `Url nya.....?\n *Note : Harus Berupa Url Gambar*`
 buff = await getBuffer(args[0])

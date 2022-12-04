@@ -67,7 +67,813 @@ const text = q = args.join(" ")
 const from = m.key.remoteJid
 const sender = m.isGroup ? m.participant : m.key.remoteJid
 const quoted = m.quoted ? m.quoted : m
+const mime = (quoted.msg || quoted).mimetype || ''require('./config')
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— CONST â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType} = require('@adiwajshing/baileys')
+const fs = require('fs')
+const util = require('util')
+const chalk = require('chalk')
+const { exec, spawn, exeexecSynccSync } = require("child_process")
+const hx = require('hxz-api')
+const xfar = require('xfarr-api')
+const bocil = require('@bochilteam/scraper') 
+const axios = require('axios')
+const { fromBuffer } = require('file-type')
+const path = require('path')
+const os = require('os')
+const Jimp = require('jimp')
+const moment = require("moment-timezone");
+const wib = moment.tz('Asia/Jakarta').fformatormat('HH : mm : ss')
+const wita = moment.tz('Asia/Makassar').format('HH : mm : ss')
+const wit = moment.ttzttzzttzttzzzz('Asia/Jayapura').format('HH : mm : ss')
+const dt = moment(Date.now()).tz('Asia/Jakarta').locale('id').format('a')
+const ffmpeg = require('fluent-ffmpeg')
+const speed = require('performance-now')
+const { performance } = require('perf_hooks')
+const { Primbon } = require('scrape-primbon')
+const primbon = new Primbon()
+const { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
+const { smsg, getGroupAdmins, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
+const content = JSON.stringify(m.message)
+const imgbb = require('imgbb-uploader');
+const { EmojiAPI } = require("emoji-api");
+const emoji = new EmojiAPI()
+//const ucapanWaktu = "Selamat "+dt.charAt(0).toUpperCase() + dt.slice(1)*/
+const type = Object.keys(m.message)[0]
+const ofrply = fs.readFileSync('./lib/hisoka.jpg')
+const mediafiredl = require('./lib/mediafiredl.js')
+const { 
+ttp,
+attp,
+igstalk,
+igstory,
+aiovideodl,
+like, 
+soundcloud2, 
+cocofun, 
+pinterestdlv2, 
+twitter, 
+soundcloud, 
+facebook } = require('./lib/scraper.js')
+const maker = require('mumaker')
+const cmdmedia = JSON.parse(fs.readFileSync('./src/cmdmedia.json'))
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— MODULEtextMODULEtextORTMODULEtextMODULEtextORTORTtMODULEtextORTMODULEtextMODULEtextORTORtMODULEtextORTMODULEtextMODULEtextORTOORtMODULEtextORTMODULEtextMODULEtextORTOORtMODULEtextORTMODULEtextMODULEtextORTOORtMODULEtextORTMODULEtextMODULEtextORTOORtMODULEtextORTMODULEtextMODULEteORORTOORtMODULEtextORTMODULEtextMODULEteORORTOORtMODULEtextORTMODULEtextMODULEteORORTOORtMODULEtextORTMODULEtextMODULteORORTOORtMODULEtextORTMODULEtextMODDULteORORTOORtMODULEtextORTMODULEtextMODORTteORORTOORtMODULEtextORTMODULEtextMODORTORTORT â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+module.exports = kon = async (kon, m, chatUpdate, store) => {
+    try {
+var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
+var budy = (typeof m.text == 'string' ? m.tetextxt : '')
+var prefix = prefa ? /^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢+âœ“_=|~!?@#$%^&.Â©^]/gi.test(body) ? body.match(/^[Â°â€¢Ï€Ã·Ã—Â¶âˆ†Â£Â¢â‚¬Â¥Â®â„¢+âœ“_=|~!?@#$%^&.Â©^]/gi)[0] : "" : prefa ?? global.prefix
+const isCmd = body.startsWith(prefix)
+const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
+const args = body.trim().split(/ +/).slice(1)
+const pushname = m.pushName || "No Name"
+const botNumber = kon.user.id ? kon.user.id.split(":")[0]+"@s.whatsapp.net" : kon.user.id
+const isCreator = [botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+const itsMe = m.sender == botNumber ? true : false
+const text = q = args.join(" ")
+const from = m.key.remoteJid
+const sender = m.isGroup ? m.participant : m.key.remoteJid
+const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.msg || quoted).mimetype || ''
+const isMedia = /image|video|sticker|audio/.test(mime)
+const isQuotedMsg = type === 'extendedTextMessage' && content.includes('Message')
+const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
+const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
+const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
+const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
+const isUrl = (url) => {
+return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
+}
+moment.teORORTOORtMODULEtextORTMODULEtextMODORTORTRORTOORtMODULEtextORTMODULEtextMODORTORT
+const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
+const time2 = moment().tz('Asia/Jakarta').format('HH:mm:ss')
+if(time2 < "23:59:00"){
+var ucapanWaktu = 'Good nightðŸŒƒ'
+}
+if(time2 < "19:00:00"){
+var ucapanWaktu = 'Good afternoonðŸŒ†'
+}
+if(time2 < "18:00:00"){
+var ucapanWaktu = 'Good afternoonðŸŒ…'
+}
+if(time2 < "15:00:00"){
+var ucapanWaktu = 'Good dayðŸ™'
+}
+if(time2 < "11:00:00"){
+var ucapanWaktu = 'Good morningðŸŒ'
+}
+if(time2 < "05:00:00"){
+var ucapanWaktu = 'Good morningðŸŒ‰'
+}
+
+let tamnel = fs.readFileSync('./lib/hisoka.jpg')
+let tamn = fs.readFileSync('./lib/doc.jpg')
+let allmenujpg = fs.readFileSync('./lib/gambar/allmenu.jpg')
+let groupjpg = fs.readFileSync('./lib/gambar/group.jpg')
+let ownerjpg = fs.readFileSync('./lib/gambar/owner.jpg')
+let makerjpg = fs.readFileSync('./lib/gambar/maker.jpg')
+let convertjpg = fs.readFileSync('./lib/gambar/convert.jpg')
+let databasejpg = fs.readFileSync('./lib/gambar/database.jpg')
+let searchjpg = fs.readFileSync('./lib/gambar/search.jpg')
+let toolsjpg = fs.readFileSync('./lib/gambar/tools.jpg')
+let voicejpg = fs.readFileSync('./lib/gambar/voice.jpg')
+let downloadjpg = fs.readFileSync('./lib/gambar/download.jpg')
+let nsfwjpg = fs.readFileSync('./lib/gambar/nsfw.jpg')
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— GROUP SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+        const groupMetadata = m.isGroup ? await kon.groupMetadata(m.chat).catch(e => {}) : ''
+        const groupName = m.isGroup ? groupMetadata.subject : ''
+        const participants = m.isGroup ? await groupMetadata.participants : ''
+        const groupAdmins = m.isGroup ? await getGroupAdmins(participants) : ''
+        const groupOwner = m.isGroup ? groupMetadata.owner : ''
+    	const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
+    	const isGroupOwner = m.isGroup ? groupOwner.includes(m.sender) : false
+        const isGroupAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
+        const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
+        const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || false
+	
+	
+	try {
+            let isNumber = x => typeof x === 'number' && !isNaN(x)
+            let limitUser = isPremium ? global.limitpremium : global.limitfree
+            let user = db.data.users[m.sender]
+            if (typeof user !== 'object') db.data.users[m.sender] = {}
+            if (user) {   
+                if (!isNumber(user.limit)) user.limit = limitUser
+            } else global.db.data.users[m.sender] = {
+                limit: limitUser,
+            }
+            } catch (err) {
+            console.error(err)
+        }
+        // reset limit every 12 hours
+        let cron = require('node-cron')
+        cron.schedule('00 12 * * *', () => {
+            let user = Object.keys(global.db.data.users)
+            let limitUser = isPremium ? global.limitpremium : global.limitfree
+            for (let jid of user) global.db.data.users[jid].limit = limitUser
+            console.log('Reseted Limit')
+        }, {
+            scheduled: true,
+            timezone: "Asia/Jakarta"
+        })
+        const jakol = m.sender
+        const panggil = `@${jakol.split("@")[0]}`
+        // Bot Status
+        const used = process.memoryUsage()
+        const cpus = os.cpus().map(cpu => {
+            cpu.total = Object.keys(cpu.times).reduce((last, type) => last + cpu.times[type], 0)
+			return cpu
+        })
+        let timestamp = speed()
+                let latensi = speed() - timestamp
+                neww = performance.now()
+                oldd = performance.now()
+        const cpu = cpus.reduce((last, cpu, _, { length }) => {
+            last.total += cpu.total
+			last.speed += cpu.speed / length
+			last.times.user += cpu.times.user
+			last.times.nice += cpu.times.nice
+			last.times.sys += cpu.times.sys
+			last.times.idle += cpu.times.idle
+			last.times.irq += cpu.times.irq
+			return last
+        }, {
+            speed: 0,
+			total: 0,
+			times: {
+			    user: 0,
+			    nice: 0,
+			    sys: 0,
+			    idle: 0,
+			    irq: 0
+            }
+        })
+        //â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— PUBLIC & SELF SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+        if (!kon.public) {
+            if (!m.key.fromMe && !isCreator) return
+        }
+
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— AUTO READ & AUTO RECORDING SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+        if (m.message) {
+        kon.sendPresenceUpdate('recording', m.chat, m.sender, [m.key.id])
+            console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
+        }
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— UKURAN GAMBAR LOKASI SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—        
+const reSize = async(buffer, ukur1, ukur2) => {
+    return new Promise(async(resolve, reject) => {
+        var baper = await Jimp.read(buffer);
+        var ab = await baper.resize(ukur1, ukur2).getBufferAsync(Jimp.MIME_JPEG)
+        resolve(ab)
+    })
+}
+const todol = await reSize(tamnel, 200, 200)      
+const dooo = await reSize(tamn, 200, 200)      
+const allmenujpg1 = await reSize(allmenujpg, 200, 200)
+const groupjpg1 = await reSize(groupjpg, 200, 200)
+const ownerjpg1 = await reSize(ownerjpg, 200, 200)
+const makerjpg1 = await reSize(makerjpg, 200, 200)
+const convertjpg1 = await reSize(convertjpg, 200, 200)
+const databasejpg1 = await reSize(databasejpg, 200, 200)
+const searchjpg1 = await reSize(searchjpg, 200, 200)
+const toolsjpg1 = await reSize(toolsjpg, 200, 200)
+const voicejpg1 = await reSize(voicejpg, 200, 200)
+const downloadjpg1 = await reSize(downloadjpg, 200, 200)
+const nsfwjpg1 = await reSize(nsfwjpg, 200, 200)
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— DB SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+let chats = db.data.chats[m.chat]
+            if (typeof chats !== 'object') db.data.chats[m.chat] = {}
+            if (chats) {
+                if (!('antilink' in chats)) chats.antilink = false
+            } else global.db.data.chats[m.chat] = {
+                antilink: false,
+            }
+if (db.data.chats[m.chat].antilink) {
+        if (budy.match(`chat.whatsapp.com`)) {
+        m.reply(`ã€Œ ANTI LINK ã€\n\nYou have been detected sending a group link, sorry you will be kicked!`)
+        if (!isBotAdmins) return m.reply(`Eh bot not admin T_T`)
+        let gclink = (`https://chat.whatsapp.com/`+await kon.groupInviteCode(m.chat))
+        let isLinkThisGc = new RegExp(gclink, 'i')
+        let isgclink = isLinkThisGc.test(m.text)
+        if (isgclink) return m.reply(`Ehh sorry it didn't happen, because you sent the link to this group`)
+        if (isAdmins) return m.reply(`Ehh sorry you admin`)
+        if (isCreator) return m.reply(`Ehh sorry you are the owner of my bot`)
+        kon.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+        }
+        }
+        
+        let setting = db.data.settings[botNumber]
+        if (typeof setting !== 'object') db.data.settings[botNumber] = {}
+	    if (setting) {
+		if (!('templateMenu1' in setting)) setting.templateMenu1 = false
+		if (!('templateMenu2' in setting)) setting.templateMenu2 = false
+		if (!('templateMenu3' in setting)) setting.templateMenu3 = true
+		if (!('templateMenu4' in setting)) setting.templateMenu4 = false
+	    } else global.db.data.settings[botNumber] = {
+		templateMenu1: false,
+		templateMenu2: false,
+		templateMenu3: true,
+		templateMenu4: false
+	    }
+        
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— BUTTONS SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+ let butlink = [
+						{ urlButton: { displayText: `Link`, url : `${text}` } },
+			{ quickReplyButton: { displayText: `Back to Menu`, id: `${prefix}menu` } },
+				]
+let menubutlist = [
+  {buttonId: `sc`, buttonText: {displayText: 'Script'}, type: 1},
+  {buttonId: `ping`, buttonText: {displayText: 'Bot Status'}, type: 1},
+  {buttonId: `owner`, buttonText: {displayText: 'Creator Bot'}, type: 1}
+]
+let buttonsDefault = [
+            { urlButton: { displayText: `Instagram`, url : `instagram.com/_daaa_1` } },
+			{ quickReplyButton: { displayText: `ðŸš¹Owner`, id: `owner` } },
+			{ quickReplyButton: { displayText: `ðŸš¹Status Bot`, id: `owner` } }
+		]
+let tesbut = [
+		{ quickReplyButton: { displayText: `ðŸš¹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `ðŸš¹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `ðŸš¹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `ðŸš¹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `ðŸš¹Owner`, id: `owner` } }
+		]
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— FAKE SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+const flokasi = {
+key : {
+ participant : '0@s.whatsapp.net'
+},
+message: {
+locationMessage: {
+name: 'Russia',
+jpegThumbnail: todol
+}
+}
+}
+const ftoko = {
+key: {
+			fromMe: false,
+			participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289523258649-1604595598@g.us" } : {})
+		},
+		message: {
+			"productMessage": {
+				"product": {
+					"productImage":{
+						"mimetype": "image/jpeg",
+						"jpegThumbnail": tamnel//Gambarnye
+					},
+					"title": 'zBot', 
+					"description": "by Z-Bot Whatsapp", 
+					"currencyCode": "IDR",
+					"priceAmount1000": "70000000",
+					"retailerId": 'Whatsapp Bot',
+					"productImageCount": 1
+				},
+				    "businessOwnerJid": `0@s.whatsapp.net`
+		}
+	}
+}
+const fdoc = {
+key : {
+participant : '0@s.whatsapp.net'
+},
+message: {
+documentMessage: {
+title: `Hallo`, 
+jpegThumbnail: todol
+}
+}
+}           
+const adyt = { 
+"title": `Hallo ${pushname}`,
+"body": `hy`, 
+"mediaType": "2", 
+"mediaUrl": "https://youtu.be/ilrhJV_QMIE", 
+"thumbnail": tamnel
+}
+ const ftrol2 = {
+	key : {
+                          participant : '0@s.whatsapp.net'
+                        },
+       message: {
+                    orderMessage: {
+                            itemCount : 9,
+                            status: 1,
+                            surface : 1,
+                            message: global.poter, //Kasih namalu
+                            orderTitle: `Hallo`,
+                            thumbnail: todol,
+                            sellerJid: '0@s.whatsapp.net' 
+                          }
+                        }
+                      }
+async function uptoibb(path){
+return new Promise (async (resolve, reject) => {
+imgbb('91904762b2cd230ce1d861279bd6bf1d', path).then((res) =>{
+resolve(res.url)
+}).catch(reject)
+})
+}
+
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— REPLY SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—*/
+const sticWait = (hehe) => {
+			ano = fs.readFileSync('./lib/loading.jpg')
+			kon.sendImageAsSticker(m.chat, ano, m, { packname: global.packname, author: global.author })
+		}
+const replyy = (teks) => {
+kon.sendMessage(m.chat, teks, text, { quoted: m, contextInfo: { externalAdReply: { title: `zBot`, body: 'By : Z-Bot Whatsapp', sourceUrl: `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`, thumbnail: tamnel }}})
+}             
+const reply2 = (teks) => {
+			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: global.poter,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
+		}
+const replyig = m.reply
+const replyig2 = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
+mimetype: "image/jpeg",
+text: "Bot Whatsapp",
+"forwardingScore": 1000000000,
+isForwarded: true,
+sendEphemeral: true,
+"externalAdReply": {
+"title": `zBot by Bot Whatsapp`,
+"body": `Follow Instagram My Owner`,
+"previewType": "PHOTO",
+"thumbnailUrl": todol,
+"thumbnail": todol,
+"sourceUrl": "https://instagram.com/_daaa_1"
+}}}, { quoted: m, detectLink: true })}
+const reply = (teks) => {kon.sendMessage(m.chat, { text: teks, "contextInfo": {
+mimetype: "image/jpeg",
+text: "Bot Whatsapp",
+"forwardingScore": 1000000000,
+isForwarded: true,
+sendEphemeral: true,
+"externalAdReply": {
+"title": `zBot by Bot Whatsapp`,
+"body": `Follow Instagram My Owner`,
+"previewType": "PHOTO",
+"thumbnailUrl": todol,
+"thumbnail": todol,
+"sourceUrl": "https://instagram.com/_daaa_1"
+}}}, { quoted: m, detectLink: true })}
+const replygrup = (teks) => {kon.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `Hallo Kak`,"body": `Group Official`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": tamnel,"sourceUrl": `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}}, { quoted: m})}    
+
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— SENDMESSAGE SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+const sendButton5 = async (id, text1, desc1, yo) => {
+var buatpesan = await generateWAMessageFromContent(from, {
+    "templateMessage": {
+      "hydratedTemplate": {
+        ...yo.message,
+        "hydratedContentText": text1,
+        "hydratedFooterText": desc1,
+        "hydratedButtons": [
+          {
+            "urlButton": {
+              "displayText": "Github",
+              "url": "https://github.com/BotWhatsapp12"
+            }
+          },
+          {
+            "urlButton": {
+              "displayText": "Instagram",
+              "url": "https://instagram.com/_daaa_1"
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "Bot Status",
+              "id": `ping`
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "Script",
+              "id": `sc`,
+            }
+          },
+          {
+            "quickReplyButton": {
+              "displayText": "Owner",
+              "id": `owner`
+            }
+          }
+        ]
+      }
+    }
+  }, {})
+kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
+}
+
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— MEDIA SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— 
+        if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in cmdmedia)) {
+        let hash = cmdmedia[m.msg.fileSha256.toString('base64')]
+        let { text, mentionedJid } = hash
+        let messages = await generateWAMessage(m.chat, { text: text, mentions: mentionedJid }, {
+            userJid: kon.user.id,
+            quoted: m.quoted && m.quoted.fakeObj
+        })
+        messages.key.fromMe = areJidsSameUser(m.sender, kon.user.id)
+        messages.key.id = m.key.id
+        messages.pushName = m.pushName
+        if (m.isGroup) messages.participant = m.sender
+        let msg = {
+            ...chatUpdate,
+            messages: [proto.WebMessageInfo.fromObject(messages)],
+            type: 'append'
+        }
+        kon.ev.emit('messages.upsert', msg)
+        }
+
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— AUTO SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+  let isSticker = m.mtype
+  if (isSticker) {
+    if(isSticker === "imageMessage"){
+               let mediaaan = await quoted.download().catch(e => {
+//m.reply(mess.erorr)
+})
+                let encmedialik = await kon.sendImageAsSticker(m.chat, mediaaan, m, { packname: global.packname, author: global.author }).catch(e => {
+//m.reply(mess.erorr)
+})
+      }
+    }
+   if (/^https?:\/\/.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
+   if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+	
+    replyig('*Auto Download Instagram*\nTunggu Sebentar Media Sedang Dikirim....')
+    let url = m.text.split(/\n| /i)[0]  
+    hx.igdl(url).then( result => {
+console.log(result)
+let kyu = `*Auto Download Instagram*\nðŸ£ Username : ${result.user.username}\nðŸ£ Followers : ${result.user.followers}`
+for(let i of result.medias){
+                if(i.url.includes('mp4')){
+                	db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
+                    kon.sendMessage(m.chat, {video:{url:i.url}, caption: kyu, mimetype:'video/mp4'}, {quoted:m})
+                } else {
+                	db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
+                    kon.sendMessage(m.chat, { image: { url: i.url }, caption: kyu}, { quoted: m })
+                }
+            }
+            })
+    }
+    if (/^https?:\/\/.*tiktok.com/i.test(m.text)) {
+    	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+	    
+    	replyig('*Auto Download Tiktok*\nTunggu Sebentar Media Sedang Dikirim....')
+    	let url = m.text.split(/\n| /i)[0]  
+        let res = await bocil.tiktokdl(url).catch(e => {
+m.reply(mess.erorr)
+})
+        console.log(res)
+        anutxt = `â€¢ Author : ${res.author.nickname}\nâ€¢ Description : ${res.description}`
+let buttons = [
+{buttonId: `${prefix}tiktokaudio3 ${url}`, buttonText: {displayText: `Audio`}, type: 1},
+{buttonId: `${prefix}tiktokwm3 ${url}`, buttonText: {displayText: `With Watermark`}, type: 1}
+]
+let buttonMessage = {
+video: {url:res.video.no_watermark},
+caption: anutxt,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Auto Downloader Tiktok",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
+  }
+ if (/^https?:\/\/.*youtu/i.test(m.text)) {
+ if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+
+ replyig('*Auto Download Youtube*\nTunggu Sebentar Media Sedang Dikirim....')
+ let url = m.text.split(/\n| /i)[0]  
+ let { ytv } = require('./lib/y2mate')
+                let quality = args[1] ? args[1] : '480p'
+                let media = await ytv(url, quality)
+                console.log(media)
+                if (media.filesize >= 100000) return replyig('File Melebihi Batas '+util.format(media))
+                anu = `â­” Title : ${media.title}\nâ­” File Size : ${media.filesizeF}\nâ­” Url : ${isUrl(text)}\nâ­” Ext : MP3\nâ­” Resolusi : ${args[1] || '480p'}`
+                let buttons = [
+{buttonId: `${prefix}ytmp3 ${url}`, buttonText: {displayText: `Audio`}, type: 1}
+]
+let buttonMessage = {
+video: {url:media.dl_link},
+caption: anu,
+footer: global.poter,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:"Auto Download Youtube",
+body:"Downloader by zBot",
+thumbnail: tamnel,
+mediaType:1,
+mediaUrl: args[0],
+sourceUrl: args[0]
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, {quoted:m})
+db.data.users[m.sender].limit -= 1 // -1 limit
+m.reply('1 Limit Telah Di Gunakan')
+ }
+
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— AUTO SET BIO SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+
+kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Dengan Kecepatan ${latensi.toFixed(4)} Second`)
+
+//â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â— CASE SETTINGâ—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—â—
+switch(command) {
+    case 'twitter':{
+        if (!text) throw `Example : ${prefix + command} urlnya`
+        replyig(mess.wait)
+        var data = await xfar.downloader.twitter(q).catch((err) => {
+m.reply(mess.error)
+})
+        //if (data.data.size > '70 MB') return reply(`File Melebihi Batas Silahkan Download Sendiri\n*Link :* ${data.data.url}`)
+        let vid = await getBuffer(`${data.quality_720}`).catch((err) => {
+m.reply(mess.error)
+})
+        kon.sendMessage(m.chat, { video: vid, caption: data.caption }, { quoted: m }).catch((err) => {
+m.reply(mess.error)
+})
+}
+        break
+    case 'play': case 'ytplay': {
+        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+       
+        if (!text) throw `Example : ${prefix + command} story wa anime`
+        replyig(mess.wait)
+        
+        let yts = require("yt-search")
+        let search = await yts(text)
+        let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
+            caption = `
+ðŸ£ Title : ${anu.title}
+ðŸ—‚ Ext : Search
+ðŸŽ¬ ID : ${anu.videoId}
+â³ Duration : ${anu.timestamp}
+ðŸ“· Viewers : ${anu.views}
+ðŸ—“ Upload At : ${anu.ago}
+ðŸš¹ Author : ${anu.author.name}
+ðŸ“ƒ Channel : ${anu.author.url}
+ðŸ‘ Description : ${anu.description}
+ðŸ–‡ Url : ${anu.url}`
+var data = await fetchJson('https://yt.nxr.my.id/yt2?url=' + anu.url + '&type=audio')
+        if (data.data.size > '70 MB') return m.reply(`File Melebihi Batas Silahkan Download Sendiri\n*Link :* ${data.data.url}`)
+  let med = await getBuffer(`${data.thumbnail}`)
+    let cap = `
+Tunggu Sekitar Beberapa Menit Ke Depan Media Sedang Di Kirim  
+
+Judul : ${data.data.filename}
+Size : ${data.data.size}
+Durasi : ${data.data.duration}
+`
+let buttons = [
+{buttonId: `${prefix}ytmp4 ${q}`, buttonText: {displayText: 'Video'}, type: 1}
+]
+let buttonMessage = {
+document: tamnel,
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: cap,
+footer: `Z-Bot Multidevice`,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Play Youtube Mp3 Downloader`,
+mediaType: 1,
+renderLargerThumbnail: true , 
+showAdAttribution: true, 
+jpegThumbnail: med,
+mediaUrl: `${q}`,
+thumbnail: med,
+sourceUrl: ` `
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, { quoted: m })
+ kon.sendMessage(m.chat, { audio: { url: data.data.url }, mimetype: 'audio/mp4' }, { quoted: m })
+    }
+    break
+    case 'ttmp3': case 'tiktokaudio':  
+    if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+    if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+    replyig(mess.wait)  
+			    bocil.tiktokdl(`${q}`).then( data => {
+			      kon.sendMessage(m.chat, { audio: { url: data.video.no_watermark }, mimetype: 'audio/mp4' }, { quoted: m })
+			       
+				}).catch(() => sticEror(from))
+		        break
+    case 'gitdownload': case 'gitclone':{
+        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+        if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+        replyig(mess.wait)
+            const regex = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
+            if (!args[0]) throw `Example ${prefix+command} https://github.com/Bayu/botwa`
+            let [_, user, repo] = args[0].match(regex) || []
+            repo = repo.replace(/.git$/, '')
+            let url = `https://api.github.com/repos/${user}/${repo}/zipball`
+            let filename = `${repo}`
+            replyig(mess.wait)
+            kon.sendMessage(m.chat, {document: {url: `${url}`}, mimetype: 'application/zip', fileName: `${filename}`}, { quoted : m })
+        }
+        break
+    case 'ytmp3':{
+        if (!text) throw 'urlnya?'
+		replyig(mess.wait)
+        var data = await fetchJson('https://yt.nxr.my.id/yt2?url=' + q + '&type=audio')
+        if (data.data.size > '70 MB') return m.reply(`File Melebihi Batas Silahkan Download Sendiri\n*Link :* ${data.data.url}`)
+  let med = await getBuffer(`${data.thumbnail}`)
+    let cap = `
+Tunggu Sekitar Beberapa Menit Ke Depan Media Sedang Di Kirim  
+
+Judul : ${data.data.filename}
+Size : ${data.data.size}
+Durasi : ${data.data.duration}
+`
+let buttons = [
+{buttonId: `${prefix}ytmp4 ${q}`, buttonText: {displayText: 'Video'}, type: 1}
+]
+let buttonMessage = {
+document: tamnel,
+mimetype: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+fileName: `Z-Bot Whatsapp MD`,
+fileLength: 99999999999999,
+caption: cap,
+footer: `Z-Bot Multidevice`,
+buttons: buttons,
+headerType: 4,
+contextInfo:{externalAdReply:{
+title:`Play Youtube Mp3 Downloader`,
+mediaType: 1,
+renderLargerThumbnail: true , 
+showAdAttribution: true, 
+jpegThumbnail: med,
+mediaUrl: `${q}`,
+thumbnail: med,
+sourceUrl: ` `
+}}
+}
+kon.sendMessage(m.chat, buttonMessage, { quoted: m })
+ kon.sendMessage(m.chat, { audio: { url: data.data.url }, mimetype: 'audio/mp4' }, { quoted: m })
+}
+break
+    case 'tt': case 'ttmp4': case 'tiktok': case 'tiktoknowm':{
+        if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+        
+        replyig(mess.wait)
+        
+        let res = await bocil.tiktokdl(text).catch(e => {
+        m.reply(mess.erorr)
+        })
+        console.log(res)
+        anutxt = `â€¢ Author : ${res.author.nickname}\nâ€¢ Description : ${res.description}`
+        let buttons = [
+        {buttonId: `${prefix}tiktokaudio3 ${text}`, buttonText: {displayText: `Audio`}, type: 1},
+        {buttonId: `${prefix}tiktokwm3 ${text}`, buttonText: {displayText: `With Watermark`}, type: 1}
+        ]
+        let buttonMessage = {
+        video: {url:res.video.no_watermark},
+        caption: anutxt,
+        footer: global.poter,
+        buttons: buttons,
+        headerType: 4,
+        contextInfo:{externalAdReply:{
+        title:"Tiktok Downloader No Watermak",
+        body:"Downloader by zBot",
+        thumbnail: tamnel,
+        mediaType:1,
+        mediaUrl: args[0],
+        sourceUrl: args[0]
+        }}
+        }
+        kon.sendMessage(m.chat, buttonMessage, {quoted:m}).catch(e => {
+        m.reply(mess.erorr)
+        })
+        }
+        break
+    default:
+        if (budy.startsWith('=>')) {
+            if (!isCreator) return m.reply(mess.owner)
+            function Return(sul) {
+                sat = JSON.stringify(sul, null, 2)
+                bang = util.format(sat)
+                    if (sat == undefined) {
+                        bang = util.format(sul)
+                    }
+                    return m.reply(bang)
+            }
+            try {
+                m.reply(util.format(eval(`(async () => { return ${budy.slice(3)} })()`)))
+            } catch (e) {
+                m.reply(String(e))
+            }
+        }
+
+        if (budy.startsWith('>')) {
+            if (!isCreator) return m.reply(mess.owner)
+            try {
+                let evaled = await eval(budy.slice(2))
+                if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
+                await m.reply(evaled)
+            } catch (err) {
+                m = String(err)
+                await m.reply(m)
+            }
+        }
+
+        if (budy.startsWith('$')) {
+            if (!isCreator) return m.reply(mess.owner)
+            exec(budy.slice(2), (err, stdout) => {
+                if(err) return m.reply(err)
+                if (stdout) return m.reply(stdout)
+            })
+        }
+        
+    
+if (m.chat.endsWith('@s.whatsapp.net') && isCmd) {
+            this.anonymous = this.anonymous ? this.anonymous : {}
+            let room = Object.values(this.anonymous).find(room => [room.a, room.b].includes(m.sender) && room.state === 'CHATTING')
+            if (room) {
+                if (/^.*(next|leave|start)/.test(m.text)) return
+                if (['.next', '.leave', '.stop', '.start', 'Cari Partner', 'Keluar', 'Lanjut', 'Stop'].includes(m.text)) return
+                let other = [room.a, room.b].find(user => user !== m.sender)
+                m.copyNForward(other, true, m.quoted && m.quoted.fromMe ? {
+                    contextInfo: {
+                        ...m.msg.contextInfo,
+                        forwardingScore: 0,
+                        isForwarded: true,
+                        participant: other
+                    }
+                } : {})
+            }
+            return !0
+        }
+    
+if (isCmd && budy.toLowerCase() != undefined) {
+    if (m.chat.endsWith('broadcast')) return
+    if (m.isBaileys) return
+    let msgs = global.db.data.database
+    if (!(budy.toLowerCase() in msgs)) return
+    kon.copyNForward(m.chat, msgs[budy.toLowerCase()], true)
+}
+}
+
+
+} catch (err) {
+m.reply(util.format(err))
+}
+}
+
+
+let file = require.resolve(__filename)
+fs.watchFile(file, () => {
+fs.unwatchFile(file)
+console.log(chalk.redBright(`Update ${__filename}`))
+delete require.cache[file]
+require(file)
+})
 const isMedia = /image|video|sticker|audio/.test(mime)
 const isQuotedMsg = type === 'extendedTextMessage' && content.includes('Message')
 const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')

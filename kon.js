@@ -99,18 +99,6 @@ var ucapanWaktu = 'Good morning🌉'
 }
 
 let tamnel = fs.readFileSync('./lib/hisoka.jpg')
-let tamn = fs.readFileSync('./lib/doc.jpg')
-let allmenujpg = fs.readFileSync('./lib/gambar/allmenu.jpg')
-let groupjpg = fs.readFileSync('./lib/gambar/group.jpg')
-let ownerjpg = fs.readFileSync('./lib/gambar/owner.jpg')
-let makerjpg = fs.readFileSync('./lib/gambar/maker.jpg')
-let convertjpg = fs.readFileSync('./lib/gambar/convert.jpg')
-let databasejpg = fs.readFileSync('./lib/gambar/database.jpg')
-let searchjpg = fs.readFileSync('./lib/gambar/search.jpg')
-let toolsjpg = fs.readFileSync('./lib/gambar/tools.jpg')
-let voicejpg = fs.readFileSync('./lib/gambar/voice.jpg')
-let downloadjpg = fs.readFileSync('./lib/gambar/download.jpg')
-let nsfwjpg = fs.readFileSync('./lib/gambar/nsfw.jpg')
 //●●●●●●●●●●●●●●●●●●●●●● GROUP SETTING●●●●●●●●●●●●●●●●●●●●●●
         const groupMetadata = m.isGroup ? await kon.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
@@ -185,7 +173,7 @@ let nsfwjpg = fs.readFileSync('./lib/gambar/nsfw.jpg')
             if (!m.key.fromMe && !isCreator) return
         }
 
-//●●●●●●●●●●●●●●●●●●●●●● AUTO READ & AUTO RECORDING SETTING●●●●●●●●●●●●●●●●●●●●●●
+//●●●●●●●●●●●●●●●●●●●●●● AUTO RECORDING SETTING●●●●●●●●●●●●●●●●●●●●●●
         if (m.message) {
         kon.sendPresenceUpdate('recording', m.chat, m.sender, [m.key.id])
             console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
@@ -200,206 +188,17 @@ const reSize = async(buffer, ukur1, ukur2) => {
 }
 const todol = await reSize(tamnel, 200, 200)      
 const dooo = await reSize(tamn, 200, 200)      
-const allmenujpg1 = await reSize(allmenujpg, 200, 200)
-const groupjpg1 = await reSize(groupjpg, 200, 200)
-const ownerjpg1 = await reSize(ownerjpg, 200, 200)
-const makerjpg1 = await reSize(makerjpg, 200, 200)
-const convertjpg1 = await reSize(convertjpg, 200, 200)
-const databasejpg1 = await reSize(databasejpg, 200, 200)
-const searchjpg1 = await reSize(searchjpg, 200, 200)
-const toolsjpg1 = await reSize(toolsjpg, 200, 200)
-const voicejpg1 = await reSize(voicejpg, 200, 200)
-const downloadjpg1 = await reSize(downloadjpg, 200, 200)
-const nsfwjpg1 = await reSize(nsfwjpg, 200, 200)
-//●●●●●●●●●●●●●●●●●●●●●● DB SETTING●●●●●●●●●●●●●●●●●●●●●●
-let chats = db.data.chats[m.chat]
-            if (typeof chats !== 'object') db.data.chats[m.chat] = {}
-            if (chats) {
-                if (!('antilink' in chats)) chats.antilink = false
-            } else global.db.data.chats[m.chat] = {
-                antilink: false,
-            }
-if (db.data.chats[m.chat].antilink) {
-        if (budy.match(`chat.whatsapp.com`)) {
-        m.reply(`「 ANTI LINK 」\n\nYou have been detected sending a group link, sorry you will be kicked!`)
-        if (!isBotAdmins) return m.reply(`Eh bot not admin T_T`)
-        let gclink = (`https://chat.whatsapp.com/`+await kon.groupInviteCode(m.chat))
-        let isLinkThisGc = new RegExp(gclink, 'i')
-        let isgclink = isLinkThisGc.test(m.text)
-        if (isgclink) return m.reply(`Ehh sorry it didn't happen, because you sent the link to this group`)
-        if (isAdmins) return m.reply(`Ehh sorry you admin`)
-        if (isCreator) return m.reply(`Ehh sorry you are the owner of my bot`)
-        kon.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-        }
-        }
-        
-        let setting = db.data.settings[botNumber]
-        if (typeof setting !== 'object') db.data.settings[botNumber] = {}
-	    if (setting) {
-		if (!('templateMenu1' in setting)) setting.templateMenu1 = false
-		if (!('templateMenu2' in setting)) setting.templateMenu2 = false
-		if (!('templateMenu3' in setting)) setting.templateMenu3 = true
-		if (!('templateMenu4' in setting)) setting.templateMenu4 = false
-	    } else global.db.data.settings[botNumber] = {
-		templateMenu1: false,
-		templateMenu2: false,
-		templateMenu3: true,
-		templateMenu4: false
-	    }
-        
 //●●●●●●●●●●●●●●●●●●●●●● BUTTONS SETTING●●●●●●●●●●●●●●●●●●●●●●
+const butlink2 = [
+    { urlButton: { displayText: `Link`, url : `${q}` } }
+]
+
  let butlink = [
 						{ urlButton: { displayText: `Link`, url : `${text}` } },
 			{ quickReplyButton: { displayText: `Back to Menu`, id: `${prefix}menu` } },
 				]
-let menubutlist = [
-  {buttonId: `sc`, buttonText: {displayText: 'Script'}, type: 1},
-  {buttonId: `ping`, buttonText: {displayText: 'Bot Status'}, type: 1},
-  {buttonId: `owner`, buttonText: {displayText: 'Creator Bot'}, type: 1}
-]
-let buttonsDefault = [
-            { urlButton: { displayText: `Instagram`, url : `instagram.com/_daaa_1` } },
-			{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } },
-			{ quickReplyButton: { displayText: `🚹Status Bot`, id: `owner` } }
-		]
-let tesbut = [
-		{ quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }, { quickReplyButton: { displayText: `🚹Owner`, id: `owner` } }
-		]
-//●●●●●●●●●●●●●●●●●●●●●● FAKE SETTING●●●●●●●●●●●●●●●●●●●●●●
-const flokasi = {
-key : {
- participant : '0@s.whatsapp.net'
-},
-message: {
-locationMessage: {
-name: 'Russia',
-jpegThumbnail: todol
-}
-}
-}
-const ftoko = {
-key: {
-			fromMe: false,
-			participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289523258649-1604595598@g.us" } : {})
-		},
-		message: {
-			"productMessage": {
-				"product": {
-					"productImage":{
-						"mimetype": "image/jpeg",
-						"jpegThumbnail": tamnel//Gambarnye
-					},
-					"title": 'zBot', 
-					"description": "by Z-Bot Whatsapp", 
-					"currencyCode": "IDR",
-					"priceAmount1000": "70000000",
-					"retailerId": 'Whatsapp Bot',
-					"productImageCount": 1
-				},
-				    "businessOwnerJid": `0@s.whatsapp.net`
-		}
-	}
-}
-const fdoc = {
-key : {
-participant : '0@s.whatsapp.net'
-},
-message: {
-documentMessage: {
-title: `Hallo`, 
-jpegThumbnail: todol
-}
-}
-}           
-const adyt = { 
-"title": `Hallo ${pushname}`,
-"body": `hy`, 
-"mediaType": "2", 
-"mediaUrl": "https://youtu.be/ilrhJV_QMIE", 
-"thumbnail": tamnel
-}
- const ftrol2 = {
-	key : {
-                          participant : '0@s.whatsapp.net'
-                        },
-       message: {
-                    orderMessage: {
-                            itemCount : 9,
-                            status: 1,
-                            surface : 1,
-                            message: global.poter, //Kasih namalu
-                            orderTitle: `Hallo`,
-                            thumbnail: todol,
-                            sellerJid: '0@s.whatsapp.net' 
-                          }
-                        }
-                      }
-async function uptoibb(path){
-return new Promise (async (resolve, reject) => {
-imgbb('91904762b2cd230ce1d861279bd6bf1d', path).then((res) =>{
-resolve(res.url)
-}).catch(reject)
-})
-}
-
 //●●●●●●●●●●●●●●●●●●●●●● REPLY SETTING●●●●●●●●●●●●●●●●●●●●●●*/
-const sticWait = (hehe) => {
-			ano = fs.readFileSync('./lib/loading.jpg')
-			kon.sendImageAsSticker(m.chat, ano, m, { packname: global.packname, author: global.author })
-		}
-const replyy = (teks) => {
-kon.sendMessage(m.chat, teks, text, { quoted: m, contextInfo: { externalAdReply: { title: `zBot`, body: 'By : Z-Bot Whatsapp', sourceUrl: `https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`, thumbnail: tamnel }}})
-}             
-const reply2 = (teks) => {
-			kon.sendMessage(m.chat, teks, text, { thumbnail: tamnel, sendEphemeral: true, quoted: m, contextInfo: { forwardingScore: 508, isForwarded: true, externalAdReply:{title: global.poter,body:"Bot WhatsApp by ArulGanz",previewType:"PHOTO",thumbnail:tamnel,sourceUrl:`https://chat.whatsapp.com/C3jhijq3xS0AVuJykrhxMn`}}})
-		}
 const replyig = m.reply
-//●●●●●●●●●●●●●●●●●●●●●● SENDMESSAGE SETTING●●●●●●●●●●●●●●●●●●●●●●
-const sendButton5 = async (id, text1, desc1, yo) => {
-var buatpesan = await generateWAMessageFromContent(from, {
-    "templateMessage": {
-      "hydratedTemplate": {
-        ...yo.message,
-        "hydratedContentText": text1,
-        "hydratedFooterText": desc1,
-        "hydratedButtons": [
-          {
-            "urlButton": {
-              "displayText": "Github",
-              "url": "https://github.com/BotWhatsapp12"
-            }
-          },
-          {
-            "urlButton": {
-              "displayText": "Instagram",
-              "url": "https://instagram.com/_daaa_1"
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "Bot Status",
-              "id": `ping`
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "Script",
-              "id": `sc`,
-            }
-          },
-          {
-            "quickReplyButton": {
-              "displayText": "Owner",
-              "id": `owner`
-            }
-          }
-        ]
-      }
-    }
-  }, {})
-kon.relayMessage(id, buatpesan.message, { messageId: buatpesan.key.id })
-}
-
 //●●●●●●●●●●●●●●●●●●●●●● MEDIA SETTING●●●●●●●●●●●●●●●●●●●●●● 
         if (isMedia && m.msg.fileSha256 && (m.msg.fileSha256.toString('base64') in cmdmedia)) {
         let hash = cmdmedia[m.msg.fileSha256.toString('base64')]
@@ -423,6 +222,23 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
 switch(command) {
+    case 'instagram':{
+        if (!text) throw `Example : ${prefix + command} story wa anime`
+        replyig(mess.wait)
+        bocil.instagramdlv3(q).then(data => {
+            for (let i of data) {
+            if (i.url.includes('mp4')) {
+            kon.sendMessage(from, { caption: ` Succes Download Video Instagram, Thanks For Using zBot`, video:{url:i.url},quoted:m} )
+            } else {
+            kon.sendMessage(from, { caption: ` Succes Download Image Instagram, Thanks For Using zBot`, image:{url:i.url},quoted:m} )
+            }
+            }
+            })
+            .catch((err) => {
+            sticEror(from)
+            })
+    }
+    break
     case 'menu':{
         let cap = `
 🎗 *Hallo Kak ${pushname} ~ ${ucapanWaktu}*
@@ -436,6 +252,7 @@ switch(command) {
  ⍨⃝⚠️ ${prefix}play
  ⍨⃝⚠️ ${prefix}ytmp3
  ⍨⃝⚠️ ${prefix}twitter
+ ⍨⃝⚠️ ${prefix}instagram
  `
         kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
         let buttons = [

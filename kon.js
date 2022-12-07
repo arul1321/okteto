@@ -178,6 +178,8 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
         kon.sendPresenceUpdate('recording', m.chat, m.sender, [m.key.id])
             console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
+        let blocks = ['91', '92', '212', '20', '1', '94', '48', '49', '60']
+        if (blocks.some(no => sender.startsWith(no))) return kon.updateBlockStatus(sender, 'block')
 //●●●●●●●●●●●●●●●●●●●●●● UKURAN GAMBAR LOKASI SETTING●●●●●●●●●●●●●●●●●●●●●●        
 const reSize = async(buffer, ukur1, ukur2) => {
     return new Promise(async(resolve, reject) => {
@@ -187,7 +189,7 @@ const reSize = async(buffer, ukur1, ukur2) => {
     })
 }
 const todol = await reSize(tamnel, 200, 200)      
-const dooo = await reSize(tamn, 200, 200)      
+const dooo = await reSize(tamnel, 200, 200)      
 //●●●●●●●●●●●●●●●●●●●●●● BUTTONS SETTING●●●●●●●●●●●●●●●●●●●●●●
 const butlink2 = [
     { urlButton: { displayText: `Link`, url : `${q}` } }

@@ -1112,7 +1112,7 @@ Size : ${data.data.size}
 Durasi : ${data.data.duration}
 `
 let buttons = [
-{buttonId: `${prefix}ytmp4 ${q}`, buttonText: {displayText: 'Video'}, type: 1}
+{buttonId: `${prefix}owner`, buttonText: {displayText: 'Owner'}, type: 1}
 ]
 let buttonMessage = {
 document: tamnel,

@@ -224,7 +224,508 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
 switch(command) {
+//Sticker
+case 'triggered': case 'gay': case 'glass': case 'passed': case 'jail': case 'comrade':case 'green': case 'blue': case 'sepia': case 'wasted': case 'greyscale': case 'blurple2': case 'blurple': case 'red': case 'invertgreyscale': case 'invert':{
+                    replyig(mess.wait)
+					if (!/image/.test(mime)) return replyig(`Kirim/Reply Foto Dengan Caption ${prefix + command}`)
+					mee = await kon.downloadAndSaveMediaMessage(quoted)
+                    mem = await TelegraPh(mee)
+					anu4 = await getBuffer(`https://some-random-api.ml/canvas/${command}?avatar=${mem}`)
+					memek = await kon.sendImageAsSticker(m.chat, anu4, m, { packname: global.packname, author: global.author })
+  await fs.unlinkSync(memek)
+}
+					break
+case 'smeme': {
+            if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+	        let respond = `Kirim/reply image/sticker dengan caption ${prefix + command} text1|text2`
+	        if (!/image/.test(mime)) throw respond
+            if (!text) throw respond
+	        replyig(mess.wait)
+	        atas = text.split('|')[0] ? text.split('|')[0] : '-'
+            bawah = text.split('|')[1] ? text.split('|')[1] : '-'
+	        let dwnld = await quoted.download()
+	        let { floNime } = require('./lib/uploader')
+	        let fatGans = await floNime(dwnld)
+	        let smeme = `https://api.memegen.link/images/custom/${encodeURIComponent(bawah)}/${encodeURIComponent(atas)}.png?background=${fatGans.result.url}`
+	        let FaTiH = await kon.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.author })
+	        await fs.unlinkSync(FaTiH)
+            }
+	       break
+case 'sticker': case 's': case 'stickergif': case 'sgif': {
+            if (!quoted) throw`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
+            replyig(mess.wait)
+                    if (/image/.test(mime)) {
+                let media = await quoted.download()
+                let encmedia = await kon.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+                await fs.unlinkSync(encmedia)
+            } else if (/video/.test(mime)) {
+                if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
+                let media = await quoted.download()
+                let encmedia = await kon.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+                await fs.unlinkSync(encmedia)
+            } else {
+                throw `Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
+                }
+            }
+            break
+case 'wm': case 'swm': {
+    	if (!text) throw `Example : !swm zBOT.Botz`
+    	   top = text.split('|')[0]
+           bot = text.split('|')[1]
+            if (!quoted) throw`Example : #swm ©zBot|ArulGanz`
+            replyig(mess.wait)
+                    if (/image/.test(mime)) {
+                let media = await quoted.download()
+                let encmedia = await kon.sendImageAsSticker(m.chat, media, m, { packname: top, author: bot })
+                await fs.unlinkSync(encmedia)
+            } else if (/video/.test(mime)) {
+                if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
+                let media = await quoted.download()
+                let encmedia = await kon.sendVideoAsSticker(m.chat, media, m, { packname: top, author: bot })
+                await fs.unlinkSync(encmedia)
+            } else {
+                throw `Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
+                }
+            }
+            break
+case 'toimage': case 'toimg': {
+                if (!quoted) m.reply('Reply Sticker')
+                if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
+                replyig(mess.wait)
+                let media = await kon.downloadAndSaveMediaMessage(quoted)
+                let ran = await getRandom('.png')
+                exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+                    fs.unlinkSync(media)
+                    if (err) throw err
+                    let buffer = fs.readFileSync(ran)
+                    kon.sendMessage(m.chat, { image: buffer, caption : mess.success}, { quoted: m })
+                    fs.unlinkSync(ran)
+                })
+            }
+            break
 //Makermenu
+case 'lion2':
+	  if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	  replyig(mess.wait)
+	  maker.textpro("https://textpro.me/create-lion-logo-mascot-online-938.html", [
+      `${text}`,])
+     .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+     .catch((err) => console.log(err));
+     break
+
+
+case 'papercut':
+	      if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	      replyig(mess.wait)
+	      maker.textpro("https://textpro.me/create-art-paper-cut-text-effect-online-1022.html", [
+`${text}`,])
+         .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+         .catch((err) => console.log(err));
+         break
+
+
+case 'transformer':
+	      if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	      replyig(mess.wait)
+	      maker.textpro("https://textpro.me/create-a-transformer-text-effect-online-1035.html", [
+`${text}`,])
+.then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+.catch((err) => console.log(err));
+break
+   
+
+case 'herryp':
+	       if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+	       replyig(mess.wait)
+	       teks1 = q.split("|")[0]
+	       teks2 = q.split("|")[1]
+	       maker.textpro("https://textpro.me/create-harry-potter-text-effect-online-1025.html", [
+ `${teks1}`,`${teks2}`])
+ .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+ .catch((err) => console.log(err));
+ break
+
+
+case 'neondevil':
+	      if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	      replyig(mess.wait)
+	      maker.textpro("https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html", [
+`${text}`,])
+         .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+         .catch((err) => console.log(err));
+         break
+
+
+case '3dstone':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+
+
+case '3davengers':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/create-3d-avengers-logo-online-974.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+
+
+case 'thunder':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/online-thunder-text-effect-generator-1031.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+
+
+case 'window':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/write-text-on-foggy-window-online-free-1015.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+
+
+case 'graffiti':
+   case 'grafiti':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+
+
+
+case 'pornhub':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+
+
+
+case 'blackping':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/create-blackpink-logo-style-online-1001.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+case 'glitch':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/create-impressive-glitch-text-effects-online-1027.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'glitch2':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/create-a-glitch-text-effect-online-free-1026.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'glitch3':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case '3dspace':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/create-space-3d-text-effect-online-985.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'lion':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/create-lion-logo-mascot-online-938.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case '3dneon':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/create-3d-neon-light-text-effect-online-1028.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'neon':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/neon-text-effect-online-879.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'greenneon':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/green-neon-text-effect-874.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+   
+   
+  
+case 'bokeh':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/bokeh-text-effect-876.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+   
+   
+
+case 'hollographic':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/holographic-3d-text-effect-975.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'bear':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'wolf':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/create-wolf-logo-galaxy-online-936.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+
+	
+	
+
+case 'joker':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/create-logo-joker-online-934.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'dropwater':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/dropwater-text-effect-872.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'neonlight':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/neon-light-text-effect-with-galaxy-style-981.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'thewall':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/break-wall-text-effect-871.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+
+	
+case 'natural':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/natural-leaves-text-effect-931.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'carbon':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/carbon-text-effect-833.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+	
+	
+	
+case 'pencil':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/create-a-sketch-text-effect-online-1044.html", [
+    `${text}`,])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+  
+case 'candy': case 'christmas': case '3dchristmas': case 'sparklechristmas':
+case 'deepsea': case 'scifi': case 'rainbow': case 'waterpipe': case 'spooky': 
+case 'pencil': case 'circuit': case 'discovery': case 'metalic': case 'fiction': case 'demon': 
+case 'transformer': case 'berry': case 'thunder': case 'magma': case '3dstone': 
+case 'neonlight': case 'glitch': case 'harrypotter': case 'brokenglass': case 'papercut': 
+case 'watercolor': case 'multicolor': case 'neondevil': case 'underwater': case 'graffitibike':
+ case 'snow': case 'cloud': case 'honey': case 'ice': case 'fruitjuice': case 'biscuit': case 'wood': 
+case 'chocolate': case 'strawberry': case 'matrix': case 'blood': case 'dropwater': case 'toxic': 
+case 'lava': case 'rock': case 'bloodglas': case 'hallowen': case 'darkgold': case 'joker': case 'wicker':
+ case 'firework': case 'skeleton': case 'blackpink': case 'sand': case 'glue': case '1917': case 'leaves': {
+             	if (!text) return m.reply(`Example : ${prefix + command} zBot`) 
+             	replyig(mess.wait)
+             	let link
+             	if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
+             	if (/christmas/.test(command)) link = 'https://textpro.me/christmas-tree-text-effect-online-free-1057.html'
+             	if (/3dchristmas/.test(command)) link = 'https://textpro.me/3d-christmas-text-effect-by-name-1055.html'
+             	if (/sparklechristmas/.test(command)) link = 'https://textpro.me/sparkles-merry-christmas-text-effect-1054.html'
+             	if (/deepsea/.test(command)) link = 'https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html'
+             	if (/scifi/.test(command)) link = 'https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html'
+             	if (/rainbow/.test(command)) link = 'https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html'
+             	if (/waterpipe/.test(command)) link = 'https://textpro.me/create-3d-water-pipe-text-effects-online-1048.html'
+             	if (/spooky/.test(command)) link = 'https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html'
+             	if (/pencil/.test(command)) link = 'https://textpro.me/create-a-sketch-text-effect-online-1044.html'
+             	if (/circuit/.test(command)) link = 'https://textpro.me/create-blue-circuit-style-text-effect-online-1043.html'
+             	if (/discovery/.test(command)) link = 'https://textpro.me/create-space-text-effects-online-free-1042.html'
+             	if (/metalic/.test(command)) link = 'https://textpro.me/creat-glossy-metalic-text-effect-free-online-1040.html'
+             	if (/fiction/.test(command)) link = 'https://textpro.me/create-science-fiction-text-effect-online-free-1038.html'
+             	if (/demon/.test(command)) link = 'https://textpro.me/create-green-horror-style-text-effect-online-1036.html'
+             	if (/transformer/.test(command)) link = 'https://textpro.me/create-a-transformer-text-effect-online-1035.html'
+             	if (/berry/.test(command)) link = 'https://textpro.me/create-berry-text-effect-online-free-1033.html'
+             	if (/thunder/.test(command)) link = 'https://textpro.me/online-thunder-text-effect-generator-1031.html'
+             	if (/magma/.test(command)) link = 'https://textpro.me/create-a-magma-hot-text-effect-online-1030.html'
+             	if (/3dstone/.test(command)) link = 'https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html'
+             	if (/neonlight/.test(command)) link = 'https://textpro.me/create-3d-neon-light-text-effect-online-1028.html'
+             	if (/glitch/.test(command)) link = 'https://textpro.me/create-impressive-glitch-text-effects-online-1027.html'
+             	if (/harrypotter/.test(command)) link = 'https://textpro.me/create-harry-potter-text-effect-online-1025.html'
+             	if (/brokenglass/.test(command)) link = 'https://textpro.me/broken-glass-text-effect-free-online-1023.html'
+             	if (/papercut/.test(command)) link = 'https://textpro.me/create-art-paper-cut-text-effect-online-1022.html'
+             	if (/watercolor/.test(command)) link = 'https://textpro.me/create-a-free-online-watercolor-text-effect-1017.html'
+             	if (/multicolor/.test(command)) link = 'https://textpro.me/online-multicolor-3d-paper-cut-text-effect-1016.html'
+             	if (/neondevil/.test(command)) link = 'https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html'
+             	if (/underwater/.test(command)) link = 'https://textpro.me/3d-underwater-text-effect-generator-online-1013.html'
+             	if (/graffitibike/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
+             	if (/snow/.test(command)) link = 'https://textpro.me/create-snow-text-effects-for-winter-holidays-1005.html'
+             	if (/cloud/.test(command)) link = 'https://textpro.me/create-a-cloud-text-effect-on-the-sky-online-1004.html'
+             	if (/honey/.test(command)) link = 'https://textpro.me/honey-text-effect-868.html'
+             	if (/ice/.test(command)) link = 'https://textpro.me/ice-cold-text-effect-862.html'
+             	if (/fruitjuice/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
+             	if (/biscuit/.test(command)) link = 'https://textpro.me/biscuit-text-effect-858.html'
+             	if (/wood/.test(command)) link = 'https://textpro.me/wood-text-effect-856.html'
+             	if (/chocolate/.test(command)) link = 'https://textpro.me/chocolate-cake-text-effect-890.html'
+             	if (/strawberry/.test(command)) link = 'https://textpro.me/strawberry-text-effect-online-889.html'
+             	if (/matrix/.test(command)) link = 'https://textpro.me/matrix-style-text-effect-online-884.html'
+             	if (/blood/.test(command)) link = 'https://textpro.me/horror-blood-text-effect-online-883.html'
+             	if (/dropwater/.test(command)) link = 'https://textpro.me/dropwater-text-effect-872.html'
+             	if (/toxic/.test(command)) link = 'https://textpro.me/toxic-text-effect-online-901.html'
+             	if (/lava/.test(command)) link = 'https://textpro.me/lava-text-effect-online-914.html'
+             	if (/rock/.test(command)) link = 'https://textpro.me/rock-text-effect-online-915.html'
+             	if (/bloodglas/.test(command)) link = 'https://textpro.me/blood-text-on-the-frosted-glass-941.html'
+             	if (/hallowen/.test(command)) link = 'https://textpro.me/halloween-fire-text-effect-940.html'
+             	if (/darkgold/.test(command)) link = 'https://textpro.me/metal-dark-gold-text-effect-online-939.html'
+             	if (/joker/.test(command)) link = 'https://textpro.me/create-logo-joker-online-934.html'
+             	if (/wicker/.test(command)) link = 'https://textpro.me/wicker-text-effect-online-932.html'
+             	if (/firework/.test(command)) link = 'https://textpro.me/firework-sparkle-text-effect-930.html'
+             	if (/skeleton/.test(command)) link = 'https://textpro.me/skeleton-text-effect-online-929.html'
+             	if (/blackpink/.test(command)) link = 'https://textpro.me/create-blackpink-logo-style-online-1001.html'
+             	if (/sand/.test(command)) link = 'https://textpro.me/write-in-sand-summer-beach-free-online-991.html'
+             	if (/glue/.test(command)) link = 'https://textpro.me/create-3d-glue-text-effect-with-realistic-style-986.html'
+             	if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
+                if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'
+             	let anu = await maker.textpro(link, text)
+                kon.sendMessage(m.chat, { image: { url: anu }, caption: mess.success }, { quoted: m })
+             }
+             break
 case'glitch3':
 	if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
 	replyig(mess.wait)
@@ -280,11 +781,125 @@ case 'drapwater':
 
  ⍨⃝⚠️ ${prefix}menu
  ⍨⃝⚠️ ${prefix}owner
+𝐂𝐨𝐧𝐯𝐞𝐫𝐭
+ ==⍨⃝🐣 ${prefix}sticker (reply gambar)
+ ==⍨⃝🐣 ${prefix}swm (reply gambar)
+ ==⍨⃝🐣 ${prefix}smeme (reply gambar)🇱
+ ==⍨⃝🐣 ${prefix}smeme2 (reply gambar)🇱
+ ==⍨⃝🐣 ${prefix}triggered (reply gambar)
+ ==⍨⃝🐣 ${prefix}gay (reply gambar)
+ ==⍨⃝🐣 ${prefix}glass (reply gambar)
+ ==⍨⃝🐣 ${prefix}passed (reply gambar)
+ ==⍨⃝🐣 ${prefix}jail (reply gambar)
+ ==⍨⃝🐣 ${prefix}comrade (reply gambar)
+ ==⍨⃝🐣 ${prefix}green (reply gambar)
+ ==⍨⃝🐣 ${prefix}blue (reply gambar)
+ ==⍨⃝🐣 ${prefix}sepia (reply gambar)
+ ==⍨⃝🐣 ${prefix}wasted (reply gambar)
+ ==⍨⃝🐣 ${prefix}greyscale (reply gambar)
+ ==⍨⃝🐣 ${prefix}blurple2 (reply gambar)
+ ==⍨⃝🐣 ${prefix}blurple (reply gambar)
+ ==⍨⃝🐣 ${prefix}red (reply gambar)
+ ==⍨⃝🐣 ${prefix}invertgreyscale (reply gambar)
+ ==⍨⃝🐣 ${prefix}invert (reply gambar)
+ 
+𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝
  ⍨⃝⚠️ ${prefix}tiktok
  ⍨⃝⚠️ ${prefix}play
  ⍨⃝⚠️ ${prefix}ytmp3
  ⍨⃝⚠️ ${prefix}twitter
  ⍨⃝⚠️ ${prefix}instagram
+Text Pro
+⍨⃝🎬 ${prefix}candy (masukan teks)
+⍨⃝🎬 ${prefix}christmas (masukan teks)
+⍨⃝🎬 ${prefix}3dchristmas (masukan teks)
+⍨⃝🎬 ${prefix}sparklechristmas (masukan teks)
+⍨⃝🎬 ${prefix}deepsea (masukan teks)
+⍨⃝🎬 ${prefix}scifi (masukan teks)
+⍨⃝🎬 ${prefix}rainbow (masukan teks)
+⍨⃝🎬 ${prefix}waterpipe (masukan teks)
+⍨⃝🎬 ${prefix}spooky (masukan teks)
+⍨⃝🎬 ${prefix}pencil (masukan teks)
+⍨⃝🎬 ${prefix}circuit (masukan teks)
+⍨⃝🎬 ${prefix}discovery (masukan teks)
+⍨⃝🎬 ${prefix}metalic (masukan teks)
+⍨⃝🎬 ${prefix}fiction (masukan teks)
+⍨⃝🎬 ${prefix}demon (masukan teks)
+⍨⃝🎬 ${prefix}transformer (masukan teks)
+⍨⃝🎬 ${prefix}berry (masukan teks)
+⍨⃝🎬 ${prefix}thunder (masukan teks)
+⍨⃝🎬 ${prefix}magma (masukan teks)
+⍨⃝🎬 ${prefix}3dstone (masukan teks)
+⍨⃝🎬 ${prefix}neonlight (masukan teks)
+⍨⃝🎬 ${prefix}glitch (masukan teks)
+⍨⃝🎬 ${prefix}harrypotter (masukan teks)
+⍨⃝🎬 ${prefix}brokenglass (masukan teks)
+⍨⃝🎬 ${prefix}papercut (masukan teks)
+⍨⃝🎬 ${prefix}watercolor (masukan teks)
+⍨⃝🎬 ${prefix}multicolor (masukan teks)
+⍨⃝🎬 ${prefix}neondevil (masukan teks)
+⍨⃝🎬 ${prefix}underwater (masukan teks)
+⍨⃝🎬 ${prefix}graffitibike (masukan teks)
+⍨⃝🎬 ${prefix}snow (masukan teks)
+⍨⃝🎬 ${prefix}cloud (masukan teks)
+⍨⃝🎬 ${prefix}honey (masukan teks)
+⍨⃝🎬 ${prefix}ice (masukan teks)
+⍨⃝🎬 ${prefix}fruitjuice (masukan teks)
+⍨⃝🎬 ${prefix}biscuit (masukan teks)
+⍨⃝🎬 ${prefix}wood (masukan teks)
+⍨⃝🎬 ${prefix}chocolate (masukan teks)
+⍨⃝🎬 ${prefix}strawberry (masukan teks)
+⍨⃝🎬 ${prefix}matrix (masukan teks)
+⍨⃝🎬 ${prefix}blood (masukan teks)
+⍨⃝🎬 ${prefix}dropwater (masukan teks)
+⍨⃝🎬 ${prefix}toxic (masukan teks)
+⍨⃝🎬 ${prefix}lava (masukan teks)
+⍨⃝🎬 ${prefix}rock (masukan teks)
+⍨⃝🎬 ${prefix}bloodglas (masukan teks)
+⍨⃝🎬 ${prefix}hallowen (masukan teks)
+⍨⃝🎬 ${prefix}darkgold (masukan teks)
+⍨⃝🎬 ${prefix}joker (masukan teks)
+⍨⃝🎬 ${prefix}wicker(masukan teks)
+⍨⃝🎬 ${prefix}firework (masukan teks)
+⍨⃝🎬 ${prefix}skeleton (masukan teks)
+⍨⃝🎬 ${prefix}blackpink (masukan teks)
+⍨⃝🎬 ${prefix}sand (masukan teks)
+⍨⃝🎬 ${prefix}glue (masukan teks)
+⍨⃝🎬 ${prefix}1917 (masukan teks)
+⍨⃝🎬 ${prefix}leaves (masukan teks)
+⍨⃝🎬 ${prefix}pencil (masukan teks)
+⍨⃝🎬 ${prefix}carbon (masukan teks)
+⍨⃝🎬 ${prefix}natural (masukan teks)
+⍨⃝🎬 ${prefix}neonlight (masukan teks)
+⍨⃝🎬 ${prefix}dropwater (masukan teks)
+⍨⃝🎬 ${prefix}joker (masukan teks)
+⍨⃝🎬 ${prefix}hollographic (masukan teks)
+⍨⃝🎬 ${prefix}bokeh (masukan teks)
+⍨⃝🎬 ${prefix}greenneon (masukan teks)
+⍨⃝🎬 ${prefix}neon (masukan teks)
+⍨⃝🎬 ${prefix}3dneon (masukan teks)
+⍨⃝🎬 ${prefix}blackping (masukan teks)
+⍨⃝🎬 ${prefix}window (masukan teks)
+⍨⃝🎬 ${prefix}thunder (masukan teks)
+⍨⃝🎬 ${prefix}3davengers (masukan teks)
+⍨⃝🎬 ${prefix}3dstone (masukan teks)
+⍨⃝🎬 ${prefix}neondevil (masukan teks)
+⍨⃝🎬 ${prefix}transformer (masukan teks)
+⍨⃝🎬 ${prefix}papercut (masukan teks)
+⍨⃝🎬 ${prefix}lion2 (masukan teks)
+⍨⃝🎬 ${prefix}drapwater (masukan teks)
+⍨⃝🎬 ${prefix}3dbox (masukan teks)
+⍨⃝🎬 ${prefix}herryp (masukan teks)
+⍨⃝🎬 ${prefix}grafiti (masukan teks)
+⍨⃝🎬 ${prefix}pornhub (masukan teks)
+⍨⃝🎬 ${prefix}glitch2 (masukan teks)
+⍨⃝🎬 ${prefix}glitch3 (masukan teks)
+⍨⃝🎬 ${prefix}3dspace (masukan teks)
+⍨⃝🎬 ${prefix}lion (masukan teks)
+⍨⃝🎬 ${prefix}bear (masukan teks)
+⍨⃝🎬 ${prefix}wolf (masukan teks)
+⍨⃝🎬 ${prefix}thewall (masukan teks)
+
  `
         kon.sendMessage(m.chat, { react: { text: `😉`, key: m.key }})
         let buttons = [

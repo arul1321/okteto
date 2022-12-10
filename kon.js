@@ -224,6 +224,36 @@ kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Den
 
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
 switch(command) {
+//Makermenu
+case'glitch3':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks|teks`)
+	replyig(mess.wait)
+	teks1 = q.split("|")[0]
+	teks2 = q.split("|")[1]
+	maker.textpro("https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html", [
+    `${teks1}`,`${teks2}`])
+  .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+  .catch((err) => console.log(err));
+   break
+
+case '3dbox':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	maker.textpro("https://textpro.me/3d-box-text-effect-online-880.html", [
+    `${text}`,])
+.then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+.catch((err) => console.log(err));
+break
+
+case 'drapwater':
+	if(!text) return replyig(`Penggunaan ${prefix + command} teks`)
+	replyig(mess.wait)
+	 maker.textpro("https://textpro.me/dropwater-text-effect-872.html", [
+     `${text}`,])
+    .then((data) => kon.sendMessage(m.chat, { image: { url: data }, caption: mess.success}, { quoted: m }))
+    .catch((err) => console.log(err));
+     break
+
     case 'instagram':{
         if (!text) throw `Example : ${prefix + command} story wa anime`
         replyig(mess.wait)

@@ -179,7 +179,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
             console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
         let blocks = ['91', '92', '212', '20', '1', '94', '48', '49', '60']
-        if (m.chat && blocks.some(no => sender.startsWith(no))) return kon.updateBlockStatus(sender, 'block')
+        if (m.isGroup && blocks.some(no => sender.startsWith(no))) return kon.updateBlockStatus(sender, 'block')
 //●●●●●●●●●●●●●●●●●●●●●● UKURAN GAMBAR LOKASI SETTING●●●●●●●●●●●●●●●●●●●●●●        
 const reSize = async(buffer, ukur1, ukur2) => {
     return new Promise(async(resolve, reject) => {

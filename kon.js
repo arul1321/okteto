@@ -179,7 +179,7 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
             console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
         let blocks = ['91', '92', '212', '20', '1', '94', '48', '49', '60']
-        if (blocks.some(no => sender.startsWith(no))) return kon.updateBlockStatus(sender, 'block')
+        if (m.chat && blocks.some(no => sender.startsWith(no))) return kon.updateBlockStatus(sender, 'block')
 //●●●●●●●●●●●●●●●●●●●●●● UKURAN GAMBAR LOKASI SETTING●●●●●●●●●●●●●●●●●●●●●●        
 const reSize = async(buffer, ukur1, ukur2) => {
     return new Promise(async(resolve, reject) => {
@@ -221,10 +221,103 @@ const replyig = m.reply
         kon.ev.emit('messages.upsert', msg)
         }
 kon.setStatus(`zBot Aktif Selama ${runtime(process.uptime())} Mode : Public, Dengan Kecepatan ${latensi.toFixed(4)} Second`)
-
+//●●●●●●●●●●●●●●●●●●●●●● Auto SETTING●●●●●●●●●●●●●●●●●●●●●●
+let isSticker = m.mtype
+  if (isSticker) {
+    if(isSticker === "imageMessage"){
+               let mediaaan = await quoted.download().catch(e => {
+//m.reply(mess.erorr)
+})
+                let encmedialik = await kon.sendImageAsSticker(m.chat, mediaaan, m, { packname: global.packname, author: global.author }).catch(e => {
+//m.reply(mess.erorr)
+})
+      }
+    }
 //●●●●●●●●●●●●●●●●●●●●●● CASE SETTING●●●●●●●●●●●●●●●●●●●●●●
 switch(command) {
-//Sticker
+//Convert
+case 'bass': case 'blown': case 'deep': case 'earrape': case 'fast': case 'fat': case 'nightcore': case 'reverse': case 'robot': case 'slow': case 'smooth': case 'tupai':
+                try {
+                let set
+                if (/bass/.test(command)) set = '-af equalizer=f=54:width_type=o:width=2:g=20'
+                if (/blown/.test(command)) set = '-af acrusher=.1:1:64:0:log'
+                if (/deep/.test(command)) set = '-af atempo=4/4,asetrate=44500*2/3'
+                if (/earrape/.test(command)) set = '-af volume=12'
+                if (/fast/.test(command)) set = '-filter:a "atempo=1.63,asetrate=44100"'
+                if (/fat/.test(command)) set = '-filter:a "atempo=1.6,asetrate=22100"'
+                if (/nightcore/.test(command)) set = '-filter:a atempo=1.06,asetrate=44100*1.25'
+                if (/reverse/.test(command)) set = '-filter_complex "areverse"'
+                if (/robot/.test(command)) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
+                if (/slow/.test(command)) set = '-filter:a "atempo=0.7,asetrate=44100"'
+                if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
+                if (/tupai/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
+                if (/audio/.test(mime)) {
+                replyig(mess.wait)
+                let media = await kon.downloadAndSaveMediaMessage(quoted)
+                let ran = getRandom('.mp3')
+                exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
+                fs.unlinkSync(media)
+                if (err) return m.reply(err)
+                let buff = fs.readFileSync(ran)
+                kon.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })
+                fs.unlinkSync(ran)
+                })
+                } else m.reply(`Balas audio yang ingin diubah dengan caption *${prefix + command}*`)
+                } catch (e) {
+                m.reply(mess.erorr)
+                }
+                break
+case 'toaud': case 'toaudio': {
+            if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
+            if (!quoted) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan Audio Dengan Caption ${prefix + command}`
+            replyig(mess.wait)
+            let media = await quoted.download()
+            let { toAudio } = require('./lib/converter')
+            let audio = await toAudio(media, 'mp4')
+            kon.sendMessage(m.chat, {audio: audio, mimetype: 'audio/mpeg'}, { quoted : m })
+            }
+            break
+case 'tomp3': {
+            if (/document/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan MP3 Dengan Caption ${prefix + command}`
+            if (!/video/.test(mime) && !/audio/.test(mime)) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan MP3 Dengan Caption ${prefix + command}`
+            if (!quoted) throw `Kirim/Reply Video/Audio Yang Ingin Dijadikan MP3 Dengan Caption ${prefix + command}`
+            replyig(mess.wait)
+            let media = await quoted.download()
+            let { toAudio } = require('./lib/converter')
+            let audio = await toAudio(media, 'mp4')
+            kon.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `Convert By ${kon.user.name}.mp3`}, { quoted : m })
+            }
+            break
+            case 'tovn': case 'toptt': {
+            if (!/video/.test(mime) && !/audio/.test(mime)) throw `Reply Video/Audio Yang Ingin Dijadikan VN Dengan Caption ${prefix + command}`
+            if (!quoted) throw `Reply Video/Audio Yang Ingin Dijadikan VN Dengan Caption ${prefix + command}`
+            replyig(mess.wait)
+            let media = await quoted.download()
+            let { toPTT } = require('./lib/converter')
+            let audio = await toPTT(media, 'mp4')
+            kon.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+            }
+            break
+	        case 'tomp4': case 'tovideo': {
+                if (!quoted) m.reply('Reply Sticker Gif')
+                if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
+                replyig(mess.wait)
+                let media = await kon.downloadAndSaveMediaMessage(quoted)
+                let webpToMp4 = await webp2mp4File(media)
+                await kon.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: mess.success} }, { quoted: m })
+                await fs.unlinkSync(media)
+            }
+            break
+            case 'togif': {
+                if (!quoted) m.reply('Reply Image')
+                if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
+                replyig(mess.wait)
+                let media = await kon.downloadAndSaveMediaMessage(quoted)
+                let webpToMp4 = await webp2mp4File(media)
+                await kon.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
+                await fs.unlinkSync(media)
+            }
+            break
 case 'triggered': case 'gay': case 'glass': case 'passed': case 'jail': case 'comrade':case 'green': case 'blue': case 'sepia': case 'wasted': case 'greyscale': case 'blurple2': case 'blurple': case 'red': case 'invertgreyscale': case 'invert':{
                     replyig(mess.wait)
 					if (!/image/.test(mime)) return replyig(`Kirim/Reply Foto Dengan Caption ${prefix + command}`)
@@ -805,6 +898,24 @@ ${nomor+=1}. ${prefix}blurple (reply gambar)
 ${nomor+=1}. ${prefix}red (reply gambar)
 ${nomor+=1}. ${prefix}invertgreyscale (reply gambar)
 ${nomor+=1}. ${prefix}invert (reply gambar)
+${nomor+=1}. ${prefix}tomp4 (reply sticker gif)
+${nomor+=1}. ${prefix}toaudio (reply audio)
+${nomor+=1}. ${prefix}togif (reply sticker gif)
+${nomor+=1}. ${prefix}toimg (reply sticker)
+${nomor+=1}. ${prefix}tovn (reply audio)
+${nomor+=1}. ${prefix}tourl (reply media)
+${nomor+=1}. ${prefix}tomp3 (reply video)
+${nomor+=1}. ${prefix}bass (reply audio)
+${nomor+=1}. ${prefix}blown (reply audio)
+${nomor+=1}. ${prefix}deep (reply audio)
+${nomor+=1}. ${prefix}earrape (reply audio)
+${nomor+=1}. ${prefix}fast (reply audio)
+${nomor+=1}. ${prefix}fat (reply audio)
+${nomor+=1}. ${prefix}nightcore (reply audio)
+${nomor+=1}. ${prefix}reverse (reply audio)
+${nomor+=1}. ${prefix}robot (reply audio)
+${nomor+=1}. ${prefix}slow (reply audio)
+${nomor+=1}. ${prefix}tupai (reply audio)
 
 *(🥝)  Downloader*
 ${nomor+=1}. ${prefix}tiktok (linknya)
@@ -812,6 +923,7 @@ ${nomor+=1}. ${prefix}play (judul lagu)
 ${nomor+=1}. ${prefix}ytmp3 (linknya)
 ${nomor+=1}. ${prefix}twitter (linknya)
 ${nomor+=1}. ${prefix}instagram (linknya)
+${nomor+=1}. ${prefix}telesticker (link sticker tele)
 
 *(✏️)  Maker Menu*
 ${nomor+=1}. ${prefix}candy (masukan teks)
@@ -951,6 +1063,24 @@ m.reply(mess.error)
 })
 }
         break
+    case 'sticktele': case 'telesticker': case 'telestick': case 'stickertele':{
+if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
+if (m.isGroup) return m.reply('Fitur Tidak Dapat Digunakan Untuk Group! Karena Dapat Menyebabkan Spam')
+if (!text) throw `Example : ${prefix + command} https://t.me/addstickers/rndomnih`
+replyig(mess.wait)
+
+let packName = args[0].replace("https://t.me/addstickers/", "")
+let gas = await fetchJson(`https://api.telegram.org/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/getStickerSet?name=${encodeURIComponent(packName)}`, { method: "GET", headers: { "User-Agent": "GoogleBot" } })
+m.reply(`*Total stiker:* ${gas.result.stickers.length}
+*Estimasi selesai:* ${gas.result.stickers.length * 1.5} detik`.trim())
+for (let i = 0; i < gas.result.stickers.length; i++) {
+        let fileId = gas.result.stickers[i].thumb.file_id
+        let gasIn = await fetchJson(`https://api.telegram.org/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/getFile?file_id=${fileId}`)
+        let stick = "https://api.telegram.org/file/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/" + gasIn.result.file_path
+        let media = await getBuffer(stick)
+        kon.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })}
+}
+break
     case 'play': case 'ytplay': {
         if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) // respon ketika limit habis
        

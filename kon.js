@@ -1234,6 +1234,60 @@ break
         })
         }
         break
+	case 'bcs': case 'bcs':{
+                if (!isCreator) throw mess.owner
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)              
+                for (let i of anu) {
+                    await sleep(1500)         
+                if (/image/.test(mime)) {
+                let media = await quoted.download()
+                let encmedia = await kon.sendImageAsSticker(i, media, m, { packname: global.packname, author: global.author })
+            } else if (/video/.test(mime)) {
+                if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
+                let media = await quoted.download()
+                let encmedia = await kon.sendVideoAsSticker(i, media, m, { packname: global.packname, author: global.author })
+            } else {
+                throw `Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
+                }
+                }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
+		case 'bcaudio': case 'bca':{
+                if (!isCreator) throw mess.owner           
+                let buff = await kon.downloadAndSaveMediaMessage(quoted)
+                let anu = await store.chats.all().map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)         
+                      let bufff = fs.readFileSync(buff)
+                      kon.sendMessage(i, { audio: bufff, mimetype: 'audio/mpeg' }, { quoted : m })
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
+	    case 'bcimage': case 'bcimg':{
+                if (!isCreator) throw mess.owner
+                if (!text) throw `Text mana?\n\nExample : ${prefix + command} BroadCast`
+                let meel = await kon.downloadAndSaveMediaMessage(quoted)
+                mem = fs.readFileSync(meel)
+                let getGroups = await kon.groupFetchAllParticipating()
+                let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+                let anu = groups.map(v => v.id)
+                m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+                for (let i of anu) {
+                    await sleep(1500)         
+                      let txt = `Broadcast Image by ZBot`
+                     
+var but = [{buttonId: `owner`, buttonText: { displayText: 'Owner' }, type: 1 },{buttonId: `menu`, buttonText: { displayText: 'Menu' }, type: 1 }]
+kon.sendMessage(i, { caption: text, image: mem, buttons: but, footer: txt }, { quoted: m })
+                    }
+                m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+            }
+            break
     default:
         if (budy.startsWith('=>')) {
             if (!isCreator) return m.reply(mess.owner)

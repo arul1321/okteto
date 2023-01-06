@@ -345,7 +345,7 @@ case 'smeme': {
             }
 	       break
 case 'ssweb':
-case 'ss':{
+            case 'ss':{
                 if (!text) throw 'url ?'
                 replyig(mess.wait)
 					teks = q
@@ -355,7 +355,9 @@ m.reply(mess.erorr)
 					buff = await getBuffer(anu.screenshot)
 					kon.sendMessage(m.chat, { image: { url: anu.screenshot}}).catch(e => {
 m.reply(mess.erorr)
-break
+})
+}
+					break
 case 'sticker': case 's': case 'stickergif': case 'sgif': {
             if (!quoted) throw`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
             replyig(mess.wait)

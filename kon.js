@@ -344,6 +344,18 @@ case 'smeme': {
 	        await fs.unlinkSync(FaTiH)
             }
 	       break
+case 'ssweb':
+case 'ss':{
+                if (!text) throw 'url ?'
+                replyig(mess.wait)
+					teks = q
+					anu = await fetchJson(`https://shot.screenshotapi.net/screenshot?&url=${text}`).catch(e => {
+m.reply(mess.erorr)
+})
+					buff = await getBuffer(anu.screenshot)
+					kon.sendMessage(m.chat, { image: { url: anu.screenshot}}).catch(e => {
+m.reply(mess.erorr)
+break
 case 'sticker': case 's': case 'stickergif': case 'sgif': {
             if (!quoted) throw`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`
             replyig(mess.wait)

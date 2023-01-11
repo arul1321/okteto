@@ -395,6 +395,13 @@ case 'wm': case 'swm': {
                 }
             }
             break
+case 'q': case 'quoted': {
+		if (!m.quoted) return m.reply('Reply Pesannya!!')
+		let wokwol = await kon.serializeM(await m.getQuotedObj())
+		if (!wokwol.quoted) return m.reply('Pesan Yang anda reply tidak mengandung reply')
+		await wokwol.quoted.copyNForward(m.chat, true)
+            }
+	    break
 case 'toimage': case 'toimg': {
                 if (!quoted) m.reply('Reply Sticker')
                 if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`

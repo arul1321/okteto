@@ -175,8 +175,9 @@ let tamnel = fs.readFileSync('./lib/hisoka.jpg')
 
 //●●●●●●●●●●●●●●●●●●●●●● AUTO RECORDING SETTING●●●●●●●●●●●●●●●●●●●●●●
         if (m.message) {
+	kon.readMessages([m.key])
         kon.sendPresenceUpdate('recording', m.chat, m.sender, [m.key.id])
-            console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
+        console.log(chalk.black(chalk.bgWhite('[ PESAN ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> Dari'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> Di'), chalk.green(m.isGroup ? pushname : 'Private Chat', m.chat))
         }
         let blocks = ['91', '92', '212', '20', '1', '94', '48', '49', '60']
         //if (m.isGroup && blocks.some(no => sender.startsWith(no))) return kon.updateBlockStatus(sender, 'block')
